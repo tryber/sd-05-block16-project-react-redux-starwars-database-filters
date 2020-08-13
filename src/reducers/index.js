@@ -1,7 +1,21 @@
-import { SOMTH } from '../actions';
+import { REQUEST, DATA, FAIL} from '../actions';
 
-function emptyReducer() {
-  return {};
+const initialState = {
+  fetching: false,
+  data: [],
 }
 
-export default emptyReducer;
+function planetReducer(state = initialState, action) {
+  switch (action.type) {
+    case REQUEST:
+      return { ...state, fetching: true };
+    case DATA:
+      return { ...state, fetching: false, data: action.data };
+    case FAIL:
+      return { ...state, fetching: false, error: action.err };
+    default:
+      return state;
+  }
+}
+
+export default planetReducer;
