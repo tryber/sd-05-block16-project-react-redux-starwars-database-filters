@@ -9,30 +9,29 @@ class Table extends Component {
   componentDidMount() {
     const { getPlanets } = this.props;
     getPlanets();
-    
   }
 
   render() {
-    const { error, isFetching, data } = this.props;
+    const { data } = this.props;
     if (!data) return <div>Sem dados</div>;
     return (
       <div>
         <table>
           <Cabecalho />
-          {data.map(planet => {
-          return (
-            <tr>
-              <td>{planet.name}</td>
-              <td>{planet.rotation_period}</td>
-              <td>{planet.orbital_period}</td>
-              <td>{planet.diameter}</td>
-              <td>{planet.climate}</td>
-              <td>{planet.gravity}</td>
-              <td>{planet.terrain}</td>
-              <td>{planet.surface_water}</td>
-              <td>{planet.population}</td>
-            </tr>
-          )
+          {data.map((planet) => {
+            return (
+              <tr>
+                <td>{planet.name}</td>
+                <td>{planet.rotation_period}</td>
+                <td>{planet.orbital_period}</td>
+                <td>{planet.diameter}</td>
+                <td>{planet.climate}</td>
+                <td>{planet.gravity}</td>
+                <td>{planet.terrain}</td>
+                <td>{planet.surface_water}</td>
+                <td>{planet.population}</td>
+              </tr>
+            );
           })}
         </table>
       </div>
@@ -44,7 +43,7 @@ const mapStateToProps = (state) => ({
   error: state.getPlanets.error,
   isFetching: state.getPlanets.isFetching,
   data: state.getPlanets.data.results,
-})
+});
 
 const mapDispatchToProps = (dispatch) => ({
   getPlanets: () => dispatch(fetchStarWarsPlanets()),

@@ -1,7 +1,7 @@
 import React from 'react';
 
 function Cabecalho() {
-  return(
+  return (
     <tr>
       <th>Nome</th>
       <th>Período de Rotação</th>
