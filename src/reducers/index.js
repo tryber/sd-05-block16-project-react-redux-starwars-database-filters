@@ -1,9 +1,9 @@
-const INITIAL_STATE = [];
 
-function emptyReducer(state =  INITIAL_STATE, action) {
-  return {
-    teste: 'teste'
-  };
-}
+import { combineReducers } from 'redux';
+import receiveReducer from './receiveReducer';
 
-export default emptyReducer;
+const rootReducer = combineReducers({
+  receiveReducer,
+})
+
+export default rootReducer;
