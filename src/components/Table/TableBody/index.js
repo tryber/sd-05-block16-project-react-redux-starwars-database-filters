@@ -13,10 +13,11 @@ const Films = {
 
 class TableBody extends React.Component {
   render() {
-    const { planets } = this.props;
+    const { planets, nameFilter } = this.props;
     return (
       <tbody>
         {planets
+          .filter((planet) => planet.name.toLowerCase().includes(nameFilter.toLowerCase()))
           .map((planet) => (
             <tr key={planet.name}>
               <td><p>{planet.name}</p></td>
@@ -43,14 +44,17 @@ class TableBody extends React.Component {
 
 const mapStateToProps = (state) => ({
   planets: state.API.data,
+  nameFilter: state.filters.filterByName.name,
 });
 
 export default connect(mapStateToProps)(TableBody);
 
 TableBody.defaultProps = {
   planets: undefined,
+  nameFilter: '',
 };
 
 TableBody.propTypes = {
   planets: PropTypes.arrayOf(PropTypes.object),
+  nameFilter: PropTypes.string,
 };

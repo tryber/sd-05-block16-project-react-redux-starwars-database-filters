@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import { fetchPlanets } from './actions';
 import Table from './components/Table';
+import SearchBar from './components/SearchBar';
 
 class App extends React.Component {
   componentDidMount() {
@@ -13,7 +14,10 @@ class App extends React.Component {
 
   render() {
     return (
-      <Table />
+      <div>
+        <SearchBar />
+        <Table />
+      </div>
     );
   }
 }
