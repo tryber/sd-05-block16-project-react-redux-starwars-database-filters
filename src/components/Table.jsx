@@ -47,21 +47,21 @@ class Table extends Component {
           <table>
             <thead>
               <tr>
-              {
-                tableKeys.map((header) =>
-                  <th key={rKey(header)}>{formatName(header)}</th>
-                )
-              }
+                {
+                  tableKeys.map((header) =>
+                    <th key={rKey(header)}>{formatName(header)}</th>,
+                  )
+                }
               </tr>
             </thead>
             <tbody>
-            {
-              data.map((planet) => (
-                <tr key={rKey(planet.name)}>
-                  { tableKeys.map((key) => (<td key={rKey(key)}>{planet[key]}</td>)) }
-                </tr>
-              ))
-            }
+              {
+                data.map((planet) => (
+                  <tr key={rKey(planet.name)}>
+                    { tableKeys.map((key) => (<td key={rKey(key)}>{planet[key]}</td>)) }
+                  </tr>
+                ))
+              }
             </tbody>
           </table>
         ) : <div>error</div>;
