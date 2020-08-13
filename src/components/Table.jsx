@@ -30,9 +30,13 @@ function formatName(name = '') {
 
 class Table extends Component {
 
+  constructor(props) {
+    super(props);
+  }
+
   componentDidMount() {
-    const { fetchData } = this.props;
-    fetchData();
+    const { fetchPlanets } = this.props;
+    fetchPlanets();
   }
 
   render() {
@@ -43,33 +47,33 @@ class Table extends Component {
           <table>
             <thead>
               <tr>
-                {
-                  tableKeys.map(header =>
-                    <th key={rKey(header)}>{formatName(header)}</th>
-                  )
-                }
+              {
+                tableKeys.map((header) =>
+                  <th key={rKey(header)}>{formatName(header)}</th>
+                )
+              }
               </tr>
             </thead>
             <tbody>
             {
-              data.map(planet => (
+              data.map((planet) => (
                 <tr key={rKey(planet.name)}>
-                  { tableKeys.map(key => (<td key={rKey(key)}>{planet[key]}</td>)) }
+                  { tableKeys.map((key) => (<td key={rKey(key)}>{planet[key]}</td>)) }
                 </tr>
               ))
             }
             </tbody>
           </table>
-        ) : <div>error</div>
+        ) : <div>error</div>;
   }
-};
+}
 
 const mapStateToProps = ({ loading, data }) => (
   { isLoading: loading, data }
 );
 
 const mapDispatchToProps = (dispatch) => (
-  { fetchData: () => { dispatch(fetchData()); }}
+  { fetchPlanets: () => { dispatch(fetchData()); } }
 );
 
 export default connect(mapStateToProps, mapDispatchToProps)(Table);

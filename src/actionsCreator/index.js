@@ -24,10 +24,10 @@ const getDataFailed = (error) => ({
 export const fetchData = () => (dispatch) => {
   dispatch(getData());
   getPlanets()
-    .then(res => {
+    .then((res) => {
       dispatch(getDataSuccess(res));
     })
-    .catch(err => {
+    .catch((err) => {
       dispatch(getDataFailed(err));
-    })
+    });
 };
