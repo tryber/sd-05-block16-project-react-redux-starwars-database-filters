@@ -11,12 +11,30 @@ const Films = {
   'https://swapi-trybe.herokuapp.com/api/films/6/': 'Revenge of the Sith',
 };
 
+const filterPlanet = (planetList = [], filter) => {
+  const { column, comparison, value } = filter;
+  return planetList.filter((planet) => {
+    switch (comparison) {
+      case 'maior que':
+        return Number(planet[column]) > Number(value);
+      case 'igual a':
+        return Number(planet[column]) === Number(value);
+      case 'menor que':
+        return Number(planet[column]) < Number(value);
+      default:
+        return planet;
+    }
+  });
+};
+
 class TableBody extends React.Component {
   render() {
-    const { planets, nameFilter } = this.props;
+    const { planets, nameFilter, numericFilters } = this.props;
+    let planetsList = planets;
+    numericFilters.forEach((filter) => { planetsList = filterPlanet(planetsList, filter); });
     return (
       <tbody>
-        {planets
+        {planetsList
           .filter((planet) => planet.name.toLowerCase().includes(nameFilter.toLowerCase()))
           .map((planet) => (
             <tr key={planet.name}>
@@ -44,6 +62,7 @@ class TableBody extends React.Component {
 
 const mapStateToProps = (state) => ({
   planets: state.API.data,
+  numericFilters: state.filters.filterByNumericValues,
   nameFilter: state.filters.filterByName.name,
 });
 
@@ -56,5 +75,6 @@ TableBody.defaultProps = {
 
 TableBody.propTypes = {
   planets: PropTypes.arrayOf(PropTypes.object),
+  numericFilters: PropTypes.arrayOf(PropTypes.object).isRequired,
   nameFilter: PropTypes.string,
 };

@@ -3,8 +3,10 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { fetchPlanets } from './actions';
+
 import Table from './components/Table';
 import SearchBar from './components/SearchBar';
+import Filters from './components/Filters';
 
 class App extends React.Component {
   componentDidMount() {
@@ -16,6 +18,7 @@ class App extends React.Component {
     return (
       <div>
         <SearchBar />
+        <Filters />
         <Table />
       </div>
     );
