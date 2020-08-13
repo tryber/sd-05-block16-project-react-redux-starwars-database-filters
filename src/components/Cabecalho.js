@@ -2,17 +2,17 @@ import React from 'react';
 
 function Cabecalho() {
   return(
-    <th>
-      <td>Nome</td>
-      <td>Período de Rotação</td>
-      <td>Período Orbital</td>
-      <td>Diâmetro</td>
-      <td>Clima</td>
-      <td>Gravidade</td>
-      <td>Terreno</td>
-      <td>Água Superficial</td>
-      <td>População</td>
-    </th>
+    <tr>
+      <th>Nome</th>
+      <th>Período de Rotação</th>
+      <th>Período Orbital</th>
+      <th>Diâmetro</th>
+      <th>Clima</th>
+      <th>Gravidade</th>
+      <th>Terreno</th>
+      <th>Água Superficial</th>
+      <th>População</th>
+    </tr>
   );
 }
 
