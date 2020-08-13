@@ -1,0 +1,18 @@
+p {
+  font-size: 0.7em;
+  margin: 0;
+  text-align: center;
+}
+
+td {
+  background-color: white;
+}
+
+span {
+  font-size: 0.8em;
+  color: white;
+}
+
+body {
+  background-color: black;
+}
