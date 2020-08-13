@@ -1,3 +1,5 @@
+import { SOMTH } from '../actions';
+
 function emptyReducer() {
   return {};
 }
