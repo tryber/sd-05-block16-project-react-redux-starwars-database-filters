@@ -6,7 +6,7 @@ import {
 
 const INITIAL_STATE = {
   isFetching: false,
-  data: [],
+  data: {},
 };
 
 const getPlanets = (state = INITIAL_STATE, action) => {
@@ -20,7 +20,7 @@ const getPlanets = (state = INITIAL_STATE, action) => {
     case RECEIVE_PLANETS_SUCCESS:
       return {
         ...state,
-        data: action.planets.results,
+        data: action.planets,
         isFetching: false,
       }
     case RECEIVE_PLANETS_FAILURE:

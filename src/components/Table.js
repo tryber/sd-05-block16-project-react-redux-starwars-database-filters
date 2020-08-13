@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { fetchStarWarsPlanets } from '../actions/fetchPlanetsApi';
+import Cabecalho from './Cabecalho';
 
 class Table extends Component {
 
@@ -13,11 +14,27 @@ class Table extends Component {
 
   render() {
     const { error, isFetching, data } = this.props;
+    if (!data) return <div>Sem dados</div>;
     return (
       <div>
-        {data.map(planet => {
-          return <div>{planet.name}</div>
-        })}
+        <table>
+          <Cabecalho />
+          {data.map(planet => {
+          return (
+            <tr>
+              <td>{planet.name}</td>
+              <td>{planet.rotation_period}</td>
+              <td>{planet.orbital_period}</td>
+              <td>{planet.diameter}</td>
+              <td>{planet.climate}</td>
+              <td>{planet.gravity}</td>
+              <td>{planet.terrain}</td>
+              <td>{planet.surface_water}</td>
+              <td>{planet.population}</td>
+            </tr>
+          )
+          })}
+        </table>
       </div>
     );
   }
@@ -26,7 +43,7 @@ class Table extends Component {
 const mapStateToProps = (state) => ({
   error: state.getPlanets.error,
   isFetching: state.getPlanets.isFetching,
-  data: state.getPlanets.data,
+  data: state.getPlanets.data.results,
 })
 
 const mapDispatchToProps = (dispatch) => ({
