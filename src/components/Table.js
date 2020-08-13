@@ -1,6 +1,28 @@
 import React, { Component } from 'react';
-import { handleFetch } from '../reducers';
 import { connect } from 'react-redux';
+import { handleFetch } from '../reducers';
+
+class HeaderTable extends Component{
+  render(){
+    return(
+      <thead>
+          <tr>
+            <th>Name</th>
+            <th>Rotation period</th>
+            <th>Orbital period</th>
+            <th>Diameter</th>
+            <th>Climate</th>
+            <th>Gravity</th>
+            <th>Terrain</th>
+            <th>Surface_water</th>
+            <th>Population</th>
+            <th>Films</th>
+            <th>Created</th>
+          </tr>
+        </thead>
+    )
+  }
+}
 
 class Table extends Component {
   constructor(props) {
@@ -18,24 +40,9 @@ class Table extends Component {
     return (
       <div>
         {isfetching && <h1>Loading...</h1>}
-
         <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Rotation period</th>
-            <th>Orbital period</th>
-            <th>Diameter</th>
-            <th>Climate</th>
-            <th>Gravity</th>
-            <th>Terrain</th>
-            <th>Surface_water</th>
-            <th>Population</th>
-            <th>Films</th>
-            <th>Created</th>
-          </tr>
-        </thead>
-          {!isfetching && data.map(planet => (
+          <HeaderTable />
+          {!isfetching && data.map((planet) => (
             <tbody key={planet.name}>
               <tr>
                 <td >{planet.name}</td>
@@ -70,4 +77,3 @@ const mapStateToProps = (state) => ({
 export default connect(mapStateToProps, mapDispatchToProps)(Table);
 
 // Disscussed and did some pair programing with Paulo D'Andrea on this code
-// 

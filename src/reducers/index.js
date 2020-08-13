@@ -33,13 +33,12 @@ export function handleFetch() {
 
     return fetch(apiUrl)
       .then((response) => response.json())
-      .then(
-        (json) => {
-          // console.log(json.results);
+      .then((json) => {
+           console.log(json.results);
           return dispatch(fetchDataActionCreator(json.results));
         },
         (error) => {
-          console.log('erro: ' + error.message);
+          console.log(`erro: ${error.message}`);
           dispatch(fetchErrorActionCreator(error));
         },
       );
@@ -49,7 +48,7 @@ export function handleFetch() {
 function fetchReducer(state = initialState, action) {
   switch (action.type) {
     case IS_FETCHING:
-      return { ...state, isfetching: true}
+      return { ...state, isfetching: true };
     case FETCH_SUCCESS:
       return { ...state, data: action.data, isfetching: false };
     case FETCH_ERROR:
