@@ -38,23 +38,27 @@ class Table extends React.Component {
                 <th>Surface water</th>
                 <th>Population</th>
                 <th>Films</th>
+                <th>Url</th>
                 <th>Created</th>
+                <th>Edited</th>
               </tr>
             </thead>
             {data.map((planet) => (
               <tbody key={planet.name}>
                 <tr>
                   <td key={planet.name}>{planet.name}</td>
-                  <td>{planet.rotation_period}</td>
-                  <td>{planet.orbital_period}</td>
-                  <td>{planet.diameter}</td>
-                  <td>{planet.climate}</td>
-                  <td>{planet.gravity}</td>
-                  <td>{planet.terrain}</td>
-                  <td>{planet.surface_water}</td>
-                  <td>{planet.population}</td>
-                  <td>{planet.films}</td>
-                  <td>{planet.created}</td>
+                  <td key={planet.rotation_period}>{planet.rotation_period}</td>
+                  <td key={planet.orbital_period}>{planet.orbital_period}</td>
+                  <td key={planet.diameter}>{planet.diameter}</td>
+                  <td key={planet.climate}>{planet.climate}</td>
+                  <td key={planet.gravity}>{planet.gravity}</td>
+                  <td key={planet.terrain}>{planet.terrain}</td>
+                  <td key={planet.surface_water}>{planet.surface_water}</td>
+                  <td key={planet.population}>{planet.population}</td>
+                  <td key={planet.films}>{planet.films}</td>
+                  <td key={planet.url}>{planet.url}</td>
+                  <td key={planet.created}>{planet.created}</td>
+                  <td key={planet.edited}>{planet.edited}</td>
                 </tr>
               </tbody>
             ))}

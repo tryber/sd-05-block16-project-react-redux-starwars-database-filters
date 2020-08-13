@@ -23,7 +23,7 @@ export const failAction = (err) => {
 }
 
 const apiPlanets = 'https://swapi-trybe.herokuapp.com/api/planets/';
- //[HONESTIDADE ACADÊMICA]
+//[HONESTIDADE ACADÊMICA]
 // O seguinte thunk foi escrito consultando o exemplo guiado dos doguinhos, Trybe Course, 'React with Redux Part 2'.
 export function fetchPlanetsThunk() {
   return (dispatch) => {
