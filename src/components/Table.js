@@ -41,6 +41,11 @@ class Table extends Component {
                     <td>{planet.terrain}</td>
                     <td>{planet.surface_water}</td>
                     <td>{planet.population}</td>
+                    <td>{planet.films.map((e, i) => <div key={i}>{e}</div>)}</td>
+                    <td>{planet.created}</td>
+                    <td>{planet.edited}</td>
+                    <td>{planet.url}</td>
+
                   </tr>
                 );
               })

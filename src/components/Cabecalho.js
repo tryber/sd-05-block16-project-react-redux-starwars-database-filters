@@ -13,9 +13,12 @@ function Cabecalho() {
         <th>Terreno</th>
         <th>Água Superficial</th>
         <th>População</th>
+        <th>Filmes</th>
+        <th>Criado</th>
+        <th>Editado</th>
+        <th>URL</th>
       </tr>
     </thead>
-    
   );
 }
 

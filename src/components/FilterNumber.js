@@ -45,9 +45,10 @@ class FilterNumber extends React.Component {
   render() {
     const { handleChange } = this;
     const { columnOptions } = this.props;
+    const { column } = this.state;
     return (
       <div>
-        <select name="column" onChange={handleChange} data-testid="column-filter">
+        <select name="column" onChange={handleChange} value={column} data-testid="column-filter">
           {columnOptions.map((e, index) => <option key={index} value={e}>{e}</option>)}
         </select>
         <div>

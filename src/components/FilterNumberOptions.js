@@ -14,7 +14,7 @@ class FilterNumberOptions extends React.Component {
           <div>{e.value}</div>
           <button
             data-testid="button-filter" type="button"
-            onClick={() => click(e.column, e.comparison, e.value)}
+            onClick={() => click(e.column)}
           >
             X
           </button>
@@ -30,7 +30,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  click: (column, comparison, value) => dispatch(cleanFilter(column, comparison, value)),
+  click: (column) => dispatch(cleanFilter(column)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(FilterNumberOptions);

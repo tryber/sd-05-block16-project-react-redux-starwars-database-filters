@@ -31,13 +31,8 @@ const filters = (state = INITIAL_STATE, action) => {
         columnOptions: newArray,
       };
     case CLEAN_FILTER:
-      const { column, comparison, value } = action;
-      const removed = state.filterByNumericValues.filter(e => {
-        if (column === e.column && comparison === e.comparison && value === e.value) {
-          return null;
-        }
-        return e;
-      })
+      const { column } = action;
+      const removed = state.filterByNumericValues.filter(e => e.column !== column);
       return {
         ...state,
         filterByNumericValues: removed,
