@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { REQUEST, DATA, FAIL, INPUT_NAME } from '../actions';
+import { REQUEST, DATA, FAIL, INPUT_NAME, SELECT_NUMBER} from '../actions';
 
 const initialState = {
   fetching: false,
@@ -24,17 +24,34 @@ const initialStateInput = {
   filterByName: {
     name: '',
   },
+  filterByNumericValues: [
+    {
+      column: 'population',
+      comparison: 'maior que',
+      value: '100000',
+    }
+  ]
 };
 
 function filters(state = initialStateInput, action) {
   switch (action.type) {
     case INPUT_NAME:
-      console.log(action.input);
+      // console.log(action.input);
       return {
         ...state,
         filterByName: {
           ...state.filterByName,
           name: action.input,
+        },
+      };
+    case SELECT_NUMBER:
+      return {
+        ...state,
+        filterByNumericValues: {
+          ...state.filterByNumericValues,
+          column: action.select,
+          comparison: action.select,
+          value: action.select,
         },
       };
     default:

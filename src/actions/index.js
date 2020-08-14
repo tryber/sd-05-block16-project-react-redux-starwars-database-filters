@@ -2,6 +2,7 @@ export const REQUEST = 'REQUEST';
 export const DATA = 'DATA';
 export const FAIL = 'FAIL';
 export const INPUT_NAME = 'INPUT_NAME';
+export const SELECT_NUMBER = 'SELECT_NUMBER';
 
 export function requestAction() {
   return {
@@ -46,5 +47,12 @@ export function filterNameAction(input) {
   return {
     type: INPUT_NAME,
     input,
+  };
+}
+
+export function filterNumberAction(select) {
+  return {
+    type: SELECT_NUMBER,
+    select,
   };
 }
