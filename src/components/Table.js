@@ -5,9 +5,6 @@ import PropTypes from 'prop-types';
 import Cabecalho from './Cabecalho';
 
 class Table extends Component {
-  constructor(props) {
-    super(props);
-  }
 
   filterByNumber(planets, filtro) {
     if (filtro.comparison === 'maior que') {
