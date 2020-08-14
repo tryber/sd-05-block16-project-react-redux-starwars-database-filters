@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { fetchStarWarsPlanets } from '../actions/fetchPlanetsApi';
 import SearchBar from '../components/SearchBar';
 import Table from '../components/Table';
+import OrderTable from '../components/OrderTable';
 
 class MainPage extends Component {
 
@@ -17,6 +18,7 @@ class MainPage extends Component {
     return (
       <div>
         <SearchBar />
+        <OrderTable />
         <Table />
       </div>
     );

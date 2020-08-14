@@ -17,12 +17,34 @@ function filterByNumber(planets, filtro) {
   return planets;
 }
 
+function orderTable(planets, order) {
+  const { column, sort } = order;
+  if (sort === 'ASC') {
+    if (column === 'name') {
+      return planets.sort((a, b) => {
+        return (a[column] > b[column]) ? 1 : ((b[column] > a[column]) ? -1 : 0);
+      });
+    }
+    return planets.sort((a, b) => a[column] - b[column]);
+  }
+  if (sort === 'DESC') {
+    if (column === 'name') {
+      return planets.sort((a, b) => {
+        return (b[column] > a[column]) ? 1 : ((a[column] > b[column]) ? -1 : 0);
+      });
+    }
+    return planets.sort((a, b) => b[column] - a[column]);
+  }
+  return planets;
+}
+
 class Table extends Component {
   render() {
-    const { data, filterByName, filterByNumericValues } = this.props;
+    const { data, filterByName, filterByNumericValues, order } = this.props;
     if (!data) return <div>Sem dados</div>;
     let planets = data;
     filterByNumericValues.forEach((filtro) => { planets = filterByNumber(planets, filtro); });
+    planets = orderTable(planets, order);
     return (
       <div>
         <table>
@@ -59,6 +81,7 @@ Table.propTypes = {
 
 Table.defaultProps = {
   filterByNumericValues: [],
+  data: [],
 };
 
 const mapStateToProps = (state) => ({
@@ -67,6 +90,7 @@ const mapStateToProps = (state) => ({
   data: state.getPlanets.data.results,
   filterByName: state.filters.filterByName.name,
   filterByNumericValues: state.filters.filterByNumericValues,
+  order: state.filters.order,
 });
 
 export default connect(mapStateToProps)(Table);

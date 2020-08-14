@@ -1,12 +1,17 @@
 import { FILTER_BY_NAME } from '../actions/getFiltersOptions';
 import { FILTER_BY_NUMBER } from '../actions/filterByNumericValues';
 import { CLEAN_FILTER } from '../actions/cleanFilter';
+import { CHOOSE_ORDER } from '../actions/chooseOrder';
 
 const INITIAL_STATE = {
   filterByName: {
     name: '',
   },
   filterByNumericValues: [],
+  order: {
+    column: 'name',
+    sort: 'ASC',
+  }
 };
 
 let removed = [];
@@ -34,6 +39,14 @@ const filters = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         filterByNumericValues: removed,
+      };
+    case CHOOSE_ORDER:
+      return {
+        ...state,
+        order: {
+          column: action.column,
+          sort: action.sort,
+        }
       };
     default:
       return state;
