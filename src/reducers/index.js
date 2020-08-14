@@ -1,6 +1,5 @@
-import { createStore, combineReducers, applyMiddleware } from 'redux';
-import thunk from 'redux-thunk';
-import { composeWithDevTools } from 'redux-devtools-extension';
+import { combineReducers } from 'redux';
+import filters from './filters';
 
 const IS_FETCHING = 'IS_FETCHING';
 const FETCH_SUCCESS = 'FETCH_SUCCESS';
@@ -45,7 +44,7 @@ export function handleFetch() {
   };
 }
 
-function fetchReducer(state = initialState, action) {
+export function fetchReducer(state = initialState, action) {
   switch (action.type) {
     case IS_FETCHING:
       return { ...state, isfetching: true };
@@ -57,11 +56,9 @@ function fetchReducer(state = initialState, action) {
       return state;
   }
 }
-const rootReducer = combineReducers({ fetchReducer });
 
-const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
-
-export default store;
+const rootReducer = combineReducers({ fetchReducer, filters });
+export default rootReducer;
 
 // Disscussed and did some pair programing with Paulo D'Andrea on this code
-// For the thunk used/got inspiration on "doguinho app" and "game of thrones App" of the TrybeCourse
+// For the thunk used/got inspired by "doguinho app" and "game of thrones App" of the TrybeCourse

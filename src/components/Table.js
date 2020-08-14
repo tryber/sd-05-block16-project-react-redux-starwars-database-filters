@@ -16,13 +16,15 @@ class Table extends Component {
   }
 
   render() {
-    const { isfetching, data } = this.props;
+    const { isfetching, data, filterByName } = this.props;
     return (
       <div>
         {isfetching && <h1>Loading...</h1>}
+        {!data && <h2>Error fetching data!</h2>}
         <table>
           <HeaderTable />
-          {!isfetching && data.map((planet) => (
+          {!isfetching && (data.filter((planets)=> planets.name.includes(filterByName)))
+          .map((planet) => (
             <tbody key={planet.name}>
               <tr>
                 <td >{planet.name}</td>
@@ -52,14 +54,16 @@ const mapDispatchToProps = (dispatch) => ({
 const mapStateToProps = (state) => ({
   isfetching: state.fetchReducer.isfetching,
   data: state.fetchReducer.data,
-});
+  filterByName: state.filters.filters.filterByName.name,
+  });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Table);
 
 Table.propTypes = {
   isfetching: propTypes.bool.isRequired,
-  data: propTypes.arrayOf(propTypes.object),
-  handleFetch: PropTypes.func.isRequired;
+  data: propTypes.arrayOf(propTypes.object).isRequired,
+  handleFetch: propTypes.func.isRequired;
+  filterByName: PropTypes.string.isRequired
 };
 
 // Disscussed and did some pair programing with Paulo D'Andrea on this code
