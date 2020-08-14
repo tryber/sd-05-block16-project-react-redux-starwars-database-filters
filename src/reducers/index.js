@@ -16,7 +16,7 @@ function planetReducer(state = initialState, action) {
       return {
         ...state,
         isLoading: false,
-        character: action.character[0],
+        character: action.planet[0],
       };
     default:
       return state;

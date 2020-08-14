@@ -1,4 +1,5 @@
 import planetsAPI from '../services/planetsAPI';
+
 export const SEARCH_PLANET = 'SEARCH_PLANET';
 export const SEARCH_SUCCESS = 'SEARCH_SUCCESS';
 
@@ -17,8 +18,6 @@ export const searchSuccess = (planet) => ({
 export function thunkPlanet(name) {
   return (dispatch) => {
     dispatch(searchPlanet(name));
-    return planetsAPI(name).then(
-      (planet) => dispatch(searchSuccess(planet))
-    );
+    return planetsAPI(name).then((planet) => dispatch(searchSuccess(planet)));
   };
 }
