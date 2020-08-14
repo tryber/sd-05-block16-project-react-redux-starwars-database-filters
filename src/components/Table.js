@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import fetchPlanets from '../actions/fetchPlanets';
@@ -31,29 +31,27 @@ class Table extends Component {
   }
 
   renderTableBody() {
-    const { planets } = this.props;
+    const { data } = this.props;
 
     return (
       <tbody>
-        {planets.map((planet) => {
-          return (
-            <tr key={planet.name}>
-              <td>{planet.name}</td>
-              <td>{planet.rotation_period}</td>
-              <td>{planet.orbital_period}</td>
-              <td>{planet.diameter}</td>
-              <td>{planet.climate}</td>
-              <td>{planet.gravity}</td>
-              <td>{planet.terrain}</td>
-              <td>{planet.surface_water}</td>
-              <td>{planet.population}</td>
-              {/* <td>{planet.films}</td>
-              <td>{planet.created}</td>
-              <td>{planet.edited}</td>
-              <td>{planet.url}</td> */}
-            </tr>
-          )
-        }
+        {data.map((planet) => (
+          <tr key={planet.name}>
+            <td>{planet.name}</td>
+            <td>{planet.rotation_period}</td>
+            <td>{planet.orbital_period}</td>
+            <td>{planet.diameter}</td>
+            <td>{planet.climate}</td>
+            <td>{planet.gravity}</td>
+            <td>{planet.terrain}</td>
+            <td>{planet.surface_water}</td>
+            <td>{planet.population}</td>
+            {/* <td>{planet.films}</td>
+            <td>{planet.created}</td>
+            <td>{planet.edited}</td>
+            <td>{planet.url}</td> */}
+          </tr>
+        ),
       )}
       </tbody>
     );
@@ -69,17 +67,17 @@ class Table extends Component {
           {this.renderTableHead()}
           {this.renderTableBody()}
         </table>
-      )
-    }
+      );
+  }
 }
 
 const mapStateToProps = (state) => ({
-  planets: state.planetReducer.data,
+  data: state.planetReducer.data,
   isLoading: state.planetReducer.isLoading,
 });
 
-const mapDispatchToProps = { 
+const mapDispatchToProps = {
   planetsData: fetchPlanets,
- }
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Table);

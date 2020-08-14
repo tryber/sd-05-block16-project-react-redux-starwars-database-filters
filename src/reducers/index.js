@@ -1,9 +1,9 @@
-import { FETCH_PLANETS } from '../actions/types';
+import { FETCH_PLANETS, FETCH_RESOLVE, FETCH_REJECT } from '../actions/types';
 
 const initialState = {
-  textInput: '',
   data: [],
-  isLoading: true,
+  isLoading: false,
+  error: '',
 };
 
 const planetReducer = (state = initialState, action) => {
@@ -11,8 +11,21 @@ const planetReducer = (state = initialState, action) => {
     case FETCH_PLANETS:
       return {
         ...state,
-        data: action.payload,
+        isLoading: true,
+      };
+
+    case FETCH_RESOLVE:
+      return {
+        ...state,
         isLoading: false,
+        data: [...action.payload],
+      };
+
+    case FETCH_REJECT:
+      return {
+        ...state,
+        isLoading: false,
+        error: action.error,
       };
 
     default:
