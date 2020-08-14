@@ -43,7 +43,7 @@ const mapStateToProps = (state) => ({
 TableData.propTypes = {
   data: propTypes.arrayOf(propTypes.object).isRequired,
   filterName: propTypes.shape({
-    filterByName: propTypes.object}).isRequired,
+    filterByName: propTypes.object }).isRequired,
 };
 
 export default connect(mapStateToProps, null)(TableData);
