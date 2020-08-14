@@ -1,8 +1,8 @@
+import propTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { handleFetch } from '../reducers';
 import HeaderTable from './HeaderTable';
-import propTypes from 'prop-types';
 
 class Table extends Component {
   constructor(props) {
@@ -23,7 +23,7 @@ class Table extends Component {
         {!data && <h2>Error fetching data!</h2>}
         <table>
           <HeaderTable />
-          {!isfetching && (data.filter((planets)=> planets.name.includes(filterByName)))
+          {!isfetching && (data.filter((planets) => planets.name.includes(filterByName)))
           .map((planet) => (
             <tbody key={planet.name}>
               <tr>
@@ -62,8 +62,8 @@ export default connect(mapStateToProps, mapDispatchToProps)(Table);
 Table.propTypes = {
   isfetching: propTypes.bool.isRequired,
   data: propTypes.arrayOf(propTypes.object).isRequired,
-  handleFetch: PropTypes.func.isRequired,
-  filterByName: PropTypes.string.isRequired
+  handleFetch: propTypes.func.isRequired,
+  filterByName: propTypes.string.isRequired,
 };
 
 // Disscussed and did some pair programing with Paulo D'Andrea on this code
