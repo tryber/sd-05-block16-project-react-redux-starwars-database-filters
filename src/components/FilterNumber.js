@@ -38,9 +38,9 @@ class FilterNumber extends React.Component {
         <div>
           <select onChange={handleChange} name="comparison" data-testid="comparison-filter">
             <option />
-            <option value="maior que">Maior que</option>
-            <option value="menor que">Menor que</option>
-            <option value="igual a">Igual a</option>
+            <option value="maior que">maior que</option>
+            <option value="menor que">menor que</option>
+            <option value="igual a">igual a</option>
           </select>
           <input onChange={handleChange} name="value" data-testid="value-filter" type="number" />
           <button

@@ -15,7 +15,7 @@ class FilterNumberOptions extends React.Component {
             <div>{e.comparison}</div>
             <div>{e.value}</div>
             <button
-              data-testid="button-filter" type="button"
+              type="button"
               onClick={() => click(e.column)}
             >
               X
