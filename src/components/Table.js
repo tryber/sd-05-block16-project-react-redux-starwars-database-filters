@@ -38,6 +38,8 @@ class Table extends Component {
                 <td>{planet.population}</td>
                 <td>{planet.films}</td>
                 <td>{planet.created}</td>
+                <td>{planet.edited}</td>
+                <td>{planet.url}</td>
               </tr>
             </tbody>
           ))}
