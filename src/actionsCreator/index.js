@@ -1,4 +1,4 @@
-import { getPlanets } from '../services/Api';
+import getPlanets from '../services/Api';
 
 export const FETCH_DATA = 'FETCH_DATA';
 export const GET_DATA_SUCCESS = 'GET_DATA_SUCCESS';

@@ -31,10 +31,6 @@ function formatName(name = '') {
 
 class Table extends Component {
 
-  constructor(props) {
-    super(props);
-  }
-
   componentDidMount() {
     const { fetchPlanets } = this.props;
     fetchPlanets();
@@ -42,30 +38,30 @@ class Table extends Component {
 
   render() {
     const { isLoading, data } = this.props;
-    return isLoading ? (<div>Carregando...</div>) :
-      data.length ?
-        (
-          <table>
-            <thead>
-              <tr>
-                {
-                  tableKeys.map((header) =>
-                    <th key={rKey(header)}>{formatName(header)}</th>,
-                  )
-                }
-              </tr>
-            </thead>
-            <tbody>
+    if (isLoading) return <div>Carregando...</div>
+    return data.length ?
+      (
+        <table>
+          <thead>
+            <tr>
               {
-                data.map((planet) => (
-                  <tr key={rKey(planet.name)}>
-                    { tableKeys.map((key) => (<td key={rKey(key)}>{planet[key]}</td>)) }
-                  </tr>
-                ))
+                tableKeys.map((header) =>
+                  <th key={rKey(header)}>{formatName(header)}</th>,
+                )
               }
-            </tbody>
-          </table>
-        ) : <div>error</div>;
+            </tr>
+          </thead>
+          <tbody>
+            {
+              data.map((planet) => (
+                <tr key={rKey(planet.name)}>
+                  { tableKeys.map((key) => (<td key={rKey(key)}>{planet[key]}</td>)) }
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      ) : <div>error</div>;
   }
 }
 
