@@ -8,12 +8,11 @@ class TableData extends React.Component {
   // A primeira versão deste componente Table (requisito 1)
   // foi pensada e desenvolvida em grupo.
   render() {
-    const { data, nameFilter } = this.props;
+    const { data, filterName } = this.props;
     return (
       <tbody>
-        {/* <p>{nameFilter}</p> */}
         {data
-          .filter((planet) => planet.name.includes(nameFilter))
+          .filter((planet) => planet.name.includes(filterName.filterByName.name))
           .map((planet) => (
             <tr key={planet.name}>
               <td key={planet.name}>{planet.name}</td>
@@ -38,12 +37,14 @@ class TableData extends React.Component {
 
 const mapStateToProps = (state) => ({
   data: state.planetReducer.data,
-  nameFilter: state.filterNameReducer.filters.filterByName.name,
+  filterName: state.filterNameReducer.filters,
 });
 
 TableData.propTypes = {
   data: propTypes.arrayOf(propTypes.object).isRequired,
-  nameFilter: propTypes.string.isRequired,
+  filterName: propTypes.shape({
+    filterByName: propTypes.object,
+  })
 };
 
 export default connect(mapStateToProps, null)(TableData);
