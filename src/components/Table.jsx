@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import propTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchData } from '../actionsCreator';
 
@@ -75,5 +76,10 @@ const mapStateToProps = ({ loading, data }) => (
 const mapDispatchToProps = (dispatch) => (
   { fetchPlanets: () => { dispatch(fetchData()); } }
 );
+
+Table.propTypes = {
+  isLoading: propTypes.bool,
+  data: propTypes.array,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Table);
