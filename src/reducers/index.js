@@ -1,4 +1,5 @@
 import { REQUEST, DATA, FAIL} from '../actions';
+import { combineReducers } from 'redux';
 
 const initialState = {
   fetching: false,
@@ -18,4 +19,6 @@ function planetReducer(state = initialState, action) {
   }
 }
 
-export default planetReducer;
+const rootReducer = combineReducers({planetReducer});
+
+export default rootReducer;
