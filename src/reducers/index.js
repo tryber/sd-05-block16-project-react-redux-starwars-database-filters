@@ -1,5 +1,5 @@
-import { createStore, combineReducers, applyMiddleware } from 'redux';
-import thunk from 'redux-thunk';
+import { combineReducers } from 'redux';
+// import thunk from 'redux-thunk';
 
 const IS_REQUESTING = 'IS_REQUESTING';
 const ADD_DATA = 'ADD_DATA';
@@ -35,11 +35,11 @@ export function handleAsyncFetch(extension) {
       .then((response) => response.json())
       .then(
         (json) => {
-          console.log(json.results);
+          // console.log(json.results);
           return dispatch(dataActionCreator(json.results));
         },
         (error) => {
-          console.log('ta tudo errado: ' + error);
+          // console.log('ta tudo errado: ' + error);
           dispatch(errorActionCreator(error));
         },
       );
@@ -47,19 +47,29 @@ export function handleAsyncFetch(extension) {
 }
 
 const initialStateFilter = {
-  filters: {
-    filterByName: {
-      name: 'Tatoo',
-    },
+  // filters: {
+  filterByName: {
+    name: '',
   },
+  filterByNumericValues: [
+    {
+      column: 'population',
+      comparison: 'maior que',
+      value: '1000000',
+    },
+  ],
+  // },
 };
 
-function filterReducer(state = initialStateFilter, action) {
+// if(maior que) return >=
+// >
+
+function filters (state = initialStateFilter, action) {
   switch (action.type) {
     case INPUT_TEXT:
       return {
         ...state,
-        filters: { ...state.filters, filterByName: { name: action.input } },
+       filterByName: { name: action.input },
       };
     // filters: { filterByName: { name } }
     default:
@@ -85,7 +95,7 @@ function requestReducer(state = initialState, action) {
   }
 }
 
-const reducer = combineReducers({ requestReducer, filterReducer });
+const reducer = combineReducers({ requestReducer, filters });
 export default reducer;
 // const store = createStore(reducer, applyMiddleware(thunk));
 

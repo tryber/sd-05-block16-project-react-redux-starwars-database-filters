@@ -14,14 +14,18 @@ class Table extends Component {
     handleAsync();
   }
 
+  // if (this.props.comparison === 'maior que') return >
   // renderLoading() {
   //   if(this.props.isfetching) return <div>Loading...</div>;
   // }
 
   render() {
-    const { isfetching, data } = this.props;
+    const { isfetching, data, comparison, value, column } = this.props;
+    console.log(value);
+
     return (
       <div>
+        <h2>{this.props.filteredName}</h2>
         StarWars Datatable with Filters <br></br>
         {isfetching && <h1>Loading...</h1>}
 
@@ -43,7 +47,13 @@ class Table extends Component {
             <th>url</th>
           </tr>
         </thead>
-          {!isfetching && data.map(planet => (
+        
+          {!isfetching && 
+          data.filter(planet => (planet.name.toLowerCase()).includes(this.props.filteredName.toLowerCase()))
+          // .filter(column comparison value)
+          // .filter().
+          .filter(planet => (planet[column] > value))
+          .map(planet => (
             <tbody key={planet.name}>
               <tr>
                 <td>{planet.name}</td>
@@ -75,7 +85,15 @@ const mapDispatchToProps = (dispatch) => ({
 const mapStateToProps = (state) => ({
   isfetching: state.requestReducer.isfetching,
   data: state.requestReducer.data,
+  filteredName: state.filters.filterByName.name,
+  column: state.filters.filterByNumericValues[0].column,
+  comparison: state.filters.filterByNumericValues[0].comparison,
+  value: state.filters.filterByNumericValues[0].value,
 });
+
+// const mapStateToProps = (state) => ({
+//   filteredName: state.filterReducer.filters.filterByName.name,
+// });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Table);
 

@@ -85,7 +85,7 @@ describe.only('1 - Fazer uma requisição para o endpoint /planets da API de Sta
   });
 });
 
-describe('2 - Sua página deve ter um campo de texto que filtra a tabela para somente exibir planetas cujos nomes incluam o texto digitado', () => {
+describe.only('2 - Sua página deve ter um campo de texto que filtra a tabela para somente exibir planetas cujos nomes incluam o texto digitado', () => {
   beforeAll(mockFetch);
   beforeEach(cleanup);
 

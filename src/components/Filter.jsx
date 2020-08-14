@@ -3,32 +3,30 @@ import { connect } from 'react-redux';
 import { inputText } from '../reducers';
 
 class Filter extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { };
-  }
+  // constructor(props) {
+  //   super(props);
+  //   // this.state = { };
+  // }
 
   render() {
+    // const {}
     return (
       <div>
         <h1>FILTROS: </h1>
-        <input type="text" onChange={(e) => this.props.inputText(e.target.value)} />
-        <h2>{this.props.filteredName}</h2>
-        <br></br>
+        <input data-testid='name-filter' type="text" onChange={(e) => this.props.inputText(e.target.value)} />
+        
+        <br />
       </div>
     );
   }
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  inputText: (e) => {
-    // e.persist();
-    return dispatch(inputText(e));
-  },
+  inputText: (e) => dispatch(inputText(e)),
 });
 
-const mapStateToProps = (state) => ({
-  filteredName: state.filterReducer.filters.filterByName.name,
-});
+// const mapStateToProps = (state) => ({
+//   filteredName: state.filterReducer.filters.filterByName.name,
+// });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Filter);
+export default connect(null, mapDispatchToProps)(Filter);
