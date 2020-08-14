@@ -11,11 +11,15 @@ function fncComparador(valorDaColuna, comparador, value) {
       return valorDaColuna > value;
     case 'menor que':
       return valorDaColuna < value;
-    default:
+    case 'igual a':
       // console.log('true');
       return valorDaColuna === value;
+    default:
+      return true;
   }
+  // count ++ 
 }
+
 class Table extends Component {
 
   componentDidMount() {
@@ -27,11 +31,6 @@ class Table extends Component {
 
   render() {
     const { filteredName, isfetching, data, comparison, value, column } = this.props;
-    // console.log(value);
-    // console.log (typeof value)
-
-     // .filter((planet) => (Number(planet[column]) > value))
-
     return (
       <div>
         <h2>{this.props.filteredName}</h2>
@@ -79,6 +78,7 @@ const mapStateToProps = (state) => ({
   isfetching: state.requestReducer.isfetching,
   data: state.requestReducer.data,
   filteredName: state.filters.filterByName.name,
+
   column: state.filters.filterByNumericValues[0].column,
   comparison: state.filters.filterByNumericValues[0].comparison,
   value: Number(state.filters.filterByNumericValues[0].value),

@@ -5,7 +5,8 @@ const IS_REQUESTING = 'IS_REQUESTING';
 const ADD_DATA = 'ADD_DATA';
 const ADD_ERROR = 'ADD_ERROR';
 const INPUT_TEXT = 'INPUT_TEXT';
-
+const COLUMN_SELECT = 'COLUMN_SELECT';
+const SUBMIT_FILTER = 'SUBMIT_FILTER';
 const isRequesting = () => ({
   type: IS_REQUESTING,
 });
@@ -23,6 +24,11 @@ const errorActionCreator = (error) => ({
 export const inputText = (input) => ({
   type: INPUT_TEXT,
   input,
+});
+
+export const submitFilter = (filtroNumerico) => ({
+  type: SUBMIT_FILTER,
+  filtroNumerico,
 });
 
 const api = 'https://swapi-trybe.herokuapp.com/api/planets/';
@@ -53,9 +59,9 @@ const initialStateFilter = {
   },
   filterByNumericValues: [
     {
-      column: 'population',
-      comparison: 'maior que',
-      value: '4500000000',
+      column: '',
+      comparison: '',
+      value: '',
     },
   ],
   // },
@@ -68,7 +74,13 @@ function filters(state = initialStateFilter, action) {
         ...state,
         filterByName: { name: action.input },
       };
-    // filters: { filterByName: { name } }
+    
+    case SUBMIT_FILTER:
+      return {
+        ...state,
+        filterByNumericValues: [action.filtroNumerico],
+      };
+
     default:
       return state;
   }
