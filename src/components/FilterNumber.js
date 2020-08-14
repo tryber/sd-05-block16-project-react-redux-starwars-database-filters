@@ -28,12 +28,14 @@ class FilterNumber extends React.Component {
 
   render() {
     const { handleChange } = this;
+    const { column } = this.state;
+    const { filterByNumericValues } = this.props;
     const columnOptions = ['', 'population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water'];
-    const usedColumns = this.props.filterByNumericValues.map((e) => e.column);
+    const usedColumns = filterByNumericValues.map((e) => e.column);
     const availableColumns = columnOptions.filter((e) => usedColumns.indexOf(e) === -1);
     return (
       <div>
-        <select name="column" onChange={handleChange} value={this.state.column} data-testid="column-filter">
+        <select name="column" onChange={handleChange} value={column} data-testid="column-filter">
           {availableColumns.map((e) => <option key={e} value={e}>{e}</option>)}
         </select>
         <div>
@@ -56,7 +58,7 @@ class FilterNumber extends React.Component {
 }
 
 FilterNumber.propTypes = {
-  columnOptions: PropTypes.arrayOf(PropTypes.string).isRequired,
+  filterByNumericValues: PropTypes.arrayOf(PropTypes.object),
   filter: PropTypes.func.isRequired,
 };
 
@@ -68,7 +70,6 @@ const mapStateToProps = (state) => ({
   error: state.getPlanets.error,
   isFetching: state.getPlanets.isFetching,
   data: state.getPlanets.data.results,
-  columnOptions: state.filters.columnOptions,
   filterByNumericValues: state.filters.filterByNumericValues,
 });
 

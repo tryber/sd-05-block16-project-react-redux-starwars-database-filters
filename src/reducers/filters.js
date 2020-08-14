@@ -9,7 +9,6 @@ const INITIAL_STATE = {
   filterByNumericValues: [],
 };
 
-let newArray = [];
 let removed = [];
 
 const filters = (state = INITIAL_STATE, action) => {
