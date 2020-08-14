@@ -1,5 +1,14 @@
 import React from 'react';
 
-const Table = () => <div>StarWars Datatable with Filters</div>;
+const Table = () => {
+  return (
+    <div>
+      <table>
+        <th>StarWars Datatable with Filters</th>
+        <td>data.map</td>
+      </table>
+    </div>
+  );
+};
 
 export default Table;
