@@ -1,7 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { queryForm } from '../../actions';
-import PropTypes from 'prop-types';
 
 class Form extends React.Component {
   render() {
