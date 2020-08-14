@@ -56,7 +56,7 @@ const mapDispatchToProps = (dispatch) => ({
 const mapStateToProps = (state) => ({
   isfetching: state.fetchReducer.isfetching,
   data: state.fetchReducer.data,
-  filterByName: state.filters.filters.filterByName.name,
+  filterByName: state.filters.filterByName.name,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Table);
