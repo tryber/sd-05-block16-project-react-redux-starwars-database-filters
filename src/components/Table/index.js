@@ -10,7 +10,8 @@ class Table extends React.Component {
   render() {
     const { planets, loading, NF } = this.props;
     let tableHeaders = [];
-    if (planets.length > 0) tableHeaders = Object.keys(planets[0]);
+    if (planets.length > 0) tableHeaders = Object.keys(planets[0])
+    tableHeaders.splice(tableHeaders.indexOf('residents'), 1)
     if (!loading) return <h2>Loading</h2>;
     return (
       <table>
