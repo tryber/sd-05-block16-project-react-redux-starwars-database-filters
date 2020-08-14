@@ -12,8 +12,8 @@ class Table extends Component {
         <table>
           <Cabecalho />
           <tbody>
-            {data.filter(e => e.name.includes(filterByName))
-              .map((planet) => {
+            {data.filter((e) => e.name.includes(filterByName))
+              .map(planet => {
                 return (
                   <tr key={planet.name}>
                     <td>{planet.name}</td>
@@ -27,7 +27,8 @@ class Table extends Component {
                     <td>{planet.population}</td>
                   </tr>
                 );
-            })}
+              })
+            }
           </tbody>
         </table>
       </div>

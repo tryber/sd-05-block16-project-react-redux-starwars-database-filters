@@ -4,10 +4,10 @@ import { FILTER_BY_NUMBER } from '../actions/filterByNumericValues';
 const INITIAL_STATE = {
   filters: {
     filterByName: {
-      name: ''
+      name: '',
     },
     filterByNumericValues: [],
-  }
+  },
 };
 
 const filter = (state = INITIAL_STATE, action) => {
@@ -17,8 +17,8 @@ const filter = (state = INITIAL_STATE, action) => {
         ...state,
         filters: {
           ...state.filters,
-          filterByName: { name: action.filterByName.name }},
-      }
+          filterByName: { name: action.filterByName.name } },
+      };
     case FILTER_BY_NUMBER:
       return {
         ...state,
@@ -29,12 +29,12 @@ const filter = (state = INITIAL_STATE, action) => {
             column: action.column,
             comparison: action.comparison,
             value: action.value,
-          }]
+          }],
         },
-      }
+      };
     default:
       return state;
   }
-}
+};
 
 export default filter;

@@ -22,14 +22,15 @@ class FilterNumber extends React.Component {
 
   handleClick() {
     const { column, comparison, value } = this.state;
-    this.props.filter(column, comparison, value)
+    this.props.filter(column, comparison, value);
   }
 
   render() {
+    const { handleChange } = this;
     return (
       <div>
-        <select name="column" onChange={this.handleChange} data-testid="column-filter">
-          <option></option>
+        <select name="column" onChange={handleChange} data-testid="column-filter">
+          <option />
           <option value="population">population</option>
           <option value="orbital_period">orbital_period</option>
           <option value="diameter">diameter</option>
@@ -37,20 +38,20 @@ class FilterNumber extends React.Component {
           <option value="surface_water">surface_water</option>
         </select>
         <div>
-          <select onChange={this.handleChange} name="comparison" data-testid="comparison-filter">
-            <option></option>
+          <select onChange={handleChange} name="comparison" data-testid="comparison-filter">
+            <option />
             <option value="maior que">Maior que</option>
             <option value="menor que">Menor que</option>
             <option value="igual a">Igual a</option>
           </select>
-          <input onChange={this.handleChange} name="value" data-testid="value-filter" type="number" />
+          <input onChange={handleChange} name="value" data-testid="value-filter" type="number" />
           <button
             type="button" data-testid="button-filter" onClick={this.handleClick}
           >
             Filtrar
           </button>
         </div>
-      </div> 
+      </div>
     );
   }
 }
