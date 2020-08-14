@@ -75,7 +75,7 @@ const mapDispatchToProps = (dispatch) => (
 );
 
 Table.defaultProps = {
-  filters: { filterByName: { name: '' } }
+  filters: { filterByName: { name: '' } },
 };
 
 Table.propTypes = {
@@ -83,8 +83,8 @@ Table.propTypes = {
   data: propTypes.arrayOf(propTypes.object).isRequired,
   fetchPlanets: propTypes.func.isRequired,
   filters: propTypes.shape({
-    filterByName: propTypes.object
-  })
+    filterByName: propTypes.object,
+  }),
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Table);

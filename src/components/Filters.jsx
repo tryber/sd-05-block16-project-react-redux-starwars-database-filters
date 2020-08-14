@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import propTypes from 'prop-types';
+import propTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { filterByName } from '../actionsCreator';
 
@@ -15,16 +15,18 @@ class Filters extends Component {
           onChange={({ target }) => { setFilterByName(target.value); }}
         />
       </div>
-    )
+    );
   }
 }
 
-const mapStateToProps = ({}) => (
-  {}
-);
+const mapStateToProps = () => ({});
 
 const mapDispatchToProps = (dispatch) => (
   { setFilterByName: (name) => { dispatch(filterByName(name)); } }
 );
+
+Filters.propTypes = {
+  setFilterByName: propTypes.func.isRequired,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Filters);

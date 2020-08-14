@@ -7,7 +7,7 @@ import {
 
 const INITIAL_PLANET_STATE = {
   loading: false,
-  filters: { filterByName: {name: ''} },
+  filters: { filterByName: { name: '' } },
   data: [],
 };
 

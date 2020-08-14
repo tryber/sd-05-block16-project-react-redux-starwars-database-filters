@@ -42,4 +42,4 @@ const filterByName = (name) => ({
 export {
   fetchData,
   filterByName,
-}
+};
