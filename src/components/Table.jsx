@@ -37,7 +37,7 @@ class Table extends Component {
   }
 
   render() {
-    const { isLoading, data } = this.props;
+    const { isLoading, data, filters } = this.props;
     if (isLoading) return <div>Carregando...</div>;
     return data.length ?
       (
@@ -53,11 +53,12 @@ class Table extends Component {
           </thead>
           <tbody>
             {
-              data.map((planet) => (
-                <tr key={rKey(planet.name)}>
-                  { tableKeys.map((key) => (<td key={rKey(key)}>{planet[key]}</td>)) }
-                </tr>
-              ))
+              data.filter(({ name }) => name.includes(filters.filterByName.name))
+                .map((planet) => (
+                  <tr key={rKey(planet.name)}>
+                    { tableKeys.map((key) => (<td key={rKey(key)}>{planet[key]}</td>)) }
+                  </tr>
+                ))
             }
           </tbody>
         </table>
@@ -65,18 +66,25 @@ class Table extends Component {
   }
 }
 
-const mapStateToProps = ({ loading, data }) => (
-  { isLoading: loading, data }
+const mapStateToProps = ({ loading, data, filters }) => (
+  { isLoading: loading, filters, data }
 );
 
 const mapDispatchToProps = (dispatch) => (
   { fetchPlanets: () => { dispatch(fetchData()); } }
 );
 
+Table.defaultProps = {
+  filters: { filterByName: { name: '' } }
+};
+
 Table.propTypes = {
   isLoading: propTypes.bool.isRequired,
   data: propTypes.arrayOf(propTypes.object).isRequired,
   fetchPlanets: propTypes.func.isRequired,
+  filters: propTypes.shape({
+    filterByName: propTypes.object
+  })
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Table);
