@@ -17,8 +17,8 @@ function filters(state = INITIAL_STATE, action) {
   switch (action.type) {
     case FILTER_BY_NAME:
       return {
-         ...state,
-         filters: {
+        ...state,
+        filters: {
           ...state.filters,
           filterByName: { name: action.input } } };
     default:

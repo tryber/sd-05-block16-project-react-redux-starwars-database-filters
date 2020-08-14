@@ -1,7 +1,7 @@
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { filterByName } from '../reducers/filters';
-import PropTypes from 'prop-types';
 
 class SearchBar extends Component {
   constructor(props) {
@@ -14,11 +14,11 @@ class SearchBar extends Component {
       <div>
         <label htmlFor="name-filter"> Search planet by name:
         <input
-        data-testid="name-filter"
+          data-testid="name-filter"
           type="text"
           onChange={handleChangeName}
         />
-         </label>
+        </label>
       </div>
     );
   }
@@ -33,4 +33,4 @@ export default connect(null, mapDispatchToProps)(SearchBar);
 
 SearchBar.propTypes = {
   handleChangeName: PropTypes.func.isRequired,
-}
+};
