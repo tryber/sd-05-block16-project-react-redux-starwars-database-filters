@@ -1,28 +1,21 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import Table from './components/Table';
+import { connect } from 'react-redux';
 
-function App() {
+import Home from './pages/Home';
+
+const App = (props) => {
+  const { planets } = props;
+  console.log(planets);
   return (
     <div className="App">
-      <header className="App-header">
-        <Table />
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Home />
     </div>
   );
 }
 
-export default App;
+const mapStateToProps = (state) => ({
+  planets: state.reducerPlanets,
+});
+
+export default connect(mapStateToProps)(App);
