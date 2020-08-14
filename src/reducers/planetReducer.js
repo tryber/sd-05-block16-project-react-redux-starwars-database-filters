@@ -10,7 +10,7 @@ const INITIAL_PLANET_STATE = {
 };
 
 export default function planetsReducer(state = INITIAL_PLANET_STATE, action) {
-  switch (action.type){
+  switch (action.type) {
     case FETCH_DATA:
       return { ...state, loading: true };
 

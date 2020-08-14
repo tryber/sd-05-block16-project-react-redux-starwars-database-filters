@@ -5,6 +5,6 @@ export const getPlanets = async () =>
     .then((response) =>
       response.json()
         .then(({ results }) => results)
-        .catch((error) => error)
+        .catch((error) => error),
     )
     .catch((error) => error);

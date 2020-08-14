@@ -78,8 +78,9 @@ const mapDispatchToProps = (dispatch) => (
 );
 
 Table.propTypes = {
-  isLoading: propTypes.bool,
-  data: propTypes.array,
+  isLoading: propTypes.bool.isRequired,
+  data: propTypes.array.isRequired,
+  fetchPlanets: propTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Table);
