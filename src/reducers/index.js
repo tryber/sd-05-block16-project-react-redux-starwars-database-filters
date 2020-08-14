@@ -55,21 +55,18 @@ const initialStateFilter = {
     {
       column: 'population',
       comparison: 'maior que',
-      value: '1000000',
+      value: '4500000000',
     },
   ],
   // },
 };
 
-// if(maior que) return >=
-// >
-
-function filters (state = initialStateFilter, action) {
+function filters(state = initialStateFilter, action) {
   switch (action.type) {
     case INPUT_TEXT:
       return {
         ...state,
-       filterByName: { name: action.input },
+        filterByName: { name: action.input },
       };
     // filters: { filterByName: { name } }
     default:
@@ -97,26 +94,3 @@ function requestReducer(state = initialState, action) {
 
 const reducer = combineReducers({ requestReducer, filters });
 export default reducer;
-// const store = createStore(reducer, applyMiddleware(thunk));
-
-// export default store;
-
-// export function thunkCharacter(name) {
-//   return (dispatch) => {
-//     dispatch(isRequesting(name));
-//     return charAPI(name)
-//       .then(
-//         (character) => dispatch(searchSuccess(character)),
-//         (error) => dispatch(searchFailure(error.message)),
-//       );
-//   };
-// };
-
-// export const charAPI = () => (
-//   fetch(`${ISS_BASE_API}/iss-now.json`)
-//     .then((response) => (
-//       response
-//         .json()
-//         .then((json) => (response.ok ? Promise.resolve(json) : Promise.reject(json)))
-//     ))
-// );

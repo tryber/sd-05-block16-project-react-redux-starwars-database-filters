@@ -1,12 +1,22 @@
 import React, { Component } from 'react';
 import { handleAsyncFetch } from '../reducers';
 import { connect } from 'react-redux';
+import Thead from './THead';
 
+
+
+function fncComparador(valorDaColuna, comparador, value) {
+  switch (comparador) {
+    case 'maior que':
+      return valorDaColuna > value;
+    case 'menor que':
+      return valorDaColuna < value;
+    default:
+      // console.log('true');
+      return valorDaColuna === value;
+  }
+}
 class Table extends Component {
-  // constructor(props) {
-  //   super(props);
-  //   // this.state = { test: 'api' };
-  // }
 
   componentDidMount() {
     const { handleAsync } = this.props;
@@ -14,64 +24,47 @@ class Table extends Component {
     handleAsync();
   }
 
-  // if (this.props.comparison === 'maior que') return >
-  // renderLoading() {
-  //   if(this.props.isfetching) return <div>Loading...</div>;
-  // }
 
   render() {
-    const { isfetching, data, comparison, value, column } = this.props;
-    console.log(value);
+    const { filteredName, isfetching, data, comparison, value, column } = this.props;
+    // console.log(value);
+    // console.log (typeof value)
+
+     // .filter((planet) => (Number(planet[column]) > value))
 
     return (
       <div>
         <h2>{this.props.filteredName}</h2>
-        StarWars Datatable with Filters <br></br>
+        {/* StarWars Datatable with Filters */}
         {isfetching && <h1>Loading...</h1>}
 
         <table>
-        <thead>
-          <tr>
-            <th>name</th>
-            <th>rotation period</th>
-            <th>orbital period</th>
-            <th>diameter</th>
-            <th>climate</th>
-            <th>gravity</th>
-            <th>terrain</th>
-            <th>surface_water</th>
-            <th>population</th>
-            <th>films</th>
-            <th>created</th>
-            <th>edited</th>
-            <th>url</th>
-          </tr>
-        </thead>
-        
+          <Thead />
           {!isfetching && 
-          data.filter(planet => (planet.name.toLowerCase()).includes(this.props.filteredName.toLowerCase()))
+          data.filter((planet) => (planet.name.toLowerCase()).includes(filteredName.toLowerCase()))
           // .filter(column comparison value)
           // .filter().
-          .filter(planet => (planet[column] > value))
-          .map(planet => (
-            <tbody key={planet.name}>
-              <tr>
-                <td>{planet.name}</td>
-                <td>{planet.rotation_period}</td>
-                <td>{planet.orbital_period}</td>
-                <td>{planet.diameter}</td>
-                <td>{planet.climate}</td>
-                <td>{planet.gravity}</td>
-                <td>{planet.terrain}</td>
-                <td>{planet.surface_water}</td>
-                <td>{planet.population}</td>
-                <td>{planet.films}</td>
-                <td>{planet.created}</td>
-                <td>{planet.edited}</td>
-                <td>{planet.url}</td>
-              </tr>
-            </tbody>
-          ))}
+            .filter((planet) => fncComparador(Number(planet[column]), comparison, value))
+            .map((planet) => (
+              <tbody key={planet.name}>
+                <tr>
+                  <td>{planet.name}</td>
+                  <td>{planet.rotation_period}</td>
+                  <td>{planet.orbital_period}</td>
+                  <td>{planet.diameter}</td>
+                  <td>{planet.climate}</td>
+                  <td>{planet.gravity}</td>
+                  <td>{planet.terrain}</td>
+                  <td>{planet.surface_water}</td>
+                  <td>{planet.population}</td>
+                  <td>{planet.films}</td>
+                  <td>{planet.created}</td>
+                  <td>{planet.edited}</td>
+                  <td>{planet.url}</td>
+                </tr>
+              </tbody>
+            ))
+          }
         </table>
       </div>
     );
@@ -88,7 +81,7 @@ const mapStateToProps = (state) => ({
   filteredName: state.filters.filterByName.name,
   column: state.filters.filterByNumericValues[0].column,
   comparison: state.filters.filterByNumericValues[0].comparison,
-  value: state.filters.filterByNumericValues[0].value,
+  value: Number(state.filters.filterByNumericValues[0].value),
 });
 
 // const mapStateToProps = (state) => ({
@@ -112,3 +105,5 @@ export default connect(mapStateToProps, mapDispatchToProps)(Table);
 // surface_water: "1"
 // terrain: "desert"
 // url: "https://swapi-trybe.herokuapp.com/api/planets/1/"
+
+            // .filter((planet) => (Number(planet[column]) > value))
