@@ -20,7 +20,7 @@ class Form extends React.Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  QF: (e) => dispatch(queryForm(e))
+  QF: (e) => dispatch(queryForm(e)),
 });
 
 export default connect(null, mapDispatchToProps)(Form);

@@ -5,43 +5,44 @@ import { fetchPlannets } from '../../actions';
 
 class Table extends React.Component {
 
-  
   componentDidMount() {
-    this.props.getPlanet()
+    this.props.getPlanet();
   }
-  
   render() {
-    const ths = [];
     const { planet, filters } = this.props;
-    for (let i in planet[0] ) {
-      if(i !== 'residents') ths.push(i);
-    }
+    let ths = [];
+      if(planet.length > 0) ths = Object.keys(planet[0]);
+      ths.splice(ths.indexOf('residents'), 1)
     return (
       <table>
         <thead>
           <tr>
-            {ths.map((info, index) => (<th key={index}>{info}</th>))}
+            {ths.map((info) => (<th key={info}>{info}</th>))}
           </tr>
         </thead>
         <tbody>
-          {planet.filter(fil => fil.name.toLowerCase().includes(filters.toLowerCase())).map((info, index) => 
-            <tr key={index}>
-            {ths.map((data, index) => (<td key={index}>{info[data]}</td>))}
+          {planet.filter((fil) => 
+            fil.name
+            .toLowerCase()
+            .includes(filters.toLowerCase()))
+            .map((info) =>
+            <tr key={Math.random(99999999)}>
+              {ths.map((data) => (<td key={Math.random(9999999)}>{info[data]}</td>))}
             </tr>
           )}
         </tbody>
       </table>
-    )
+    );
   }
 }
 
 const mapStateToProps = (state) => ({
   planet : state.planets.data,
-  filters: state.filters.filterByName.name
+  filters: state.filters.filterByName.name,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  getPlanet: () => dispatch(fetchPlannets())
-})
+  getPlanet: () => dispatch(fetchPlannets()),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Table);
