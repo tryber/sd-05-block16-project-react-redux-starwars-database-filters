@@ -28,12 +28,13 @@ class FilterNumber extends React.Component {
 
   render() {
     const { handleChange } = this;
-    const { columnOptions } = this.props;
-    const { column } = this.state;
+    const columnOptions = ['', 'population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water'];
+    const usedColumns = this.props.filterByNumericValues.map((e) => e.column);
+    const availableColumns = columnOptions.filter((e) => usedColumns.indexOf(e) === -1);
     return (
       <div>
-        <select name="column" onChange={handleChange} value={column} data-testid="column-filter">
-          {columnOptions.map((e) => <option key={e} value={e}>{e}</option>)}
+        <select name="column" onChange={handleChange} value={this.state.column} data-testid="column-filter">
+          {availableColumns.map((e) => <option key={e} value={e}>{e}</option>)}
         </select>
         <div>
           <select onChange={handleChange} name="comparison" data-testid="comparison-filter">

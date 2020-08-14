@@ -7,7 +7,6 @@ const INITIAL_STATE = {
     name: '',
   },
   filterByNumericValues: [],
-  columnOptions: ['', 'population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water'],
 };
 
 let newArray = [];
@@ -21,7 +20,6 @@ const filters = (state = INITIAL_STATE, action) => {
         filterByName: { name: action.filterByName.name },
       };
     case FILTER_BY_NUMBER:
-      newArray = state.columnOptions.filter((e) => e !== action.column);
       return {
         ...state,
         filterByNumericValues: state.filterByNumericValues.concat(
@@ -31,14 +29,12 @@ const filters = (state = INITIAL_STATE, action) => {
             value: action.value,
           },
         ),
-        columnOptions: newArray,
       };
     case CLEAN_FILTER:
       removed = state.filterByNumericValues.filter((e) => e.column !== action.column);
       return {
         ...state,
         filterByNumericValues: removed,
-        columnOptions: state.columnOptions.concat(action.column),
       };
     default:
       return state;
