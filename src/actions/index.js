@@ -45,6 +45,6 @@ export function fetchPlanetsThunk() {
 export function filterNameAction(input) {
   return {
     type: INPUT_NAME,
-    name: { input },
+    input,
   };
 };

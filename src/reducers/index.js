@@ -31,11 +31,14 @@ const initialStateInput = {
 function filterNameReducer(state = initialStateInput, action) {
   switch (action.type) {
     case INPUT_NAME:
+      console.log(action.input);
       return {
         ...state,
         filters: {
           ...state.filters,
-          filterbyName: { name: action.name.input } } };
+          filterByName: { name: action.input },
+        },
+      };
     default:
       return state;
   }
@@ -44,4 +47,3 @@ function filterNameReducer(state = initialStateInput, action) {
 const rootReducer = combineReducers({ planetReducer, filterNameReducer });
 
 export default rootReducer;
-

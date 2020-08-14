@@ -4,46 +4,20 @@ import { connect } from 'react-redux';
 import { fetchPlanetsThunk, filterNameAction } from '../actions';
 
 class FilterName extends React.Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     input: '',
-  //   };
-  //   this.handleChange = this.handleChange.bind(this);
-  // }
-
-  componentDidMount() {
-    const { async } = this.props;
-    async();
-  }
-
-  // handleChange(e) {
-  // const { nameFilter, getInput } = this.props;
-  // const { input, name } = e.target;
-  // this.setState({ [name]: input });
-  // getInput(nameFilter);
-  // }
-
-  // getInput(e) {
-  // const { nameFilter } = this.props;
-  // return {
-  //   nameFilter: e.target.value,
-  // }
-  // }
 
   render() {
-    const { fetching, getInput } = this.props;
+    const { fetching, getInput, filterName } = this.props;
     return (
       <div>
         {!fetching && (
           <div>
+            <p>{filterName}</p>
             <p>Search for specific planet:</p>
             <input
               data-testid="name-filter"
               type="text"
               name=""
-              // onChange={this.handleChange}
-              onChange={getInput}
+              onChange={(e) => getInput(e.target.value)}
             />
           </div>
         )}
@@ -54,7 +28,7 @@ class FilterName extends React.Component {
 
 const mapStateToProps = (state) => ({
   fetching: state.planetReducer.fetching,
-  nameFilter: state.filterNameReducer.filters.filterByName.name,
+  filterName: state.filterNameReducer.filters.filterByName.name,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -64,7 +38,6 @@ const mapDispatchToProps = (dispatch) => ({
 
 FilterName.propTypes = {
   fetching: propTypes.bool.isRequired,
-  nameFilter: propTypes.string.isRequired,
   async: propTypes.func.isRequired,
   getInput: propTypes.func.isRequired,
 };
