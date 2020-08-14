@@ -1,7 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchPlanets } from '../../actions';
-import PropTypes from 'prop-types';
 
 class Table extends React.Component {
   componentDidMount() {
@@ -12,7 +12,7 @@ class Table extends React.Component {
     const { planets, loading, NF } = this.props;
     let tableHeaders = [];
     if (planets.length > 0) tableHeaders = Object.keys(planets[0]);
-    tableHeaders.splice(tableHeaders.indexOf('residents'), 1)
+    tableHeaders.splice(tableHeaders.indexOf('residents'), 1);
     if (!loading) return <h2>Loading</h2>;
     return (
       <table>
