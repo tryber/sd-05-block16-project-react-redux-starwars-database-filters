@@ -1,11 +1,11 @@
-export const FILTER_BY_NAME = 'FILTER_BY_NAME'
+export const FILTER_BY_NAME = 'FILTER_BY_NAME';
 
 export const filterByName = (input) => ({
   type: FILTER_BY_NAME,
-  input
-  });
+  input,
+});
 
-const INITIAL_STATE = { 
+const INITIAL_STATE = {
   filters: {
     filterByName: {
       name: '',
@@ -16,9 +16,11 @@ const INITIAL_STATE = {
 function filters(state = INITIAL_STATE, action) {
   switch (action.type) {
     case FILTER_BY_NAME:
-      return { ...state, filters: {
-        ...state.filters,
-        filterByName: { name: action.input } } };
+      return {
+         ...state,
+         filters: {
+          ...state.filters,
+          filterByName: { name: action.input } } };
     default:
       return state;
   }
