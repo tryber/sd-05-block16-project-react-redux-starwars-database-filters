@@ -57,7 +57,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   async: (data) => dispatch(fetchPlanetsThunk(data)),
-  getInput: (data) => dispatch(filterNameAction(data)),
+  getInput: (input) => dispatch(filterNameAction(input)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Table);
