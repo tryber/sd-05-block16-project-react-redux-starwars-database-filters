@@ -32,13 +32,12 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  async: (data) => dispatch(fetchPlanetsThunk(data)),
   getInput: (input) => dispatch(filterNameAction(input)),
 });
 
 FilterName.propTypes = {
   fetching: propTypes.bool.isRequired,
-  async: propTypes.func.isRequired,
+  filterName: propTypes.string.isRequired,
   getInput: propTypes.func.isRequired,
 };
 

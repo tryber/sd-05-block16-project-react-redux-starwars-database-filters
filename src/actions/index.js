@@ -47,4 +47,4 @@ export function filterNameAction(input) {
     type: INPUT_NAME,
     input,
   };
-};
+}
