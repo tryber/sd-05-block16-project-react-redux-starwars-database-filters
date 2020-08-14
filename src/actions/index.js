@@ -1,6 +1,7 @@
 export const REQUEST = 'REQUEST';
 export const DATA = 'DATA';
 export const FAIL = 'FAIL';
+export const INPUT_NAME = 'INPUT_NAME';
 
 export const requestAction = () => {
   return {
@@ -35,7 +36,14 @@ export function fetchPlanetsThunk() {
           console.log(json.results);
           return dispatch(successDataAction(json.results));
         },
-        (error) => dispatch(failAction(error))
+        (error) => dispatch(failAction(error.message))
       );
   };
+}
+
+export const filterNameAction = (input) => {
+  return {
+    type: INPUT_NAME,
+    name: { input },
+  }
 }

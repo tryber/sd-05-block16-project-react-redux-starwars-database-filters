@@ -1,10 +1,11 @@
-import { REQUEST, DATA, FAIL} from '../actions';
+import { REQUEST, DATA, FAIL, INPUT_NAME } from '../actions';
 import { combineReducers } from 'redux';
 
 const initialState = {
   fetching: false,
   data: [],
-}
+  error: '',
+};
 
 function planetReducer(state = initialState, action) {
   switch (action.type) {
@@ -19,6 +20,27 @@ function planetReducer(state = initialState, action) {
   }
 }
 
-const rootReducer = combineReducers({planetReducer});
+const initialStateInput = {
+  filters: {
+    filterByName: {
+      name: '',
+    },
+  },
+};
+
+function filterNameReducer(state = initialStateInput, action) {
+  switch (action.type) {
+    case INPUT_NAME:
+      return {
+        ...state,
+        filters: {
+          ...state.filters,
+          filterbyName: { name: action.name.input }}}
+    default:
+      return state;
+  }
+}
+
+const rootReducer = combineReducers({ planetReducer, filterNameReducer });
 
 export default rootReducer;
