@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { handleAsyncFetch } from '../reducers';
 import { connect } from 'react-redux';
+
 class Table extends Component {
-  constructor(props) {
-    super(props);
-    // this.state = { test: 'api' };
-  }
+  // constructor(props) {
+  //   super(props);
+  //   // this.state = { test: 'api' };
+  // }
 
   componentDidMount() {
     const { handleAsync } = this.props;
@@ -38,12 +39,14 @@ class Table extends Component {
             <th>population</th>
             <th>films</th>
             <th>created</th>
+            <th>edited</th>
+            <th>url</th>
           </tr>
-          </thead>
+        </thead>
           {!isfetching && data.map(planet => (
             <tbody key={planet.name}>
               <tr>
-                <td >{planet.name}</td>
+                <td>{planet.name}</td>
                 <td>{planet.rotation_period}</td>
                 <td>{planet.orbital_period}</td>
                 <td>{planet.diameter}</td>
@@ -54,6 +57,8 @@ class Table extends Component {
                 <td>{planet.population}</td>
                 <td>{planet.films}</td>
                 <td>{planet.created}</td>
+                <td>{planet.edited}</td>
+                <td>{planet.url}</td>
               </tr>
             </tbody>
           ))}
@@ -68,8 +73,8 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const mapStateToProps = (state) => ({
-  isfetching: state.emptyReducer.isfetching,
-  data: state.emptyReducer.data,
+  isfetching: state.requestReducer.isfetching,
+  data: state.requestReducer.data,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Table);

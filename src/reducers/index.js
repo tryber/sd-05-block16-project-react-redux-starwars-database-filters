@@ -4,6 +4,7 @@ import thunk from 'redux-thunk';
 const IS_REQUESTING = 'IS_REQUESTING';
 const ADD_DATA = 'ADD_DATA';
 const ADD_ERROR = 'ADD_ERROR';
+const INPUT_TEXT = 'INPUT_TEXT';
 
 const isRequesting = () => ({
   type: IS_REQUESTING,
@@ -19,11 +20,10 @@ const errorActionCreator = (error) => ({
   error,
 });
 
-
-const initialState = {
-  data: [],
-  isfetching: false,
-};
+export const inputText = (input) => ({
+  type: INPUT_TEXT,
+  input,
+});
 
 const api = 'https://swapi-trybe.herokuapp.com/api/planets/';
 
@@ -46,23 +46,50 @@ export function handleAsyncFetch(extension) {
   };
 }
 
-function emptyReducer(state = initialState, action) {
-  switch (action.type) {
-    case IS_REQUESTING:
-      return { ...state, isfetching: true}
-    case ADD_DATA:
-      return { ...state, data: action.data, isfetching: false };
-    case ADD_ERROR:
-      return { ...state, error: action.error, isfetching: false };
+const initialStateFilter = {
+  filters: {
+    filterByName: {
+      name: 'Tatoo',
+    },
+  },
+};
 
+function filterReducer(state = initialStateFilter, action) {
+  switch (action.type) {
+    case INPUT_TEXT:
+      return {
+        ...state,
+        filters: { ...state.filters, filterByName: { name: action.input } },
+      };
+    // filters: { filterByName: { name } }
     default:
       return state;
   }
 }
-const rootReducer = combineReducers({ emptyReducer });
-const store = createStore(rootReducer, applyMiddleware(thunk));
 
-export default store;
+const initialState = {
+  data: [],
+  isfetching: false,
+};
+
+function requestReducer(state = initialState, action) {
+  switch (action.type) {
+    case IS_REQUESTING:
+      return { ...state, isfetching: true };
+    case ADD_DATA:
+      return { ...state, data: action.data, isfetching: false };
+    case ADD_ERROR:
+      return { ...state, error: action.error, isfetching: false };
+    default:
+      return state;
+  }
+}
+
+const reducer = combineReducers({ requestReducer, filterReducer });
+export default reducer;
+// const store = createStore(reducer, applyMiddleware(thunk));
+
+// export default store;
 
 // export function thunkCharacter(name) {
 //   return (dispatch) => {
