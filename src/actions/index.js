@@ -7,6 +7,8 @@ export const SET_FILTER = 'SET_FILTER';
 export const SET_VALUE = 'SET_VALUE';
 export const SET_COMPARISON = 'SET_COMPARISON';
 export const SET_COLUMN = 'SET_COLUMN';
+export const REMOVE_FILTER = 'REMOVE_FILTER';
+export const SORT_FILTER = 'SORT_FILTER';
 
 const requestPlanets = () => ({
   type: REQUEST_PLANETS,
@@ -47,4 +49,14 @@ export const setColumn = (column) => ({
 export const setValue = (value) => ({
   type: SET_VALUE,
   value,
+});
+
+export const removeFilter = (filter) => ({
+  type: REMOVE_FILTER,
+  payload: filter,
+});
+
+export const sortFilter = (column, sort) => ({
+  type: SORT_FILTER,
+  payload: { column, sort },
 });

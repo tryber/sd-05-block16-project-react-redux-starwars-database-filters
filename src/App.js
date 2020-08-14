@@ -7,6 +7,7 @@ import { fetchPlanets } from './actions';
 import Table from './components/Table';
 import SearchBar from './components/SearchBar';
 import Filters from './components/Filters';
+import ActiveFilters from './components/ActiveFilters';
 
 class App extends React.Component {
   componentDidMount() {
@@ -19,6 +20,7 @@ class App extends React.Component {
       <div>
         <SearchBar />
         <Filters />
+        <ActiveFilters />
         <Table />
       </div>
     );
