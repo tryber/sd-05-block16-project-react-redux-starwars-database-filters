@@ -17,9 +17,9 @@ export const searchSuccess = (planet) => ({
 });
 
 export const filterByName = (name) => ({
-    type: PLANET_NAME,
-    name,
-  });
+  type: PLANET_NAME,
+  name,
+});
 
 export function thunkPlanet(name) {
   return (dispatch) => {

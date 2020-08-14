@@ -30,7 +30,7 @@ function planetReducer(state = initialState, action) {
   }
 }
 
-/* a função abaixo não havia feito, fui ao repositório do colega Rodrigo Batista, 
+/* a função abaixo não havia feito, fui ao repositório do colega Rodrigo Batista,
 para sanar umas dúvidas e vi que está função estava faltando */
 
 function filters(state = initialFilter, action) {
