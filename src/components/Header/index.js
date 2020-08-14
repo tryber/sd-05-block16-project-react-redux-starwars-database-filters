@@ -1,6 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { fetchPlanets } from '../../actions';
 
 class Header extends React.Component {
   render() {
@@ -12,11 +10,4 @@ class Header extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  planets: state.APIreducer.data,
-});
-const mapDispatchToProps = (dispatch) => ({
-  getInfo: (e) => dispatch(fetchPlanets()),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default Header;

@@ -1,6 +1,7 @@
 import React from 'react';
-import { filterByName } from '../../actions';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { filterByName } from '../../actions';
 
 class Form extends React.Component {
   render() {
@@ -13,7 +14,7 @@ class Form extends React.Component {
             name="planets"
             type="text"
             onChange={(e) => filterName(e.target.value)}
-          ></input>
+          />
         </label>
       </form>
     );
@@ -23,5 +24,9 @@ class Form extends React.Component {
 const mapDispatchToProps = (dispatch) => ({
   filterName: (e) => dispatch(filterByName(e)),
 });
+
+Form.propTypes = {
+  filterName: PropTypes.func.isRequired,
+};
 
 export default connect(null, mapDispatchToProps)(Form);

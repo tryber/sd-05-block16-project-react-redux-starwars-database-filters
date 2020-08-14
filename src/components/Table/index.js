@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { fetchPlanets } from '../../actions';
+import PropTypes from 'prop-types';
 
 class Table extends React.Component {
   componentDidMount() {
@@ -10,7 +11,7 @@ class Table extends React.Component {
   render() {
     const { planets, loading, NF } = this.props;
     let tableHeaders = [];
-    if (planets.length > 0) tableHeaders = Object.keys(planets[0])
+    if (planets.length > 0) tableHeaders = Object.keys(planets[0]);
     tableHeaders.splice(tableHeaders.indexOf('residents'), 1)
     if (!loading) return <h2>Loading</h2>;
     return (
@@ -46,5 +47,12 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   getInfo: () => dispatch(fetchPlanets()),
 });
+
+Table.propTypes = {
+  planets: PropTypes.arrayOf(PropTypes.object).isRequired,
+  loading: PropTypes.bool.isRequired,
+  NF: PropTypes.string.isRequired,
+  getInfo: PropTypes.func.isRequired,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Table);
