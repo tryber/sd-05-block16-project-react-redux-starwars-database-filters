@@ -38,7 +38,7 @@ class Table extends Component {
 
   render() {
     const { isLoading, data } = this.props;
-    if (isLoading) return <div>Carregando...</div>
+    if (isLoading) return <div>Carregando...</div>;
     return data.length ?
       (
         <table>
