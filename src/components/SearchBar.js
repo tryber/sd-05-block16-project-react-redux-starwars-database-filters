@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import filterByName from '../actions/getFiltersOptions';
 import FilterNumber from './FilterNumber';
+import FilterNumberOptions from './FilterNumberOptions';
 
 function SearchBar(props) {
   const { handleChange } = props;
@@ -12,6 +13,7 @@ function SearchBar(props) {
         <input data-testid="name-filter" name="filter-name" type="text" onChange={handleChange} />
       </label>
       <FilterNumber />
+      <FilterNumberOptions />
     </div>
     
   );

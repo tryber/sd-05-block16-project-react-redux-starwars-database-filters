@@ -41,6 +41,7 @@ const mapStateToProps = (state) => ({
   isFetching: state.getPlanets.isFetching,
   data: state.getPlanets.data.results,
   filterByName: state.filter.filters.filterByName.name,
+  filterByNumericValues: state.filter.filters.filterByNumericValues,
 });
 
 export default connect(mapStateToProps)(Table);
