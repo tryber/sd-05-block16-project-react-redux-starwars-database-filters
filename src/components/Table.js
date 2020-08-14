@@ -4,26 +4,25 @@ import PropTypes from 'prop-types';
 
 import Cabecalho from './Cabecalho';
 
-class Table extends Component {
-
-  filterByNumber(planets, filtro) {
-    if (filtro.comparison === 'maior que') {
-      return planets.filter((e) => Number(e[filtro.column]) > Number(filtro.value));
-    }
-    if (filtro.comparison === 'menor que') {
-      return planets.filter((e) => Number(e[filtro.column]) < Number(filtro.value));
-    }
-    if (filtro.comparison === 'igual a') {
-      return planets.filter((e) => Number(e[filtro.column]) === Number(filtro.value));
-    }
-    return planets;
+function filterByNumber(planets, filtro) {
+  if (filtro.comparison === 'maior que') {
+    return planets.filter((e) => Number(e[filtro.column]) > Number(filtro.value));
   }
+  if (filtro.comparison === 'menor que') {
+    return planets.filter((e) => Number(e[filtro.column]) < Number(filtro.value));
+  }
+  if (filtro.comparison === 'igual a') {
+    return planets.filter((e) => Number(e[filtro.column]) === Number(filtro.value));
+  }
+  return planets;
+}
 
+class Table extends Component {
   render() {
     const { data, filterByName, filterByNumericValues } = this.props;
     if (!data) return <div>Sem dados</div>;
     let planets = data;
-    filterByNumericValues.forEach((filtro) => { planets = this.filterByNumber(planets, filtro); });
+    filterByNumericValues.forEach((filtro) => { planets = filterByNumber(planets, filtro); });
     return (
       <div>
         <table>
