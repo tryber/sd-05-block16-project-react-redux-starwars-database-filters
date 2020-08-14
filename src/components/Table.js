@@ -7,7 +7,6 @@ import Cabecalho from './Cabecalho';
 class Table extends Component {
   constructor(props) {
     super(props);
-    this.filterByNumber = this.filterByNumber.bind(this);
   }
 
   filterByNumber(planets, filtro) {
