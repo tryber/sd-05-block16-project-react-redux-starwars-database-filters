@@ -26,7 +26,7 @@ function APIreducer(state = INITIAL_API_STATE, action) {
 function filters(state = INITIAL_FILTER, action) {
   switch (action.type) {
     case BY_NAME:
-      return { ...state, filterByName: { name: action.name }};
+      return { ...state, filterByName: { name: action.name } };
     default:
       return state;
   }
