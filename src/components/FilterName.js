@@ -1,7 +1,7 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchPlanetsThunk, filterNameAction } from '../actions';
+import { filterNameAction } from '../actions';
 
 class FilterName extends React.Component {
 
