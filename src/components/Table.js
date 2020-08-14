@@ -1,7 +1,7 @@
 import propTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { handleFetch } from '../reducers';
+import { handleGoFetch } from '../reducers';
 import HeaderTable from './HeaderTable';
 
 class Table extends Component {
@@ -48,14 +48,14 @@ class Table extends Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  handleFetch: (e) => dispatch(handleFetch(e)),
+  handleFetch: (e) => dispatch(handleGoFetch(e)),
 });
 
 const mapStateToProps = (state) => ({
   isfetching: state.fetchReducer.isfetching,
   data: state.fetchReducer.data,
   filterByName: state.filters.filters.filterByName.name,
-  });
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Table);
 

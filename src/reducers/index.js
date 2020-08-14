@@ -26,7 +26,7 @@ const initialState = {
 
 const apiUrl = 'https://swapi-trybe.herokuapp.com/api/planets/';
 
-export function handleFetch() {
+export function handleGoFetch() {
   return (dispatch) => {
     dispatch(isFetching());
 
