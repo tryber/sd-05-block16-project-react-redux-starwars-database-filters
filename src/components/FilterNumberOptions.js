@@ -1,28 +1,30 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+
 import cleanFilter from '../actions/cleanFilter';
 
 class FilterNumberOptions extends React.Component {
   render() {
     const { click, filterByNumericValues } = this.props;
     return (
-    <div>
-      {filterByNumericValues.map((e, index) => (
-        <div key={index} data-testid="filter">
-          <div>{e.column}</div>
-          <div>{e.comparison}</div>
-          <div>{e.value}</div>
-          <button
-            data-testid="button-filter" type="button"
-            onClick={() => click(e.column)}
-          >
-            X
-          </button>
-        </div>
-      ))}
-    </div>
-  );
-  }  
+      <div>
+        {filterByNumericValues.map((e) => (
+          <div key={e.column} data-testid="filter">
+            <div>{e.column}</div>
+            <div>{e.comparison}</div>
+            <div>{e.value}</div>
+            <button
+              data-testid="button-filter" type="button"
+              onClick={() => click(e.column)}
+            >
+              X
+            </button>
+          </div>
+        ))}
+      </div>
+    );
+  }
 }
 
 const mapStateToProps = (state) => ({
@@ -32,5 +34,14 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   click: (column) => dispatch(cleanFilter(column)),
 });
+
+FilterNumberOptions.propTypes = {
+  click: PropTypes.func.isRequired,
+  filterByNumericValues: PropTypes.arrayOf(PropTypes.object),
+}
+
+FilterNumberOptions.defaultProps = {
+  filterByNumericValues: [],
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(FilterNumberOptions);

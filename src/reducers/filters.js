@@ -4,10 +4,10 @@ import { CLEAN_FILTER } from '../actions/cleanFilter';
 
 const INITIAL_STATE = {
   filterByName: {
-      name: '',
+    name: '',
   },
   filterByNumericValues: [],
-  columnOptions: ['','population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water'],
+  columnOptions: ['', 'population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water'],
 };
 
 const filters = (state = INITIAL_STATE, action) => {
@@ -18,7 +18,7 @@ const filters = (state = INITIAL_STATE, action) => {
         filterByName: { name: action.filterByName.name },
       };
     case FILTER_BY_NUMBER:
-      const newArray = state.columnOptions.filter(e => e !== action.column);
+      const newArray = state.columnOptions.filter((e) => e !== action.column);
       return {
         ...state,
         filterByNumericValues: state.filterByNumericValues.concat(
@@ -26,18 +26,18 @@ const filters = (state = INITIAL_STATE, action) => {
             column: action.column,
             comparison: action.comparison,
             value: action.value,
-          }
+          },
         ),
         columnOptions: newArray,
       };
     case CLEAN_FILTER:
       const { column } = action;
-      const removed = state.filterByNumericValues.filter(e => e.column !== column);
+      const removed = state.filterByNumericValues.filter((e) => e.column !== column);
       return {
         ...state,
         filterByNumericValues: removed,
         columnOptions: state.columnOptions.concat(column),
-      }
+      };
     default:
       return state;
   }

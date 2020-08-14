@@ -1,5 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+
 import filterByName from '../actions/getFiltersOptions';
 import FilterNumber from './FilterNumber';
 import FilterNumberOptions from './FilterNumberOptions';
@@ -15,9 +17,15 @@ function SearchBar(props) {
       <FilterNumber />
       <FilterNumberOptions />
     </div>
-    
   );
 }
+
+SearchBar.propTypes = {
+  error: PropTypes.string.isRequired,
+  isFetching: PropTypes.bool.isRequired,
+  data: PropTypes.arrayOf(PropTypes.object).isRequired,
+  handleChange: PropTypes.func.isRequired,
+};
 
 const mapStateToProps = (state) => ({
   error: state.getPlanets.error,
@@ -30,4 +38,3 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);
-

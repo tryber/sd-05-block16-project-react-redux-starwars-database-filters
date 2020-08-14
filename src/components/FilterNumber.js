@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import PropTypes, { object } from 'prop-types';
+import PropTypes from 'prop-types';
 
 import filterByNumber from '../actions/filterByNumericValues';
 
@@ -14,22 +14,6 @@ class FilterNumber extends React.Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
-    this.filter = this.filter.bind(this);
-  }
-
-  filter() {
-    const { filterByNumericValues, data } = this.props;
-    return filterByNumericValues.forEach((filtro) => {
-      if (filtro.comparison === 'maior que') {
-        return data.filter((e) => e[filtro.column] > filtro.value);
-      }
-      if (filtro.comparison === 'menor que') {
-        return data.filter((e) => e[filtro.column] < filtro.value);
-      }
-      if (filtro.comparison === 'igual a') {
-        return data.filter((e) => e[filtro.column] === filtro.value);
-      }
-    })
   }
 
   handleChange(e) {
@@ -40,7 +24,6 @@ class FilterNumber extends React.Component {
   handleClick() {
     const { column, comparison, value } = this.state;
     this.props.filter(column, comparison, value);
-    console.log(this.filter());
   }
 
   render() {
@@ -50,7 +33,7 @@ class FilterNumber extends React.Component {
     return (
       <div>
         <select name="column" onChange={handleChange} value={column} data-testid="column-filter">
-          {columnOptions.map((e, index) => <option key={index} value={e}>{e}</option>)}
+          {columnOptions.map((e) => <option key={e} value={e}>{e}</option>)}
         </select>
         <div>
           <select onChange={handleChange} name="comparison" data-testid="comparison-filter">
@@ -73,11 +56,13 @@ class FilterNumber extends React.Component {
 
 FilterNumber.propTypes = {
   filterByNumericValues: PropTypes.arrayOf(PropTypes.object),
-}
+  data: PropTypes.arrayOf(PropTypes.object).isRequired,
+  columnOptions: PropTypes.arrayOf(PropTypes.string).isRequired,
+};
 
 FilterNumber.defaultProps = {
   filterByNumericValues: [],
-}
+};
 
 const mapStateToProps = (state) => ({
   error: state.getPlanets.error,

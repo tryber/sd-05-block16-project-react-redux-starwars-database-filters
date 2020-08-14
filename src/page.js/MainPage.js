@@ -25,7 +25,7 @@ class MainPage extends Component {
 
 MainPage.propTypes = {
   getPlanets: PropTypes.func.isRequired,
-}
+};
 
 const mapDispatchToProps = (dispatch) => ({
   getPlanets: () => dispatch(fetchStarWarsPlanets()),
