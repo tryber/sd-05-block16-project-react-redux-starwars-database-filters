@@ -8,11 +8,16 @@ class FilterNumberOptions extends React.Component {
     return (
     <div>
       {filterByNumericValues.map((e, index) => (
-        <div key={index}>
+        <div key={index} data-testid="filter">
           <div>{e.column}</div>
           <div>{e.comparison}</div>
           <div>{e.value}</div>
-          <button type="button" onClick={() => click(e.column, e.comparison, e.value)}>Remover</button>
+          <button
+            data-testid="button-filter" type="button"
+            onClick={() => click(e.column, e.comparison, e.value)}
+          >
+            X
+          </button>
         </div>
       ))}
     </div>

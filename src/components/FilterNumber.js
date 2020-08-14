@@ -13,6 +13,22 @@ class FilterNumber extends React.Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.filter = this.filter.bind(this);
+  }
+
+  filter() {
+    const { filterByNumericValues, data } = this.props;
+    return filterByNumericValues.forEach(filtro => {
+      if (filtro.comparison === 'maior que') {
+        return data.filter(e => e[filtro.column] > filtro.value);
+      }
+      if (filtro.comparison === 'menor que') {
+        return data.filter(e => e[filtro.column] < filtro.value);
+      }
+      if (filtro.comparison === 'igual a') {
+        return data.filter(e => e[filtro.column] === filtro.value);
+      }
+    })
   }
 
   handleChange(e) {
@@ -23,19 +39,16 @@ class FilterNumber extends React.Component {
   handleClick() {
     const { column, comparison, value } = this.state;
     this.props.filter(column, comparison, value);
+    console.log(this.filter());
   }
 
   render() {
     const { handleChange } = this;
+    const { columnOptions } = this.props;
     return (
       <div>
         <select name="column" onChange={handleChange} data-testid="column-filter">
-          <option />
-          <option value="population">population</option>
-          <option value="orbital_period">orbital_period</option>
-          <option value="diameter">diameter</option>
-          <option value="rotation_period">rotation_period</option>
-          <option value="surface_water">surface_water</option>
+          {columnOptions.map((e, index) => <option key={index} value={e}>{e}</option>)}
         </select>
         <div>
           <select onChange={handleChange} name="comparison" data-testid="comparison-filter">
@@ -60,6 +73,8 @@ const mapStateToProps = (state) => ({
   error: state.getPlanets.error,
   isFetching: state.getPlanets.isFetching,
   data: state.getPlanets.data.results,
+  columnOptions: state.filter.columnOptions,
+  filterByNumericValues: state.filter.filters.filterByNumericValues,
 });
 
 const mapDispatchToProps = (dispatch) => ({

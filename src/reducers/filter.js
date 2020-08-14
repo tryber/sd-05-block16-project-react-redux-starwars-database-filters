@@ -9,6 +9,7 @@ const INITIAL_STATE = {
     },
     filterByNumericValues: [],
   },
+  columnOptions: ['','population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water'],
 };
 
 const filter = (state = INITIAL_STATE, action) => {
@@ -21,6 +22,7 @@ const filter = (state = INITIAL_STATE, action) => {
           filterByName: { name: action.filterByName.name } },
       };
     case FILTER_BY_NUMBER:
+      const newArray = state.columnOptions.filter(e => e !== action.column);
       return {
         ...state,
         filters: {
@@ -33,10 +35,10 @@ const filter = (state = INITIAL_STATE, action) => {
             }
           ),
         },
+        columnOptions: newArray,
       };
     case CLEAN_FILTER:
       const { column, comparison, value } = action;
-      console.log(action);
       const removed = state.filters.filterByNumericValues.filter(e => {
         if (column === e.column && comparison === e.comparison && value === e.value) {
           return null;
@@ -50,6 +52,7 @@ const filter = (state = INITIAL_STATE, action) => {
           },
           filterByNumericValues: removed,
         },
+        columnOptions: state.columnOptions.concat(column),
       }
     default:
       return state;

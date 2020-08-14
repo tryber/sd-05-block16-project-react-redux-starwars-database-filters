@@ -4,6 +4,25 @@ import { connect } from 'react-redux';
 import Cabecalho from './Cabecalho';
 
 class Table extends Component {
+
+  filter() {
+    const { filterByNumericValues, data } = this.props;
+    filterByNumericValues.forEach(filtro => {
+      if (filtro.comparison === 'maior que') {
+        data.filter(e => e[filtro.column] > filtro.value);
+      }
+      if (filtro.comparison === 'menor que') {
+        
+      }
+      if (filtro.comparison === 'igual a') {
+        
+      }
+    })
+  }
+
+  componentDidMount() {
+    this.filter();
+  }
   render() {
     const { data, filterByName } = this.props;
     if (!data) return <div>Sem dados</div>;
