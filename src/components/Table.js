@@ -1,7 +1,7 @@
 import React from 'react';
+import propTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchPlanetsThunk, filterNameAction } from '../actions';
-import propTypes from 'prop-types';
 import TableHeader from '../components/TableHeader';
 import TableData from '../components/TableData';
 
@@ -32,7 +32,6 @@ class Table extends React.Component {
 
 const mapStateToProps = (state) => ({
   fetching: state.planetReducer.fetching,
-  error: state.planetReducer.err,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -42,7 +41,6 @@ const mapDispatchToProps = (dispatch) => ({
 
 Table.propTypes = {
   fetching: propTypes.bool.isRequired,
-  error: propTypes.object.isRequired,
   async: propTypes.func.isRequired,
   getInput: propTypes.func.isRequired,
 };

@@ -7,21 +7,21 @@ export function requestAction() {
   return {
     type: REQUEST,
   };
-};
+}
 
 export function successDataAction(data) {
   return {
     type: DATA,
     data,
   };
-};
+}
 
 export function failAction(err) {
   return {
     type: FAIL,
     err,
   };
-};
+}
 
 const apiPlanets = 'https://swapi-trybe.herokuapp.com/api/planets/';
 // [HONESTIDADE ACADÊMICA]
@@ -37,12 +37,12 @@ export function fetchPlanetsThunk() {
           console.log(json.results);
           return dispatch(successDataAction(json.results));
         },
-        (error) => dispatch(failAction(error.message))
+        (error) => dispatch(failAction(error.message)),
       );
   };
 }
 
-export const filterNameAction = (input) => {
+export function filterNameAction(input) {
   return {
     type: INPUT_NAME,
     name: { input },

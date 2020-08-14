@@ -1,6 +1,6 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import propTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { fetchPlanetsThunk, filterNameAction } from '../actions';
 
 class FilterName extends React.Component {
@@ -54,7 +54,6 @@ class FilterName extends React.Component {
 
 const mapStateToProps = (state) => ({
   fetching: state.planetReducer.fetching,
-  error: state.planetReducer.err,
   nameFilter: state.filterNameReducer.filters.filterByName.name,
 });
 
@@ -65,7 +64,6 @@ const mapDispatchToProps = (dispatch) => ({
 
 FilterName.propTypes = {
   fetching: propTypes.bool.isRequired,
-  error: propTypes.object.isRequired,
   nameFilter: propTypes.string.isRequired,
   async: propTypes.func.isRequired,
   getInput: propTypes.func.isRequired,

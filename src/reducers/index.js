@@ -44,3 +44,4 @@ function filterNameReducer(state = initialStateInput, action) {
 const rootReducer = combineReducers({ planetReducer, filterNameReducer });
 
 export default rootReducer;
+

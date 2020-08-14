@@ -1,6 +1,6 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import propTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { fetchPlanetsThunk, filterNameAction } from '../actions';
 
 class TableData extends React.Component {
@@ -9,14 +9,13 @@ class TableData extends React.Component {
     async();
   }
   // [HONESTIDADE ACADÊMICA]
-  // A primeira versão deste componente Table (requisito 1)
+  // A primeira versão deste componente Table com map (requisito 1)
   // foi pensada e desenvolvida em grupo.
   render() {
     const { data, nameFilter } = this.props;
     return (
       <div>
-        {data
-          .filter((planet) => planet.name.includes(nameFilter))
+        {data.filter((planet) => planet.name.includes(nameFilter))
           .map((planet) => (
             <tbody key={planet.name}>
               <tr>
@@ -43,7 +42,6 @@ class TableData extends React.Component {
 
 const mapStateToProps = (state) => ({
   data: state.planetReducer.data,
-  error: state.planetReducer.err,
   nameFilter: state.filterNameReducer.filters.filterByName.name,
 });
 
@@ -53,8 +51,7 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 TableData.propTypes = {
-  data: propTypes.array.isRequired,
-  error: propTypes.object.isRequired,
+  data: propTypes.arrayOf(propTypes.object).isRequired,
   nameFilter: propTypes.string.isRequired,
   async: propTypes.func.isRequired,
   getInput: propTypes.func.isRequired,
