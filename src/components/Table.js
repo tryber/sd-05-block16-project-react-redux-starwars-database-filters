@@ -62,7 +62,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(Table);
 Table.propTypes = {
   isfetching: propTypes.bool.isRequired,
   data: propTypes.arrayOf(propTypes.object).isRequired,
-  handleFetch: PropTypes.func.isRequired;
+  handleFetch: PropTypes.func.isRequired,
   filterByName: PropTypes.string.isRequired
 };
 
