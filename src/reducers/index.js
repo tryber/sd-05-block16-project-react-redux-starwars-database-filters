@@ -1,8 +1,15 @@
-import { SEARCH_PLANET, SEARCH_SUCCESS } from '../actions/index';
+import { combineReducers } from 'redux';
+import { SEARCH_PLANET, SEARCH_SUCCESS, PLANET_NAME } from '../actions/index';
 
 const initialState = {
   isLoading: false,
-  character: '',
+  data: '',
+};
+
+const initialFilter = {
+  filterByName: {
+    name: '',
+  },
 };
 
 function planetReducer(state = initialState, action) {
@@ -16,11 +23,25 @@ function planetReducer(state = initialState, action) {
       return {
         ...state,
         isLoading: false,
-        character: action.planet[0],
+        data: action.planet[0],
       };
     default:
       return state;
   }
 }
 
-export default planetReducer;
+/* a função abaixo não havia feito, fui ao repositório do colega Rodrigo Batista, 
+para sanar umas dúvidas e vi que está função estava faltando */
+
+function filters(state = initialFilter, action) {
+  switch (action.type) {
+    case PLANET_NAME:
+      return { ...state, filterByName: { name: action.name } };
+    default:
+      return state;
+  }
+}
+
+const rootReducer = combineReducers({ planetReducer, filters });
+
+export default rootReducer;

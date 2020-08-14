@@ -2,6 +2,7 @@ import planetsAPI from '../services/planetsAPI';
 
 export const SEARCH_PLANET = 'SEARCH_PLANET';
 export const SEARCH_SUCCESS = 'SEARCH_SUCCESS';
+export const PLANET_NAME = 'PLANET_NAME';
 
 export const searchPlanet = (planetSearched) => ({
   type: SEARCH_PLANET,
@@ -14,6 +15,11 @@ export const searchSuccess = (planet) => ({
   loading: false,
   planet,
 });
+
+export const filterByName = (name) => ({
+    type: PLANET_NAME,
+    name,
+  });
 
 export function thunkPlanet(name) {
   return (dispatch) => {
