@@ -34,9 +34,9 @@ export function handleFetch() {
     return fetch(apiUrl)
       .then((response) => response.json())
       .then((json) => {
-           console.log(json.results);
-          return dispatch(fetchDataActionCreator(json.results));
-        },
+        console.log(json.results);
+        return dispatch(fetchDataActionCreator(json.results));
+      },
         (error) => {
           console.log(`erro: ${error.message}`);
           dispatch(fetchErrorActionCreator(error));
