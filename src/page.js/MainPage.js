@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import { fetchStarWarsPlanets } from '../actions/fetchPlanetsApi';
 import SearchBar from '../components/SearchBar';
@@ -20,6 +21,10 @@ class MainPage extends Component {
       </div>
     );
   }
+}
+
+MainPage.propTypes = {
+  getPlanets: PropTypes.func.isRequired,
 }
 
 const mapDispatchToProps = (dispatch) => ({

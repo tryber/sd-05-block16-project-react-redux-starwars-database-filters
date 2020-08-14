@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes, { object } from 'prop-types';
 
 import filterByNumber from '../actions/filterByNumericValues';
 
@@ -18,15 +19,15 @@ class FilterNumber extends React.Component {
 
   filter() {
     const { filterByNumericValues, data } = this.props;
-    return filterByNumericValues.forEach(filtro => {
+    return filterByNumericValues.forEach((filtro) => {
       if (filtro.comparison === 'maior que') {
-        return data.filter(e => e[filtro.column] > filtro.value);
+        return data.filter((e) => e[filtro.column] > filtro.value);
       }
       if (filtro.comparison === 'menor que') {
-        return data.filter(e => e[filtro.column] < filtro.value);
+        return data.filter((e) => e[filtro.column] < filtro.value);
       }
       if (filtro.comparison === 'igual a') {
-        return data.filter(e => e[filtro.column] === filtro.value);
+        return data.filter((e) => e[filtro.column] === filtro.value);
       }
     })
   }
@@ -68,6 +69,14 @@ class FilterNumber extends React.Component {
       </div>
     );
   }
+}
+
+FilterNumber.propTypes = {
+  filterByNumericValues: PropTypes.arrayOf(PropTypes.object),
+}
+
+FilterNumber.defaultProps = {
+  filterByNumericValues: [],
 }
 
 const mapStateToProps = (state) => ({

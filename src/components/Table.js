@@ -5,30 +5,32 @@ import Cabecalho from './Cabecalho';
 
 class Table extends Component {
 
-  filter() {
-    const { filterByNumericValues, data } = this.props;
-    filterByNumericValues.forEach(filtro => {
-      if (filtro.comparison === 'maior que') {
-        data.filter(e => e[filtro.column] > filtro.value);
-      }
-      if (filtro.comparison === 'menor que') {
-        data.filter(e => e[filtro.column] < filtro.value);
-      }
-      if (filtro.comparison === 'igual a') {
-        data.filter(e => e[filtro.column] === filtro.value);
-      }
-    })
+  filter(planets, filtro) {
+    
+    if (filtro.comparison === 'maior que') {
+      return planets.filter(e => Number(e[filtro.column]) > Number(filtro.value));
+    }
+    if (filtro.comparison === 'menor que') {
+      return planets.filter(e => Number(e[filtro.column]) < Number(filtro.value));
+    }
+    if (filtro.comparison === 'igual a') {
+      return planets.filter(e => Number(e[filtro.column]) === Number(filtro.value));
+    }
+    return planets;
+    
   }
 
   render() {
-    const { data, filterByName } = this.props;
+    const { data, filterByName, filterByNumericValues } = this.props;
     if (!data) return <div>Sem dados</div>;
+    let planets = data;
+    filterByNumericValues.forEach(filtro => {planets = this.filter(planets, filtro)} )
     return (
       <div>
         <table>
           <Cabecalho />
           <tbody>
-            {data.filter((e) => e.name.includes(filterByName))
+            {planets.filter((e) => e.name.includes(filterByName))
               .map(planet => {
                 return (
                   <tr key={planet.name}>
@@ -45,11 +47,8 @@ class Table extends Component {
                     <td>{planet.created}</td>
                     <td>{planet.edited}</td>
                     <td>{planet.url}</td>
-
                   </tr>
-                );
-              })
-            }
+                );})}
           </tbody>
         </table>
       </div>
