@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
 import getPlanets from './getPlanets';
-import filter from './filter';
+import filters from './filters';
 
 export default combineReducers({
   getPlanets,
-  filter,
+  filters,
 });

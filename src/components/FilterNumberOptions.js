@@ -26,7 +26,7 @@ class FilterNumberOptions extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  filterByNumericValues: state.filter.filters.filterByNumericValues,
+  filterByNumericValues: state.filters.filterByNumericValues,
 });
 
 const mapDispatchToProps = (dispatch) => ({

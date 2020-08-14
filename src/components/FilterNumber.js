@@ -73,8 +73,8 @@ const mapStateToProps = (state) => ({
   error: state.getPlanets.error,
   isFetching: state.getPlanets.isFetching,
   data: state.getPlanets.data.results,
-  columnOptions: state.filter.columnOptions,
-  filterByNumericValues: state.filter.filters.filterByNumericValues,
+  columnOptions: state.filters.columnOptions,
+  filterByNumericValues: state.filters.filterByNumericValues,
 });
 
 const mapDispatchToProps = (dispatch) => ({

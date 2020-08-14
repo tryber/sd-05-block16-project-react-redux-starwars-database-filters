@@ -12,17 +12,14 @@ class Table extends Component {
         data.filter(e => e[filtro.column] > filtro.value);
       }
       if (filtro.comparison === 'menor que') {
-        
+        data.filter(e => e[filtro.column] < filtro.value);
       }
       if (filtro.comparison === 'igual a') {
-        
+        data.filter(e => e[filtro.column] === filtro.value);
       }
     })
   }
 
-  componentDidMount() {
-    this.filter();
-  }
   render() {
     const { data, filterByName } = this.props;
     if (!data) return <div>Sem dados</div>;
@@ -59,8 +56,8 @@ const mapStateToProps = (state) => ({
   error: state.getPlanets.error,
   isFetching: state.getPlanets.isFetching,
   data: state.getPlanets.data.results,
-  filterByName: state.filter.filters.filterByName.name,
-  filterByNumericValues: state.filter.filters.filterByNumericValues,
+  filterByName: state.filters.filterByName.name,
+  filterByNumericValues: state.filters.filterByNumericValues,
 });
 
 export default connect(mapStateToProps)(Table);
