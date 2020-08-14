@@ -22,7 +22,7 @@ function SearchBar(props) {
 
 SearchBar.propTypes = {
   handleChange: PropTypes.func.isRequired,
-}
+};
 
 const mapStateToProps = (state) => ({
   error: state.getPlanets.error,

@@ -38,7 +38,7 @@ const mapDispatchToProps = (dispatch) => ({
 FilterNumberOptions.propTypes = {
   click: PropTypes.func.isRequired,
   filterByNumericValues: PropTypes.arrayOf(PropTypes.object),
-}
+};
 
 FilterNumberOptions.defaultProps = {
   filterByNumericValues: [],

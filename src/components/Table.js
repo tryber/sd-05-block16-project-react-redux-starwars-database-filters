@@ -7,10 +7,10 @@ import Cabecalho from './Cabecalho';
 class Table extends Component {
   constructor(props) {
     super(props);
-    this.filter = this.filter.bind(this);
+    this.filterByNumber = this.filterByNumber.bind(this);
   }
 
-  filter(planets, filtro) {
+  filterByNumber(planets, filtro) {
     if (filtro.comparison === 'maior que') {
       return planets.filter((e) => Number(e[filtro.column]) > Number(filtro.value));
     }
@@ -27,7 +27,7 @@ class Table extends Component {
     const { data, filterByName, filterByNumericValues } = this.props;
     if (!data) return <div>Sem dados</div>;
     let planets = data;
-    filterByNumericValues.forEach((filtro) => { planets = this.filter(planets, filtro); });
+    filterByNumericValues.forEach((filtro) => { planets = this.filterByNumber(planets, filtro); });
     return (
       <div>
         <table>
@@ -64,7 +64,7 @@ Table.propTypes = {
 
 Table.defaultProps = {
   filterByNumericValues: [],
-}
+};
 
 const mapStateToProps = (state) => ({
   error: state.getPlanets.error,
