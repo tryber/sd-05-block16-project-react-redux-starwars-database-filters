@@ -26,6 +26,6 @@ const mapDispatchToProps = (dispatch) => ({
 
 Form.propTypes = {
   QF: PropTypes.func.isRequired,
-}
+};
 
 export default connect(null, mapDispatchToProps)(Form);

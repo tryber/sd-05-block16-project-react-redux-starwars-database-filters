@@ -1,7 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchPlannets } from '../../actions';
-import PropTypes from 'prop-types';
 
 
 class Table extends React.Component {
@@ -50,6 +50,6 @@ Table.propTypes = {
   planet: PropTypes.arrayOf(PropTypes.object).isRequired,
   getPlanet: PropTypes.func.isRequired,
   filters: PropTypes.string.isRequired,
-}
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Table);
