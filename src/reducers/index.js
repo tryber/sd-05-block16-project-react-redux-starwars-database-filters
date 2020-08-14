@@ -21,22 +21,20 @@ function planetReducer(state = initialState, action) {
 }
 
 const initialStateInput = {
-  filters: {
-    filterByName: {
-      name: '',
-    },
+  filterByName: {
+    name: '',
   },
 };
 
-function filterNameReducer(state = initialStateInput, action) {
+function filters(state = initialStateInput, action) {
   switch (action.type) {
     case INPUT_NAME:
       console.log(action.input);
       return {
         ...state,
-        filters: {
-          ...state.filters,
-          filterByName: { name: action.input },
+        filterByName: {
+          ...state.filterByName,
+          name: action.input,
         },
       };
     default:
@@ -44,6 +42,6 @@ function filterNameReducer(state = initialStateInput, action) {
   }
 }
 
-const rootReducer = combineReducers({ planetReducer, filterNameReducer });
+const rootReducer = combineReducers({ planetReducer, filters });
 
 export default rootReducer;

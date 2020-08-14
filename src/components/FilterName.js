@@ -12,7 +12,7 @@ class FilterName extends React.Component {
       <div>
         {!fetching && (
           <div>
-            {/* <p>{filterName}</p> */}
+            {/* <p>{filterName.name}</p> */}
             <p>Search for specific planet:</p>
             <input
               data-testid="name-filter"
@@ -29,7 +29,7 @@ class FilterName extends React.Component {
 
 const mapStateToProps = (state) => ({
   fetching: state.planetReducer.fetching,
-  // filterName: state.filterNameReducer.filters.filterByName.name,
+  // filterName: state.filters.filterByName,
 });
 
 const mapDispatchToProps = (dispatch) => ({

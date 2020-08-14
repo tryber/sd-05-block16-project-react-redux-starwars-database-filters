@@ -12,7 +12,7 @@ class TableData extends React.Component {
     return (
       <tbody>
         {data
-          .filter((planet) => planet.name.includes(filterName.filterByName.name))
+          .filter((planet) => planet.name.includes(filterName.name))
           .map((planet) => (
             <tr key={planet.name}>
               <td key={planet.name}>{planet.name}</td>
@@ -37,7 +37,7 @@ class TableData extends React.Component {
 
 const mapStateToProps = (state) => ({
   data: state.planetReducer.data,
-  filterName: state.filterNameReducer.filters,
+  filterName: state.filters.filterByName,
 });
 
 TableData.propTypes = {
