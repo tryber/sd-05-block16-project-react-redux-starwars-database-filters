@@ -1,10 +1,9 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { filterNumberAction } from '../actions';
+// import { filterNumberAction } from '../actions';
 
 class FilterNumber extends React.Component {
-
   render() {
     const { fetching } = this.props;
     // const { selectNumber, getNumberInput } = this.props;
@@ -29,11 +28,12 @@ class FilterNumber extends React.Component {
               data-testid="comparison-filter"
               // onChange={(e) => }
             >
-            <option />
-            <option value="maior que">maior que</option>
-            <option value="menor que">menor que</option>
-            <option value="igual a">igual a</option>
-          </select>
+              {/* <option>By Comparison</option> */}
+              <option />
+              <option value="maior que">maior que</option>
+              <option value="menor que">menor que</option>
+              <option value="igual a">igual a</option>
+            </select>
             <br />
             {/* <p>{selectNumber.column}</p> */}
             {/* <p>{selectNumber.comparison}</p> */}
@@ -52,7 +52,7 @@ class FilterNumber extends React.Component {
               // onClick={() => getNumberInput()}
               // onSubmit?
             >
-                Filtrar
+              Filtrar
             </button>
           </div>
         )}
@@ -67,7 +67,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  getNumberInput: (select) => dispatch(filterNumberAction(select)),
+  // getNumberInput: (select) => dispatch(filterNumberAction(select)),
 });
 
 FilterNumber.propTypes = {
