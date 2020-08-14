@@ -39,9 +39,8 @@ const mapDispatchToProps = (dispatch) => ({
 FilterName.propTypes = {
   fetching: propTypes.bool.isRequired,
   getInput: propTypes.func.isRequired,
-  filterName: propTypes.shape({
-    filterByName: propTypes.object,
-  })
+  // filterName: propTypes.shape({
+  //   filterByName: propTypes.object}).isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(FilterName);
