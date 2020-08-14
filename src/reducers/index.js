@@ -1,5 +1,5 @@
-import { REQUEST, DATA, FAIL, INPUT_NAME } from '../actions';
 import { combineReducers } from 'redux';
+import { REQUEST, DATA, FAIL, INPUT_NAME } from '../actions';
 
 const initialState = {
   fetching: false,
@@ -35,7 +35,7 @@ function filterNameReducer(state = initialStateInput, action) {
         ...state,
         filters: {
           ...state.filters,
-          filterbyName: { name: action.name.input }}}
+          filterbyName: { name: action.name.input } } };
     default:
       return state;
   }

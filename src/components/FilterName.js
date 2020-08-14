@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import propTypes from 'prop-types';
 import { fetchPlanetsThunk, filterNameAction } from '../actions';
 
 class FilterName extends React.Component {
@@ -17,17 +18,17 @@ class FilterName extends React.Component {
   }
 
   // handleChange(e) {
-    // const { nameFilter, getInput } = this.props;
-    // const { input, name } = e.target;
-    // this.setState({ [name]: input });
-    // getInput(nameFilter);
+  // const { nameFilter, getInput } = this.props;
+  // const { input, name } = e.target;
+  // this.setState({ [name]: input });
+  // getInput(nameFilter);
   // }
 
   // getInput(e) {
-    // const { nameFilter } = this.props;
-    // return {
-    //   nameFilter: e.target.value,
-    // }
+  // const { nameFilter } = this.props;
+  // return {
+  //   nameFilter: e.target.value,
+  // }
   // }
 
   render() {
@@ -37,9 +38,12 @@ class FilterName extends React.Component {
         {!fetching && (
           <div>
             <p>Search for specific planet:</p>
-            <input data-testid="name-filter" type="text" name=""
-            // onChange={this.handleChange}
-            onChange={getInput}
+            <input
+              data-testid="name-filter"
+              type="text"
+              name=""
+              // onChange={this.handleChange}
+              onChange={getInput}
             />
           </div>
         )}
@@ -50,6 +54,7 @@ class FilterName extends React.Component {
 
 const mapStateToProps = (state) => ({
   fetching: state.planetReducer.fetching,
+  error: state.planetReducer.err,
   nameFilter: state.filterNameReducer.filters.filterByName.name,
 });
 
@@ -57,5 +62,13 @@ const mapDispatchToProps = (dispatch) => ({
   async: (data) => dispatch(fetchPlanetsThunk(data)),
   getInput: (input) => dispatch(filterNameAction(input)),
 });
+
+FilterName.propTypes = {
+  fetching: propTypes.bool.isRequired,
+  error: propTypes.object.isRequired,
+  nameFilter: propTypes.string.isRequired,
+  async: propTypes.func.isRequired,
+  getInput: propTypes.func.isRequired,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(FilterName);

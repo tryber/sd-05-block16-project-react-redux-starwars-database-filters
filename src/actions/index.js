@@ -3,29 +3,30 @@ export const DATA = 'DATA';
 export const FAIL = 'FAIL';
 export const INPUT_NAME = 'INPUT_NAME';
 
-export const requestAction = () => {
+export function requestAction() {
   return {
     type: REQUEST,
-  }
-}
+  };
+};
 
-export const successDataAction = (data) => {
+export function successDataAction(data) {
   return {
     type: DATA,
-    data
-  }
-}
+    data,
+  };
+};
 
-export const failAction = (err) => {
+export function failAction(err) {
   return {
     type: FAIL,
-    err
-  }
-}
+    err,
+  };
+};
 
 const apiPlanets = 'https://swapi-trybe.herokuapp.com/api/planets/';
-//[HONESTIDADE ACADÊMICA]
-// O seguinte thunk foi escrito consultando o exemplo guiado dos doguinhos, Trybe Course, 'React with Redux Part 2'.
+// [HONESTIDADE ACADÊMICA]
+// O seguinte thunk foi escrito consultando o exemplo guiado
+// dos doguinhos, Trybe Course, 'React with Redux Part 2'.
 export function fetchPlanetsThunk() {
   return (dispatch) => {
     dispatch(requestAction());
@@ -45,5 +46,5 @@ export const filterNameAction = (input) => {
   return {
     type: INPUT_NAME,
     name: { input },
-  }
-}
+  };
+};
