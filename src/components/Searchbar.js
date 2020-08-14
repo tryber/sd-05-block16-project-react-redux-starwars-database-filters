@@ -12,7 +12,7 @@ class SearchBar extends Component {
     const { handleChangeName } = this.props;
     return (
       <div>
-        <label htmlFor="name-filter"> Search planet by name:
+        <label htmlFor="name-filter-input"> Search planet by name:
         <input
           data-testid="name-filter"
           type="text"
