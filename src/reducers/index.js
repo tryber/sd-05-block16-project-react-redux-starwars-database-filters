@@ -1,5 +1,5 @@
-import { REQUEST_PLANETS, GET_PLANETS, BY_NAME } from '../actions';
 import { combineReducers } from 'redux';
+import { REQUEST_PLANETS, GET_PLANETS, BY_NAME } from '../actions';
 
 const INITIAL_API_STATE = {
   isFetching: false,

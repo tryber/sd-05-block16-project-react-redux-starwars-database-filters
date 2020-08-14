@@ -9,13 +9,9 @@ class Table extends React.Component {
 
   render() {
     const { planets, loading, NF } = this.props;
-    const tableHeaders = [];
-    for (let att in planets[0]) {
-      if (att !== 'residents') tableHeaders.push(att);
-    }
-    {
-      if (!loading) return <h2>Loading</h2>;
-    }
+    let tableHeaders = [];
+    if (planets.length > 0) tableHeaders = Object.keys(planets[0]);
+    if (!loading) return <h2>Loading</h2>;
     return (
       <table>
         <thead>
@@ -28,13 +24,11 @@ class Table extends React.Component {
         <tbody>
           {planets
             .filter((data) =>
-              data.name.toLowerCase().includes(NF.toLowerCase())
+              data.name.toLowerCase().includes(NF.toLowerCase()),
             )
-            .map((data, index) => (
-              <tr key={'row' + index}>
-                {tableHeaders.map((each, index) => (
-                  <td key={index}>{data[each]}</td>
-                ))}
+            .map((data) => (
+              <tr key={data.terrain}>
+                {tableHeaders.map((each) => (<td key={each}>{data[each]}</td>))}
               </tr>
             ))}
         </tbody>
@@ -49,7 +43,7 @@ const mapStateToProps = (state) => ({
   NF: state.filters.filterByName.name,
 });
 const mapDispatchToProps = (dispatch) => ({
-  getInfo: (e) => dispatch(fetchPlanets()),
+  getInfo: () => dispatch(fetchPlanets()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Table);
