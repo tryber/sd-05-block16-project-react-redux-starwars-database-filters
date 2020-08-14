@@ -16,15 +16,13 @@ export const queryForm = (name) => ({
   name,
 });
 
-
-
 export function fetchPlannets() {
   return (dispatch) => {
     dispatch(requestAPI());
     return fetch('https://swapi-trybe.herokuapp.com/api/planets/?format=json')
       .then((response) => response.json()
       .then(
-        (data) => dispatch(getPlanets(data.results))
+        (data) => dispatch(getPlanets(data.results)),
       ));
-  }
+  };
 }

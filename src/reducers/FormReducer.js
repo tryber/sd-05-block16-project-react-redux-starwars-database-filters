@@ -9,7 +9,7 @@ const initialState = {
 const FormReducer = (state = initialState, action) => {
   switch (action.type) {
     case QUERY_FORM:
-      return {...state, filterByName: { name:action.name } };
+      return { ...state, filterByName: { name: action.name } };
     default: return state;
   }
 };

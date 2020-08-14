@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { fetchPlannets } from '../../actions';
+import PropTypes from 'prop-types';
 
 
 class Table extends React.Component {
@@ -11,8 +12,8 @@ class Table extends React.Component {
   render() {
     const { planet, filters } = this.props;
     let ths = [];
-      if(planet.length > 0) ths = Object.keys(planet[0]);
-      ths.splice(ths.indexOf('residents'), 1)
+    if (planet.length > 0) ths = Object.keys(planet[0]);
+    ths.splice(ths.indexOf('residents'), 1);
     return (
       <table>
         <thead>
@@ -21,14 +22,14 @@ class Table extends React.Component {
           </tr>
         </thead>
         <tbody>
-          {planet.filter((fil) => 
+          {planet.filter((fil) =>
             fil.name
             .toLowerCase()
             .includes(filters.toLowerCase()))
             .map((info) =>
-            <tr key={Math.random(99999999)}>
-              {ths.map((data) => (<td key={Math.random(9999999)}>{info[data]}</td>))}
-            </tr>
+              <tr key={Math.random(99999999)}>
+                {ths.map((data) => (<td key={Math.random(9999999)}>{info[data]}</td>))}
+              </tr>,
           )}
         </tbody>
       </table>
@@ -37,12 +38,18 @@ class Table extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  planet : state.planets.data,
+  planet: state.planets.data,
   filters: state.filters.filterByName.name,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   getPlanet: () => dispatch(fetchPlannets()),
 });
+
+Table.propTypes = {
+  planet: PropTypes.arrayOf(PropTypes.object).isRequired,
+  getPlanet: PropTypes.func.isRequired,
+  filters: PropTypes.string.isRequired,
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Table);
