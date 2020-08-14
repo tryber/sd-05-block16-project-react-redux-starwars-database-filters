@@ -14,43 +14,45 @@ class FilterNumber extends React.Component {
           <div>
             <p>See more filters:</p>
             <select
-              data-testid='column-filter'
+              data-testid="column-filter"
               // onChange={(e) => }
             >
-              <option>By Column</option>
+              {/* <option>By Column</option> */}
+              <option />
               <option>population</option>
               <option>orbital_period</option>
               <option>diameter</option>
               <option>rotation_period</option>
               <option>surface_water</option>
             </select>
-            <select 
-              data-testid='comparison-filter'
+            <select
+              data-testid="comparison-filter"
               // onChange={(e) => }
             >
-              <option>By Comparison</option>
-              <option>More than</option>
-              <option>Less than</option>
-              <option>Equal to</option>
-            </select>
+            <option />
+            <option value="maior que">maior que</option>
+            <option value="menor que">menor que</option>
+            <option value="igual a">igual a</option>
+          </select>
             <br />
             {/* <p>{selectNumber.column}</p> */}
             {/* <p>{selectNumber.comparison}</p> */}
             {/* <p>{selectNumber.value}</p> */}
             <input
-              data-testid='value-filter'
+              data-testid="value-filter"
               placeholder="Insert Value"
-              type="text"
+              type="number"
               name=""
               // onChange={(e) => getNumberInput(e.target.value)}
             />
             <br />
             <button
               type="button"
+              data-testid="button-filter"
               // onClick={() => getNumberInput()}
               // onSubmit?
             >
-                Submit aditional filters
+                Filtrar
             </button>
           </div>
         )}
