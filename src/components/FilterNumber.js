@@ -55,9 +55,8 @@ class FilterNumber extends React.Component {
 }
 
 FilterNumber.propTypes = {
-  filterByNumericValues: PropTypes.arrayOf(PropTypes.object),
-  data: PropTypes.arrayOf(PropTypes.object).isRequired,
   columnOptions: PropTypes.arrayOf(PropTypes.string).isRequired,
+  filter: PropTypes.func.isRequired,
 };
 
 FilterNumber.defaultProps = {

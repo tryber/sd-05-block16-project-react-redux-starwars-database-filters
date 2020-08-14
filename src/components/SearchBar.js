@@ -21,11 +21,8 @@ function SearchBar(props) {
 }
 
 SearchBar.propTypes = {
-  error: PropTypes.string.isRequired,
-  isFetching: PropTypes.bool.isRequired,
-  data: PropTypes.arrayOf(PropTypes.object).isRequired,
   handleChange: PropTypes.func.isRequired,
-};
+}
 
 const mapStateToProps = (state) => ({
   error: state.getPlanets.error,
@@ -38,3 +35,4 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);
+

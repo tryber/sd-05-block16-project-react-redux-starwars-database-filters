@@ -27,7 +27,7 @@ class Table extends Component {
     const { data, filterByName, filterByNumericValues } = this.props;
     if (!data) return <div>Sem dados</div>;
     let planets = data;
-    filterByNumericValues.forEach((filtro) => { planets = this.filter(planets, filtro) });
+    filterByNumericValues.forEach((filtro) => { planets = this.filter(planets, filtro); });
     return (
       <div>
         <table>
@@ -35,19 +35,19 @@ class Table extends Component {
           <tbody>
             {planets.filter((e) => e.name.includes(filterByName))
               .map((planet) => (
-                  <tr key={planet.name}>
-                    <td>{planet.name}</td><td>{planet.rotation_period}</td>
-                    <td>{planet.orbital_period}</td><td>{planet.diameter}</td>
-                    <td>{planet.climate}</td>
-                    <td>{planet.gravity}</td>
-                    <td>{planet.terrain}</td>
-                    <td>{planet.surface_water}</td>
-                    <td>{planet.population}</td>
-                    <td>{planet.films.map((e) => <div key={e}>{e}</div>)}</td>
-                    <td>{planet.created}</td>
-                    <td>{planet.edited}</td>
-                    <td>{planet.url}</td>
-                  </tr>
+                <tr key={planet.name}>
+                  <td>{planet.name}</td><td>{planet.rotation_period}</td>
+                  <td>{planet.orbital_period}</td><td>{planet.diameter}</td>
+                  <td>{planet.climate}</td>
+                  <td>{planet.gravity}</td>
+                  <td>{planet.terrain}</td>
+                  <td>{planet.surface_water}</td>
+                  <td>{planet.population}</td>
+                  <td>{planet.films.map((e) => <div key={e}>{e}</div>)}</td>
+                  <td>{planet.created}</td>
+                  <td>{planet.edited}</td>
+                  <td>{planet.url}</td>
+                </tr>
             ))}
           </tbody>
         </table>
@@ -61,6 +61,10 @@ Table.propTypes = {
   data: PropTypes.arrayOf(PropTypes.object).isRequired,
   filterByName: PropTypes.string.isRequired,
 };
+
+Table.defaultProps = {
+  filterByNumericValues: [],
+}
 
 const mapStateToProps = (state) => ({
   error: state.getPlanets.error,
