@@ -10,11 +10,11 @@ class Table extends React.Component {
   }
 
   render() {
-    const { planets, loading, NF, filters } = this.props;
+    const { planets, loading, NF, filters, columnOrder, nameOrder } = this.props;
     let tableHeaders = [];
     if (planets.length > 0) tableHeaders = Object.keys(planets[0]);
     tableHeaders.splice(tableHeaders.indexOf('residents'), 1);
-    const planetas = filtering(planets, NF, filters);
+    const planetas = filtering(planets, NF, filters, columnOrder, nameOrder);
     if (!loading) return <h2>Loading</h2>;
     return (
       <table>
@@ -44,6 +44,8 @@ const mapStateToProps = (state) => ({
   loading: state.APIreducer.isFetching,
   NF: state.filters.filterByName.name,
   filters: state.filters.filterByNumericValues,
+  columnOrder: state.filters.order.column,
+  nameOrder: state.filters.order.sort,
 });
 const mapDispatchToProps = (dispatch) => ({
   getInfo: () => dispatch(fetchPlanets()),
@@ -55,6 +57,8 @@ Table.propTypes = {
   NF: PropTypes.string.isRequired,
   getInfo: PropTypes.func.isRequired,
   filters: PropTypes.arrayOf(PropTypes.object).isRequired,
+  columnOrder: PropTypes.string.isRequired,
+  nameOrder: PropTypes.string.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Table);

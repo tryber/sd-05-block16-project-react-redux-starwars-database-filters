@@ -1,10 +1,12 @@
-export default function filtering(planets, NF, filters) {
+import ordering from "./ordering";
+
+export default function filtering(planets, NF, filters, columnOrder, nameOrder) {
+  let finalArr = ordering(planets, columnOrder, nameOrder);
   if (filters.length < 1) {
-    const textFilter = planets.filter((data) =>
+    const textFilter = finalArr.filter((data) =>
       data.name.toLowerCase().includes(NF.toLowerCase()));
     return textFilter;
   }
-  let finalArr = planets;
   filters.forEach((filter) => {
     if (filter.comparison === 'maior que') {
       const biggerThan = finalArr.filter((data) =>

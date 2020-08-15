@@ -4,8 +4,8 @@ import {
   GET_PLANETS,
   BY_NAME,
   BY_NUMBERS,
-  SET_FILTERED,
   REMOVE_FILTER,
+  ORDER_COLUMN,
 } from '../actions';
 
 const INITIAL_API_STATE = {
@@ -18,6 +18,10 @@ const INITIAL_FILTER = {
     name: '',
   },
   filterByNumericValues: [],
+  order: {
+    column:'name',
+    sort: 'ASC'
+  }
 };
 
 function APIreducer(state = INITIAL_API_STATE, action) {
@@ -48,24 +52,14 @@ function filters(state = INITIAL_FILTER, action) {
         ],
       };
     case REMOVE_FILTER:
-      return {
-        ...state,
-        filterByNumericValues: [...action.newFilters],
-      };
+      return { ...state, filterByNumericValues: [...action.newFilters] };
+    case ORDER_COLUMN:
+      return { ...state, order: { column: action.column, sort: action.order } }
     default:
       return state;
   }
 }
 
-function setFiltered(state = [], action) {
-  switch (action.type) {
-    case SET_FILTERED:
-      return [...action.planets];
-    default:
-      return state;
-  }
-}
-
-const rootReducer = combineReducers({ APIreducer, filters, setFiltered });
+const rootReducer = combineReducers({ APIreducer, filters });
 
 export default rootReducer;

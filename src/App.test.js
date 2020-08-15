@@ -411,7 +411,7 @@ describe('5 - Cada filtro de valores numéricos deve ter um ícone de X que, ao 
   });
 });
 
-/* describe('6 - As colunas da tabela devem ser ordenáveis de forma ascendente ou descendente', () => {
+describe('6 - As colunas da tabela devem ser ordenáveis de forma ascendente ou descendente', () => {
   test('check planet table starting order', async () => {
     let sortedPlanets = [];
 
@@ -434,7 +434,7 @@ describe('5 - Cada filtro de valores numéricos deve ter um ícone de X que, ao 
 
     appPlanetList.shift();
     expect(sortedPlanets).toEqual(appPlanetList);
-    expect(store.getState().filters.order.column).toEqual('Name');
+    expect(store.getState().filters.order.column).toEqual('name');
     expect(store.getState().filters.order.sort).toEqual('ASC');
   });
 
@@ -473,4 +473,4 @@ describe('5 - Cada filtro de valores numéricos deve ter um ícone de X que, ao 
 
     expect(appPlanetList).toEqual(sortedPlanets.reverse());
   });
-}); */
+});

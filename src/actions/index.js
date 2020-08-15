@@ -4,6 +4,7 @@ export const BY_NAME = 'BY_NAME';
 export const BY_NUMBERS = 'BY_NUMBERS';
 export const SET_FILTERED = 'SET_FILTERED';
 export const REMOVE_FILTER = 'REMOVE_FILTER';
+export const ORDER_COLUMN = 'ORDER_COLUMN'
 
 const requestPlanets = () => ({
   type: REQUEST_PLANETS,
@@ -38,4 +39,10 @@ export const filterByNumericValues = ({ column, comparison, value }) => ({
 export const removeFilter = (newFilters) => ({
   type: REMOVE_FILTER,
   newFilters,
+});
+
+export const setOrder = (column, order) => ({
+  type: ORDER_COLUMN,
+  column,
+  order,
 });

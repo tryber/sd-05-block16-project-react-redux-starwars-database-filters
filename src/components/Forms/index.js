@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { filterByName } from '../../actions';
 import SelectForm from '../SelectForm';
+import Ordering from '../Ordering';
 
 class Form extends React.Component {
   render() {
@@ -18,6 +19,7 @@ class Form extends React.Component {
           />
         </label>
         <SelectForm />
+        <Ordering />
       </form>
     );
   }
