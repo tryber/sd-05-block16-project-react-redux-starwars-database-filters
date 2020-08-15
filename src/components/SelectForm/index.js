@@ -37,7 +37,9 @@ class SelectForm extends React.Component {
   hClick(e) {
     const { filters, deleteFilter } = this.props;
     const newFilter = [];
-    filters.forEach((each) => (each.column !== e.target.name) ? newFilter.push(each):newFilter);
+    for (let i = 0; i < filters.length; i += 1) {
+      if (filters[i].column !== e.target.name) newFilter.push(filters[i])
+    };
     deleteFilter(newFilter);
   }
 
