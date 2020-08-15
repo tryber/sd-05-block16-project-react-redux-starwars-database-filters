@@ -1,4 +1,4 @@
-/* eslint no-param-reassign: "error" */
+/* eslint no-param-reassign: ["error", { "props": false }] */
 
 import React, { Component } from 'react';
 import propTypes from 'prop-types';
