@@ -350,7 +350,7 @@ describe('4 -  Sua página deverá ser carregada com somente um filtro de valore
   });
 });
 
-/* describe('5 - Cada filtro de valores numéricos deve ter um ícone de X que, ao ser clicado, o apaga e desfaz suas filtragens dos dados da tabela', () => {
+describe('5 - Cada filtro de valores numéricos deve ter um ícone de X que, ao ser clicado, o apaga e desfaz suas filtragens dos dados da tabela', () => {
   test('should show the previously selected filters', async () => {
     const initialState = getStore().getState();
 
@@ -409,7 +409,7 @@ describe('4 -  Sua página deverá ser carregada com somente um filtro de valore
     expect(selectedFilters).toHaveLength(0);
     expect(store.getState().filters.filterByNumericValues).toHaveLength(0);
   });
-}); */
+});
 
 /* describe('6 - As colunas da tabela devem ser ordenáveis de forma ascendente ou descendente', () => {
   test('check planet table starting order', async () => {

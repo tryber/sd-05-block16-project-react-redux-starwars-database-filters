@@ -5,6 +5,7 @@ import {
   BY_NAME,
   BY_NUMBERS,
   SET_FILTERED,
+  REMOVE_FILTER,
 } from '../actions';
 
 const INITIAL_API_STATE = {
@@ -46,6 +47,13 @@ function filters(state = INITIAL_FILTER, action) {
           },
         ],
       };
+      case REMOVE_FILTER:
+        return {
+          ...state,
+          filterByNumericValues: [
+            ...action.newFilters,
+          ],
+        };
     default:
       return state;
   }

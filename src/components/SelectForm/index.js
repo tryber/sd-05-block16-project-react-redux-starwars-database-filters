@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { filterByNumericValues, getPlanets } from '../../actions';
+import { filterByNumericValues, removeFilter } from '../../actions';
 import Select from '../Input';
 
 
@@ -24,6 +24,8 @@ class SelectForm extends React.Component {
     };
     this.hC = this.hC.bind(this);
     this.defaultFilter = this.defaultFilter.bind(this);
+    this.hClick = this.hClick.bind(this);
+
   }
 
   hC(e) {
@@ -31,6 +33,14 @@ class SelectForm extends React.Component {
     this.setState({
       [name]: value,
     });
+  }
+
+  hClick(e) {
+    const { filters, deleteFilter } = this.props;
+    const newFilter = []
+    filters.forEach(each => (each.column !== e.target.name)? newFilter.push(each):newFilter)
+    console.log(newFilter)
+    deleteFilter(newFilter)
   }
 
   defaultFilter() {
@@ -63,16 +73,14 @@ class SelectForm extends React.Component {
         <label htmlFor="value">
           <input name="value" type="number" data-testid="value-filter" onChange={this.hC} />
         </label>
-        <button
-          type="button"
-          data-testid="button-filter"
-          onClick={() => this.defaultFilter()}
-        >
+        <button type="button" data-testid="button-filter" onClick={() => this.defaultFilter()}>
           Filtrar
         </button>
-        <p>
-          {`Selecionamos a coluna ${column} para comparar o valor ${comparison} ${value}`}
-        </p>
+        <div>
+          {filters.map(each =>
+              <span key={each.column} data-testid='filter'>{`Filtrando ${each.column} ${each.comparison} ${each.value}`} <button name={each.column} type="button" onClick={this.hClick}>X</button></span>
+          )}
+        </div>
       </div>
     );
   }
@@ -80,7 +88,7 @@ class SelectForm extends React.Component {
 
 const mapDispatchToProps = (dispatch) => ({
   filterNumbers: (e) => dispatch(filterByNumericValues(e)),
-  setPlanets: () => dispatch(getPlanets()),
+  deleteFilter: (e) => dispatch(removeFilter(e)),
 });
 
 const mapStateToProps = (state) => ({

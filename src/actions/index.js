@@ -3,6 +3,7 @@ export const GET_PLANETS = 'GET_PLANETS';
 export const BY_NAME = 'BY_NAME';
 export const BY_NUMBERS = 'BY_NUMBERS';
 export const SET_FILTERED = 'SET_FILTERED';
+export const REMOVE_FILTER = 'REMOVE_FILTER';
 
 const requestPlanets = () => ({
   type: REQUEST_PLANETS,
@@ -33,3 +34,8 @@ export const filterByNumericValues = ({ column, comparison, value }) => ({
   comparison,
   value,
 });
+
+export const removeFilter = (newFilters) => ({
+  type: REMOVE_FILTER,
+  newFilters,
+})
