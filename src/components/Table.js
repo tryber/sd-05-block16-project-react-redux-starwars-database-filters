@@ -25,16 +25,6 @@ class Table extends React.Component {
     this.body = this.body.bind(this);
   }
 
-  header() {
-    return (
-      <thead>
-        <tr>
-          {tableHeader.map((item) => <th key={item}>{item}</th>)}
-        </tr>
-      </thead>
-    );
-  }
-
   body() {
     const { planets } = this.props;
     return (
@@ -60,7 +50,13 @@ class Table extends React.Component {
         {loading && <p>Loading</p>}
         {!loading && planets &&
           <table>
-            {this.header()}
+            {
+              <thead>
+                <tr>
+                  {tableHeader.map((item) => <th key={item}>{item}</th>)}
+                </tr>
+              </thead>
+            }
             {this.body()}
           </table>
         }
