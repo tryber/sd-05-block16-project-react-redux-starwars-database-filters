@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { REQUEST, DATA, FAIL, INPUT_NAME, SELECT_NUMBER} from '../actions';
+import { REQUEST, DATA, FAIL, INPUT_NAME, SELECT_NUMBER } from '../actions';
 
 const initialState = {
   fetching: false,
@@ -29,9 +29,9 @@ const initialStateInput = {
       column: '',
       comparison: '',
       value: '',
-    }
-  ]
-};
+    },
+  ],
+}
 
 function filters(state = initialStateInput, action) {
   switch (action.type) {

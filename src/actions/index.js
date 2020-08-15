@@ -25,9 +25,8 @@ export function failAction(err) {
 }
 
 const apiPlanets = 'https://swapi-trybe.herokuapp.com/api/planets/';
-// [HONESTIDADE ACADÊMICA]
-// O seguinte thunk foi escrito consultando o exemplo guiado
-// dos doguinhos, Trybe Course, 'React with Redux Part 2'.
+// [Honestidade acadêmica] - Escrito com modelo.
+// (Trybe Course, 'React with Redux Part 2', Doguinhos).
 export function fetchPlanetsThunk() {
   return (dispatch) => {
     dispatch(requestAction());
@@ -35,7 +34,7 @@ export function fetchPlanetsThunk() {
       .then((response) => response.json())
       .then(
         (json) => {
-          // console.log(json.results);
+          console.log(json.results);
           return dispatch(successDataAction(json.results));
         },
         (error) => dispatch(failAction(error.message)),
