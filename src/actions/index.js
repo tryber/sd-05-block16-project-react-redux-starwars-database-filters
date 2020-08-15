@@ -35,7 +35,7 @@ export function fetchPlanetsThunk() {
       .then((response) => response.json())
       .then(
         (json) => {
-          console.log(json.results);
+          // console.log(json.results);
           return dispatch(successDataAction(json.results));
         },
         (error) => dispatch(failAction(error.message)),
@@ -50,7 +50,10 @@ export function filterNameAction(input) {
   };
 }
 
-export function filterNumberAction({ column, comparison, value }) {
+export function filterNumberAction(column, comparison, value) {
+  // console.log(column);
+  // console.log(comparison);
+  // console.log(value);
   return {
     type: SELECT_NUMBER,
     column,

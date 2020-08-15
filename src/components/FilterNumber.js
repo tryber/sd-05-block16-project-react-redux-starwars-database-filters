@@ -1,20 +1,45 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import { connect } from 'react-redux';
-// import { filterNumberAction } from '../actions';
+import { filterNumberAction } from '../actions';
 
 class FilterNumber extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      column: '',
+      comparison: '',
+      value: '',
+    }
+    this.handleChange = this.handleChange.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  // [Honestidade acadêmica]
+  // handleChange escrito com modelo do course Forms no React
+  handleChange(event) {
+    const { name, value } = event.target;
+    this.setState({ [name]: value });
+  }
+
+  handleClick() {
+    const { getNumberInput } = this.props;
+    const { column, comparison, value } = this.state;
+    getNumberInput(column, comparison, value);
+  }
+
   render() {
     const { fetching } = this.props;
-    // const { selectNumber, getNumberInput } = this.props;
+    // const { selectNumber } = this.props;
     return (
       <div>
         {!fetching && (
           <div>
             <p>See more filters:</p>
             <select
+              name="column"
               data-testid="column-filter"
-              // onChange={(e) => getNumberInput(e.target.value)}
+              onChange={this.handleChange}
             >
               {/* <option>By Column</option> */}
               <option />
@@ -25,8 +50,9 @@ class FilterNumber extends React.Component {
               <option>surface_water</option>
             </select>
             <select
+              name="comparison"
               data-testid="comparison-filter"
-              // onChange={(e) => getNumberInput(e.target.value)}
+              onChange={this.handleChange}
             >
               {/* <option>By Comparison</option> */}
               <option />
@@ -36,21 +62,18 @@ class FilterNumber extends React.Component {
             </select>
             <br />
             {/* <p>{selectNumber.column}</p> */}
-            {/* <p>{selectNumber.comparison}</p> */}
-            {/* <p>{selectNumber.value}</p> */}
             <input
               data-testid="value-filter"
               placeholder="Insert Value"
               type="number"
-              name=""
-              // onChange={(e) => getNumberInput(e.target.value)}
+              name="value"
+              onChange={this.handleChange}
             />
             <br />
             <button
               type="button"
               data-testid="button-filter"
-              // onClick={(e) => getNumberInput()}
-              // onSubmit?
+              onClick={this.handleClick}
             >
               Filtrar
             </button>
@@ -67,12 +90,12 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  // getNumberInput: (select) => dispatch(filterNumberAction(select)),
+  getNumberInput: (column, comparison, value) => dispatch(filterNumberAction(column, comparison, value)),
 });
 
 FilterNumber.propTypes = {
   fetching: propTypes.bool.isRequired,
-  // getNumberInput: propTypes.func.isRequired,
+  getNumberInput: propTypes.func.isRequired,
   // selectNumber: propTypes.shape({
   //   filterByName: propTypes.object }).isRequired,
 };

@@ -26,9 +26,9 @@ const initialStateInput = {
   },
   filterByNumericValues: [
     {
-      column: 'population',
-      comparison: 'maior que',
-      value: '100000',
+      column: '',
+      comparison: '',
+      value: '',
     }
   ]
 };
@@ -45,6 +45,7 @@ function filters(state = initialStateInput, action) {
         },
       };
     case SELECT_NUMBER:
+      console.log(action.comparison);
       return {
         ...state,
         filterByNumericValues: [
