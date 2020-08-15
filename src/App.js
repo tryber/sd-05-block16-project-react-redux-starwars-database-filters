@@ -21,12 +21,12 @@ class App extends React.Component {
   }
 }
 
+App.protoTypes = {
+  fetchData: PropTypes.func.isRequired,
+};
+
 const mapDispatchToProps = (dispatch) => ({
   fetchData: () => dispatch(fetchData()),
 });
 
 export default connect(null, mapDispatchToProps)(App);
-
-App.protoTypes = {
-  fetchData: PropTypes.func.isRequired,
-};

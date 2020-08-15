@@ -44,8 +44,8 @@ class Table extends React.Component {
             {
               tableHeader.map((item) =>
                 <td key={item}>
-                {planet[item]}
-              </td>)
+                  {planet[item]}
+                </td>)
             }
           </tr>,
         )}
