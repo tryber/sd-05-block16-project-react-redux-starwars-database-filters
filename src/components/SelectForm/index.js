@@ -39,8 +39,8 @@ class SelectForm extends React.Component {
     const newFilter = [];
     for (let i = 0; i < filters.length; i += 1) {
       if (filters[i].column !== e.target.name) {
-      newFilter.push(filters[i]);
-      }  
+        newFilter.push(filters[i]);
+      }
     }
     deleteFilter(newFilter);
   }
