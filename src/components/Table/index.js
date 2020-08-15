@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchPlanets } from '../../actions';
+import filtering from '../../services/filtering';
 
 class Table extends React.Component {
   componentDidMount() {
@@ -9,10 +10,11 @@ class Table extends React.Component {
   }
 
   render() {
-    const { planets, loading, NF } = this.props;
+    const { planets, loading, NF, filters } = this.props;
     let tableHeaders = [];
     if (planets.length > 0) tableHeaders = Object.keys(planets[0]);
     tableHeaders.splice(tableHeaders.indexOf('residents'), 1);
+    const planetas = filtering(planets, NF, filters);
     if (!loading) return <h2>Loading</h2>;
     return (
       <table>
@@ -24,15 +26,13 @@ class Table extends React.Component {
           </tr>
         </thead>
         <tbody>
-          {planets
-            .filter((data) =>
-              data.name.toLowerCase().includes(NF.toLowerCase()),
-            )
-            .map((data) => (
-              <tr key={data.terrain}>
-                {tableHeaders.map((each) => (<td key={each}>{data[each]}</td>))}
-              </tr>
-            ))}
+          {planetas.map((data) => (
+            <tr key={data.terrain}>
+              {tableHeaders.map((each) => (
+                <td key={each}>{data[each]}</td>
+              ))}
+            </tr>
+          ))}
         </tbody>
       </table>
     );
@@ -43,6 +43,7 @@ const mapStateToProps = (state) => ({
   planets: state.APIreducer.data,
   loading: state.APIreducer.isFetching,
   NF: state.filters.filterByName.name,
+  filters: state.filters.filterByNumericValues,
 });
 const mapDispatchToProps = (dispatch) => ({
   getInfo: () => dispatch(fetchPlanets()),

@@ -1,5 +1,11 @@
 import { combineReducers } from 'redux';
-import { REQUEST_PLANETS, GET_PLANETS, BY_NAME } from '../actions';
+import {
+  REQUEST_PLANETS,
+  GET_PLANETS,
+  BY_NAME,
+  BY_NUMBERS,
+  SET_FILTERED,
+} from '../actions';
 
 const INITIAL_API_STATE = {
   isFetching: false,
@@ -10,6 +16,7 @@ const INITIAL_FILTER = {
   filterByName: {
     name: '',
   },
+  filterByNumericValues: [],
 };
 
 function APIreducer(state = INITIAL_API_STATE, action) {
@@ -27,11 +34,32 @@ function filters(state = INITIAL_FILTER, action) {
   switch (action.type) {
     case BY_NAME:
       return { ...state, filterByName: { name: action.name } };
+    case BY_NUMBERS:
+      return {
+        ...state,
+        filterByNumericValues: [
+          ...state.filterByNumericValues,
+          {
+            column: action.column,
+            comparison: action.comparison,
+            value: action.value,
+          },
+        ],
+      };
     default:
       return state;
   }
 }
 
-const rootReducer = combineReducers({ APIreducer, filters });
+function setFiltered(state = [], action) {
+  switch (action.type) {
+    case SET_FILTERED:
+      return [...action.planets];
+    default:
+      return state;
+  }
+}
+
+const rootReducer = combineReducers({ APIreducer, filters, setFiltered });
 
 export default rootReducer;

@@ -2,8 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { filterByName } from '../../actions';
+import SelectForm from '../SelectForm';
 
 class Form extends React.Component {
+  
   render() {
     const { filterName } = this.props;
     return (
@@ -16,6 +18,7 @@ class Form extends React.Component {
             onChange={(e) => filterName(e.target.value)}
           />
         </label>
+        <SelectForm />
       </form>
     );
   }
