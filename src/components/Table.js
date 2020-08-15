@@ -18,24 +18,46 @@ function filterByNumber(planets, filtro) {
 }
 
 function orderTable(planets, order) {
-  const { column, sort } = order;
+  const { sort } = order;
   if (sort === 'ASC') {
-    if (column === 'name') {
-      return planets.sort((a, b) => {
-        return (a[column] > b[column]) ? 1 : ((b[column] > a[column]) ? -1 : 0);
-      });
-    }
-    return planets.sort((a, b) => a[column] - b[column]);
+    return orderASC(planets, order);
   }
   if (sort === 'DESC') {
-    if (column === 'name') {
-      return planets.sort((a, b) => {
-        return (b[column] > a[column]) ? 1 : ((a[column] > b[column]) ? -1 : 0);
-      });
-    }
-    return planets.sort((a, b) => b[column] - a[column]);
+    return orderDESC(planets, order);
   }
   return planets;
+}
+
+function orderASC(planets, order) {
+  const { column } = order;
+  if (column === 'name') {
+    return planets.sort((a, b) => {
+      if (a[column] > b[column]) {
+        return 1;
+      } else if (b[column] > a[column]) {
+        return -1;
+      } else {
+        return 0;
+      }
+    });
+  }
+  return planets.sort((a, b) => a[column] - b[column]);
+}
+
+function orderDESC(planets, order) {
+  const { column } = order;
+  if (column === 'name') {
+    return planets.sort((a, b) => {
+      if (b[column] > a[column]) {
+        return 1;
+      } else if (a[column] > b[column]) {
+        return -1;
+      } else {
+        return 0;
+      }
+    });
+  }
+  return planets.sort((a, b) => b[column] - a[column]);
 }
 
 class Table extends Component {
