@@ -47,12 +47,14 @@ function filters(state = initialStateInput, action) {
     case SELECT_NUMBER:
       return {
         ...state,
-        filterByNumericValues: {
+        filterByNumericValues: [
           ...state.filterByNumericValues,
-          column: action.select,
-          comparison: action.select,
-          value: action.select,
-        },
+          {
+            column: action.column,
+            comparison: action.comparison,
+            value: action.value,
+          },
+        ],
       };
     default:
       return state;

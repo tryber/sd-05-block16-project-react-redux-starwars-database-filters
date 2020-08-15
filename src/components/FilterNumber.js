@@ -14,7 +14,7 @@ class FilterNumber extends React.Component {
             <p>See more filters:</p>
             <select
               data-testid="column-filter"
-              // onChange={(e) => }
+              // onChange={(e) => getNumberInput(e.target.value)}
             >
               {/* <option>By Column</option> */}
               <option />
@@ -26,7 +26,7 @@ class FilterNumber extends React.Component {
             </select>
             <select
               data-testid="comparison-filter"
-              // onChange={(e) => }
+              // onChange={(e) => getNumberInput(e.target.value)}
             >
               {/* <option>By Comparison</option> */}
               <option />
@@ -49,7 +49,7 @@ class FilterNumber extends React.Component {
             <button
               type="button"
               data-testid="button-filter"
-              // onClick={() => getNumberInput()}
+              // onClick={(e) => getNumberInput()}
               // onSubmit?
             >
               Filtrar

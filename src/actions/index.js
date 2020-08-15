@@ -50,9 +50,11 @@ export function filterNameAction(input) {
   };
 }
 
-export function filterNumberAction(select) {
+export function filterNumberAction({ column, comparison, value }) {
   return {
     type: SELECT_NUMBER,
-    select,
+    column,
+    comparison,
+    value,
   };
 }
