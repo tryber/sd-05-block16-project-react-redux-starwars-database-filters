@@ -1,5 +1,5 @@
 import React from 'react';
-// import './App.css';
+import './App.css';
 import Title from './components/Title';
 import FilterName from './components/FilterName';
 import FilterNumber from './components/FilterNumber';
@@ -11,9 +11,11 @@ function App() {
     <div className="App">
       <header className="App-header">
         <Title />
+      </header>
+      <section className="App-filters" style={{ flex: 1, flexDirection: 'row' }}>
         <FilterName />
         <FilterNumber />
-      </header>
+      </section>
       <section className="App-section">
         <Table />
       </section>

@@ -2,7 +2,13 @@ import React from 'react';
 
 class Title extends React.Component {
   render() {
-    return <h1> StarWars Datatable with Filters </h1>;
+    return (
+      <div className="title">
+        <h1> Star Wars </h1>
+        {/* <h4> Datatable with Filters </h4> */}
+        <h5> Planet Search Engine </h5>
+      </div>
+    );
   }
 }
 

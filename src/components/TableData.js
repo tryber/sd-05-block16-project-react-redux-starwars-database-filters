@@ -29,7 +29,7 @@ class TableData extends React.Component {
     // iterar entre os três filtros para aplicar a function condicionada ao data
     // data -> allPlanets para alterar e integrar filtros numéricos
     return (
-      <tbody>
+      <tbody className="planets-table">
         {allPlanets
           .filter((planet) => planet.name.includes(filterName.name))
           .map((planet) => (

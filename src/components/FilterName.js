@@ -13,7 +13,7 @@ class FilterName extends React.Component {
         {!fetching && (
           <div>
             {/* <p>{filterName.name}</p> */}
-            <p>Search for specific planet:</p>
+            <h4>Search for specific planet:</h4>
             <input
               data-testid="name-filter"
               type="text"
