@@ -1,5 +1,6 @@
-function emptyReducer() {
-  return {};
-}
+import { combineReducers } from "redux";
+import fetchReducer from './fetchReducer';
 
-export default emptyReducer;
+const reducer = combineReducers({fetchReducer});
+
+export default reducer;
