@@ -31,7 +31,7 @@ const initialStateInput = {
       value: '',
     },
   ],
-}
+};
 
 function filters(state = initialStateInput, action) {
   switch (action.type) {
