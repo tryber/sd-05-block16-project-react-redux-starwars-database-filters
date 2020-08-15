@@ -38,20 +38,27 @@
 }
 
 .App-filters {
-  align-items: center;
-  background-image: url(./images/starwars-universe.jpg);
+  background-image: url(./images/star-wars-banner-art.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   color: white;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  min-height: 35vh;
   margin-bottom: 5vw;
+  min-height: 40vh;
 }
 
 .App-table {
   font-size: calc(1px + 2vmin);
+}
+
+.planet-image {
+  background-image: url(./images/starwars-universe.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-top: 5vw;
+  min-height: 40vh;
 }
 
 .App-footer {
@@ -63,10 +70,6 @@
   font-size: calc(0.5px + 2vmin);
   justify-content: center;
   min-height: 10vh;
-}
-
-h4 {
-  background-color: #282c34;
 }
 
 @keyframes App-logo-spin {

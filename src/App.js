@@ -3,6 +3,7 @@ import './App.css';
 import Title from './components/Title';
 import FilterName from './components/FilterName';
 import FilterNumber from './components/FilterNumber';
+import FilterList from './components/FilterList';
 import Table from './components/Table';
 import Footer from './components/Footer';
 
@@ -15,10 +16,12 @@ function App() {
       <section className="App-filters" style={{ flex: 1, flexDirection: 'row' }}>
         <FilterName />
         <FilterNumber />
+        <FilterList />
       </section>
       <section className="App-section">
         <Table />
       </section>
+      <section className="planet-image"/>
       <footer className="App-footer">
         <Footer />
       </footer>
