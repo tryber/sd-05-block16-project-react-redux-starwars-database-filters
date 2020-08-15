@@ -1,6 +1,6 @@
 
 async function starWarsAPI() {
-  const URL = `https://swapi-trybe.herokuapp.com/api/planets/`;
+  const URL = "https://swapi-trybe.herokuapp.com/api/planets/";
   try {
     const response = await fetch(URL);
     if (!response.ok) {
@@ -12,8 +12,8 @@ async function starWarsAPI() {
     }
     const data = await response.json();
     return data;
-  } catch(error) {
-    console.log(error);
+  } catch (error) {
+    return error;
   }
 }
 
