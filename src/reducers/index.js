@@ -45,7 +45,7 @@ function filters(state = initialStateInput, action) {
         },
       };
     case SELECT_NUMBER:
-      console.log(action.comparison);
+      // console.log('received in reducer: ' + action.column, action.comparison, action.value);
       return {
         ...state,
         filterByNumericValues: [

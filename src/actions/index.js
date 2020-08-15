@@ -51,9 +51,7 @@ export function filterNameAction(input) {
 }
 
 export function filterNumberAction(column, comparison, value) {
-  // console.log(column);
-  // console.log(comparison);
-  // console.log(value);
+  // console.log('received in action: ' + column, comparison, value);
   return {
     type: SELECT_NUMBER,
     column,
