@@ -52,7 +52,7 @@ Table.propTypes = {
   planet: PropTypes.arrayOf(PropTypes.object).isRequired,
   getPlanet: PropTypes.func.isRequired,
   QF: PropTypes.string.isRequired,
-  filters: PropTypes.string.isRequired,
+  filters: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Table);

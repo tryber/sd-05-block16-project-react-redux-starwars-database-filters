@@ -1,4 +1,4 @@
-import { QUERY_FORM, QUERY_SELECTOR } from '../actions';
+import { QUERY_FORM, QUERY_SELECTOR, DELETE_FILTER } from '../actions';
 
 const initialState = {
   filterByName: {
@@ -23,6 +23,10 @@ const FormReducer = (state = initialState, action) => {
           },
         ],
       };
+    case DELETE_FILTER: 
+      return {
+        ...state, filterByNumericValues: [...action.newFilter],
+      }
     default:
       return state;
   }
