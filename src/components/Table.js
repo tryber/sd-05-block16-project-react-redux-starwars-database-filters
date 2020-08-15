@@ -1,17 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import fetchPlanets from '../actions/fetchPlanets';
-
 class Table extends Component {
-  componentDidMount() {
-    this.props.planetsData();
-  }
-
   renderTableHead() {
+    const { data } = this.props;
+
     return (
       <thead>
-        <tr>
+        <tr key={data.name}>
           <th><strong>Name</strong></th>
           <th><strong>Rotation Period</strong></th>
           <th><strong>Orbital Period</strong></th>
@@ -21,10 +17,10 @@ class Table extends Component {
           <th><strong>Terrain</strong></th>
           <th><strong>Surface Water</strong></th>
           <th><strong>Population</strong></th>
-          {/* <th><strong>Films</strong></th>
+          <th><strong>Films</strong></th>
           <th><strong>Created</strong></th>
           <th><strong>Edited</strong></th>
-          <th><strong>URL</strong></th> */}
+          <th><strong>URL</strong></th>
         </tr>
       </thead>
     );
@@ -46,10 +42,10 @@ class Table extends Component {
             <td>{planet.terrain}</td>
             <td>{planet.surface_water}</td>
             <td>{planet.population}</td>
-            {/* <td>{planet.films}</td>
+            <td>{planet.films}</td>
             <td>{planet.created}</td>
             <td>{planet.edited}</td>
-            <td>{planet.url}</td> */}
+            <td>{planet.url}</td>
           </tr>
         ),
       )}
@@ -76,8 +72,4 @@ const mapStateToProps = (state) => ({
   isLoading: state.planetReducer.isLoading,
 });
 
-const mapDispatchToProps = {
-  planetsData: fetchPlanets,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Table);
+export default connect(mapStateToProps)(Table);

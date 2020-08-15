@@ -1,3 +1,5 @@
+import { combineReducers } from 'redux';
+
 import { FETCH_PLANETS, FETCH_RESOLVE, FETCH_REJECT } from '../actions/types';
 
 const initialState = {
@@ -33,4 +35,6 @@ const planetReducer = (state = initialState, action) => {
   }
 };
 
-export default planetReducer;
+const rootReducer = combineReducers({ planetReducer });
+
+export default rootReducer;

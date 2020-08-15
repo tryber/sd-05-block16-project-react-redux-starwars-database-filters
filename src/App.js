@@ -1,16 +1,29 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
 import './App.css';
 
+import fetchPlanets from './actions/fetchPlanets';
 import Table from './components/Table';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <Table />
-      </header>
-    </div>
-  );
+class App extends Component {
+  componentDidMount() {
+    this.props.planetsData();
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <header className="App-header">
+          <Table />
+        </header>
+      </div>
+    );
+  }
 }
 
-export default App;
+const mapDispatchToProps = {
+  planetsData: fetchPlanets,
+}
+
+export default connect(null, mapDispatchToProps)(App);
