@@ -52,7 +52,7 @@ class Select extends React.Component {
         newFilter.push(filters[i]);
       }
     }
-  
+
     removeFilter(newFilter);
   }
 
@@ -63,7 +63,7 @@ class Select extends React.Component {
     const newColumns = [...columnsOptions];
     if (filters.length > 0) {
       filters.forEach((item) => { newColumns.splice(newColumns.indexOf(item.column), 1) });
-    }
+    };
     return (
       <div>
         <select data-testid="column-filter" name="column" onChange={this.handleChange}>
@@ -104,7 +104,7 @@ const mapDispatchToProps = (dispatch) => ({
 Select.propTypes = {
   filteredNumbers: PropTypes.func.isRequired,
   filters: PropTypes.arrayOf(PropTypes.string).isRequired,
-  removeFilter: PropTypes.func.isRequired
+  removeFilter: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Select);
