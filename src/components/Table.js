@@ -1,30 +1,42 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { filterByNumericValues, filterByName } from '../reducers/createActions';
+import { store } from './FetchData';
 // import { results } from '../testData';
-
 function Table({
+  filter,
+  searchPlanet,
   isFetching,
-  planet,
-  value,
+  planets,
+  values,
   onClick,
 }) {
-  return (
-    isFetching ? <p>Loading...</p>
+  function findPlanet(event) {
+    const { target: { value } } = event;
+    const planetFinded = planets.filter((planet) => {
+      const { name } = planet;
+      return (!value) ? true : name.includes(value);
+    });
+    // console.log(...planetFinded);
+    filter(planetFinded, value);
+    // return true;
+  }
+    return (
+      isFetching ? <p>Loading...</p>
       : (
-        <div>
+        <div className="body">
           <p>StarWars Datatable with Filters</p>
           {/* implementacao de formulario seguindo conteudo encontrado no site W3Schools */}
           <form>
             <div className="head">
               <div>
                 <label>Procurar</label>
-                <input name="filterByName" type="text" value={value} onChange={(e) => console.log(e.target.value)} />
+                <input data-testid='name-filter' name="filterByName" type="text"  onChange={(e) => findPlanet(e)} />
               </div>
               <div>
                 <label htmlFor="select">Ordem</label>
                 <select name="select" onChange={(e) => console.log(e)}>
-                  <option value={value}>teste</option>
+                  <option value={'value'}>teste</option>
                 </select>
                 <input id="asc" name="filterByOrder" type="radio" value="asc" onChange={(e) => console.log(e.target.value)} />
                 <label htmlFor="asc">ASC</label>
@@ -35,59 +47,83 @@ function Table({
               <div>
                 <div>
                   <label>
-                    <input name="filter" type="dropdown" value={value} onChange={(e) => console.log(e)} />
+                    <input name="filter" type="dropdown" value={'value'} onChange={(e) => console.log(e)} />
                   </label>
                   <label>
-                    <input name="comparasion" type="dropdown" value={value} onChange={(e) => console.log(e)} />
+                    <input name="comparasion" type="dropdown" value={'value'} onChange={(e) => console.log(e)} />
                   </label>
                 </div>
                 <label>
-                  <input name="filterByNumericValues_1" type="number" value={value} onChange={(e) => console.log(e)} />
+                  <input name="filterByNumericValues_1" type="number" value={'value'} onChange={(e) => console.log(e)} />
                 </label>
                 <button name="colun" type="button" onClick={onClick}>Filtrar</button>
               </div>
             </div>
           </form>
-          <table>
-            <thead>
+          <div clasName="table">
+            <table className="border">
               <tr>
                 <th>Planeta</th>
                 <th>Clima</th>
-                <th>Population</th>
+                <th>Populacao</th>
+                <th>Criado</th>
+                <th>Diâmetro</th>
+                <th>Editado</th>
+                <th>Gravidade</th>
+                <th>Período Orbital</th>
+                <th>Periodo rotacional</th>
+                <th>Superfice molhada</th>
+                <th>Superfice terrena</th>
+                <th>Rota URL</th>
+                <th>Films</th>
               </tr>
-            </thead>
-            <tbody>
-              {
-              planet.map((p, i) => (
-                <tr key={i}>
-                  <td>{p.name}</td>
-                  <td>{p.climate}</td>
-                  <td>{p.population}</td>
-                </tr>
-              ))
-              }
-            </tbody>
-          </table>
+              <tbody>
+                {
+                planets.map((planet, index) => (
+                  <tr key={index}>
+                    <td>{planet.name}</td>
+                    <td>{planet.climate}</td>
+                    <td>{planet.population}</td>
+                    <td>{planet.created}</td>
+                    <td>{planet.diameter}</td>
+                    <td>{planet.edited}</td>
+                    <td>{planet.gravity}</td>
+                    <td>{planet.orbital_period}</td>
+                    <td>{planet.rotation_period}</td>
+                    <td>{planet.surface_water}</td>
+                    <td>{planet.terrain}</td>
+                    <td>{planet.url}</td>
+                    <td>
+                      {planet.films.map((fiml, i) => (
+                        <li key={i}>{fiml}</li>
+                      ))}
+                    </td>
+                  </tr>
+                ))
+                }
+              </tbody>
+            </table>
+          </div>
         </div>
       )
   );
 }
+
 // implementacoes de funcoes relacionado ao store baseado no conteudo
 //  e exercicios da Trybe do bloco de redux.
-const mapStateToProps = (state) => (
-  {
+const mapStateToProps = (state) => {
+  const { filterReducer: { filters: { filterByName: { name } } } } = state;
+  const { fetchReducer: { data } } = state;
+  return {
+    name,
     isFetching: state.fetchReducer.isFetching,
-    planet: state.fetchReducer.data,
-  });
+    planets: (name) ? data.filter((one) => one.name.includes(name)) : data,
+  };
+};
 
-const mapDispatchToProps = (state, dispatch) => ({
-  filterReducer: {
-    filters: {
-      filterByName: { name: () => dispatch(state.filterReducer.filterByName()) },
-    },
-    filterByNumericValues: () => dispatch(state.filterReducer.filterByNumericValues()),
-  },
-}
-);
+const mapDispatchToProps = (dispatch) => ({
+  filter: (findedPlanet, str) => dispatch(filterByName(findedPlanet, str)),
+  filterByNumericValues: (numericFilter) => dispatch(filterByNumericValues(numericFilter)),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Table);

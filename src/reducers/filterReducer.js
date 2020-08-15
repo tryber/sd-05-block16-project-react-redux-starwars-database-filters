@@ -1,8 +1,8 @@
 import { FILTER_BY_NAME, FILTER_BY_NUMERIC_VALUES } from './actions';
 
-
 const initialState = {
   filters: {
+    filtered: [],
     filterByName: {
       name: '',
     },
@@ -12,13 +12,15 @@ const initialState = {
 
 
 function filterReducer(state = initialState, action) {
+  // console.log( `received action`, action);
   switch (action.type) {
     case FILTER_BY_NAME:
       return {
         ...state,
         filters: {
+          filtered: [...action.payload.filter],
           filterByName: {
-            name: action.payload,
+            name: action.payload.name,
           },
         },
       };
@@ -27,7 +29,7 @@ function filterReducer(state = initialState, action) {
         ...state,
         filterByNumericValues: [
           ...state.filterByNumericValues,
-          action.payload,
+          { ...action.payload },
         ],
       };
     default:

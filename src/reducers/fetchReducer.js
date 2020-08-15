@@ -1,4 +1,4 @@
-import { FETCH_DATA, GET_ERROR, GET_RESULTS } from './actions';
+import { FETCH_DATA, GET_ERROR, GET_RESULTS, FILTER_BY_NAME } from './actions';
 // import { results } from '../testData';
 
 
@@ -25,7 +25,7 @@ function fetchReducer(state = initialState, action) {
       // console.log(action.payload);
       return {
         ...state,
-        data: action.payload,
+        data: [...action.payload],
         isFetching: false,
       };
     case GET_ERROR:

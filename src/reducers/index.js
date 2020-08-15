@@ -9,11 +9,9 @@ const reducer = combineReducers({
   filterReducer,
 });
 
-export const store = createStore(reducer,
-  applyMiddleware(thunk),
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+// window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 // implementacoes dos parametros baseados em referencias dos exercicios e conteudos do course
-store.dispatch(fetchData());
-//  console.log(store.subscriber());
-
+// store.dispatch(fetchData());
+// console.log(store.getState());
+//
 export default reducer;

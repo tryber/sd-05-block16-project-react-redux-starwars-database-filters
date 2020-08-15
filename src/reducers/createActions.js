@@ -7,7 +7,6 @@ export const requestData = () => ({
 });
 
 export const getResults = (data) => ({
-  // console.log(data);
   type: GET_RESULTS,
   payload: data,
 });
@@ -17,18 +16,15 @@ export const getError = (error) => ({
   payload: error,
 });
 
-export const filterByName = ({ e }) => {
-  const { value } = e.target;
-  return {
-    type: FILTER_BY_NAME,
-    payload: {
-      value,
-      // onChange,
-    },
-  };
-};
+export const filterByName = (findedPlanet, str) => ({
+  type: FILTER_BY_NAME,
+  payload: {
+    name: str,
+    filter: findedPlanet,
+  },
+});
 
-export const filterByNumericValues = (e) => ({
+export const filterByNumericValues = (target) => ({
   type: FILTER_BY_NUMERIC_VALUES,
-  payload: e.target.value,
+  payload: { target },
 });
