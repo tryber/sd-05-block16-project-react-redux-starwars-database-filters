@@ -8,6 +8,7 @@ import Table from './components/Table';
 import SearchBar from './components/SearchBar';
 import Filters from './components/Filters';
 import ActiveFilters from './components/ActiveFilters';
+import SortFilter from './components/SortFilter';
 
 class App extends React.Component {
   componentDidMount() {
@@ -19,6 +20,7 @@ class App extends React.Component {
     return (
       <div>
         <SearchBar />
+        <SortFilter />
         <Filters />
         <ActiveFilters />
         <Table />
