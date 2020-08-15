@@ -34,7 +34,6 @@ class Ordering extends React.Component {
     this.setState({
       [name]: value,
     });
-    console.log(this.state);
   }
 
   render() {

@@ -64,12 +64,13 @@ function DESC(planets, columnOrder, nameOrder) {
 
 export default function ordering(planets, columnOrder, nameOrder) {
   let arrFinal;
+  let column = columnOrder;
+  if (column === 'Name') column = 'name';
   if (nameOrder === 'ASC') {
-    arrFinal = ASC(planets, columnOrder, nameOrder);
-    console.log(arrFinal);
+    arrFinal = ASC(planets, column, nameOrder);
   }
   if (nameOrder === 'DESC') {
-    arrFinal = DESC(planets, columnOrder, nameOrder);
+    arrFinal = DESC(planets, column, nameOrder);
   }
   return arrFinal;
 }

@@ -19,7 +19,7 @@ const INITIAL_FILTER = {
   },
   filterByNumericValues: [],
   order: {
-    column: 'name',
+    column: 'Name',
     sort: 'ASC',
   },
 };
