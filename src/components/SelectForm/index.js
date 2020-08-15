@@ -88,11 +88,11 @@ const mapStateToProps = (state) => ({
   loading: state.APIreducer.isFetching,
   NF: state.filters.filterByName.name,
   filters: state.filters.filterByNumericValues,
-  filters: PropTypes.arrayOf(PropTypes.object).isRequired,
 });
 
 SelectForm.propTypes = {
   filterNumbers: PropTypes.func.isRequired,
+  filters: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SelectForm);
