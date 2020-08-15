@@ -16,19 +16,6 @@ const numberColumns = [
   'surface_water',
 ];
 
-/** Source: https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/sort */
-
-export default function ordering(planets, columnOrder, nameOrder) {
-  let arrFinal;
-  if (nameOrder === 'ASC') {
-    arrFinal = ASC(planets, columnOrder, nameOrder);
-  }
-  if (nameOrder === 'DESC') {
-    arrFinal = DESC(planets, columnOrder, nameOrder);
-  }
-  return arrFinal;
-}
-
 function ASC(planets, columnOrder, nameOrder) {
   let arr;
   if (nameOrder === 'ASC' && stringColumns.includes(columnOrder)) {
@@ -54,11 +41,11 @@ function DESC(planets, columnOrder, nameOrder) {
   let arr;
   if (nameOrder === 'DESC' && stringColumns.includes(columnOrder)) {
     arr = planets
-      .sort(function (a, b) {
-        if (a[columnOrder] > b[columnOrder]) {
+      .sort(function (c, d) {
+        if (c[columnOrder] > d[columnOrder]) {
           return 1;
         }
-        if (a[columnOrder] < b[columnOrder]) {
+        if (c[columnOrder] < d[columnOrder]) {
           return -1;
         }
         return 0;
@@ -70,5 +57,26 @@ function DESC(planets, columnOrder, nameOrder) {
       return b[columnOrder] - a[columnOrder];
     });
   }
+  console.log(arr)
   return arr;
 }
+
+
+/** Source: https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/sort */
+
+export default function ordering(planets, columnOrder, nameOrder) {
+  let arrFinal;
+  console.log(nameOrder)
+  if (nameOrder === 'ASC') {
+    arrFinal = ASC(planets, columnOrder, nameOrder);
+    console.log(arrFinal)
+  }
+  if (nameOrder === 'DESC') {
+    arrFinal = DESC(planets, columnOrder, nameOrder);
+    console.log(arrFinal)
+
+  }
+  console.log(arrFinal)
+  return arrFinal;
+}
+

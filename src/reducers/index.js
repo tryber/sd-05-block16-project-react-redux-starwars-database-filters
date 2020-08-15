@@ -19,9 +19,9 @@ const INITIAL_FILTER = {
   },
   filterByNumericValues: [],
   order: {
-    column:'name',
-    sort: 'ASC'
-  }
+    column: 'name',
+    sort: 'ASC',
+  },
 };
 
 function APIreducer(state = INITIAL_API_STATE, action) {
@@ -54,7 +54,7 @@ function filters(state = INITIAL_FILTER, action) {
     case REMOVE_FILTER:
       return { ...state, filterByNumericValues: [...action.newFilters] };
     case ORDER_COLUMN:
-      return { ...state, order: { column: action.column, sort: action.order } }
+      return { ...state, order: { column: action.column, sort: action.order } };
     default:
       return state;
   }

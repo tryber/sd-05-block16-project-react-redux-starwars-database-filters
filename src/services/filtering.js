@@ -1,4 +1,4 @@
-import ordering from "./ordering";
+import ordering from './ordering';
 
 export default function filtering(planets, NF, filters, columnOrder, nameOrder) {
   let finalArr = ordering(planets, columnOrder, nameOrder);
