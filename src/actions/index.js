@@ -17,7 +17,7 @@ export const queryForm = (name) => ({
   name,
 });
 
-export const querySelector = ({column, comparison, value}) => ({
+export const querySelector = ({ column, comparison, value }) => ({
   type: QUERY_SELECTOR,
   column,
   comparison,

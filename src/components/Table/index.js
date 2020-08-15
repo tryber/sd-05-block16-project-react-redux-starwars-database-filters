@@ -1,8 +1,8 @@
-import React from "react";
-import PropTypes from "prop-types";
-import queryFilters from "../../services/queryFilters";
-import { connect } from "react-redux";
-import { fetchPlannets } from "../../actions";
+import React from 'react';
+import PropTypes from 'prop-types';
+import queryFilters from '../../services/queryFilters';
+import { fetchPlannets } from '../../actions';
+import { connect } from 'react-redux';
 
 class Table extends React.Component {
   componentDidMount() {
@@ -13,7 +13,7 @@ class Table extends React.Component {
     const { planet, QF, filters } = this.props;
     let ths = [];
     if (planet.length > 0) ths = Object.keys(planet[0]);
-    ths.splice(ths.indexOf("residents"), 1);
+    ths.splice(ths.indexOf('residents'), 1);
     const allPlanets = queryFilters(planet, QF, filters);
     return (
       <table>

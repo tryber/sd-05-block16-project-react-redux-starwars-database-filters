@@ -1,8 +1,8 @@
-import { QUERY_FORM, QUERY_SELECTOR } from "../actions";
+import { QUERY_FORM, QUERY_SELECTOR } from '../actions';
 
 const initialState = {
   filterByName: {
-    name: "",
+    name: '',
   },
   filterByNumericValues: [],
 };
