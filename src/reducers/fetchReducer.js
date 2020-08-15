@@ -1,13 +1,13 @@
 import { REQUEST_DATA, RECEIVE_DATA, RECEIVE_FAILURE } from '../actions';
 
 const INITIAL_STATE = {
-  data: '',
+  data: [],
   loading: false,
   error: '',
-}
+};
 
 const fetchReducer = (state = INITIAL_STATE, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case REQUEST_DATA:
       return ({
         ...state,
@@ -26,7 +26,7 @@ const fetchReducer = (state = INITIAL_STATE, action) => {
       });
     default:
       return state;
-  };
+  }
 };
 
 export default fetchReducer;

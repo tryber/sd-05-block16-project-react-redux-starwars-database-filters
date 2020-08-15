@@ -23,8 +23,8 @@ const fetchData = () => {
     (dispatch) => {
       dispatch(requestData());
       return fetchAPI()
-      .then(data => dispatch(receiveData(data.results)))
-      .catch(error => dispatch(receiveFailure(error)));
+      .then((data) => dispatch(receiveData(data.results)))
+      .catch((error) => dispatch(receiveFailure(error)));
     }
   );
 };

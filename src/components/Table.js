@@ -1,51 +1,68 @@
 import React from 'react';
-import fetchData from '../actions';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import fetchData from '../actions';
+
+const tableHeader = [
+  'name',
+  'rotation_period',
+  'orbital_period',
+  'diameter',
+  'climate',
+  'gravity',
+  'terrain',
+  'surface_water',
+  'population',
+  'films',
+  'created',
+  'edited',
+  'url',
+];
 
 class Table extends React.Component {
-  // componentDidMount() {
-  //   this.props.fetchData();
-  // };
+  constructor(props) {
+    super(props);
+    this.header = this.header.bind(this);
+    this.body = this.body.bind(this);
+  }
+
+  header() {
+    return (
+      <thead>
+        <tr>
+          {tableHeader.map((item) => <th key={item}>{item}</th>)}
+        </tr>
+      </thead>
+    );
+  }
+
+  body() {
+    const { planets } = this.props;
+    return (
+      <tbody>
+        {planets.map((planet) =>
+          <tr key={planet.name}>
+            {
+              tableHeader.map((item) =>
+              <td key={item}>
+                {planet[item]}
+              </td>)
+            }
+          </tr>
+        )}
+      </tbody>
+    );
+  }
 
   render() {
     const { loading, planets } = this.props;
-    // console.log(planets)
-    const tableHeader = [
-      'name',
-      'rotation_period',
-      'orbital_period',
-      'diameter',
-      'climate',
-      'gravity',
-      'terrain',
-      'surface_water',
-      'population',
-      'films',
-      'created',
-      'edited',
-      'url',
-    ];
     return (
       <div>
         {loading && <p>Loading</p>}
         {!loading && planets &&
           <table>
-            {
-              <thead>
-                <tr>
-                  {tableHeader.map((item, index) => <th key={index}>{item}</th>)}
-                </tr>
-              </thead>
-            }
-            {
-              <tbody>
-                {planets.map((planet, index) =>
-                  <tr key={index}>
-                    {tableHeader.map((item, i) => <td key={i}>{planet[item]}</td>)}
-                  </tr>
-                )}
-              </tbody>
-            }
+            {this.header()}
+            {this.body()}
           </table>
         }
       </div>
@@ -63,3 +80,8 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Table);
+
+Table.propTypes = {
+  loading: PropTypes.bool,
+  planets: PropTypes.arrayOf(PropTypes.object),
+};

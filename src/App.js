@@ -3,12 +3,13 @@ import './App.css';
 import fetchData from './actions';
 import Table from './components/Table';
 import { connect } from 'react-redux';
+import { PropTypes } from 'prop-types';
 
 class App extends React.Component {
   componentDidMount() {
     this.props.fetchData();
-  };
-  
+  }
+
   render() {
     return (
       <div className="App">
@@ -25,3 +26,7 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export default connect(null, mapDispatchToProps)(App);
+
+App.protoTypes = {
+  fetchData: PropTypes.func,
+};
