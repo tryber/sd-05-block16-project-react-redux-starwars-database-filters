@@ -7,7 +7,8 @@ import Table from './components/Table';
 
 class App extends React.Component {
   componentDidMount() {
-    this.props.fetchData();
+    const { fetchData } = this.props;
+    fetchData();
   }
 
   render() {

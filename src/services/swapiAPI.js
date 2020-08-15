@@ -1,4 +1,4 @@
-const fetch = require('node-fetch');
+// const fetch = require('node-fetch');
 
 const URL = 'https://swapi-trybe.herokuapp.com/api/planets';
 
