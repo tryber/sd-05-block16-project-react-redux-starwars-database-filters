@@ -4,7 +4,8 @@ export const FILTER_BY_NAME = 'FILTER_BY_NAME';
 export const FETCH_DATA = 'FETCH_DATA';
 export const GET_DATA_SUCCESS = 'GET_DATA_SUCCESS';
 export const GET_DATA_FAILED = 'GET_DATA_FAILED';
-
+export const FILTER_BY_NUMERIC = 'FILTER_BY_NUMERIC';
+export const REMOVE_FILTER = 'REMOVE_FILTER';
 
 const getData = () => ({
   type: FETCH_DATA,
@@ -39,7 +40,19 @@ const filterByName = (name) => ({
   name,
 });
 
+const filterByNumericValues = ({ column, comparison, value }) => ({
+  type: FILTER_BY_NUMERIC,
+  payload: { column, comparison, value },
+});
+
+const removeFilterByIndex = (index) => ({
+  type: REMOVE_FILTER,
+  index
+});
+
 export {
   fetchData,
   filterByName,
+  filterByNumericValues,
+  removeFilterByIndex,
 };

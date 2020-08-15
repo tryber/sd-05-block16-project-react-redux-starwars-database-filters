@@ -2,42 +2,62 @@ import React, { Component } from 'react';
 import propTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchData } from '../actionsCreator';
-
-const tableKeys = [
-  'name',
-  'gravity',
-  'rotation_period',
-  'climate',
-  'orbital_period',
-  'diameter',
-  'terrain',
-  'surface_water',
-  'population',
-  'films',
-  'created',
-  'edited',
-  'url',
-];
-
-function rKey(key) {
-  const rand = 'qwertyuiopasdfghjklç'[Math.floor(Math.random(20))];
-  return `${key}_${rand}_${Math.floor(Math.random() * 1E12)}`;
-}
-
-function formatName(name = '') {
-  const str = `${name.slice(0, 1).toUpperCase()}${name.slice(1)}`;
-  return str.replace('_', ' ');
-}
+import {
+  TABLE_KEYS,
+  rKey,
+  formatName,
+} from '../services/Utils';
 
 class Table extends Component {
+
+  constructor(props) {
+    super(props);
+    this.renderFiltered = this.renderFiltered.bind(this);
+  }
 
   componentDidMount() {
     const { fetchPlanets } = this.props;
     fetchPlanets();
   }
 
+  renderFiltered() {
+    const {
+      filters: { filterByNumericValues, filterByName },
+      data,
+    } = this.props;
+    data.forEach((planet) => {
+      planet.visible = true;
+      filterByNumericValues.forEach(({column, comparison, value}) => {
+        if (planet.visible) {
+          switch (comparison) {
+            case 'MENOR_QUE':
+              planet.visible = Number(planet[column]) < Number(value);
+              break;
+            case 'MAIOR_QUE':
+              planet.visible = Number(planet[column]) > Number(value);
+              break;
+            case 'IGUAL':
+              planet.visible = Number(planet[column]) === Number(value);
+              break;
+            default:
+              break;
+          }
+        }
+      });
+    });
+    return (
+      data.filter((planet) => planet.visible)
+        .filter((planet) => planet.name.includes(filterByName.name))
+        .map((planet) => (
+          <tr key={rKey(planet.name)}>
+            {TABLE_KEYS.map((keys) => <td key={rKey(planet.url)}>{planet[keys]}</td>)}
+          </tr>
+        ))
+    )
+  }
+
   render() {
-    const { isLoading, data, filters } = this.props;
+    const { isLoading, data } = this.props;
     if (isLoading) return <div>Carregando...</div>;
     return data.length ?
       (
@@ -45,21 +65,14 @@ class Table extends Component {
           <thead>
             <tr>
               {
-                tableKeys.map((header) =>
+                TABLE_KEYS.map((header) =>
                   <th key={rKey(header)}>{formatName(header)}</th>,
                 )
               }
             </tr>
           </thead>
           <tbody>
-            {
-              data.filter(({ name }) => name.includes(filters.filterByName.name))
-                .map((planet) => (
-                  <tr key={rKey(planet.name)}>
-                    { tableKeys.map((key) => (<td key={rKey(key)}>{planet[key]}</td>)) }
-                  </tr>
-                ))
-            }
+            { this.renderFiltered() }
           </tbody>
         </table>
       ) : <div>error</div>;
@@ -84,6 +97,7 @@ Table.propTypes = {
   fetchPlanets: propTypes.func.isRequired,
   filters: propTypes.shape({
     filterByName: propTypes.object,
+    filterByNumericValues: propTypes.arrayOf(propTypes.object),
   }),
 };
 
