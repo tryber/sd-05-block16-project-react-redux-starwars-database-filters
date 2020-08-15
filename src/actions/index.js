@@ -21,7 +21,7 @@ export const queryForm = (name) => ({
 export const deleteFilter = (newFilter) => ({
   type: DELETE_FILTER,
   newFilter,
-})
+});
 
 export const querySelector = ({ column, comparison, value }) => ({
   type: QUERY_SELECTOR,

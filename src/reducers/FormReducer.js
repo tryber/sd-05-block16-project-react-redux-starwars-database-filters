@@ -23,10 +23,10 @@ const FormReducer = (state = initialState, action) => {
           },
         ],
       };
-    case DELETE_FILTER: 
+    case DELETE_FILTER:
       return {
         ...state, filterByNumericValues: [...action.newFilter],
-      }
+      };
     default:
       return state;
   }

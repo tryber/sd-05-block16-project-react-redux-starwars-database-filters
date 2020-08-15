@@ -36,7 +36,7 @@ class Select extends React.Component {
   handleDefault() {
     const { column, comparison, value } = this.state;
     const { filteredNumbers } = this.props;
-    if(column === 'selecione' || comparison === 'selecione' || value === '') {
+    if (column === 'selecione' || comparison === 'selecione' || value === '') {
       alert('Todos os campos são Obrigatórios');
     } else {
       filteredNumbers({ column, comparison, value });
@@ -44,34 +44,30 @@ class Select extends React.Component {
   }
 
   handleClick(e) {
-    const { filters, deleteFilter } = this.props;
+    const { filters, removeFilter } = this.props;
     const newFilter = [];
 
-    for(let i =0; i< filters.length; i += 1) {
-      if(filters[i].column !== e.target.name) {
+    for (let i = 0; i < filters.length; i += 1) {
+      if (filters[i].column !== e.target.name) {
         newFilter.push(filters[i]);
       }
     }
-    
-    deleteFilter(newFilter);
-  } 
+  
+    removeFilter(newFilter);
+  }
 
   render() {
     const { columnsOptions } = this.state;
     const { filters } = this.props;
     const optionsValues = ['selecione', 'maior que', 'menor que', 'igual a'];
     const newColumns = [...columnsOptions];
-    if(filters.length > 0) {
-      filters.forEach((item) =>{
-        newColumns.splice(newColumns.indexOf(item.column), 1);
-      })
+    if (filters.length > 0) {
+      filters.forEach((item) => { newColumns.splice(newColumns.indexOf(item.column), 1) });
     }
     return (
       <div>
         <select data-testid="column-filter" name="column" onChange={this.handleChange}>
-          {newColumns.map((option) =>
-            <option key={option} value={option}>{option}</option>,
-          )}
+          {newColumns.map((option) => <option key={option} value={option}>{option}</option>)}
         </select>
         <select data-testid="comparison-filter" name="comparison" onChange={this.handleChange}>
           {optionsValues.map((values) =>
@@ -87,7 +83,7 @@ class Select extends React.Component {
           Buscar
         </button>
         {filters.map((list) =>
-          <span key={Math.random(9999999)} data-testid="filter">{`filtrado por: ${list.column} ${list.comparison} ${list.value}`} <button name={list.column} type="button" onClick={this.handleClick}>X</button> </span>
+          <span key={Math.random(9999999)} data-testid="filter">{`filtrado por: ${list.column} ${list.comparison} ${list.value}`} <button name={list.column} type="button" onClick={this.handleClick}>X</button> </span>,
         )}
       </div>
     );
@@ -97,16 +93,18 @@ class Select extends React.Component {
 
 const mapStateToProps = (state) => ({
   filters: state.filters.filterByNumericValues,
-})
+});
 
 const mapDispatchToProps = (dispatch) => ({
   filteredNumbers: (e) => dispatch(querySelector(e)),
-  deleteFilter: (e) => dispatch(deleteFilter(e)),
+  removeFilter: (e) => dispatch(deleteFilter(e)),
 });
 
 
 Select.propTypes = {
   filteredNumbers: PropTypes.func.isRequired,
+  filters: PropTypes.arrayOf(PropTypes.string).isRequired,
+  removeFilter: PropTypes.func.isRequired
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Select);
