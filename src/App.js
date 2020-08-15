@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css';
+// import './App.css';
 import Title from './components/Title';
 import FilterName from './components/FilterName';
 import FilterNumber from './components/FilterNumber';
@@ -14,7 +14,9 @@ function App() {
         <FilterName />
         <FilterNumber />
       </header>
-      <Table />
+      <section className="App-section">
+        <Table />
+      </section>
       <footer className="App-footer">
         <Footer />
       </footer>

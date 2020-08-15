@@ -30,7 +30,6 @@ class FilterNumber extends React.Component {
 
   render() {
     const { fetching } = this.props;
-    // const { selectNumber } = this.props;
     return (
       <div>
         {!fetching && (
@@ -61,7 +60,6 @@ class FilterNumber extends React.Component {
               <option value="igual a">igual a</option>
             </select>
             <br />
-            {/* <p>{selectNumber.column}</p> */}
             <input
               data-testid="value-filter"
               placeholder="Insert Value"
@@ -86,7 +84,6 @@ class FilterNumber extends React.Component {
 
 const mapStateToProps = (state) => ({
   fetching: state.planetReducer.fetching,
-  // selectNumber: state.filters.filterByNumericValues,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -96,8 +93,6 @@ const mapDispatchToProps = (dispatch) => ({
 FilterNumber.propTypes = {
   fetching: propTypes.bool.isRequired,
   getNumberInput: propTypes.func.isRequired,
-  // selectNumber: propTypes.shape({
-  //   filterByName: propTypes.object }).isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(FilterNumber);
