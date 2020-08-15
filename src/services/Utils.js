@@ -28,4 +28,4 @@ export {
   TABLE_KEYS,
   rKey,
   formatName,
-}
+};

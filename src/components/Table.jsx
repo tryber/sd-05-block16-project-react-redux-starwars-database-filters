@@ -1,3 +1,5 @@
+/* eslint no-param-reassign: "error" */
+
 import React, { Component } from 'react';
 import propTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -7,6 +9,20 @@ import {
   rKey,
   formatName,
 } from '../services/Utils';
+
+function Header() {
+  return (
+    <thead>
+      <tr>
+        {
+          TABLE_KEYS.map((header) =>
+            <th key={rKey(header)}>{formatName(header)}</th>,
+          )
+        }
+      </tr>
+    </thead>
+  )
+}
 
 class Table extends Component {
 
@@ -21,13 +37,10 @@ class Table extends Component {
   }
 
   renderFiltered() {
-    const {
-      filters: { filterByNumericValues, filterByName },
-      data,
-    } = this.props;
+    const { filters: { filterByNumericValues, filterByName }, data } = this.props;
     data.forEach((planet) => {
       planet.visible = true;
-      filterByNumericValues.forEach(({column, comparison, value}) => {
+      filterByNumericValues.forEach(({ column, comparison, value }) => {
         if (planet.visible) {
           switch (comparison) {
             case 'MENOR_QUE':
@@ -40,7 +53,6 @@ class Table extends Component {
               planet.visible = Number(planet[column]) === Number(value);
               break;
             default:
-              break;
           }
         }
       });
@@ -53,7 +65,7 @@ class Table extends Component {
             {TABLE_KEYS.map((keys) => <td key={rKey(planet.url)}>{planet[keys]}</td>)}
           </tr>
         ))
-    )
+    );
   }
 
   render() {
@@ -62,15 +74,7 @@ class Table extends Component {
     return data.length ?
       (
         <table>
-          <thead>
-            <tr>
-              {
-                TABLE_KEYS.map((header) =>
-                  <th key={rKey(header)}>{formatName(header)}</th>,
-                )
-              }
-            </tr>
-          </thead>
+          <Header />
           <tbody>
             { this.renderFiltered() }
           </tbody>

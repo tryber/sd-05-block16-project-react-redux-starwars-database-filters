@@ -47,7 +47,7 @@ const filterByNumericValues = ({ column, comparison, value }) => ({
 
 const removeFilterByIndex = (index) => ({
   type: REMOVE_FILTER,
-  index
+  index,
 });
 
 export {

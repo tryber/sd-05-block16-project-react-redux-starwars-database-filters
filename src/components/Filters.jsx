@@ -33,11 +33,10 @@ function Select(props) {
   return (
     <select
       data-testid={dataTest || 'column-filter'}
-      onChange={({ target }) => { selected(
-        target.value); }}
+      onChange={({ target }) => { selected(target.value); }}
     >
       {
-        options.map(({innerText, value}) => (
+        options.map(({ innerText, value }) => (
           <option key={rKey(value)} value={value}>{innerText}</option>
         ))
       }
@@ -47,14 +46,14 @@ function Select(props) {
 
 function ActivatedFilters(props) {
   const { numberFilters, removeFilter } = props;
-  return(
+  return (
     <div>
       <h4>Filtros</h4>
       {
         numberFilters.map(({ column, comparison, value }, i) => (
           <p key={rKey(column)} data-testid="filter">
             {`${column} ${comparison} ${value}`}
-            <button type="button" onClick={() => {removeFilter(i)}}>X</button>
+            <button type="button" onClick={() => { removeFilter(i); }}>X</button>
           </p>
         ))
       }
@@ -81,16 +80,16 @@ class Filters extends Component {
         <Select
           options={
             columns.filter(({ value }) =>
-              (numberFilters.filter(({ column }) => column === value).length === 0)
+              (numberFilters.filter(({ column }) => (column === value)).length === 0),
             )
           }
           selected={(res) => { this.setState({ column: res }); }}
-         />
+        />
         <Select
           options={comparisons}
           dataTest="comparison-filter"
           selected={(res) => { this.setState({ comparison: res }); }}
-         />
+        />
         <input
           data-testid="value-filter"
           type="number"
@@ -111,7 +110,7 @@ class Filters extends Component {
 
 const mapStateToProps = ({ filters }) => ({ numberFilters: filters.filterByNumericValues });
 const mapDispatchToProps = (dispatch) => (
-  { 
+  {
     setFilterByName: (name) => { dispatch(filterByName(name)); },
     addFilterByNumericValues: ({ column, comparison, value }) => {
       dispatch(filterByNumericValues({ column, comparison, value }));
@@ -144,6 +143,6 @@ Select.defaultProps = {
   options: [],
   dataTest: 'column-filter',
   selected: () => {},
-}
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Filters);
