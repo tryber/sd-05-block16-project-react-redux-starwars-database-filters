@@ -4,7 +4,7 @@ export const BY_NAME = 'BY_NAME';
 export const BY_NUMBERS = 'BY_NUMBERS';
 export const SET_FILTERED = 'SET_FILTERED';
 export const REMOVE_FILTER = 'REMOVE_FILTER';
-export const ORDER_COLUMN = 'ORDER_COLUMN'
+export const ORDER_COLUMN = 'ORDER_COLUMN';
 
 const requestPlanets = () => ({
   type: REQUEST_PLANETS,

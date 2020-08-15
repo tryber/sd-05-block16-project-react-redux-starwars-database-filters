@@ -44,7 +44,8 @@ class Ordering extends React.Component {
         <select
           name="columnValue"
           onChange={this.handleEvent}
-          data-testid="column-sort">
+          data-testid="column-sort"
+        >
           {columnOptions.map((each) => (
             <option key={each}>{each}</option>
           ))}
@@ -54,7 +55,8 @@ class Ordering extends React.Component {
         <button
           type="button"
           onClick={() => this.props.order(columnValue, radio)}
-          data-testid="column-sort-button">
+          data-testid="column-sort-button"
+        >
           Ordenar
         </button>
       </div>
