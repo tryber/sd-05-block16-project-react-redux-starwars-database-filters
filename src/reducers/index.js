@@ -1,5 +1,8 @@
-function emptyReducer() {
-  return {};
-}
+import { combineReducers } from 'redux';
+import reducer from './reducer';
 
-export default emptyReducer;
+const rootReducer = combineReducers({
+  reducer,
+});
+
+export default rootReducer;
