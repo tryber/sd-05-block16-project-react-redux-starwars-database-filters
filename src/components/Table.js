@@ -32,9 +32,29 @@ class Table extends React.Component {
     );
   }
 
+  renderTableWithFilter(filterParam) {
+    const { data } = this.props;
+    return (data.filter((item) => item.name.includes(filterParam)).map((item) => (
+      <tr key={item.name}>
+        <td>{item.name}</td>
+        <td>{item.rotation_period}</td>
+        <td>{item.orbital_period}</td>
+        <td>{item.diameter}</td>
+        <td>{item.climate}</td>
+        <td>{item.gravity}</td>
+        <td>{item.terrain}</td>
+        <td>{item.surface_water}</td>
+        <td>{item.population}</td>
+        <td>{item.residents}</td>
+        <td>{item.films}</td>
+        <td>{item.created}</td>
+        <td>{item.edited}</td>
+      </tr>))
+    );
+  }
+
   render() {
-    const { data, isFetching } = this.props;
-    console.log(data);
+    const { data, isFetching, filterParameter } = this.props;
     if (!isFetching && data.length > 1) {
       const header = Object.keys(data[0]);
       header.pop();
@@ -44,7 +64,7 @@ class Table extends React.Component {
             <tr>{header.map((item) => <th key={item}>{item}</th>)}</tr>
           </thead>
           <tbody>
-            { this.renderTableData() }
+            { (filterParameter === '') ? this.renderTableData() : this.renderTableWithFilter(filterParameter) }
           </tbody>
         </table>
       );
@@ -56,6 +76,7 @@ class Table extends React.Component {
 const mapStateToProps = (state) => ({
   data: state.reducer.data,
   isFetching: state.reducer.isFetching,
+  filterParameter: state.filters.filterByName.name,
 });
 
 const mapDispatchToProps = (dispatch) => ({ startFetching: () => dispatch(fetchStarWars()) });
@@ -66,6 +87,7 @@ Table.propTypes = {
   data: PropTypes.arrayOf(PropTypes.object).isRequired, //  ref1:
   isFetching: PropTypes.bool.isRequired,
   startFetching: PropTypes.func.isRequired,
+  filterParameter: PropTypes.string.isRequired,
 };
 
 //  ref1: https://app.slack.com/client/TMDDFEPFU/C013105FU2C/thread/C013105FU2C-1597370726.050700

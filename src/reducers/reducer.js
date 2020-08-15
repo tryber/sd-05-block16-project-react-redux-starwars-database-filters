@@ -1,15 +1,12 @@
-const REQUEST_DATA = 'REQUEST_DATA';
-const RECEIVE_DATA = 'RECEIVE_DATA';
-// const FAILED_REQUEST = 'FAILED_REQUEST';
+import { REQUEST_DATA, RECEIVE_DATA } from '../actions';
 
 const INITIAL_STATE = {
   isFetching: false,
   data: [],
-  // error: false,
 };
 
 export default function reducer(state = INITIAL_STATE, action) {
-  switch(action.type) {
+  switch (action.type) {
     case REQUEST_DATA:
       return {
         ...state,
@@ -21,11 +18,6 @@ export default function reducer(state = INITIAL_STATE, action) {
         isFetching: false,
         data: action.payload,
       };
-    // case FAILED_REQUEST:
-    //   return {
-    //     ...state,
-    //     error: true,
-    //   };
     default:
       return state;
   }

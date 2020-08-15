@@ -1,26 +1,33 @@
 import starWarsAPI from '../services/starWarsAPI';
 
-const REQUEST_DATA = 'REQUEST_DATA';
-const RECEIVE_DATA = 'RECEIVE_DATA';
-// const FAILED_REQUEST = 'FAILED_REQUEST';
+export const REQUEST_DATA = 'REQUEST_DATA';
+export const RECEIVE_DATA = 'RECEIVE_DATA';
+export const FILTER_DATA = 'FILTER_DATA';
 
-function request_Data() {
+function requestData() {
   return {
     type: REQUEST_DATA,
   };
 }
 
-function receive_Data(data) {
+function receiveData(data) {
   return {
     type: RECEIVE_DATA,
     payload: data.results,
   };
 }
 
+export function filterData(event) {
+  return {
+    type: FILTER_DATA,
+    payload: event.target.value,
+  };
+}
+
 export default function fetchStarWars() {
   return (dispatch) => {
-    dispatch(request_Data());
+    dispatch(requestData());
     return (starWarsAPI())
-      .then((json) => dispatch(receive_Data(json)));
-  }
+      .then((json) => dispatch(receiveData(json)));
+  };
 }
