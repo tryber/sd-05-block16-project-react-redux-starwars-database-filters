@@ -1,36 +1,37 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { fetchPlannets } from '../../actions';
-
+import React from "react";
+import PropTypes from "prop-types";
+import queryFilters from "../../services/queryFilters";
+import { connect } from "react-redux";
+import { fetchPlannets } from "../../actions";
 
 class Table extends React.Component {
-
   componentDidMount() {
     this.props.getPlanet();
   }
+
   render() {
-    const { planet, filters } = this.props;
+    const { planet, QF, filters } = this.props;
     let ths = [];
     if (planet.length > 0) ths = Object.keys(planet[0]);
-    ths.splice(ths.indexOf('residents'), 1);
+    ths.splice(ths.indexOf("residents"), 1);
+    const allPlanets = queryFilters(planet, QF, filters);
     return (
       <table>
         <thead>
           <tr>
-            {ths.map((info) => (<th key={info}>{info}</th>))}
+            {ths.map((info) => (
+              <th key={info}>{info}</th>
+            ))}
           </tr>
         </thead>
         <tbody>
-          {planet.filter((fil) =>
-            fil.name
-            .toLowerCase()
-            .includes(filters.toLowerCase()))
-            .map((info) =>
-              <tr key={Math.random(99999999)}>
-                {ths.map((data) => (<td key={Math.random(9999999)}>{info[data]}</td>))}
-              </tr>,
-          )}
+          {allPlanets.map((info) => (
+            <tr key={Math.random(99999999)}>
+              {ths.map((data) => (
+                <td key={Math.random(9999999)}>{info[data]}</td>
+              ))}
+            </tr>
+          ))}
         </tbody>
       </table>
     );
@@ -39,7 +40,8 @@ class Table extends React.Component {
 
 const mapStateToProps = (state) => ({
   planet: state.planets.data,
-  filters: state.filters.filterByName.name,
+  QF: state.filters.filterByName.name,
+  filters: state.filters.filterByNumericValues,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -49,7 +51,7 @@ const mapDispatchToProps = (dispatch) => ({
 Table.propTypes = {
   planet: PropTypes.arrayOf(PropTypes.object).isRequired,
   getPlanet: PropTypes.func.isRequired,
-  filters: PropTypes.string.isRequired,
+  QF: PropTypes.string.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Table);

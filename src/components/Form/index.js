@@ -9,10 +9,7 @@ class Form extends React.Component {
     return (
       <form>
         <input
-          type="text"
-          name=""
-          id=""
-          onChange={(e) => QF(e.target.value)}
+          type="text" name="" id="" onChange={(e) => QF(e.target.value)}
           data-testid="name-filter"
         />
       </form>

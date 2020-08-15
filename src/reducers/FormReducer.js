@@ -1,16 +1,30 @@
-import { QUERY_FORM } from '../actions';
+import { QUERY_FORM, QUERY_SELECTOR } from "../actions";
 
 const initialState = {
   filterByName: {
-    name: '',
+    name: "",
   },
+  filterByNumericValues: [],
 };
 
 const FormReducer = (state = initialState, action) => {
   switch (action.type) {
     case QUERY_FORM:
       return { ...state, filterByName: { name: action.name } };
-    default: return state;
+    case QUERY_SELECTOR:
+      return {
+        ...state,
+        filterByNumericValues: [
+          ...state.filterByNumericValues,
+          {
+            column: action.column,
+            comparison: action.comparison,
+            value: action.value,
+          },
+        ],
+      };
+    default:
+      return state;
   }
 };
 
