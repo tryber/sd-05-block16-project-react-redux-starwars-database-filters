@@ -62,7 +62,7 @@ class Select extends React.Component {
     const optionsValues = ['selecione', 'maior que', 'menor que', 'igual a'];
     const newColumns = [...columnsOptions];
     if (filters.length > 0) {
-      filters.forEach((item) => {newColumns.splice(newColumns.indexOf(item.column), 1)});
+      filters.forEach((item) => { newColumns.splice(newColumns.indexOf(item.column), 1); });
     }
     return (
       <div>
