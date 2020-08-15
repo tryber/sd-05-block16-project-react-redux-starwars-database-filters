@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { querySelector } from '../../actions';
 
@@ -43,7 +44,7 @@ class Select extends React.Component {
         <button
           type="button"
           data-testid="button-filter"
-          onClick={ () => filteredNumbers({column, comparison, value}) }
+          onClick={() => filteredNumbers({ column, comparison, value })}
         >
           Buscar
         </button>
@@ -56,5 +57,10 @@ class Select extends React.Component {
 const mapDispatchToProps = (dispatch) => ({
   filteredNumbers: (e) => dispatch(querySelector(e)),
 });
+
+
+Select.propTypes = {
+  filteredNumbers: PropTypes.func.isRequired,
+};
 
 export default connect(null, mapDispatchToProps)(Select);
