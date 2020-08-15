@@ -4,15 +4,6 @@ import PropTypes from 'prop-types';
 import { filterByNumericValues, getPlanets } from '../../actions';
 import Select from '../Input';
 
-const optionsColumn = [
-  'Coluna',
-  'population',
-  'orbital_period',
-  'diameter',
-  'rotation_period',
-  'surface_water',
-];
-const optionsComparison = ['Comparação', 'maior que', 'menor que', 'igual a'];
 
 class SelectForm extends React.Component {
   constructor(props) {
@@ -26,7 +17,7 @@ class SelectForm extends React.Component {
         'rotation_period',
         'surface_water',
       ],
-      comparisonOptions: ['Comparação', 'maior que', 'menor que', 'igual a'],
+      CO: ['Comparação', 'maior que', 'menor que', 'igual a'],
       column: '',
       comparison: '',
       value: '',
@@ -47,8 +38,6 @@ class SelectForm extends React.Component {
       column,
       comparison,
       value,
-      columnOptions,
-      comparisonOptions,
     } = this.state;
     const { filterNumbers } = this.props;
     if (column === 'Coluna' || comparison === 'Comparação' || value === '') {
@@ -59,9 +48,9 @@ class SelectForm extends React.Component {
   }
 
   render() {
-    const { column, comparison, value, columnOptions, comparisonOptions } = this.state;
+    const { column, comparison, value, columnOptions, CO } = this.state;
     const { filters } = this.props;
-    let colunas = [...columnOptions];
+    const colunas = [...columnOptions];
     if (filters.length > 0) {
       filters.forEach((each) => {
         colunas.splice(colunas.indexOf(each.column), 1);
@@ -69,8 +58,8 @@ class SelectForm extends React.Component {
     }
     return (
       <div>
-        <Select name='column' onChange={this.hC} id='column-filter' options={colunas} />
-        <Select name='comparison' onChange={this.hC} id='comparison-filter' options={comparisonOptions} />
+        <Select name="column" onChange={this.hC} id="column-filter" options={colunas} />
+        <Select name="comparison" onChange={this.hC} id="comparison-filter" options={CO} />
         <label htmlFor="value">
           <input name="value" type="number" data-testid="value-filter" onChange={this.hC} />
         </label>
@@ -82,7 +71,7 @@ class SelectForm extends React.Component {
           Filtrar
         </button>
         <p>
-          {`Selecionamos a coluna ${column} para comparar o valor ${comparison} ${value}`}{' '}
+          {`Selecionamos a coluna ${column} para comparar o valor ${comparison} ${value}`}
         </p>
       </div>
     );
@@ -99,6 +88,7 @@ const mapStateToProps = (state) => ({
   loading: state.APIreducer.isFetching,
   NF: state.filters.filterByName.name,
   filters: state.filters.filterByNumericValues,
+  filters: PropTypes.arrayOf(PropTypes.object).isRequired,
 });
 
 SelectForm.propTypes = {

@@ -1,7 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 function Select(props) {
-  const { name, onChange, id, options, label } = props;
+  const { name, onChange, id, options } = props;
   return (
     <label htmlFor={name}>
       <select name={name} onChange={onChange} data-testid={id}>
@@ -11,6 +12,13 @@ function Select(props) {
       </select>
     </label>
   );
+}
+
+Select.propTypes = {
+  name: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  options: PropTypes.arrayOf(PropTypes.string).isRequired,
+  onChange: PropTypes.func.isRequired,
 }
 
 export default Select;

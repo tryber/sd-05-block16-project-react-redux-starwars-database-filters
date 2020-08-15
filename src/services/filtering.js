@@ -20,7 +20,7 @@ export default function filtering(planets, NF, filters) {
       const equalTo = finalArr.filter((data) =>
         data.name.toLowerCase().includes(NF.toLowerCase()));
       finalArr = equalTo.filter(
-        (data) => Number(data[filter.column]) === Number(filter.value)
+        (data) => Number(data[filter.column]) === Number(filter.value),
       );
     }
   });

@@ -5,7 +5,6 @@ import { filterByName } from '../../actions';
 import SelectForm from '../SelectForm';
 
 class Form extends React.Component {
-  
   render() {
     const { filterName } = this.props;
     return (
