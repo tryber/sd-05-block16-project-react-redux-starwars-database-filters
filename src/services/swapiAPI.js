@@ -1,4 +1,5 @@
 const fetch = require('node-fetch');
+
 const URL = 'https://swapi-trybe.herokuapp.com/api/planets';
 
 // TIRAR DÚVIDA SOBRE ESSA PARTE COM ALGUÉM(pq no exemplo da aula hamaji retornou uma Promise?)
@@ -7,7 +8,7 @@ const URL = 'https://swapi-trybe.herokuapp.com/api/planets';
 const fetchAPI = () =>
   fetch(URL)
   .then((response) => response.json()
-  .then((data) => data)
+  .then((data) => data),
   );
 
 export default fetchAPI;

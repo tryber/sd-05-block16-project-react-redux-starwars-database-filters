@@ -22,7 +22,6 @@ const tableHeader = [
 class Table extends React.Component {
   constructor(props) {
     super(props);
-    this.header = this.header.bind(this);
     this.body = this.body.bind(this);
   }
 
@@ -44,11 +43,11 @@ class Table extends React.Component {
           <tr key={planet.name}>
             {
               tableHeader.map((item) =>
-              <td key={item}>
+                <td key={item}>
                 {planet[item]}
               </td>)
             }
-          </tr>
+          </tr>,
         )}
       </tbody>
     );
@@ -82,6 +81,6 @@ const mapDispatchToProps = (dispatch) => ({
 export default connect(mapStateToProps, mapDispatchToProps)(Table);
 
 Table.propTypes = {
-  loading: PropTypes.bool,
-  planets: PropTypes.arrayOf(PropTypes.object),
+  loading: PropTypes.bool.isRequired,
+  planets: PropTypes.arrayOf(PropTypes.object).isRequired,
 };

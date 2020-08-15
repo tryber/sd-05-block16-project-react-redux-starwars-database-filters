@@ -18,8 +18,7 @@ const receiveFailure = (error) => ({
   data: error,
 });
 
-const fetchData = () => {
-  return (
+const fetchData = () => (
     (dispatch) => {
       dispatch(requestData());
       return fetchAPI()
@@ -27,6 +26,5 @@ const fetchData = () => {
       .catch((error) => dispatch(receiveFailure(error)));
     }
   );
-};
 
 export default fetchData;
