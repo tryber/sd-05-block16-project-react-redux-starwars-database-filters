@@ -65,18 +65,13 @@ class Filters extends Component {
   constructor(props) {
     super(props);
     this.state = { column: '', comparison: '', value: '' };
+    this.RenderSelects = this.RenderSelects.bind(this);
   }
 
-  render() {
-    const { setFilterByName, addFilterByNumericValues, numberFilters, removeFilter } = this.props;
+  RenderSelects() {
+    const { numberFilters } = this.props;
     return (
       <div>
-        <div>Header</div>
-        <input
-          data-testid="name-filter"
-          type="text"
-          onChange={({ target }) => { setFilterByName(target.value); }}
-        />
         <Select
           options={
             columns.filter(({ value }) =>
@@ -95,6 +90,21 @@ class Filters extends Component {
           type="number"
           onChange={({ target }) => { this.setState({ value: target.value }); }}
         />
+      </div>
+    );
+  }
+
+  render() {
+    const { setFilterByName, addFilterByNumericValues, numberFilters, removeFilter } = this.props;
+    return (
+      <div>
+        <div>Header</div>
+        <input
+          data-testid="name-filter"
+          type="text"
+          onChange={({ target }) => { setFilterByName(target.value); }}
+        />
+        {this.RenderSelects()}
         <button
           data-testid="button-filter"
           type="button"

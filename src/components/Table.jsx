@@ -21,7 +21,7 @@ function Header() {
         }
       </tr>
     </thead>
-  )
+  );
 }
 
 class Table extends Component {
