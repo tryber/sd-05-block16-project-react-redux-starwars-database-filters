@@ -25,7 +25,6 @@ class SelectForm extends React.Component {
     this.hC = this.hC.bind(this);
     this.defaultFilter = this.defaultFilter.bind(this);
     this.hClick = this.hClick.bind(this);
-
   }
 
   hC(e) {
@@ -37,10 +36,9 @@ class SelectForm extends React.Component {
 
   hClick(e) {
     const { filters, deleteFilter } = this.props;
-    const newFilter = []
-    filters.forEach(each => (each.column !== e.target.name)? newFilter.push(each):newFilter)
-    console.log(newFilter)
-    deleteFilter(newFilter)
+    const newFilter = [];
+    filters.forEach((each) => (each.column !== e.target.name) ? newFilter.push(each):newFilter);
+    deleteFilter(newFilter);
   }
 
   defaultFilter() {
@@ -58,7 +56,7 @@ class SelectForm extends React.Component {
   }
 
   render() {
-    const { column, comparison, value, columnOptions, CO } = this.state;
+    const { columnOptions, CO } = this.state;
     const { filters } = this.props;
     const colunas = [...columnOptions];
     if (filters.length > 0) {
@@ -77,8 +75,8 @@ class SelectForm extends React.Component {
           Filtrar
         </button>
         <div>
-          {filters.map(each =>
-              <span key={each.column} data-testid='filter'>{`Filtrando ${each.column} ${each.comparison} ${each.value}`} <button name={each.column} type="button" onClick={this.hClick}>X</button></span>
+          {filters.map((each) =>
+            <span key={each.column} data-testid="filter">{`Filtrando ${each.column} ${each.comparison} ${each.value}`} <button name={each.column} type="button" onClick={this.hClick}>X</button></span>,
           )}
         </div>
       </div>
@@ -101,6 +99,7 @@ const mapStateToProps = (state) => ({
 SelectForm.propTypes = {
   filterNumbers: PropTypes.func.isRequired,
   filters: PropTypes.arrayOf(PropTypes.object).isRequired,
+  deleteFilter: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SelectForm);

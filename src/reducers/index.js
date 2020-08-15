@@ -47,13 +47,11 @@ function filters(state = INITIAL_FILTER, action) {
           },
         ],
       };
-      case REMOVE_FILTER:
-        return {
-          ...state,
-          filterByNumericValues: [
-            ...action.newFilters,
-          ],
-        };
+    case REMOVE_FILTER:
+      return {
+        ...state,
+        filterByNumericValues: [...action.newFilters],
+      };
     default:
       return state;
   }
