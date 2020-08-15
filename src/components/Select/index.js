@@ -43,7 +43,7 @@ class Select extends React.Component {
         <button
           type="button"
           data-testid="button-filter"
-          onClick={ () => filteredNumbers({ column, comparison, value })}
+          onClick={ () => filteredNumbers({column, comparison, value}) }
         >
           Buscar
         </button>

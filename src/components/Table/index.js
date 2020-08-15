@@ -1,8 +1,8 @@
+import { connect } from 'react-redux';
 import React from 'react';
 import PropTypes from 'prop-types';
 import queryFilters from '../../services/queryFilters';
 import { fetchPlannets } from '../../actions';
-import { connect } from 'react-redux';
 
 class Table extends React.Component {
   componentDidMount() {
@@ -52,6 +52,7 @@ Table.propTypes = {
   planet: PropTypes.arrayOf(PropTypes.object).isRequired,
   getPlanet: PropTypes.func.isRequired,
   QF: PropTypes.string.isRequired,
+  filters: PropTypes.string.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Table);
