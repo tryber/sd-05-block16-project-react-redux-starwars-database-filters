@@ -17,8 +17,7 @@ class FilterNumber extends React.Component {
   }
 
   handleChange(e) {
-    const { value, name } = e.target;
-    this.setState({ [name]: value });
+    this.setState({ [e.target.name]: e.target.value });
   }
 
   handleClick() {

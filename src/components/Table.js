@@ -17,17 +17,6 @@ function filterByNumber(planets, filtro) {
   return planets;
 }
 
-function orderTable(planets, order) {
-  const { sort } = order;
-  if (sort === 'ASC') {
-    return orderASC(planets, order);
-  }
-  if (sort === 'DESC') {
-    return orderDESC(planets, order);
-  }
-  return planets;
-}
-
 function orderASC(planets, order) {
   const { column } = order;
   if (column === 'name') {
@@ -36,9 +25,8 @@ function orderASC(planets, order) {
         return 1;
       } else if (b[column] > a[column]) {
         return -1;
-      } else {
-        return 0;
       }
+      return 0;
     });
   }
   return planets.sort((a, b) => a[column] - b[column]);
@@ -52,12 +40,22 @@ function orderDESC(planets, order) {
         return 1;
       } else if (a[column] > b[column]) {
         return -1;
-      } else {
-        return 0;
       }
+      return 0;
     });
   }
   return planets.sort((a, b) => b[column] - a[column]);
+}
+
+function orderTable(planets, order) {
+  const { sort } = order;
+  if (sort === 'ASC') {
+    return orderASC(planets, order);
+  }
+  if (sort === 'DESC') {
+    return orderDESC(planets, order);
+  }
+  return planets;
 }
 
 class Table extends Component {
@@ -99,6 +97,10 @@ Table.propTypes = {
   filterByNumericValues: PropTypes.arrayOf(PropTypes.object),
   data: PropTypes.arrayOf(PropTypes.object).isRequired,
   filterByName: PropTypes.string.isRequired,
+  order: PropTypes.shape({
+    column: PropTypes.string,
+    sort: PropTypes.string,
+  }).isRequired,
 };
 
 Table.defaultProps = {

@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 
 import chooseOrder from '../actions/chooseOrder';
 
+const columnOptions = ['', 'name', 'population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water'];
+
 class OrderTable extends React.Component {
   constructor(props) {
     super(props);
@@ -28,7 +30,6 @@ class OrderTable extends React.Component {
   render() {
     const { handleChange, handleClick } = this;
     const { column } = this.state;
-    const columnOptions = ['', 'name', 'population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water'];
     return (
       <div>
         <select name="column" onChange={handleChange} value={column} data-testid="column-sort">
@@ -61,10 +62,6 @@ class OrderTable extends React.Component {
 }
 
 OrderTable.propTypes = {
-  order: PropTypes.shape({
-    column:PropTypes.string,
-    sort:PropTypes.string,
-  }).isRequired,
   click: PropTypes.func.isRequired,
 };
 
