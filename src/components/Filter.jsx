@@ -32,14 +32,29 @@ class Filter extends Component {
               <option key={filtro} value={filtro}>{filtro}</option>
             ))}
           </select>
-          <select data-testid="comparison-filter" onChange={(e) => this.setState({ comparison: e.target.value })}>
+          <select
+            data-testid="comparison-filter"
+            onChange={(e) => this.setState({ comparison: e.target.value })}
+          >
             <option>Compare</option>
             <option value="maior que">maior que</option>
             <option value="menor que">menor que</option>
             <option value="igual a">igual a</option>
           </select>
-          <input type="number" data-testid="value-filter" onChange={(e) => this.setState({ value: e.target.value })} name="" id="" />
-          <button data-testid="button-filter" type="button" onClick={() => submitFilterprops(this.state)}>Filtrar</button>
+          <input
+            type="number"
+            data-testid="value-filter"
+            onChange={(e) => this.setState({ value: e.target.value })}
+            name=""
+            id=""
+          />
+          <button
+            data-testid="button-filter"
+            type="button"
+            onClick={() => submitFilterprops(this.state)}
+          >
+Filtrar
+          </button>
         </form>
         <br />
       </div>
