@@ -29,7 +29,7 @@ class Filter extends Component {
             <option value="rotation_period">rotation_period</option>
             <option value="surface_water">surface_water</option>
           </select>
-          <h1>{this.state.column}</h1>
+          {/* <h1>{this.state.column}</h1> */}
 
           <select data-testid="comparison-filter" onChange={(e) => this.setState({ comparison: e.target.value })}>
             <option></option>
@@ -37,10 +37,10 @@ class Filter extends Component {
             <option value="menor que">menor que</option>
             <option value="igual a">igual a</option>
           </select>
-          <h1>{this.state.comparison}</h1>
+          {/* <h1>{this.state.comparison}</h1> */}
 
           <input type="number" data-testid='value-filter' onChange={(e) => this.setState({ value: e.target.value })} name="" id="" />
-          <h1>{this.state.value}</h1>
+          {/* <h1>{this.state.value}</h1> */}
 
           <button data-testid="button-filter" type="button" onClick={() => this.props.submitFilter(this.state)}>Filtrar</button>
         </form>

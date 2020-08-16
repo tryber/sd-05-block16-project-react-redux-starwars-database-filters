@@ -5,7 +5,7 @@ const IS_REQUESTING = 'IS_REQUESTING';
 const ADD_DATA = 'ADD_DATA';
 const ADD_ERROR = 'ADD_ERROR';
 const INPUT_TEXT = 'INPUT_TEXT';
-const COLUMN_SELECT = 'COLUMN_SELECT';
+// const COLUMN_SELECT = 'COLUMN_SELECT';z
 const SUBMIT_FILTER = 'SUBMIT_FILTER';
 const isRequesting = () => ({
   type: IS_REQUESTING,
@@ -57,13 +57,7 @@ const initialStateFilter = {
   filterByName: {
     name: '',
   },
-  filterByNumericValues: [
-    {
-      column: '',
-      comparison: '',
-      value: '',
-    },
-  ],
+  filterByNumericValues: [],
   // },
 };
 
@@ -78,7 +72,7 @@ function filters(state = initialStateFilter, action) {
     case SUBMIT_FILTER:
       return {
         ...state,
-        filterByNumericValues: [action.filtroNumerico],
+        filterByNumericValues: [...state.filterByNumericValues, action.filtroNumerico],
       };
 
     default:

@@ -3,8 +3,6 @@ import { handleAsyncFetch } from '../reducers';
 import { connect } from 'react-redux';
 import Thead from './THead';
 
-
-
 function fncComparador(valorDaColuna, comparador, value) {
   switch (comparador) {
     case 'maior que':
@@ -12,25 +10,44 @@ function fncComparador(valorDaColuna, comparador, value) {
     case 'menor que':
       return valorDaColuna < value;
     case 'igual a':
-      // console.log('true');
+      // console.log('igual a');
       return valorDaColuna === value;
     default:
       return true;
   }
-  // count ++ 
+}
+
+function allFilteredFunc(data, nameFilter, numericFilterArr) {
+  const dataFilteredByName = data.filter((planet) =>
+    planet.name.toLowerCase().includes(nameFilter.toLowerCase()),
+  );
+
+  return dataFilteredByName.filter((planet) => {
+    let planetaFiltradoPorTodasFiltros = true;
+    for (let i = 0; i < numericFilterArr.length; i += 1) {
+      if (!fncComparador(Number(planet[numericFilterArr[i]['column']]), numericFilterArr[i]['comparison'], Number(numericFilterArr[i]['value']))) {
+        // console.log('entrou no if');
+        planetaFiltradoPorTodasFiltros = false;
+      }
+    }
+    return planetaFiltradoPorTodasFiltros;
+  });
 }
 
 class Table extends Component {
-
   componentDidMount() {
     const { handleAsync } = this.props;
 
     handleAsync();
   }
 
-
   render() {
-    const { filteredName, isfetching, data, comparison, value, column } = this.props;
+    const {
+      filteredName,
+      isfetching,
+      data,
+      filterByNumericValues
+    } = this.props;
     return (
       <div>
         <h2>{this.props.filteredName}</h2>
@@ -39,31 +56,26 @@ class Table extends Component {
 
         <table>
           <Thead />
-          {!isfetching && 
-          data.filter((planet) => (planet.name.toLowerCase()).includes(filteredName.toLowerCase()))
-          // .filter(column comparison value)
-          // .filter().
-            .filter((planet) => fncComparador(Number(planet[column]), comparison, value))
-            .map((planet) => (
-              <tbody key={planet.name}>
-                <tr>
-                  <td>{planet.name}</td>
-                  <td>{planet.rotation_period}</td>
-                  <td>{planet.orbital_period}</td>
-                  <td>{planet.diameter}</td>
-                  <td>{planet.climate}</td>
-                  <td>{planet.gravity}</td>
-                  <td>{planet.terrain}</td>
-                  <td>{planet.surface_water}</td>
-                  <td>{planet.population}</td>
-                  <td>{planet.films}</td>
-                  <td>{planet.created}</td>
-                  <td>{planet.edited}</td>
-                  <td>{planet.url}</td>
-                </tr>
-              </tbody>
-            ))
-          }
+          {!isfetching &&
+              allFilteredFunc(data, filteredName, filterByNumericValues).map((planet) => (
+                <tbody key={planet.name}>
+                  <tr>
+                    <td>{planet.name}</td>
+                    <td>{planet.rotation_period}</td>
+                    <td>{planet.orbital_period}</td>
+                    <td>{planet.diameter}</td>
+                    <td>{planet.climate}</td>
+                    <td>{planet.gravity}</td>
+                    <td>{planet.terrain}</td>
+                    <td>{planet.surface_water}</td>
+                    <td>{planet.population}</td>
+                    <td>{planet.films}</td>
+                    <td>{planet.created}</td>
+                    <td>{planet.edited}</td>
+                    <td>{planet.url}</td>
+                  </tr>
+                </tbody>
+              ))}
         </table>
       </div>
     );
@@ -78,10 +90,10 @@ const mapStateToProps = (state) => ({
   isfetching: state.requestReducer.isfetching,
   data: state.requestReducer.data,
   filteredName: state.filters.filterByName.name,
-
-  column: state.filters.filterByNumericValues[0].column,
-  comparison: state.filters.filterByNumericValues[0].comparison,
-  value: Number(state.filters.filterByNumericValues[0].value),
+  filterByNumericValues: state.filters.filterByNumericValues,
+  // column: state.filters.filterByNumericValues[0].column,
+  // comparison: state.filters.filterByNumericValues[0].comparison,
+  // value: Number(state.filters.filterByNumericValues[0].value),
 });
 
 // const mapStateToProps = (state) => ({
@@ -89,7 +101,6 @@ const mapStateToProps = (state) => ({
 // });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Table);
-
 
 // climate: "arid"
 // created: "2014-12-09T13:50:49.641000Z"
@@ -106,4 +117,4 @@ export default connect(mapStateToProps, mapDispatchToProps)(Table);
 // terrain: "desert"
 // url: "https://swapi-trybe.herokuapp.com/api/planets/1/"
 
-            // .filter((planet) => (Number(planet[column]) > value))
+// .filter((planet) => (Number(planet[column]) > value))
