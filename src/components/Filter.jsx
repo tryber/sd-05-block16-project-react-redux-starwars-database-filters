@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { inputText, submitFilter } from '../reducers';
+import FilterInput from './FilterInput';
+import BtnToSubmit from './BtnToSubmit';
+import SelectComparison from './SelectComparison';
 
 class Filter extends Component {
   constructor(props) {
@@ -17,11 +20,7 @@ class Filter extends Component {
     const { inputTextprops, submitFilterprops, filtrosAtivos } = this.props;
     return (
       <div>
-        <input
-          data-testid="name-filter"
-          type="text"
-          onChange={(e) => inputTextprops(e.target.value)}
-        />
+        <FilterInput change={(e) => inputTextprops(e.target.value)} />
         <form>
           <select
             data-testid="column-filter"
@@ -32,31 +31,16 @@ class Filter extends Component {
               <option key={filtro} value={filtro}>{filtro}</option>
             ))}
           </select>
-          <select
-            data-testid="comparison-filter"
-            onChange={(e) => this.setState({ comparison: e.target.value })}
-          >
-            <option>Compare</option>
-            <option value="maior que">maior que</option>
-            <option value="menor que">menor que</option>
-            <option value="igual a">igual a</option>
-          </select>
+
+          <SelectComparison change={(e) => this.setState({ comparison: e.target.value })} />
+          {/* input do number */}
           <input
             type="number"
             data-testid="value-filter"
             onChange={(e) => this.setState({ value: e.target.value })}
-            name=""
-            id=""
           />
-          <button
-            data-testid="button-filter"
-            type="button"
-            onClick={() => submitFilterprops(this.state)}
-          >
-Filtrar
-          </button>
+          <BtnToSubmit click={() => submitFilterprops(this.state)} />
         </form>
-        <br />
       </div>
     );
   }

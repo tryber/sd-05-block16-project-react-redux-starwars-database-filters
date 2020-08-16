@@ -23,9 +23,8 @@ class Table extends Component {
       <div>
         <table>
           <Thead />
-          {!isfetching
-          && allFilteredFunc(data, filteredName, filterByNumericValues)
-            .map(
+          {!isfetching &&
+            allFilteredFunc(data, filteredName, filterByNumericValues).map(
               (planet) => (
                 <tbody key={planet.name}>
                   <tr>
@@ -66,4 +65,3 @@ Table.propTypes = {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Table);
-
