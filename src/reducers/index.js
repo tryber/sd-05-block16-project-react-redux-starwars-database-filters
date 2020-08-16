@@ -1,5 +1,4 @@
-function emptyReducer() {
-  return {};
-}
+// import { combineReducers } from 'redux';
+import planetReduces from './planetReducer';
 
-export default emptyReducer;
+export default planetReduces;
