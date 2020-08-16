@@ -38,23 +38,24 @@ export function handleAsyncFetch() {
     return fetch(api)
       .then((response) => response.json())
       .then(
-        (json) => (
-          dispatch(dataActionCreator(json.results))
-        ),
-        (error) => (
-          dispatch(errorActionCreator(error))
-        ),
+        (json) => dispatch(dataActionCreator(json.results)),
+        (error) => dispatch(errorActionCreator(error)),
       );
   };
 }
 
 const initialStateFilter = {
-  // filters: {
   filterByName: {
     name: '',
   },
   filterByNumericValues: [],
-  // },
+  filtrosAtivos: [
+    'population',
+    'orbital_period',
+    'diameter',
+    'rotation_period',
+    'surface_water',
+  ],
 };
 
 function filters(state = initialStateFilter, action) {

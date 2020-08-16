@@ -14,18 +14,16 @@ class Filter extends Component {
   }
 
   render() {
-    const { inputTextprops, submitFilterprops } = this.props;
+    const { inputTextprops, submitFilterprops, filtrosAtivos } = this.props;
     return (
       <div>
         <input data-testid="name-filter" type="text" onChange={(e) => inputTextprops(e.target.value)} />
         <form>
           <select data-testid="column-filter" onChange={(e) => this.setState({ column: e.target.value })}>
             <option>Coluna</option>
-            <option value="population">population</option>
-            <option value="orbital_period">orbital_period</option>
-            <option value="diameter">diameter</option>
-            <option value="rotation_period">rotation_period</option>
-            <option value="surface_water">surface_water</option>
+            {filtrosAtivos.map((filtro) => (
+              <option key={filtro} value={filtro}>{filtro}</option>
+            ))}
           </select>
           <select data-testid="comparison-filter" onChange={(e) => this.setState({ comparison: e.target.value })}>
             <option>Compare</option>
@@ -47,9 +45,14 @@ const mapDispatchToProps = (dispatch) => ({
   submitFilterprops: (e) => dispatch(submitFilter(e)),
 });
 
+const mapStateToProps = (state) => ({
+  filtrosAtivos: state.filters.filtrosAtivos,
+});
+
 Filter.propTypes = {
   inputTextprops: PropTypes.func.isRequired,
   submitFilterprops: PropTypes.func.isRequired,
+  filtrosAtivos: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
-export default connect(null, mapDispatchToProps)(Filter);
+export default connect(mapStateToProps, mapDispatchToProps)(Filter);
