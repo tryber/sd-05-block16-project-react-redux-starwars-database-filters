@@ -8,35 +8,31 @@ import {
   removeFilterByIndex,
 } from '../actionsCreator';
 
-const MAIOR_QUE = 'MAIOR_QUE';
-const MENOR_QUE = 'MENOR_QUE';
-const IGUAL = 'IGUAL';
-
 const columns = [
-  { innerText: 'Colunas', value: '' },
-  { innerText: 'População', value: 'population' },
-  { innerText: 'Orbital', value: 'orbital_period' },
-  { innerText: 'Diâmetro', value: 'diameter' },
-  { innerText: 'Rotação', value: 'rotation_period' },
-  { innerText: 'Água', value: 'surface_water' },
+  { innerText: 'Coluna', value: 'Coluna' },
+  { innerText: 'population', value: 'population' },
+  { innerText: 'orbital_period', value: 'orbital_period' },
+  { innerText: 'diameter', value: 'diameter' },
+  { innerText: 'rotation_period', value: 'rotation_period' },
+  { innerText: 'surface_water', value: 'surface_water' },
 ];
 
 const comparisons = [
-  { innerText: 'Comparação', value: '' },
-  { innerText: 'Maior que', value: MAIOR_QUE },
-  { innerText: 'Menor que', value: MENOR_QUE },
-  { innerText: 'Igual', value: IGUAL },
+  { innerText: 'Comparação', value: 'Comparação' },
+  { innerText: 'maior que', value: 'maior que' },
+  { innerText: 'menor que', value: 'menor que' },
+  { innerText: 'igual a', value: 'igual a' },
 ];
 
 function Select(props) {
   const { options, dataTest, selected } = props;
   return (
     <select
-      data-testid={dataTest || 'column-filter'}
+      data-testid={dataTest}
       onChange={({ target }) => { selected(target.value); }}
     >
       {
-        options.map(({ innerText, value }) => (
+        options.map(({ value, innerText }) => (
           <option key={rKey(value)} value={value}>{innerText}</option>
         ))
       }
@@ -53,7 +49,12 @@ function ActivatedFilters(props) {
         numberFilters.map(({ column, comparison, value }, i) => (
           <p key={rKey(column)} data-testid="filter">
             {`${column} ${comparison} ${value}`}
-            <button type="button" onClick={() => { removeFilter(i); }}>X</button>
+            <button
+              type="button"
+              onClick={() => { removeFilter(i); }}
+            >
+              X
+            </button>
           </p>
         ))
       }
@@ -78,6 +79,7 @@ class Filters extends Component {
               (numberFilters.filter(({ column }) => (column === value)).length === 0),
             )
           }
+          dataTest="column-filter"
           selected={(res) => { this.setState({ column: res }); }}
         />
         <Select

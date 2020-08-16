@@ -43,13 +43,13 @@ class Table extends Component {
       filterByNumericValues.forEach(({ column, comparison, value }) => {
         if (planet.visible) {
           switch (comparison) {
-            case 'MENOR_QUE':
+            case 'menor que':
               planet.visible = Number(planet[column]) < Number(value);
               break;
-            case 'MAIOR_QUE':
+            case 'maior que':
               planet.visible = Number(planet[column]) > Number(value);
               break;
-            case 'IGUAL':
+            case 'igual a':
               planet.visible = Number(planet[column]) === Number(value);
               break;
             default:
