@@ -2,7 +2,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
+import fetchPlanets from '../actions/fetchPlanets';
+
 class Table extends Component {
+  componentDidMount() {
+    this.props.planetsData();
+  }
+
   renderTableHead() {
     const { data } = this.props;
 
@@ -76,12 +82,17 @@ const mapStateToProps = (state) => ({
   filterByName: state.filterReducer.filters.filterByName,
 });
 
+const mapDispatchToProps = {
+  planetsData: fetchPlanets,
+};
+
 Table.propTypes = {
   data: PropTypes.arrayOf(PropTypes.object).isRequired,
   isLoading: PropTypes.bool.isRequired,
+  planetsData: PropTypes.func.isRequired,
   filterByName: PropTypes.shape({
     filters: PropTypes.object,
   }).isRequired,
 };
 
-export default connect(mapStateToProps)(Table);
+export default connect(mapStateToProps, mapDispatchToProps)(Table);
