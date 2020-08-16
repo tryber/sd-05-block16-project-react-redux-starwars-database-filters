@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import nameSearch from '../actions/nameSearch';
 
@@ -20,7 +21,11 @@ class NameFilter extends React.Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  handleNameSearch: event => dispatch(nameSearch(event)),
+  handleNameSearch: (event) => dispatch(nameSearch(event)),
 });
 
 export default connect(null, mapDispatchToProps)(NameFilter);
+
+NameFilter.propTypes = {
+  handleNameSearch: PropTypes.func.isRequired,
+};

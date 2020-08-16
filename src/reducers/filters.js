@@ -1,15 +1,15 @@
 import { NAME_SEARCH } from '../actions/nameSearch';
 
 const INITIAL_STATE = {
-    filterByName: {
-      name: '',
-      // catchoro: '',
-    },
-    // teste: '',
+  filterByName: {
+    name: '',
+    // catchoro: '',
+  },
+  // teste: '',
 };
 
 const filters = (state = INITIAL_STATE, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case NAME_SEARCH:
       return ({
         ...state,
