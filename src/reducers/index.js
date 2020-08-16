@@ -33,7 +33,7 @@ export const submitFilter = (filtroNumerico) => ({
 
 const api = 'https://swapi-trybe.herokuapp.com/api/planets/';
 
-export function handleAsyncFetch(extension) {
+export function handleAsyncFetch() {
   return (dispatch) => {
     dispatch(isRequesting());
 
@@ -68,7 +68,6 @@ function filters(state = initialStateFilter, action) {
         ...state,
         filterByName: { name: action.input },
       };
-    
     case SUBMIT_FILTER:
       return {
         ...state,

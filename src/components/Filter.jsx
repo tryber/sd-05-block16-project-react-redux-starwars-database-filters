@@ -13,7 +13,7 @@ class Filter extends Component {
   }
 
   render() {
-    // const {}
+    // const {} = this.props
     return (
       <div>
         <h1>FILTROS: </h1>
@@ -32,14 +32,14 @@ class Filter extends Component {
           {/* <h1>{this.state.column}</h1> */}
 
           <select data-testid="comparison-filter" onChange={(e) => this.setState({ comparison: e.target.value })}>
-            <option></option>
+            <option />
             <option value="maior que">maior que</option>
             <option value="menor que">menor que</option>
             <option value="igual a">igual a</option>
           </select>
           {/* <h1>{this.state.comparison}</h1> */}
 
-          <input type="number" data-testid='value-filter' onChange={(e) => this.setState({ value: e.target.value })} name="" id="" />
+          <input type="number" data-testid="value-filter" onChange={(e) => this.setState({ value: e.target.value })} name="" id="" />
           {/* <h1>{this.state.value}</h1> */}
 
           <button data-testid="button-filter" type="button" onClick={() => this.props.submitFilter(this.state)}>Filtrar</button>
@@ -55,13 +55,5 @@ const mapDispatchToProps = (dispatch) => ({
   submitFilter: (e) => dispatch(submitFilter(e)),
 });
 
-// const mapStateToProps = (state) => ({
-//   filteredName: state.filterReducer.filters.filterByName.name,
-// });
 
 export default connect(null, mapDispatchToProps)(Filter);
-
-// segundo deve determinar se a faixa de valor será Maior que, Menor que ou Igual a o numero que virá a seguir. Uma tag select com a propriedade data-testid='comparison-filter';
-
-
-// O primeiro deve abrir um dropdown que permita a quem usa selecionar uma das seguintes colunas: population, orbital_period, diameter, rotation_period e surface_water. Deve ser uma tag select com a propriedade data-testid='column-filter';
