@@ -13,14 +13,19 @@ class Table extends Component {
   }
 
   render() {
-    const {filteredName, isfetching, data, filterByNumericValues,
+    const {
+      filteredName,
+      isfetching,
+      data,
+      filterByNumericValues,
     } = this.props;
     return (
       <div>
         <table>
           <Thead />
-          {!isfetching &&
-            allFilteredFunc(data, filteredName, filterByNumericValues).map(
+          {!isfetching
+          && allFilteredFunc(data, filteredName, filterByNumericValues)
+            .map(
               (planet) => (
                 <tbody key={planet.name}>
                   <tr>

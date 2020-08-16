@@ -5,7 +5,6 @@ function fncComparador(valorDaColuna, comparador, value) {
     case 'menor que':
       return valorDaColuna < value;
     case 'igual a':
-      // console.log('igual a');
       return valorDaColuna === value;
     default:
       return true;
@@ -13,21 +12,20 @@ function fncComparador(valorDaColuna, comparador, value) {
 }
 
 export default function allFilteredFunc(data, nameFilter, numericFilterArr) {
-  const dataFilteredByName = data.filter((planet) =>
-    planet.name.toLowerCase().includes(nameFilter.toLowerCase()),
-  );
-
+  // Filtrando pelo nome do input
+  const dataFilteredByName = data.filter((planet) => (
+    planet.name.toLowerCase().includes(nameFilter.toLowerCase())));
+  // o array filtrado por nome será filtrado agora pelos filtros aplicados.
   return dataFilteredByName.filter((planet) => {
     let planetaFiltradoPorTodasFiltros = true;
     for (let i = 0; i < numericFilterArr.length; i += 1) {
       if (
         !fncComparador(
-          Number(planet[numericFilterArr[i]['column']]),
-          numericFilterArr[i]['comparison'],
-          Number(numericFilterArr[i]['value']),
+          Number(planet[numericFilterArr[i].column]),
+          numericFilterArr[i].comparison,
+          Number(numericFilterArr[i].value),
         )
       ) {
-        // console.log('entrou no if');
         planetaFiltradoPorTodasFiltros = false;
       }
     }

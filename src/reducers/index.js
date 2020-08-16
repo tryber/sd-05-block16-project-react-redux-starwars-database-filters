@@ -1,11 +1,9 @@
 import { combineReducers } from 'redux';
-// import thunk from 'redux-thunk';
 
 const IS_REQUESTING = 'IS_REQUESTING';
 const ADD_DATA = 'ADD_DATA';
 const ADD_ERROR = 'ADD_ERROR';
 const INPUT_TEXT = 'INPUT_TEXT';
-// const COLUMN_SELECT = 'COLUMN_SELECT';z
 const SUBMIT_FILTER = 'SUBMIT_FILTER';
 const isRequesting = () => ({
   type: IS_REQUESTING,
@@ -40,14 +38,12 @@ export function handleAsyncFetch() {
     return fetch(api)
       .then((response) => response.json())
       .then(
-        (json) => {
-          // console.log(json.results);
-          return dispatch(dataActionCreator(json.results));
-        },
-        (error) => {
-          // console.log('ta tudo errado: ' + error);
-          dispatch(errorActionCreator(error));
-        },
+        (json) => (
+          dispatch(dataActionCreator(json.results))
+        ),
+        (error) => (
+          dispatch(errorActionCreator(error))
+        ),
       );
   };
 }
@@ -71,7 +67,10 @@ function filters(state = initialStateFilter, action) {
     case SUBMIT_FILTER:
       return {
         ...state,
-        filterByNumericValues: [...state.filterByNumericValues, action.filtroNumerico],
+        filterByNumericValues: [
+          ...state.filterByNumericValues,
+          action.filtroNumerico,
+        ],
       };
 
     default:
