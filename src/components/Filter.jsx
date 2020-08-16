@@ -17,9 +17,16 @@ class Filter extends Component {
     const { inputTextprops, submitFilterprops, filtrosAtivos } = this.props;
     return (
       <div>
-        <input data-testid="name-filter" type="text" onChange={(e) => inputTextprops(e.target.value)} />
+        <input
+          data-testid="name-filter"
+          type="text"
+          onChange={(e) => inputTextprops(e.target.value)}
+        />
         <form>
-          <select data-testid="column-filter" onChange={(e) => this.setState({ column: e.target.value })}>
+          <select
+            data-testid="column-filter"
+            onChange={(e) => this.setState({ column: e.target.value })}
+          >
             <option>Coluna</option>
             {filtrosAtivos.map((filtro) => (
               <option key={filtro} value={filtro}>{filtro}</option>
