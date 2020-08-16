@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import './App.css';
 import fetchData from './actions';
 import Table from './components/Table';
+import NameFilter from './components/NameFilter';
 
 class App extends React.Component {
   componentDidMount() {
@@ -13,9 +14,8 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <Table />
-        </header>
+        <NameFilter />
+        <Table />
       </div>
     );
   }

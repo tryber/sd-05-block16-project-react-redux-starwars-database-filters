@@ -26,10 +26,11 @@ class Table extends React.Component {
   }
 
   body() {
-    const { planets } = this.props;
+    const { planets, nameFilter } = this.props;
+    const filteredPlanets = planets.filter((planet) => planet.name.includes(nameFilter));
     return (
       <tbody>
-        {planets.map((planet) =>
+        {filteredPlanets.map((planet) =>
           <tr key={planet.name}>
             {
               tableHeader.map((item) =>
@@ -68,6 +69,7 @@ class Table extends React.Component {
 const mapStateToProps = (state) => ({
   loading: state.fetchReducer.loading,
   planets: state.fetchReducer.data,
+  nameFilter: state.filters.filterByName.name,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -79,4 +81,5 @@ export default connect(mapStateToProps, mapDispatchToProps)(Table);
 Table.propTypes = {
   loading: PropTypes.bool.isRequired,
   planets: PropTypes.arrayOf(PropTypes.object).isRequired,
+  nameFilter: PropTypes.string.isRequired,
 };
