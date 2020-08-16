@@ -28,28 +28,30 @@ class Table extends Component {
   }
 
   renderTableBody() {
-    const { data } = this.props;
+    const { data, filterByName } = this.props;
 
     return (
       <tbody>
-        {data.map((planet) => (
-          <tr key={planet.name}>
-            <td>{planet.name}</td>
-            <td>{planet.rotation_period}</td>
-            <td>{planet.orbital_period}</td>
-            <td>{planet.diameter}</td>
-            <td>{planet.climate}</td>
-            <td>{planet.gravity}</td>
-            <td>{planet.terrain}</td>
-            <td>{planet.surface_water}</td>
-            <td>{planet.population}</td>
-            <td>{planet.films}</td>
-            <td>{planet.created}</td>
-            <td>{planet.edited}</td>
-            <td>{planet.url}</td>
-          </tr>
-        ),
-      )}
+        {data
+          .filter((planet) => planet.name.includes(filterByName.name))
+          .map((planet) => (
+            <tr key={planet.name}>
+              <td>{planet.name}</td>
+              <td>{planet.rotation_period}</td>
+              <td>{planet.orbital_period}</td>
+              <td>{planet.diameter}</td>
+              <td>{planet.climate}</td>
+              <td>{planet.gravity}</td>
+              <td>{planet.terrain}</td>
+              <td>{planet.surface_water}</td>
+              <td>{planet.population}</td>
+              <td>{planet.films}</td>
+              <td>{planet.created}</td>
+              <td>{planet.edited}</td>
+              <td>{planet.url}</td>
+            </tr>
+          ),
+        )}
       </tbody>
     );
   }
@@ -71,11 +73,15 @@ class Table extends Component {
 const mapStateToProps = (state) => ({
   data: state.planetReducer.data,
   isLoading: state.planetReducer.isLoading,
+  filterByName: state.filterReducer.filters.filterByName,
 });
 
 Table.propTypes = {
   data: PropTypes.arrayOf(PropTypes.object).isRequired,
   isLoading: PropTypes.bool.isRequired,
+  filterByName: PropTypes.shape({
+    filters: PropTypes.object,
+  }).isRequired,
 };
 
 export default connect(mapStateToProps)(Table);

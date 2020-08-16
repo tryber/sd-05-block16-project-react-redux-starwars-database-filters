@@ -6,6 +6,7 @@ import './App.css';
 
 import fetchPlanets from './actions/fetchPlanets';
 import Table from './components/Table';
+import Filters from './components/Filters';
 
 class App extends Component {
   componentDidMount() {
@@ -16,6 +17,7 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
+          <Filters />
           <Table />
         </header>
       </div>
