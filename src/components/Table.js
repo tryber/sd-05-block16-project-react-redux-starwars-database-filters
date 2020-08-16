@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 class Table extends Component {
   renderTableHead() {
@@ -71,5 +72,10 @@ const mapStateToProps = (state) => ({
   data: state.planetReducer.data,
   isLoading: state.planetReducer.isLoading,
 });
+
+Table.propTypes = {
+  data: PropTypes.arrayOf(PropTypes.object).isRequired,
+  isLoading: PropTypes.bool.isRequired,
+};
 
 export default connect(mapStateToProps)(Table);
