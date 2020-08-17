@@ -6,7 +6,7 @@ const initialState = {
   data: []
 };
 
-function planetReducer (state = initialState, action) {
+function planetReducer(state = initialState, action) {
   switch (action.type) {
     case REQUEST_LOADING:
       return {
