@@ -20,11 +20,11 @@ export const getError = (error) => ({
   payload: error,
 });
 
-export const filterByName = (findedPlanet, str) => ({
+export const filterByName = (str) => ({
   type: FILTER_BY_NAME,
   payload: {
     name: str,
-    filter: findedPlanet,
+    // filter: findedPlanet,
   },
 });
 

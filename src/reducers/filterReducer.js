@@ -2,7 +2,7 @@ import { FILTER_BY_NAME, FILTER_BY_NUMERIC_VALUES } from './actions';
 
 const initialState = {
   filters: {
-    filtered: [],
+    // filtered: [],
     filterByName: {
       name: '',
     },
@@ -18,7 +18,7 @@ function filterReducer(state = initialState, action) {
       return {
         ...state,
         filters: {
-          filtered: [...action.payload.filter],
+          // filtered: [...action.payload.filter],
           filterByName: {
             name: action.payload.name,
           },

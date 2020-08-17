@@ -17,7 +17,7 @@ const InputProcurar = (findPlanet) => (
       data-testid="name-filter"
       name="filterByName"
       type="text"
-      onChange={(e) => findPlanet(e)}
+      onChange={(e) => findPlanet(e.target.value)}
     />
   </div>
 );
@@ -37,19 +37,7 @@ function Table({
   data,
   filter,
   isFetching,
-  planets,
-  // values,
-  // filterByNumericValues,
 }) {
-  function findPlanet(event) {
-    const { target: { value } } = event;
-    const planetFinded = planets.filter((planet) => {
-      const { name } = planet;
-      return (!value) ? true : name.includes(value);
-    });
-    filter(planetFinded, value);
-  }
-
   return (
     isFetching ? <div className="loading">Loading...</div>
       : (
@@ -58,7 +46,7 @@ function Table({
           {/* implementacao de formulario seguindo conteudo encontrado no site W3Schools */}
           <form>
             <div className="head">
-              {InputProcurar(findPlanet)}
+              {InputProcurar(filter)}
               <SelectOrder data={data} />
               <RadioSort value="ASD" />
               <RadioSort value="DESC" />
@@ -87,16 +75,16 @@ function Table({
 
 const mapStateToProps = (state) => {
   const { filterReducer: { filters: { filterByName: { name } } } } = state;
-  const { fetchReducer: { data } } = state;
+  // const { fetchReducer: { data } } = state;
   return {
     name,
     isFetching: state.fetchReducer.isFetching,
-    planets: (name) ? data.filter((one) => one.name.includes(name)) : data,
+    // planets: (name) ? data.filter((one) => one.name.includes(name)) : data,
   };
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  filter: (findedPlanet, str) => dispatch(filterByName(findedPlanet, str)),
+  filter: (str) => dispatch(filterByName(str)),
   filterByNumericValues: (numericFilter) => dispatch(filterByNumericValues(numericFilter)),
 });
 
@@ -110,7 +98,7 @@ Table.propTypes = {
   data: propTypes.arrayOf(object),
   filter: propTypes.func.isRequired,
   isFetching: propTypes.bool.isRequired,
-  planets: propTypes.arrayOf(object).isRequired,
+  // planets: propTypes.arrayOf(object).isRequired,
 };
 
 // validacao de propTypes seguindo exemplos do conteudo do course.
