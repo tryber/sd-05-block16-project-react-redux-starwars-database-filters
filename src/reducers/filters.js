@@ -1,5 +1,6 @@
 import { FILTER_DATA } from '../actions/index';
 import { FILTER_COLUMN } from '../actions/index';
+import { DELETE_ITEM } from '../actions/index';
 
 const INITIAL_STATE = {
   filterByName: {
@@ -26,6 +27,13 @@ export default function filters(state = INITIAL_STATE, action) {
             comparison: action.comparison,
             value: action.value },
         ],
+      };
+    case DELETE_ITEM:
+      console.log('valor do payload', action.payload);
+      return {
+        ...state,
+        filterByNumericValues:
+          state.filterByNumericValues.filter((item, index) => index !== action.payload),
       };
 
     default:

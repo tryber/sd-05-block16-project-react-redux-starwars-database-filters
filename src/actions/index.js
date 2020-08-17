@@ -4,6 +4,7 @@ export const REQUEST_DATA = 'REQUEST_DATA';
 export const RECEIVE_DATA = 'RECEIVE_DATA';
 export const FILTER_DATA = 'FILTER_DATA';
 export const FILTER_COLUMN = 'FILTER_COLUMN';
+export const DELETE_ITEM = 'DELETE_ITEM';
 
 function requestData() {
   return {
@@ -31,6 +32,13 @@ export function filterNumericFields(column, comparison, value) {
     column,
     comparison,
     value,
+  };
+}
+
+export function deleteItemState(index) {
+  return {
+    type: DELETE_ITEM,
+    payload: index,
   };
 }
 
