@@ -62,5 +62,5 @@ export default connect(mapStateToProps, mapDispatchToProps)(NumericFilter);
 
 NumericFilter.propTypes = {
   numericSearch: PropTypes.func.isRequired,
-  numericFilters: PropTypes.arrayOf(PropTypes.object),
+  numericFilters: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
