@@ -16,7 +16,7 @@ class NumericFilter extends React.Component {
 
   handleColumnOptions() {
     const { numericFilters } = this.props;
-    const selectedFilterColumns = numericFilters.map(filter => filter.column);
+    const selectedFilterColumns = numericFilters.map((filter) => filter.column);
     let columns = [
       'column',
       'population',
@@ -24,8 +24,8 @@ class NumericFilter extends React.Component {
       'diameter',
       'rotation_period',
       'surface_water'];
-    columns = columns.filter(column => !selectedFilterColumns.includes(column));
-    return columns.map(column => <option value={column} key={column}>{column}</option>);
+    columns = columns.filter((column) => !selectedFilterColumns.includes(column));
+    return columns.map((column) => <option value={column} key={column}>{column}</option>);
   }
 
   render() {
@@ -56,7 +56,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 const mapStateToProps = (state) => ({
   numericFilters: state.filters.filterByNumericValues,
-})
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(NumericFilter);
 
