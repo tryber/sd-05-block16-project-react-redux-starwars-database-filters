@@ -6,6 +6,11 @@ import FilterInput from './FilterInput';
 import BtnToSubmit from './BtnToSubmit';
 import SelectComparison from './SelectComparison';
 
+const filtrosColuna = ['population', 'orbital_period', 'diameter',
+'rotation_period',
+'surface_water',
+];
+
 class Filter extends Component {
   constructor(props) {
     super(props);
@@ -18,17 +23,11 @@ class Filter extends Component {
 
   render() {
     const { inputTextprops, submitFilterprops, filterByNumericValues } = this.props;
-    const filtrosColuna = ['population', 'orbital_period', 'diameter',
-      'rotation_period',
-      'surface_water',
-    ];
 
     const filtrosAtivos = filterByNumericValues.map((f) => {
       if (f.column) { return f.column; } return null;
     });
-
     // https://stackoverflow.com/questions/1187518/how-to-get-the-difference-between-two-arrays-in-javascript
-
     const filtrosFiltrados = filtrosColuna.filter((x) => !filtrosAtivos.includes(x));
 
     return (
