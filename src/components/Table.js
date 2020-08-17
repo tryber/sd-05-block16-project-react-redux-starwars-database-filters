@@ -84,6 +84,7 @@ function Table({
 
 // implementacoes de funcoes relacionado ao store baseado no conteudo
 //  e exercicios da Trybe do bloco de redux.
+
 const mapStateToProps = (state) => {
   const { filterReducer: { filters: { filterByName: { name } } } } = state;
   const { fetchReducer: { data } } = state;

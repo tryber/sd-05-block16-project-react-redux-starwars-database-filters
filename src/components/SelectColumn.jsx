@@ -8,8 +8,8 @@ class SelectColumn extends Component {
       <div className="select_column-filter">
         <label htmlFor="select" />
         <select data-testid="column-filter" name="select" onChange={() => console.log('SelectColumn')}>
-          {options.map((option, i) => (
-            (i > 0) ? <option key={option} value={option}>{option}</option> : false))}
+          {options.map((option) => (
+            <option key={option} value={option}>{option}</option>))}
         </select>
       </div>
     );
