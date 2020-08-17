@@ -23,21 +23,21 @@ class Table extends Component {
       <div>
         <table>
           <Thead />
-          {!isfetching &&
-            allFilteredFunc(data, filteredName, filterByNumericValues).map(
-              (planet) => (
-                <tbody key={planet.name}>
-                  <tr>
-                    {Object.values(planet).map((colunas) => {
-                      if (colunas !== 'residents') {
-                        return <td key={colunas}>{colunas}</td>;
-                      }
-                      return null;
-                    })}
-                  </tr>
-                </tbody>
-              ),
-            )}
+          {!isfetching
+          && allFilteredFunc(data, filteredName, filterByNumericValues).map(
+            (planet) => (
+              <tbody key={planet.name}>
+                <tr>
+                  {Object.values(planet).map((colunas) => {
+                    if (colunas !== 'residents') {
+                      return <td key={colunas}>{colunas}</td>;
+                    }
+                    return null;
+                  })}
+                </tr>
+              </tbody>
+            ),
+          )}
         </table>
         {isfetching && <h1>Loading...</h1>}
       </div>

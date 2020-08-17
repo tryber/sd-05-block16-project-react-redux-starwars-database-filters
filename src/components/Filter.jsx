@@ -17,7 +17,20 @@ class Filter extends Component {
   }
 
   render() {
-    const { inputTextprops, submitFilterprops, filtrosAtivos } = this.props;
+    const { inputTextprops, submitFilterprops, filterByNumericValues } = this.props;
+    const filtrosColuna = ['population', 'orbital_period', 'diameter',
+      'rotation_period',
+      'surface_water',
+    ];
+
+    const filtrosAtivos = filterByNumericValues.map((f) => {
+      if (f.column) { return f.column; } return null;
+    });
+
+    // https://stackoverflow.com/questions/1187518/how-to-get-the-difference-between-two-arrays-in-javascript
+
+    const filtrosFiltrados = filtrosColuna.filter((x) => !filtrosAtivos.includes(x));
+
     return (
       <div>
         <FilterInput change={(e) => inputTextprops(e.target.value)} />
@@ -27,7 +40,7 @@ class Filter extends Component {
             onChange={(e) => this.setState({ column: e.target.value })}
           >
             <option>Coluna</option>
-            {filtrosAtivos.map((filtro) => (
+            {filtrosFiltrados.map((filtro) => (
               <option key={filtro} value={filtro}>{filtro}</option>
             ))}
           </select>
@@ -52,13 +65,13 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const mapStateToProps = (state) => ({
-  filtrosAtivos: state.filters.filtrosAtivos,
+  filterByNumericValues: state.filters.filterByNumericValues,
 });
 
 Filter.propTypes = {
   inputTextprops: PropTypes.func.isRequired,
   submitFilterprops: PropTypes.func.isRequired,
-  filtrosAtivos: PropTypes.arrayOf(PropTypes.string).isRequired,
+  filterByNumericValues: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Filter);

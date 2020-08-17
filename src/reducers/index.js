@@ -49,13 +49,7 @@ const initialStateFilter = {
     name: '',
   },
   filterByNumericValues: [],
-  filtrosAtivos: [
-    'population',
-    'orbital_period',
-    'diameter',
-    'rotation_period',
-    'surface_water',
-  ],
+
 };
 
 function filters(state = initialStateFilter, action) {
