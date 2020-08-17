@@ -12,7 +12,7 @@ class Table extends React.Component {
 
   // referencia de tabelas em html5 https://flatschart.com/html5/tabelas.html
 
-  /*tableRender() {
+  /* tableRender() {
     const { planetData } = this.props;
     return planetData.map((data) => (
       <tr key={data.name}>
