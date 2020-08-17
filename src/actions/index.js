@@ -22,7 +22,7 @@ export const requestLoading = () => ({
   loading: true,
 });
 
-export function thunkStarwars(planet) { // CONFERIR SE PARAMETRO ESTA CORRETO
+export function thunkStarWars(planet) { // CONFERIR SE PARAMETRO ESTA CORRETO
   return (dispatch) => {
     dispatch(requestLoading(planet));
     return planetAPI(planet)

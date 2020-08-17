@@ -1,14 +1,15 @@
-// import React from 'react';
+import React from 'react';
 
-// class TableInfo extends React.Component {
-//   constructor(props) {
-//     super(props);
-//       this.state = {  }
-//   }
-//   render() {
-//     return (
-//       <div></div>
-//     );
-//   }
-// }
-// export default TableInfo;
+class TableInfo extends React.Component {
+  render() {
+    return (
+      <tbody> // tabela que receberá o corpo da função
+        <tr>
+          <td></td>
+          <td></td>
+        </tr> 
+      </tbody>
+    );
+  }
+}
+export default TableInfo;
