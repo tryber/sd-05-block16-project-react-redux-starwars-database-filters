@@ -2,7 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import filterByName from '../actions/filterPlanets';
+import { filterByName,
+  filterByColumn,
+  filterByComparison,
+  filterByValue,
+  filterByNumbers,
+} from '../actions/filterPlanets';
 
 class Filters extends Component {
   renderNameInput() {
@@ -13,6 +18,7 @@ class Filters extends Component {
         <input
           data-testid="name-filter"
           type="text"
+          name="filter-name"
           onChange={(event) => filterName(event.target.value)}
           placeholder="Search planet by name"
         />
@@ -20,19 +26,76 @@ class Filters extends Component {
     );
   }
 
+  renderValueInput() {
+    const { filterColumn, filterComparison, filterValue, filterNumbers,
+      column, comparison, value } = this.props;
+
+    return (
+      <section>
+        <select data-testid="column-filter" onChange={(event) => filterColumn(event.target.value)}>
+          <option hidden disabled selected value> -- select an option -- </option>
+          <option value="population">population</option>
+          <option value="orbital_period">orbital_period</option>
+          <option value="diameter">diameter</option>
+          <option value="rotation_period">rotation_period</option>
+          <option value="surface_water">surface_water</option>
+        </select>
+        <select
+          data-testid="comparison-filter"
+          onChange={(event) => filterComparison(event.target.value)}
+        >
+          <option hidden disabled selected value> -- select an option -- </option>
+          <option value="maior que">maior que</option>
+          <option value="igual a">igual a</option>
+          <option value="menor que">menor que</option>
+        </select>
+        <input
+          data-testid="value-filter" type="number"
+          onChange={(event) => filterValue(event.target.value)}
+        />
+        <button
+          data-testid="button-filter" type="button"
+          onClick={() => filterNumbers(column, comparison, value)}
+        >
+          Find Planet
+        </button>
+      </section>
+    );
+  }
+
   render() {
     return (
-      <section>{this.renderNameInput()}</section>
+      <section>
+        {this.renderNameInput()}
+        {this.renderValueInput()}
+      </section>
     );
   }
 }
 
+const mapStateToProps = (state) => ({
+  column: state.filters.numericValues.column,
+  comparison: state.filters.numericValues.comparison,
+  value: state.filters.numericValues.value,
+});
+
 const mapDispatchToProps = {
   filterName: filterByName,
+  filterColumn: filterByColumn,
+  filterComparison: filterByComparison,
+  filterValue: filterByValue,
+  filterNumbers: filterByNumbers,
 };
 
 Filters.propTypes = {
+  column: PropTypes.string.isRequired,
+  comparison: PropTypes.string.isRequired,
+  value: PropTypes.number.isRequired,
   filterName: PropTypes.func.isRequired,
+  filterColumn: PropTypes.func.isRequired,
+  filterComparison: PropTypes.func.isRequired,
+  filterValue: PropTypes.func.isRequired,
+  filterNumbers: PropTypes.func.isRequired,
 };
 
-export default connect(null, mapDispatchToProps)(Filters);
+export default connect(mapStateToProps, mapDispatchToProps)(Filters);
