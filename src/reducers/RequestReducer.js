@@ -6,7 +6,7 @@ const initialState = {
   data: [],
 };
 
-function requestReducer(state = initialState, action) {
+function RequestReducer(state = initialState, action) {
   switch (action.type) {
     case REQUEST_LOADING:
       return {
@@ -30,4 +30,4 @@ function requestReducer(state = initialState, action) {
   }
 }
 
-export default requestReducer;
+export default RequestReducer;

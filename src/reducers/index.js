@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
-import requestReducer from './requestReducer';
+import RequestReducer from './RequestReducer';
 
 function emptyReducer() {
   return {};
 }
 
-const rootReducer = combineReducers({ emptyReducer, requestReducer });
+const rootReducer = combineReducers({ emptyReducer, RequestReducer });
 
 export default rootReducer;
