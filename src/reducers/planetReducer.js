@@ -3,7 +3,7 @@ import { REQUEST_LOADING, REQUEST_OK, REQUEST_FAILED } from '../actions';
 const initialState = {
   result: '',
   loading: false,
-  data: []
+  data: [],
 };
 
 function planetReducer(state = initialState, action) {

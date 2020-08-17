@@ -5,11 +5,10 @@
 //     super(props);
 //       this.state = {  }
 //   }
-//   render() { 
+//   render() {
 //     return (
 //       <div></div>
 //     );
 //   }
 // }
- 
 // export default TableInfo;
