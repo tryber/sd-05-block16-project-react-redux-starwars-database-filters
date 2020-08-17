@@ -32,9 +32,7 @@ class FilterNumber extends React.Component {
     const { fetching, filterNumber } = this.props;
     const columnOptions = ['', 'population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water'];
     const comparisonOptions = ['', 'maior que', 'menor que', 'igual a'];
-    const columnFilters = filterNumber.map((filter) => {
-      if (filter.column) { return filter.column; } return null;
-    });
+    const columnFilters = filterNumber.map((filter) => filter.column);
     const remainingColumns = columnOptions.filter((column) => !columnFilters.includes(column));
     return (
       <div>
