@@ -4,7 +4,8 @@ import { connect } from 'react-redux';
 import { handleAsyncFetch } from '../reducers';
 import Thead from './THead';
 import allFilteredFunc from '../functions';
-
+// Requisito 1- Contextualizado em parceria com Christian Dussel e Juliette Beaudet
+// Requisito 2 e 3 - Contextualizado com Luiz Avelar
 class Table extends Component {
   componentDidMount() {
     const { handleAsync } = this.props;
