@@ -26,31 +26,18 @@ class Filters extends Component {
     );
   }
 
-  renderButton() {
-    const { column, comparison, value, filterNumbers } = this.props;
-
-    return (
-      <button
-        data-testid="button-filter" type="button"
-        onClick={() => filterNumbers(column, comparison, value)}
-      >
-        Find Planet
-      </button>
-    );
-  }
-
   renderValueInput() {
-    const { filterColumn, filterComparison, filterValue } = this.props;
+    const { numbers, filterColumn, filterComparison, filterValue } = this.props;
+    // https://stackoverflow.com/questions/1187518/how-to-get-the-difference-between-two-arrays-in-javascript
+    const selectOptions = ['population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water'];
+    const selectFilters = numbers.map((filter) => filter.column);
+    const columnOptions = selectOptions.filter((option) => !selectFilters.includes(option));
 
     return (
       <section>
         <select data-testid="column-filter" onChange={(event) => filterColumn(event.target.value)}>
           <option hidden disabled selected value> -- select an option -- </option>
-          <option value="population">population</option>
-          <option value="orbital_period">orbital_period</option>
-          <option value="diameter">diameter</option>
-          <option value="rotation_period">rotation_period</option>
-          <option value="surface_water">surface_water</option>
+          {columnOptions.map((options) => <option key={options} value={options}>{options}</option>)}
         </select>
         <select
           data-testid="comparison-filter"
@@ -69,6 +56,19 @@ class Filters extends Component {
     );
   }
 
+  renderButton() {
+    const { column, comparison, value, filterNumbers } = this.props;
+
+    return (
+      <button
+        data-testid="button-filter" type="button"
+        onClick={() => filterNumbers(column, comparison, value)}
+      >
+        Find Planet
+      </button>
+    );
+  }
+
   render() {
     return (
       <section>
@@ -84,6 +84,7 @@ const mapStateToProps = (state) => ({
   column: state.filters.numericValues.column,
   comparison: state.filters.numericValues.comparison,
   value: state.filters.numericValues.value,
+  numbers: state.filters.filterByNumericValues,
 });
 
 const mapDispatchToProps = {
@@ -98,6 +99,7 @@ Filters.propTypes = {
   column: PropTypes.string.isRequired,
   comparison: PropTypes.string.isRequired,
   value: PropTypes.number.isRequired,
+  numbers: PropTypes.arrayOf(PropTypes.object).isRequired,
   filterName: PropTypes.func.isRequired,
   filterColumn: PropTypes.func.isRequired,
   filterComparison: PropTypes.func.isRequired,

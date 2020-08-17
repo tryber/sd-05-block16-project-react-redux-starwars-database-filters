@@ -15,9 +15,10 @@ class Table extends Component {
     let planets = data;
 
     if (filterByName !== '') {
-      planets = data.filter((planet) => planet.name.includes(filterByName.name));
+      planets = data.filter((planet) =>
+        planet.name.toUpperCase().includes(filterByName.name.toUpperCase()));
     }
-    if (filterByNumbers.length > 0 && planets.length > 1) {
+    if (filterByNumbers.length > 0) {
       filterByNumbers.forEach(({ column, comparison, value }) => {
         if (comparison === 'maior que') {
           planets = planets.filter((planet) => Number(planet[column]) > Number(value));
@@ -56,7 +57,6 @@ class Table extends Component {
       </thead>
     );
   }
-
 
   renderTableBody() {
     const planets = this.applyFilters();
