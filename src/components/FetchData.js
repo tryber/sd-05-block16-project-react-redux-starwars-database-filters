@@ -1,10 +1,6 @@
-import { createStore, applyMiddleware } from 'redux';
-import { connect } from 'react-redux';
-import thunk from 'redux-thunk';
-import reducer from '../reducers/index';
 import { requestData, getResults, getError } from '../reducers/createActions';
 
-function fetchData() {
+export default function fetchData() {
   return (dispatch) => {
     dispatch(requestData());
     return fetch('https://swapi-trybe.herokuapp.com/api/planets/')
@@ -16,13 +12,12 @@ function fetchData() {
   };
 }
 
-export const store = createStore(reducer, applyMiddleware(thunk));
 
-store.dispatch(fetchData());
-const mapDispatchToProps = (dispatch) => ({
-  fetchData: () => dispatch(fetchData()),
-});
+// store.dispatch(fetchData());
+// const mapDispatchToProps = (dispatch) => ({
+//   fetchData: () => dispatch(fetchData()),// });
 
+// export const store = createStore(reducer, applyMiddleware(thunk));
 // store.subscribe(() => console.log(store.getState()));
 
-export default connect(null, mapDispatchToProps)(fetchData);
+// export default connect(null, mapDispatchToProps)(fetchData);

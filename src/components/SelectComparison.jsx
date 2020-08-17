@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-const options = ['Comparação', 'Maior que', 'Menor que', 'Igual a'];
+const options = ['Comparação', 'maior que', 'menor que', 'igual a'];
 
 class SelectComparison extends Component {
   render() {
@@ -8,13 +8,12 @@ class SelectComparison extends Component {
       <div className="select_comparison-filter">
         <label htmlFor="select" />
         <select data-testid="comparison-filter" name="select" onChange={() => console.log('SelectComparison')}>
-          {options.map((option) => (
-            <option key={option} value={option}>{option}</option>))}
+          {options.map((option, i) => (
+            (i > 0) ? <option key={option} value={option}>{option}</option> : false))}
         </select>
       </div>
     );
   }
 }
-
 
 export default SelectComparison;

@@ -106,7 +106,6 @@ Table.defaultProps = {
 };
 
 Table.propTypes = {
-  // data: propTypes.array.isRequired,
   data: propTypes.arrayOf(object),
   filter: propTypes.func.isRequired,
   isFetching: propTypes.bool.isRequired,

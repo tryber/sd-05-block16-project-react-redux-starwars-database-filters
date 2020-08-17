@@ -55,6 +55,5 @@ TableBody.defaultProps = {
   error: 'Erro no servidor',
 };
 
-// const attribute = ['name', 'climate', 'population', 'created', 'diameter', 'edited',
-//   'gravity', 'orbital_period', 'rotation_period',
-//   'surface_water', ' terrain', 'url', 'films'];
+// validacao de propTypes seguindo exemplos do conteudo do course.
+// duvidas tiradas na validacao da chave 'data:' junto ao PR no repositorio do Felipe Vieira
