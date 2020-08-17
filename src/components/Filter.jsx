@@ -7,8 +7,8 @@ import BtnToSubmit from './BtnToSubmit';
 import SelectComparison from './SelectComparison';
 
 const filtrosColuna = ['population', 'orbital_period', 'diameter',
-'rotation_period',
-'surface_water',
+  'rotation_period',
+  'surface_water',
 ];
 
 class Filter extends Component {
