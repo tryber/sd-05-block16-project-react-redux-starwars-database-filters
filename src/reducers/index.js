@@ -1,4 +1,6 @@
+import { combineReducers } from 'redux';
 import { SEARCH_PLANET, SEARCH_SUCCESS } from '../actions/index';
+import filters from './filters';
 
 const initialState = {
   isLoading: false,
@@ -14,7 +16,6 @@ function planetReducer(state = initialState, action) {
         isLoading: true,
       };
     case SEARCH_SUCCESS:
-      console.log(action);
       return {
         ...state,
         isLoading: action.loading,
@@ -25,7 +26,7 @@ function planetReducer(state = initialState, action) {
   }
 }
 
-// const rootReducer = combineReducers({ planetReducer });
-const rootReducer = planetReducer;
+const reducer = combineReducers({ planetReducer, filters });
+// const rootReducer = planetReducer;
 
-export default rootReducer;
+export default reducer;

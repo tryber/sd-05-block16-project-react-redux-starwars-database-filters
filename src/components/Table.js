@@ -12,7 +12,7 @@ class Table extends React.Component {
 
   // referencia de tabelas em html5 https://flatschart.com/html5/tabelas.html
 
-  tableRender() {
+  /*tableRender() {
     const { planetData } = this.props;
     return planetData.map((data) => (
       <tr key={data.name}>
@@ -31,15 +31,37 @@ class Table extends React.Component {
         <td>{data.url}</td>
       </tr>
     ));
+  } */
+
+  tableRenderFilter(filter) {
+    const { planetData } = this.props;
+    return planetData
+      .filter((data) => data.name.includes(filter))
+      .map((data) => (
+        <tr key={data.name}>
+          <td>{data.name}</td>
+          <td>{data.rotation_period}</td>
+          <td>{data.orbital_period}</td>
+          <td>{data.diameter}</td>
+          <td>{data.climate}</td>
+          <td>{data.gravity}</td>
+          <td>{data.terrain}</td>
+          <td>{data.surface_water}</td>
+          <td>{data.population}</td>
+          <td>{data.films}</td>
+          <td>{data.created}</td>
+          <td>{data.edited}</td>
+        </tr>
+      ));
   }
 
   render() {
-    const { planetData, isFetching } = this.props;
-    if (!isFetching && planetData.length > 0) {
+    const { planetData, isFetching, filter } = this.props;
+    if (!isFetching && planetData) {
       return (
         <table>
           <TableHead />
-          <tbody>{this.tableRender()}</tbody>
+          <tbody>{this.tableRenderFilter(filter)}</tbody>
         </table>
       );
     }
@@ -48,8 +70,9 @@ class Table extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  planetData: state.data,
-  isFetching: state.isFetching,
+  planetData: state.planetReducer.data,
+  isFetching: state.planetReducer.isFetching,
+  filter: state.filters.filterByName.name,
 });
 
 const mapDispatchToProps = (dispatch) => ({ fetchPlanets: () => dispatch(thunkPlanet()) });
@@ -60,4 +83,5 @@ Table.propTypes = {
   planetData: PropTypes.arrayOf(PropTypes.object).isRequired,
   isFetching: PropTypes.bool.isRequired,
   fetchPlanets: PropTypes.func.isRequired,
+  filter: PropTypes.string.isRequired,
 };
