@@ -8,7 +8,7 @@ class TableBody extends React.Component {
     return (
       <tbody>
         {data.map((planet) => (
-          <tr>
+          <tr key={planet.name}>
             <td>{planet.name}</td>
             <td>{planet.climate}</td>
             <td>{planet.terrain}</td>

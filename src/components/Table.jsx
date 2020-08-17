@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchStarWars } from '../actions/index';
 import TableBody from './TableBody';
-import './Table.css';
 
 class Table extends React.Component {
   componentDidMount() {
