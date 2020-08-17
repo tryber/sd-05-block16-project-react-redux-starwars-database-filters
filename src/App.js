@@ -10,7 +10,7 @@ import reducer from './reducers/index';
 
 
 class App extends Component {
-  componentWillMount() {
+  componentDidMount() {
     const { LoadData } = this.props;
     LoadData();
   }
@@ -25,7 +25,7 @@ class App extends Component {
 }
 
 export const store = createStore(reducer, applyMiddleware(thunk));
-// store.subscribe(() => setTimeout(() => console.log(store.getState().filters.filterByName.name), 3000));
+store.subscribe(() => console.log(store.getState().filters.filterByName.name));
 
 const mapDispatchToProps = (dispatch) => ({
   LoadData: () => dispatch(fetchData()),

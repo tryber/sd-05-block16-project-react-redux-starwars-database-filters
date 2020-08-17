@@ -34,11 +34,11 @@ class TableBody extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { filterReducer: { filters: { filterByName: { name } } } } = state;
+  const { filters: { filterByName: { name } } } = state;
   const { fetchReducer: { data, error } } = state;
   return {
     name,
-    planets: (name) ? data.filter((one) => one.name.includes(name)) : data,
+    planets: (name) ? data.filter((planet) => planet.name.includes(name)) : data,
     error,
   };
 };

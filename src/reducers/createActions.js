@@ -20,12 +20,13 @@ export const getError = (error) => ({
   payload: error,
 });
 
-export const filterByName = (str) => ({
+export const filterByName = (name) => ({
   type: FILTER_BY_NAME,
+  // payload: name,
   payload: {
-    name: str,
-    // filter: findedPlanet,
+    name,
   },
+// nessa aqui o PR do Felipe me ajudou a descubrir um erro no codigo
 });
 
 export const filterByNumericValues = (target) => ({

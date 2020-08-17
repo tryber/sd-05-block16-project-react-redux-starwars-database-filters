@@ -74,7 +74,7 @@ function Table({
 //  e exercicios da Trybe do bloco de redux.
 
 const mapStateToProps = (state) => {
-  const { filterReducer: { filters: { filterByName: { name } } } } = state;
+  const { filters: { filterByName: { name } } } = state;
   // const { fetchReducer: { data } } = state;
   return {
     name,
@@ -98,7 +98,7 @@ Table.propTypes = {
   data: propTypes.arrayOf(object),
   filter: propTypes.func.isRequired,
   isFetching: propTypes.bool.isRequired,
-  // planets: propTypes.arrayOf(object).isRequired,
+// planets: propTypes.arrayOf(object).isRequired,
 };
 
 // validacao de propTypes seguindo exemplos do conteudo do course.
