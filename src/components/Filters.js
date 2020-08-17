@@ -28,10 +28,11 @@ class Filters extends Component {
 
   renderValueInput() {
     const { numbers, filterColumn, filterComparison, filterValue } = this.props;
+
     // https://stackoverflow.com/questions/1187518/how-to-get-the-difference-between-two-arrays-in-javascript
-    const selectOptions = ['population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water'];
-    const selectFilters = numbers.map((filter) => filter.column);
-    const columnOptions = selectOptions.filter((option) => !selectFilters.includes(option));
+    const columnOptions = ['population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water']
+      .filter((option) => !numbers.map((filter) => filter.column)
+      .includes(option));
 
     return (
       <section>
