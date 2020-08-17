@@ -9,6 +9,30 @@ class Table extends Component {
     this.props.planetsData();
   }
 
+  // Algoritmo dessa função feito em grupo
+  applyFilters() {
+    const { data, filterByName, filterByNumbers } = this.props;
+    let planets = data;
+
+    if (filterByName !== '') {
+      planets = data.filter((planet) => planet.name.includes(filterByName.name));
+    }
+    if (filterByNumbers.length > 0 && planets.length > 1) {
+      filterByNumbers.forEach(({ column, comparison, value }) => {
+        if (comparison === 'maior que') {
+          planets = planets.filter((planet) => Number(planet[column]) > Number(value));
+        } else if (comparison === 'igual a') {
+          planets = planets.filter((planet) => Number(planet[column]) === Number(value));
+        } else if (comparison === 'menor que') {
+          planets = planets.filter((planet) => Number(planet[column]) < Number(value));
+        } else {
+          planets = null;
+        }
+      });
+    }
+    return planets;
+  }
+
   renderTableHead() {
     const { data } = this.props;
 
@@ -33,31 +57,30 @@ class Table extends Component {
     );
   }
 
+
   renderTableBody() {
-    const { data, filterByName } = this.props;
+    const planets = this.applyFilters();
 
     return (
       <tbody>
-        {data
-          .filter((planet) => planet.name.includes(filterByName.name))
-          .map((planet) => (
-            <tr key={planet.name}>
-              <td>{planet.name}</td>
-              <td>{planet.rotation_period}</td>
-              <td>{planet.orbital_period}</td>
-              <td>{planet.diameter}</td>
-              <td>{planet.climate}</td>
-              <td>{planet.gravity}</td>
-              <td>{planet.terrain}</td>
-              <td>{planet.surface_water}</td>
-              <td>{planet.population}</td>
-              <td>{planet.films}</td>
-              <td>{planet.created}</td>
-              <td>{planet.edited}</td>
-              <td>{planet.url}</td>
-            </tr>
-          ),
-        )}
+        {planets.map((planet) => (
+          <tr key={planet.name}>
+            <td>{planet.name}</td>
+            <td>{planet.rotation_period}</td>
+            <td>{planet.orbital_period}</td>
+            <td>{planet.diameter}</td>
+            <td>{planet.climate}</td>
+            <td>{planet.gravity}</td>
+            <td>{planet.terrain}</td>
+            <td>{planet.surface_water}</td>
+            <td>{planet.population}</td>
+            <td>{planet.films}</td>
+            <td>{planet.created}</td>
+            <td>{planet.edited}</td>
+            <td>{planet.url}</td>
+          </tr>
+        ),
+      )}
       </tbody>
     );
   }
@@ -80,6 +103,7 @@ const mapStateToProps = (state) => ({
   data: state.planetReducer.data,
   isLoading: state.planetReducer.isLoading,
   filterByName: state.filters.filterByName,
+  filterByNumbers: state.filters.filterByNumericValues,
 });
 
 const mapDispatchToProps = {
@@ -93,6 +117,7 @@ Table.propTypes = {
   filterByName: PropTypes.shape({
     filterByName: PropTypes.object,
   }).isRequired,
+  filterByNumbers: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Table);

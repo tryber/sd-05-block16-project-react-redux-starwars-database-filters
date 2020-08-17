@@ -26,9 +26,21 @@ class Filters extends Component {
     );
   }
 
+  renderButton() {
+    const { column, comparison, value, filterNumbers } = this.props;
+
+    return (
+      <button
+        data-testid="button-filter" type="button"
+        onClick={() => filterNumbers(column, comparison, value)}
+      >
+        Find Planet
+      </button>
+    );
+  }
+
   renderValueInput() {
-    const { filterColumn, filterComparison, filterValue, filterNumbers,
-      column, comparison, value } = this.props;
+    const { filterColumn, filterComparison, filterValue } = this.props;
 
     return (
       <section>
@@ -53,12 +65,6 @@ class Filters extends Component {
           data-testid="value-filter" type="number"
           onChange={(event) => filterValue(event.target.value)}
         />
-        <button
-          data-testid="button-filter" type="button"
-          onClick={() => filterNumbers(column, comparison, value)}
-        >
-          Find Planet
-        </button>
       </section>
     );
   }
@@ -68,6 +74,7 @@ class Filters extends Component {
       <section>
         {this.renderNameInput()}
         {this.renderValueInput()}
+        {this.renderButton()}
       </section>
     );
   }
