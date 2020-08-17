@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import filterByName from '../actions/filterPlanets';
 
 class Filters extends Component {
-  FilterName() {
+  renderNameInput() {
     const { filterName } = this.props;
 
     return (
@@ -22,7 +22,7 @@ class Filters extends Component {
 
   render() {
     return (
-      <section>{this.FilterName()}</section>
+      <section>{this.renderNameInput()}</section>
     );
   }
 }

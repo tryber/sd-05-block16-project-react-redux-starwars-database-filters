@@ -79,7 +79,7 @@ class Table extends Component {
 const mapStateToProps = (state) => ({
   data: state.planetReducer.data,
   isLoading: state.planetReducer.isLoading,
-  filterByName: state.filterReducer.filters.filterByName,
+  filterByName: state.filters.filterByName,
 });
 
 const mapDispatchToProps = {
@@ -91,7 +91,7 @@ Table.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   planetsData: PropTypes.func.isRequired,
   filterByName: PropTypes.shape({
-    filters: PropTypes.object,
+    filterByName: PropTypes.object,
   }).isRequired,
 };
 

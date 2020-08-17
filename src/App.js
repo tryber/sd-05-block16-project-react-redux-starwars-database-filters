@@ -11,8 +11,10 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <Filters />
-          <Table />
         </header>
+        <section>
+          <Table />
+        </section>
       </div>
     );
   }
