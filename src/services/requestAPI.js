@@ -1,6 +1,6 @@
 // Requisição da API já com o endpoint solicitado: planets
 // Montagem estrutural: organização, reducer, store, components,
-// requisição à API - referência aula 16-4
+// Requisição à API - referência aula 16-4
 
 const APIURL = '"https://swapi-trybe.herokuapp.com/api/planets/"'
 
