@@ -26,32 +26,31 @@ class Table extends React.Component {
     this.filterNumbers = this.filterNumbers.bind(this);
   }
 
-  filterNumbers(numericFilters, filteredPlanets) {
-    if (numericFilters.length !== 0) {
+  filterNumbers(filteredPlanets) {
+    const { numericFilters } = this.props;
       for (let i = 0; i < numericFilters.length; i += 1) {
         if (numericFilters[i].comparison === 'maior que') {
           filteredPlanets = filteredPlanets.filter((planet) =>
             Number(planet[numericFilters[i].column]) > Number(numericFilters[i].value));
-        }
-        else if (numericFilters[i].comparison === 'menor que') {
+        } else if (numericFilters[i].comparison === 'menor que') {
           filteredPlanets = filteredPlanets.filter((planet) =>
             Number(planet[numericFilters[i].column]) < Number(numericFilters[i].value));
-        }
-        else if (numericFilters[i].comparison === 'igual a') {
+        } else if (numericFilters[i].comparison === 'igual a') {
           filteredPlanets = filteredPlanets.filter((planet) =>
             Number(planet[numericFilters[i].column]) === Number(numericFilters[i].value));
         }
       }
-    }
     return filteredPlanets;
   }
 
   body() {
-    const { planets, nameFilter, numericFilters } = this.props;
+    const { planets, nameFilter } = this.props;
     let filteredPlanets = planets;
-    if (nameFilter !== '') filteredPlanets = filteredPlanets.filter((planet) =>
-     planet.name.includes(nameFilter));
-    filteredPlanets = this.filterNumbers(numericFilters, filteredPlanets);
+    if (nameFilter !== '') {
+      filteredPlanets = filteredPlanets.filter((planet) =>
+      planet.name.includes(nameFilter));
+    }
+    filteredPlanets = this.filterNumbers(filteredPlanets);
     return (
       <tbody>
         {filteredPlanets.map((planet) =>

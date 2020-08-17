@@ -1,7 +1,7 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { numericSearch } from '../actions/numericSearch';
-import { connect } from 'react-redux';
 
 class NumericFilter extends React.Component {
   
@@ -32,7 +32,10 @@ class NumericFilter extends React.Component {
           <option value="igual a">igual a</option>
         </select>
         <input type="number" data-testid="value-filter" id="value-filter" />
-        <button onClick={(event) => this.handleClick(event)} type="submit" data-testid="button-filter">Filtrar</button>
+        <button 
+          onClick={(event) => this.handleClick(event)}
+          data-testid="button-filter"
+        >Filtrar</button>
       </div>
     );
   }
