@@ -6,8 +6,8 @@ import TableHead from './TableHead';
 
 class Table extends React.Component {
   componentDidMount() {
-    const { fetchPlanets } = this.props;
-    fetchPlanets();
+    const { getPlanets } = this.props;
+    getPlanets();
   }
 
   render() {
@@ -47,7 +47,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchPlanets: () => dispatch(fetchPlanets()),
+  getPlanets: () => dispatch(fetchPlanets()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Table);
@@ -55,5 +55,5 @@ export default connect(mapStateToProps, mapDispatchToProps)(Table);
 Table.propTypes = {
   data: PropTypes.arrayOf(PropTypes.object).isRequired, // trecho baseado no repo de varios colegas
   /* isFetching: PropTypes.bool.isRequired, */
-  fetchPlanets: PropTypes.func.isRequired,
+  getPlanets: PropTypes.func.isRequired,
 };
