@@ -29,6 +29,7 @@ class FilterNumber extends React.Component {
   }
 
   render() {
+    const { handleChange, handleClick } = this;
     const { fetching } = this.props;
     const columnOptions = ['', 'population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water'];
     const comparisonOptions = ['', 'maior que', 'menor que', 'igual a'];
@@ -37,23 +38,19 @@ class FilterNumber extends React.Component {
         {!fetching && (
           <div>
             <h4>Apply more filters:</h4>
-            <select name="column" data-testid="column-filter" onChange={this.handleChange}>
+            <select name="column" data-testid="column-filter" onChange={handleChange}>
               {columnOptions.map((c) => <option key={c} value={c}>{c}</option>)}
             </select>
-            <select
-              name="comparison"
-              data-testid="comparison-filter"
-              onChange={this.handleChange}
-            >
+            <select name="comparison" data-testid="comparison-filter" onChange={handleChange}>
               {comparisonOptions.map((c) => <option key={c} value={c}>{c}</option>)}
             </select>
             <input
               data-testid="value-filter"
               type="number"
               name="value"
-              onChange={this.handleChange}
+              onChange={handleChange}
             />
-            <button type="button" data-testid="button-filter" onClick={this.handleClick}>
+            <button type="button" data-testid="button-filter" onClick={handleClick}>
               Filtrar
             </button>
           </div>
