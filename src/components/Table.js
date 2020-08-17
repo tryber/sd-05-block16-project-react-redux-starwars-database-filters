@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import tableHead from './TableHead';
 import { thunkPlanet } from '../actions/index';
@@ -55,3 +56,9 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({ fetchPlanets: () => dispatch(thunkPlanet()) });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Table);
+
+Table.propTypes = {
+  planetData: PropTypes.arrayOf(PropTypes.object).isRequired,
+  isFetching: PropTypes.bool.isRequired,
+  fetchPlanets: PropTypes.func.isRequired,
+};
