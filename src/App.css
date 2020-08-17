@@ -49,6 +49,10 @@
   min-height: 40vh;
 }
 
+.red-button {
+  background-color: rgb(211, 47, 47);
+}
+
 .App-table {
   font-size: calc(1px + 2vmin);
 }

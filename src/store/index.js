@@ -8,7 +8,4 @@ const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)))
 
 export default store;
 
-// [Honestidade acadêmica]
-// Código para integrar o Redux Devtools
-// achado pronto no repositório oficial da extension:
-// https://github.com/zalmoxisus/redux-devtools-extension
+// [HA] compose in https://github.com/zalmoxisus/redux-devtools-extension

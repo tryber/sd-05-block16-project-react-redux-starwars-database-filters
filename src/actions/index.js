@@ -3,6 +3,7 @@ export const DATA = 'DATA';
 export const FAIL = 'FAIL';
 export const INPUT_NAME = 'INPUT_NAME';
 export const SELECT_NUMBER = 'SELECT_NUMBER';
+export const CANCEL_FILTER = 'CANCEL_FILTER';
 
 export function requestAction() {
   return {
@@ -55,5 +56,12 @@ export function filterNumberAction(column, comparison, value) {
     column,
     comparison,
     value,
+  };
+}
+
+export function cancelFilterAction(index) {
+  return {
+    type: CANCEL_FILTER,
+    index,
   };
 }

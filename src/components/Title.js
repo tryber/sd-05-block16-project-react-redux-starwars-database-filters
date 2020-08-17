@@ -6,7 +6,7 @@ class Title extends React.Component {
       <div className="title">
         <h1> Star Wars </h1>
         {/* <h4> Datatable with Filters </h4> */}
-        <h4> Planet Search Engine </h4>
+        <h4> Planets Search Engine </h4>
       </div>
     );
   }

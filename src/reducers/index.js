@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { REQUEST, DATA, FAIL, INPUT_NAME, SELECT_NUMBER } from '../actions';
+import { REQUEST, DATA, FAIL, INPUT_NAME, SELECT_NUMBER, CANCEL_FILTER } from '../actions';
 
 const initialState = {
   fetching: false,
@@ -57,10 +57,20 @@ function filters(state = initialStateInput, action) {
           },
         ],
       };
+    case CANCEL_FILTER:
+      return {
+        ...state,
+        filterByNumericValues : [ 
+        ...state.filterByNumericValues.slice(0, action.index),
+        ...state.filterByNumericValues.slice(action.index + 1, state.filterByNumericValues.length),
+        ]
+      }
     default:
       return state;
   }
 }
+
+// [HA]{R5} - Ajuda. (slice, Paulo Dandrea, PR https://github.com/tryber/sd-05-block16-project-react-redux-starwars-database-filters/pull/17/files).
 
 const rootReducer = combineReducers({ planetReducer, filters });
 
