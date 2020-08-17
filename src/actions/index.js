@@ -5,9 +5,10 @@ export const REQUEST_OK = 'REQUEST_OK';
 export const REQUEST_FAILED = 'REQUEST_FAILED';
 export const REQUEST_LOADING = 'REQUEST_LOADING';
 
-export const requestSuccess = () => ({
+export const requestSuccess = (data) => ({
   type: REQUEST_OK,
   loading: false,
+  data,
 });
 
 export const requestFail = (error) => ({
