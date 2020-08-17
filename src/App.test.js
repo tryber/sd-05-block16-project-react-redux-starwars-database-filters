@@ -17,6 +17,7 @@ const getStore = (initialState) => {
 
 const renderApp = (initialState) => {
   const store = getStore(initialState);
+  console.log(store);
 
   return {
     ...render(
