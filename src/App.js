@@ -1,16 +1,35 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import './App.css';
+import { fetchAPI } from './actions';
 
-import Table from './components/Table';
+class App extends React.Component {
+  componentDidMount() {
+    this.props.fetchAPI();
+  }
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <Table />
-      </header>
-    </div>
-  );
+  render() {
+    const { loading, data } = this.props;
+    if (loading) return <div>Loading...</div>;
+    return (
+      <div className="App">
+        <header className="App-header">
+          {/* <Table /> */}
+          <p>Teste</p>
+          <p>{data[0].name}</p>
+        </header>
+      </div>
+    );
+  }
 }
 
-export default App;
+const mapStateToProps = (state) => ({
+  loading: state.loading,
+  data: state.data,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  fetchAPI: () => dispatch(fetchAPI()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

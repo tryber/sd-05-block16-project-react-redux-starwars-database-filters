@@ -1,5 +1,19 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
-const Table = () => <div>StarWars Datatable with Filters</div>;
+class Table extends React.Component {
+  render() {
+    const { data } = this.props;
+    return (
+      <div>
+        <h2>StarWars Datatable with Filters</h2>
+      </div>
+    );
+  }
+}
 
-export default Table;
+const mapStateToProps = (state) => ({
+  data: state.data,
+});
+
+export default connect(mapStateToProps)(Table);
