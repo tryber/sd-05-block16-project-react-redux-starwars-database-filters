@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import tableHead from './TableHead';
+import TableHead from './TableHead';
 import { thunkPlanet } from '../actions/index';
 
 class Table extends React.Component {
@@ -16,6 +16,7 @@ class Table extends React.Component {
     const { planetData } = this.props;
     return planetData.map((data) => (
       <tr key={data.name}>
+        <td>{data.name}</td>
         <td>{data.rotation_period}</td>
         <td>{data.orbital_period}</td>
         <td>{data.diameter}</td>
@@ -24,7 +25,6 @@ class Table extends React.Component {
         <td>{data.terrain}</td>
         <td>{data.surface_water}</td>
         <td>{data.population}</td>
-        <td>{data.residents}</td>
         <td>{data.films}</td>
         <td>{data.created}</td>
         <td>{data.edited}</td>
@@ -35,11 +35,10 @@ class Table extends React.Component {
 
   render() {
     const { planetData, isFetching } = this.props;
-    console.log(planetData);
     if (!isFetching && planetData.length > 0) {
       return (
         <table>
-          <tableHead />
+          <TableHead />
           <tbody>{this.tableRender()}</tbody>
         </table>
       );

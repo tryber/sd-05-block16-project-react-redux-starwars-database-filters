@@ -17,8 +17,6 @@ export const searchSuccess = (planet) => ({
 export function thunkPlanet() {
   return (dispatch) => {
     dispatch(searchPlanet());
-    return planetsAPI().then(({ results }) => {
-      return dispatch(searchSuccess(results));
-    });
+    return planetsAPI().then(({ results }) => dispatch(searchSuccess(results)));
   };
 }

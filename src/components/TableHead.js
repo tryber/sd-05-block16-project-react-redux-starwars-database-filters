@@ -1,6 +1,6 @@
 import React from 'react';
 
-const tableHead = () => (
+const TableHead = () => (
   <thead>
     <tr>
       <th>Name</th>
@@ -12,7 +12,6 @@ const tableHead = () => (
       <th>Terrain</th>
       <th>Surface Water</th>
       <th>Population</th>
-      <th>Residents</th>
       <th>Film</th>
       <th>Created</th>
       <th>Edited</th>
@@ -21,6 +20,6 @@ const tableHead = () => (
   </thead>
 );
 
-export default tableHead;
+export default TableHead;
 
 // referencia de tabelas em html5 https://flatschart.com/html5/tabelas.html
