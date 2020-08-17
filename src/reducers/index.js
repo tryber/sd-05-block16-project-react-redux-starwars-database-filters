@@ -8,6 +8,7 @@ const SUBMIT_FILTER = 'SUBMIT_FILTER';
 const isRequesting = () => ({
   type: IS_REQUESTING,
 });
+const DELETE_ONE_FILTER = 'DELETE_ONE_FILTER';
 
 const dataActionCreator = (json) => ({
   type: ADD_DATA,
@@ -27,6 +28,11 @@ export const inputText = (input) => ({
 export const submitFilter = (filtroNumerico) => ({
   type: SUBMIT_FILTER,
   filtroNumerico,
+});
+
+export const deleteOneFilter = (indexDoFiltro) => ({
+  type: DELETE_ONE_FILTER,
+  indexDoFiltro,
 });
 
 const api = 'https://swapi-trybe.herokuapp.com/api/planets/';
@@ -49,7 +55,6 @@ const initialStateFilter = {
     name: '',
   },
   filterByNumericValues: [],
-
 };
 
 function filters(state = initialStateFilter, action) {
@@ -67,7 +72,17 @@ function filters(state = initialStateFilter, action) {
           action.filtroNumerico,
         ],
       };
-
+    case DELETE_ONE_FILTER:
+      return {
+        ...state,
+        filterByNumericValues: [
+          ...state.filterByNumericValues.slice(0, action.indexDoFiltro),
+          ...state.filterByNumericValues.slice(
+            action.indexDoFiltro + 1,
+            state.filterByNumericValues.length,
+          ),
+        ],
+      };
     default:
       return state;
   }

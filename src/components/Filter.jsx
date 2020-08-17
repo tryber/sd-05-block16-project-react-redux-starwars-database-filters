@@ -5,6 +5,7 @@ import { inputText, submitFilter } from '../reducers';
 import FilterInput from './FilterInput';
 import BtnToSubmit from './BtnToSubmit';
 import SelectComparison from './SelectComparison';
+import FiltrosAtivos from './FiltrosAtivos';
 
 const filtrosColuna = ['population', 'orbital_period', 'diameter',
   'rotation_period',
@@ -32,6 +33,7 @@ class Filter extends Component {
 
     return (
       <div>
+        <FiltrosAtivos />
         <FilterInput change={(e) => inputTextprops(e.target.value)} />
         <form>
           <select
