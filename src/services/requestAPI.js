@@ -2,7 +2,7 @@
 // Montagem estrutural: organização, reducer, store, components,
 // Requisição à API - referência aula 16-4
 
-const APIURL = "https://swapi-trybe.herokuapp.com/api/planets/";
+const APIURL = 'https://swapi-trybe.herokuapp.com/api/planets/';
 
 const planetAPI = () => (
   fetch(APIURL)

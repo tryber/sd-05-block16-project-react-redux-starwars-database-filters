@@ -13,7 +13,7 @@ export const requestSuccess = () => ({
 export const requestFail = (error) => ({
   type: REQUEST_FAILED,
   loading: false,
-  error
+  error,
 });
 
 export const requestLoading = () => ({
