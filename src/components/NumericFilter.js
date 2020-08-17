@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { numericSearch } from '../actions/numericSearch';
 
 class NumericFilter extends React.Component {
-  
+
   handleClick(event) {
     event.preventDefault();
     // referência: https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_select_value2
@@ -13,7 +13,7 @@ class NumericFilter extends React.Component {
     const valueFilter = document.getElementById('value-filter').value;
     this.props.numericSearch(columnFilter, comparisonFilter, valueFilter);
   }
-  
+
   render() {
     return (
       <div>
@@ -32,7 +32,7 @@ class NumericFilter extends React.Component {
           <option value="igual a">igual a</option>
         </select>
         <input type="number" data-testid="value-filter" id="value-filter" />
-        <button 
+        <button
           onClick={(event) => this.handleClick(event)}
           data-testid="button-filter"
         >Filtrar</button>
