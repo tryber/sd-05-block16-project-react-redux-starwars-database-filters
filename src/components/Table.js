@@ -5,15 +5,16 @@ import TBody from './TBody';
 
 class Table extends React.Component {
   render() {
-    const { data } = this.props;
+    const { data, loading } = this.props;
+    if (loading) return <h2>StarWars Datatable with Filters</h2>;
     return (
       <div>
         <h2>StarWars Datatable with Filters</h2>
         <table>
           <thead>
             <tr>
-              {Object.keys(data[0]).map((key) => (
-                key === 'residents' ? false : <th>{key}</th>))}
+              {Object.keys(data[0]).map((title) => (
+                title === 'residents' ? false : <th key={title}>{title}</th>))}
             </tr>
           </thead>
           <TBody />
@@ -24,11 +25,13 @@ class Table extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
+  loading: state.fetchReducer.loading,
   data: state.fetchReducer.data,
 });
 
 export default connect(mapStateToProps)(Table);
 
 Table.propTypes = {
+  loading: propTypes.bool.isRequired,
   data: propTypes.arrayOf(propTypes.Object).isRequired,
 };

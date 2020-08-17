@@ -1,3 +1,4 @@
+import { combineReducers } from 'redux';
 import { SEARCH_BEGIN, SEARCH_SUCCESS, SEARCH_FAILURE } from '../actions';
 
 const initialState = {
@@ -7,6 +8,7 @@ const initialState = {
       name: '',
     },
   },
+  data: [],
 };
 
 function fetchReducer(state = initialState, action) {
@@ -33,4 +35,6 @@ function fetchReducer(state = initialState, action) {
   }
 }
 
-export default fetchReducer;
+const rootReducer = combineReducers({ fetchReducer });
+
+export default rootReducer;

@@ -11,8 +11,8 @@ class App extends React.Component {
   }
 
   render() {
-    const { loading } = this.props;
-    if (loading) return <div>Loading...</div>;
+    // const { loading } = this.props;
+    // if (loading) return <div>Loading...</div>;
     return (
       <div className="App">
         <Table />
@@ -21,10 +21,10 @@ class App extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  loading: state.fetchReducer.loading,
-  data: state.fetchReducer.data,
-});
+// const mapStateToProps = (state) => ({
+//   loading: state.fetchReducer.loading,
+//   data: state.fetchReducer.data,
+// });
 
 const mapDispatchToProps = (dispatch) => ({
   fetchAPI: () => dispatch(fetchAPI()),
@@ -35,4 +35,4 @@ App.propTypes = {
   fetchAPI: propTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(null, mapDispatchToProps)(App);
