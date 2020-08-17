@@ -1,7 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import propTypes from 'prop-types';
 import './App.css';
 import { fetchAPI } from './actions';
+import Table from './components/Table';
 
 class App extends React.Component {
   componentDidMount() {
@@ -9,27 +11,28 @@ class App extends React.Component {
   }
 
   render() {
-    const { loading, data } = this.props;
+    const { loading } = this.props;
     if (loading) return <div>Loading...</div>;
     return (
       <div className="App">
-        <header className="App-header">
-          {/* <Table /> */}
-          <p>Teste</p>
-          <p>{data[0].name}</p>
-        </header>
+        <Table />
       </div>
     );
   }
 }
 
 const mapStateToProps = (state) => ({
-  loading: state.loading,
-  data: state.data,
+  loading: state.fetchReducer.loading,
+  data: state.fetchReducer.data,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   fetchAPI: () => dispatch(fetchAPI()),
 });
+
+App.propTypes = {
+  loading: propTypes.bool.isRequired,
+  fetchAPI: propTypes.func.isRequired,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

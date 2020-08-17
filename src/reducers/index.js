@@ -9,7 +9,7 @@ const initialState = {
   },
 };
 
-function emptyReducer(state = initialState, action) {
+function fetchReducer(state = initialState, action) {
   switch (action.type) {
     case SEARCH_BEGIN:
       return {
@@ -33,4 +33,4 @@ function emptyReducer(state = initialState, action) {
   }
 }
 
-export default emptyReducer;
+export default fetchReducer;

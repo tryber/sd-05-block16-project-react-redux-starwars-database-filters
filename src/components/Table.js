@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import propTypes from 'prop-types';
 
 class Table extends React.Component {
   render() {
@@ -7,13 +8,25 @@ class Table extends React.Component {
     return (
       <div>
         <h2>StarWars Datatable with Filters</h2>
+        <table>
+          <thead>
+            <tr>
+              {Object.keys(data[0]).map((key) => (
+                key === 'residents' ? false : <th>{key}</th>))}
+            </tr>
+          </thead>
+        </table>
       </div>
     );
   }
 }
 
 const mapStateToProps = (state) => ({
-  data: state.data,
+  data: state.fetchReducer.data,
 });
 
 export default connect(mapStateToProps)(Table);
+
+Table.propTypes = {
+  data: propTypes.arrayOf(propTypes.Object).isRequired,
+};
