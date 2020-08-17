@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { filterByName } from '../actions';
+import Select from './Select';
 
 class SearchBar extends React.Component {
   render() {
@@ -13,6 +14,7 @@ class SearchBar extends React.Component {
           data-testid="name-filter"
           onChange={(event) => nameFilter(event.target.value)}
         />
+        <Select />
       </div>
     );
   }
