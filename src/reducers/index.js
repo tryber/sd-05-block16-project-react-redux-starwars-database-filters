@@ -36,7 +36,6 @@ const initialStateInput = {
 function filters(state = initialStateInput, action) {
   switch (action.type) {
     case INPUT_NAME:
-      // console.log(action.input);
       return {
         ...state,
         filterByName: {
@@ -45,7 +44,6 @@ function filters(state = initialStateInput, action) {
         },
       };
     case SELECT_NUMBER:
-      // console.log('received in reducer: ' + action.column, action.comparison, action.value);
       return {
         ...state,
         filterByNumericValues: [
@@ -60,11 +58,11 @@ function filters(state = initialStateInput, action) {
     case CANCEL_FILTER:
       return {
         ...state,
-        filterByNumericValues : [ 
-        ...state.filterByNumericValues.slice(0, action.index),
-        ...state.filterByNumericValues.slice(action.index + 1, state.filterByNumericValues.length),
-        ]
-      }
+        filterByNumericValues: [
+          ...state.filterByNumericValues.slice(0, action.index),
+          ...state.filterByNumericValues.slice(action.index + 1, state.filterByNumericValues.length),
+        ],
+      };
     default:
       return state;
   }

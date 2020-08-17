@@ -10,10 +10,10 @@ class FilterList extends React.Component {
     return (
       <div className="filters-list">
         <h4> Current filters: </h4>
-        {filterNumber.map((filter, index) => (
+        {filterNumber.map((filter, i) => (
           <p data-testid="filter" key={filter.column}>
             <span>
-              <button className="red-button" name={filter.comparison} onClick={() => cancelFilter(index)}>
+              <button className="red-button" onClick={() => cancelFilter(i)}>
                 X
               </button>
               {`${filter.column} ${filter.comparison} ${filter.value}`}
