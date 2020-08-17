@@ -38,6 +38,7 @@ class Table extends React.Component {
   }
   renderTableData() {
     const array = this.manyFilter();
+    console.log(array);
 
     return (array.map((item) => (
       <tr key={item.name}>
@@ -50,7 +51,7 @@ class Table extends React.Component {
         <td>{item.terrain}</td>
         <td>{item.surface_water}</td>
         <td>{item.population}</td>
-        <td>{item.residents}</td>
+        <td>{item.residents.length}</td>
         <td>{item.films}</td>
         <td>{item.created}</td>
         <td>{item.edited}</td>

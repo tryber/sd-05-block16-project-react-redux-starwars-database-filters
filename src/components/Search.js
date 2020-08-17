@@ -7,7 +7,7 @@ class Search extends React.Component {
   render() {
     const { inputValue, onChange } = this.props;
     return (
-      <div>
+      <div className="search">
         Procurar:
         <input type="text" value={inputValue} onChange={onChange} data-testid="name-filter" />
       </div>

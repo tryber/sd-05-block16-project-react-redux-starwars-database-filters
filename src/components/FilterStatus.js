@@ -7,11 +7,11 @@ class FilterStatus extends React.Component {
   render() {
     const { arrayFiltros, deleteItem } = this.props;
     return (
-      <div>
-        <h2>Filtros:</h2>
+      <div className="filtros">
+        {(arrayFiltros.length > 0) ? <h2>Filtros:</h2> : null}
         {arrayFiltros.map(({ column, comparison, value }, index) =>
-          (<p key={column} data-testid="filter">{`${column} ${comparison} ${value}`}
-            <button onClick={() => deleteItem(index)}>X</button></p>))}
+          (<span key={column} data-testid="filter">{`${column} ${comparison} ${value}`}
+            <button onClick={() => deleteItem(index)}>X</button></span>))}
       </div>
     );
   }

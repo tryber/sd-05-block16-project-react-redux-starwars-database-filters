@@ -8,9 +8,11 @@ import FilterStatus from './components/FilterStatus';
 function App() {
   return (
     <div className="App">
-      <Search />
-      <FilterNumeric />
-      <FilterStatus />
+      <div className="topo">
+        <Search />
+        <FilterNumeric />
+        <FilterStatus />
+      </div>
       <Table />
     </div>
   );
