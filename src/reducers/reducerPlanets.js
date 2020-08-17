@@ -1,29 +1,42 @@
-import { REQUEST_API, REQUEST_API_SUCESS, REQUEST_API_FAILED } from '../actions/actionAPI';
+import {
+  RECEIVE_PLANETS,
+  RECEIVE_PLANETS_SUCCESS,
+  RECEIVE_PLANETS_FAILED,
+} from '../actions';
 
 const INITIAL_STATE = {
+  erro: false,
+  planets: [],
   isFetching: false,
+  filters: {
+    filterByName: {
+      name: '',
+    },
+  },
 };
 
-export default function planets(state = INITIAL_STATE, action) {
+const reducerPlanets = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case REQUEST_API:
+    case RECEIVE_PLANETS:
       return {
         ...state,
-        isFetching: action.payload,
+        isFetching: true,
       };
-    case REQUEST_API_SUCESS:
+    case RECEIVE_PLANETS_SUCCESS:
       return {
         ...state,
-        results: action.payload,
+        planets: action.payload,
         isFetching: false,
       };
-    case REQUEST_API_FAILED:
+    case RECEIVE_PLANETS_FAILED:
       return {
         ...state,
-        results: action.payload,
+        planets: action.payload,
         isFetching: false,
       };
     default:
       return state;
   }
 };
+
+export default reducerPlanets;

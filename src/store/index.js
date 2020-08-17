@@ -1,12 +1,14 @@
-import { createStore, applyMiddleware, combineReducers } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
-import reducerPlanets from '../reducers/reducerPlanets';
+import rootReducer from '../reducers';
 
-const rootReducer = combineReducers({
-  reducerPlanets,
-});
 
 // Usando applyMiddleware(thunk), é um modo de integrar thunk na aplicação redux;
-const store = createStore(rootReducer, applyMiddleware(thunk));
+const store = createStore(
+  rootReducer,
+  compose(
+    applyMiddleware(thunk),
+    window.devToolsExtension ? window.devToolsExtension() : (f) => f)
+);
 
 export default store;

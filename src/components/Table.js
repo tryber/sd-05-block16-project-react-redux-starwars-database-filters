@@ -1,5 +1,13 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-const Table = () => <div>StarWars Datatable with Filters</div>;
+class Table extends Component {
 
-export default Table;
+  render() {
+    return (
+      <div>StarWars Datatable with Filters</div>
+    );
+  }
+}
+
+export default connect(null)(Table);

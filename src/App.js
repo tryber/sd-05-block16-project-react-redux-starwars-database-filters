@@ -1,21 +1,32 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './App.css';
 import { connect } from 'react-redux';
+import Table from './components/Table';
+import { resolverPlanets } from './actions';
 
-import Home from './pages/Home';
+class App extends Component {
 
-const App = (props) => {
-  const { planets } = props;
-  console.log(planets);
-  return (
-    <div className="App">
-      <Home />
-    </div>
-  );
+  componentDidMount() {
+    this.props.getPlanets();
+  }
+
+  render() {
+    const { planetasDoReducer } = this.props;
+    console.log(planetasDoReducer);
+    return (
+      <div>
+        <Table />
+      </div>
+    );
+  }
 }
 
 const mapStateToProps = (state) => ({
-  planets: state.reducerPlanets,
+  planetasDoReducer: state.planetsReducer,
 });
 
-export default connect(mapStateToProps)(App);
+const mapDispatchToProps = (dispatch) => ({
+  getPlanets: () => dispatch(resolverPlanets()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
