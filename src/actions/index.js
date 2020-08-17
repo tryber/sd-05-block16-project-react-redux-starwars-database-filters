@@ -1,4 +1,4 @@
-import { planetAPI } from '../services/api';
+import planetAPI from '../services/api';
 
 export const REQUEST_API_DATA = 'REQUEST_API_DATA';
 export const RECEIVE_API_DATA_SUCCESS = 'RECEIVE_API_DATA_SUCCESS';
