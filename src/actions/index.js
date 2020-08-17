@@ -8,7 +8,7 @@ export const REQUEST_LOADING = 'REQUEST_LOADING';
 export const requestSuccess = (data) => ({
   type: REQUEST_OK,
   loading: false,
-  data,
+  data: data.results,
 });
 
 export const requestFail = (error) => ({
@@ -22,13 +22,13 @@ export const requestLoading = () => ({
   loading: true,
 });
 
-export function thunkStarWars(planet) { // CONFERIR SE PARAMETRO ESTA CORRETO
+export function thunkStarWars() {
   return (dispatch) => {
-    dispatch(requestLoading(planet));
-    return planetAPI(planet)
+    dispatch(requestLoading());
+    return planetAPI()
       .then(
         (results) => dispatch(requestSuccess(results)),
-        (error) => dispatch(requestFail(error.message)),
+        (error) => dispatch(requestFail(error)),
       );
   };
 }
