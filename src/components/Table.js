@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import propTypes from 'prop-types';
+import TBody from './TBody';
 
 class Table extends React.Component {
   render() {
@@ -15,25 +16,7 @@ class Table extends React.Component {
                 key === 'residents' ? false : <th>{key}</th>))}
             </tr>
           </thead>
-          <tbody>
-            {data.map((result) => (
-              <tr>
-                <td>{result.name}</td>
-                <td>{result.rotation_period}</td>
-                <td>{result.orbital_period}</td>
-                <td>{result.diameter}</td>
-                <td>{result.climate}</td>
-                <td>{result.gravity}</td>
-                <td>{result.terrain}</td>
-                <td>{result.surface_water}</td>
-                <td>{result.population}</td>
-                <td>{result.films}</td>
-                <td>{result.created}</td>
-                <td>{result.edited}</td>
-                <td>{result.url}</td>
-              </tr>
-            ))}
-          </tbody>
+          <TBody />
         </table>
       </div>
     );
