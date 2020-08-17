@@ -13,19 +13,67 @@
   }
 }
 
+@font-face {
+  font-family: StarWarsFont;
+  src: url(./images/Starjedi.ttf);
+}
+
+.title {
+  font-family: StarWarsFont;
+}
+
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  background-color: #282c34;
   color: white;
+  display: flex;
+  font-size: calc(10px + 2vmin);
+  flex-direction: column;
+  justify-content: center;
+  min-height: 20vh;
 }
 
 .App-link {
   color: #61dafb;
+}
+
+.App-filters {
+  background-image: url(./images/star-wars-banner-art.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin-bottom: 5vw;
+  min-height: 40vh;
+}
+
+.red-button {
+  background-color: rgb(211, 47, 47);
+}
+
+.App-table {
+  font-size: calc(1px + 2vmin);
+}
+
+.planet-image {
+  background-image: url(./images/starwars-universe.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-top: 5vw;
+  min-height: 40vh;
+}
+
+.App-footer {
+  align-items: center;
+  background-color: #282c34;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  font-size: calc(0.5px + 2vmin);
+  justify-content: center;
+  min-height: 10vh;
 }
 
 @keyframes App-logo-spin {

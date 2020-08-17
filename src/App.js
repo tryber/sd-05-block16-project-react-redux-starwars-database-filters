@@ -1,24 +1,30 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Title from './components/Title';
+import FilterName from './components/FilterName';
+import FilterNumber from './components/FilterNumber';
+import FilterList from './components/FilterList';
+import Table from './components/Table';
+import Footer from './components/Footer';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <Title />
       </header>
+      <section className="App-filters" style={{ flex: 1, flexDirection: 'row' }}>
+        <FilterName />
+        <FilterNumber />
+        <FilterList />
+      </section>
+      <section className="App-section">
+        <Table />
+      </section>
+      <section className="planet-image" />
+      <footer className="App-footer">
+        <Footer />
+      </footer>
     </div>
   );
 }
