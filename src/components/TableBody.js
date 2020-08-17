@@ -1,28 +1,34 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 class TableBody extends Component {
   render() {
+    const { data } = this.props;
     return (
-      <tbody>
-        <tr>
-          <td>Test 1</td>
-          <td>Test 2</td>
-          <td>Test 3</td>
-          <td>Test 4</td>
-          <td>Test 5</td>
-          <td>Test 6</td>
-          <td>Test 7</td>
-          <td>Test 8</td>
-          <td>Test 9</td>
-          <td>Test 10</td>
-          <td>Test 11</td>
-          <td>Test 12</td>
-          <td>Test 13</td>
-          <td>Test 14</td>
-        </tr>
-      </tbody>
-    );
+      data.map((planet) => (
+        <tbody key={planet.name}>
+          <tr>
+            <td>{planet.name}</td>
+            <td>{planet.rotation_period}</td>
+            <td>{planet.orbital_period}</td>
+            <td>{planet.diameter}</td>
+            <td>{planet.climate}</td>
+            <td>{planet.gravity}</td>
+            <td>{planet.terrain}</td>
+            <td>{planet.surface_water}</td>
+            <td>{planet.population}</td>
+            <td>{planet.films}</td>
+            <td>{planet.created}</td>
+            <td>{planet.edited}</td>
+            <td>{planet.url}</td>
+          </tr>
+        </tbody>
+      )));
   }
 }
 
-export default TableBody;
+const mapStateToProps = (state) => ({
+  data: state.requestReducer.data,
+});
+
+export default connect(mapStateToProps)(TableBody);
