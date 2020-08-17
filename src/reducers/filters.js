@@ -15,7 +15,7 @@ const INITIAL_STATE = {
   filterByName: {
     name: '',
   },
-  filterByNumericValues: []
+  filterByNumericValues: [],
   //  {
   //    column: 'population',
   //    comparison: 'maior que',

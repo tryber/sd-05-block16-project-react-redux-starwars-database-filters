@@ -38,7 +38,7 @@ class Dropfilters extends Component {
   // }
 
   render() {
-    // const { handleSubmit } = this.props;
+    const tsc = this.state.comparison;
     return (
       <form>
         <label htmlFor="column"> Selecione a coluna:
@@ -52,20 +52,19 @@ class Dropfilters extends Component {
           </select>
         </label>
         <label htmlFor="comparison"> Selecione a comparação:
-          <select data-testid="comparison-filter" value={this.state.comparison} onChange={this.compChange}>
+          <select data-testid="comparison-filter" value={tsc} onChange={this.compChange}>
             <option>selecione:</option>
             <option value="Maior que">Maior que</option>
             <option value="Menor que">Menor que</option>
             <option value="Igual a">Igual a</option>
           </select>
         </label>
-        <input type="number" data-testid="value-filter" placeholder="insira o valor" onChange={this.vChange} />
-        <button 
-          type="button" 
+        <input type="number" data-testid="value-filter" onChange={this.vChange} />
+        <button
+          type="button"
           data-testid="button-filter"
-          onClick={ () => {this.props.handleSubmit(this.state)} }
-        >Filtrar</button>
-      </form>
+          onClick={() => { this.props.handleSubmit(this.state) }}
+        >Filtrar</button></form>
     );
   }
 }
