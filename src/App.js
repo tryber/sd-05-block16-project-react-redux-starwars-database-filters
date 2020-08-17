@@ -5,6 +5,7 @@ import './App.css';
 import fetchData from './actions';
 import Table from './components/Table';
 import NameFilter from './components/NameFilter';
+import NumericFilter from './components/NumericFilter';
 
 class App extends React.Component {
   componentDidMount() {
@@ -15,6 +16,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <NameFilter />
+        <NumericFilter />
         <Table />
       </div>
     );

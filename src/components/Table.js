@@ -26,8 +26,23 @@ class Table extends React.Component {
   }
 
   body() {
-    const { planets, nameFilter } = this.props;
-    const filteredPlanets = planets.filter((planet) => planet.name.includes(nameFilter));
+    const { planets, nameFilter, numericFilters } = this.props;
+    let filteredPlanets = planets;
+    if (nameFilter !== '') filteredPlanets = filteredPlanets.filter((planet) => planet.name.includes(nameFilter));
+    if (numericFilters.length !== 0) {
+      for (let i = 0; i < numericFilters.length; i += 1) {
+        if(numericFilters[i].comparison === 'maior que') {
+          filteredPlanets = filteredPlanets.filter(planet => Number(planet[numericFilters[i].column]) > Number(numericFilters[i].value));
+        }
+        else if(numericFilters[i].comparison === 'menor que') {
+          filteredPlanets = filteredPlanets.filter(planet => Number(planet[numericFilters[i].column]) < Number(numericFilters[i].value));
+        }
+        else if(numericFilters[i].comparison === 'igual a'){
+          filteredPlanets = filteredPlanets.filter(planet => Number(planet[numericFilters[i].column]) === Number(numericFilters[i].value));
+        };
+      };
+    };
+
     return (
       <tbody>
         {filteredPlanets.map((planet) =>
@@ -70,6 +85,7 @@ const mapStateToProps = (state) => ({
   loading: state.fetchReducer.loading,
   planets: state.fetchReducer.data,
   nameFilter: state.filters.filterByName.name,
+  numericFilters: state.filters.filterByNumericValues,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -82,4 +98,5 @@ Table.propTypes = {
   loading: PropTypes.bool.isRequired,
   planets: PropTypes.arrayOf(PropTypes.object).isRequired,
   nameFilter: PropTypes.string.isRequired,
+  numericFilters: PropTypes.array.isRequired,
 };

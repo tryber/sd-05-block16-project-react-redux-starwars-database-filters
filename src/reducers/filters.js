@@ -1,11 +1,11 @@
 import { NAME_SEARCH } from '../actions/nameSearch';
+import { NUMERIC_SEARCH } from '../actions/numericSearch';
 
 const INITIAL_STATE = {
   filterByName: {
     name: '',
-    // catchoro: '',
   },
-  // teste: '',
+  filterByNumericValues: [],
 };
 
 const filters = (state = INITIAL_STATE, action) => {
@@ -17,6 +17,18 @@ const filters = (state = INITIAL_STATE, action) => {
           ...state.filterByName,
           name: action.name,
         },
+      });
+    case NUMERIC_SEARCH:
+      return ({
+        ...state,
+        filterByNumericValues: [
+          ...state.filterByNumericValues,
+          {
+            column: action.column,
+            comparison: action.comparison,
+            value: action.value,
+          }
+        ]
       });
     default:
       return state;
