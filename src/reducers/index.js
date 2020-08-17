@@ -25,11 +25,11 @@ const initialStateInput = {
     name: '',
   },
   filterByNumericValues: [
-    {
-      column: '',
-      comparison: '',
-      value: '',
-    },
+    // {
+    //   column: '',
+    //   comparison: '',
+    //   value: '',
+    // },
   ],
 };
 
