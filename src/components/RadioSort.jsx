@@ -12,18 +12,9 @@ class RadioSort extends Component {
           name="filterByOrder"
           type="radio"
           value={value}
-          onChange={(e) => console.log(e.target.value)}
+          onChange={() => console.log('RadioSort')}
         />
         <label htmlFor={value}>{value}</label>
-        {/* <input
-          data-testid="column-sort-input"
-          id="dsc"
-          name="filterByOrder"
-          type="radio"
-          value="dsc"
-          onChange={(e) => console.log(e.target.value)}
-        />
-        <label htmlFor="dsc">DSC</label> */}
       </div>
     );
   }

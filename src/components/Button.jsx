@@ -9,7 +9,7 @@ export default class RadioSort extends Component {
         data-testid={data}
         name={data}
         type="button"
-        onClick={(e) => console.log(e.target)}
+        onClick={() => console.log('Button')}
       >
         Filtrar
       </button>

@@ -7,7 +7,7 @@ class SelectColumn extends Component {
     return (
       <div className="select_column-filter">
         <label htmlFor="select" />
-        <select data-testid="column-filter" name="select" onChange={(e) => console.log(e)}>
+        <select data-testid="column-filter" name="select" onChange={() => console.log('SelectColumn')}>
           {options.map((option) => (
             <option key={option} value={option}>{option}</option>))}
         </select>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import propTypes from 'prop-types';
+import propTypes, { object } from 'prop-types';
 import { filterByNumericValues, filterByName } from '../reducers/createActions';
 import SelectColumn from './SelectColumn';
 import SelectOrder from './SelectOrder';
@@ -28,7 +28,7 @@ const InputComparar = (console) => (
       data-testid="value-filter"
       name="filterByNumericValues_1"
       type="number"
-      onChange={(e) => console.log(e.target.value)}
+      onChange={() => console.log('Table')}
     />
   </label>
 );
@@ -101,11 +101,17 @@ const mapDispatchToProps = (dispatch) => ({
 
 export default connect(mapStateToProps, mapDispatchToProps)(Table);
 
+Table.defaultProps = {
+  data: undefined,
+};
+
 Table.propTypes = {
-  data: propTypes.arrayOf.isRequired,
+  // data: propTypes.array.isRequired,
+  data: propTypes.arrayOf(object),
   filter: propTypes.func.isRequired,
   isFetching: propTypes.bool.isRequired,
-  planets: propTypes.arrayOf.isRequired,
+  planets: propTypes.arrayOf(object).isRequired,
 };
 
 // validacao de propTypes seguindo exemplos do conteudo do course.
+// duvidas tiradas na validacao da chave 'data:' junto ao PR no repositorio do Felipe Vieira

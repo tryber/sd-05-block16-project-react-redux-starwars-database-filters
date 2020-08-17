@@ -12,7 +12,7 @@ class SelectColumn extends Component {
         <select
           data-testid="column-sort"
           name="order"
-          onChange={(e) => console.log(e.target.value)}
+          onChange={() => console.log('SelectOrder')}
         >
           {planet.map((attribute) => (
             <option key={attribute} value={attribute}>{attribute}</option>))}

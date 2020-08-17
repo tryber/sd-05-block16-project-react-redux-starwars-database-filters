@@ -7,7 +7,7 @@ class SelectComparison extends Component {
     return (
       <div className="select_comparison-filter">
         <label htmlFor="select" />
-        <select data-testid="comparison-filter" name="select" onChange={(e) => console.log(e)}>
+        <select data-testid="comparison-filter" name="select" onChange={() => console.log('SelectComparison')}>
           {options.map((option) => (
             <option key={option} value={option}>{option}</option>))}
         </select>

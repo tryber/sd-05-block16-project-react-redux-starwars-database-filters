@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import propTypes from 'prop-types';
-
-// const attribute = ['name', 'climate', 'population', 'created', 'diameter', 'edited',
-//   'gravity', 'orbital_period', 'rotation_period',
-//   'surface_water', ' terrain', 'url', 'films'];
+import propTypes, { object } from 'prop-types';
 
 class TableBody extends Component {
   render() {
@@ -51,10 +47,14 @@ export default connect(mapStateToProps)(TableBody);
 
 
 TableBody.propTypes = {
-  planets: propTypes.arrayOf.isRequired,
+  planets: propTypes.arrayOf(object).isRequired,
   error: propTypes.string,
 };
 
 TableBody.defaultProps = {
   error: 'Erro no servidor',
 };
+
+// const attribute = ['name', 'climate', 'population', 'created', 'diameter', 'edited',
+//   'gravity', 'orbital_period', 'rotation_period',
+//   'surface_water', ' terrain', 'url', 'films'];
