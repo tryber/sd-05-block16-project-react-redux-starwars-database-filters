@@ -14,7 +14,6 @@ class TableFirstLine extends React.Component {
           <th>Terrain</th>
           <th>Surface water</th>
           <th>Population</th>
-          <th>Residents</th>
           <th>Films</th>
           <th>Created</th>
           <th>Edited</th>

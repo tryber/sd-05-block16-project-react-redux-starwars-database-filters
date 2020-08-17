@@ -7,9 +7,9 @@ import { connect } from 'react-redux';
 class TableInfo extends React.Component {
   render() {
     const { data } = this.props;
-    return (
-      data.map((planet) => (
-        <tbody key={planet.name}> 
+    return data.map((planet) => (
+      <tbody key={planet.name}>
+        <tr>
           <td>{planet.name}</td>
           <td>{planet.rotation_period}</td>
           <td>{planet.orbital_period}</td>
@@ -23,16 +23,15 @@ class TableInfo extends React.Component {
           <td>{planet.created}</td>
           <td>{planet.edited}</td>
           <td>{planet.url}</td>
-        </tbody>
-      ))
-    );
+        </tr>
+      </tbody>
+    ));
   }
 }
 
 const mapDispatchToProps = (state) => ({
   data: state.planetReducer.data,
 });
-
 
 export default connect(mapDispatchToProps)(TableInfo);
 
