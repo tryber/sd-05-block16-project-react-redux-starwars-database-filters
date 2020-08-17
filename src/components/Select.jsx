@@ -1,9 +1,11 @@
 import React from 'react';
-// import { numericFilter } from '../actions';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { numericFilter } from '../actions';
 
 class Select extends React.Component {
-
   render() {
+    const { filteredNumbers } = this.props;
     return (
       <div>
         <select data-testid="column-filter" name="column">
@@ -21,10 +23,24 @@ class Select extends React.Component {
           <option value="igual a">igual a</option>
         </select>
         <input type="number" data-testid="value-filter" />
-        <button type="button" data-testid="button-filter">Filtrar</button>
+        <button
+          type="button"
+          data-testid="button-filter"
+          onClick={(event) => filteredNumbers(event.target.value)}
+        >
+          Filtrar
+        </button>
       </div>
     );
   }
 }
 
-export default Select;
+const mapDispatchToProps = (dispatch) => ({
+  filteredNumbers: (event) => dispatch(numericFilter(event)),
+});
+
+Select.propTypes = {
+  filteredNumbers: PropTypes.func.isRequired,
+};
+
+export default connect(null, mapDispatchToProps)(Select);
