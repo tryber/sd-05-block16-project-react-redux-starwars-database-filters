@@ -12,7 +12,7 @@ export const requestLoading = () => ({
 export const requestSuccess = (data) => ({
   type: REQUEST_OK,
   loading: false,
-  data,
+  data: data.results,
 });
 
 export const requestFail = (error) => ({
@@ -20,7 +20,6 @@ export const requestFail = (error) => ({
   loading: false,
   error,
 });
-
 
 export function thunkRequest() {
   return (dispatch) => {

@@ -5,9 +5,8 @@ const URL = 'https://swapi-trybe.herokuapp.com/api/planets/';
 const requestAPI = () => (
   fetch(URL)
     .then((response) => (
-      response
-        .json()
-        .then((json) => (response.ok ? Promise.resolve(json) : Promise.reject(json)))
+      response.json()
+        .then((data) => (response.ok ? Promise.resolve(data) : Promise.reject(data)))
     ))
 );
 
