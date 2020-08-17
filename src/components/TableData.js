@@ -5,11 +5,9 @@ import { connect } from 'react-redux';
 function filterByNumber(planets, myFilter) {
   if (myFilter.comparison === 'maior que') {
     return planets.filter((planet) => Number(planet[myFilter.column]) > Number(myFilter.value));
-  }
-  else if (myFilter.comparison === 'menor que') {
+  } else if (myFilter.comparison === 'menor que') {
     return planets.filter((planet) => Number(planet[myFilter.column]) < Number(myFilter.value));
-  }
-  else if (myFilter.comparison === 'igual a') {
+  } else if (myFilter.comparison === 'igual a') {
     return planets.filter((planet) => Number(planet[myFilter.column]) === Number(myFilter.value));
   }
   return planets;
