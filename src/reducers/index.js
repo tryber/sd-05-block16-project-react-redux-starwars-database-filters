@@ -26,6 +26,7 @@ function planetReducer(state = initialState, action) {
   }
 }
 
-const rootReducer = combineReducers({ planetReducer });
+// const rootReducer = combineReducers({ planetReducer });
+const rootReducer = planetReducer;
 
 export default rootReducer;
