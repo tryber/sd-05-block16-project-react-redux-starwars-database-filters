@@ -12,19 +12,24 @@ class Table extends React.Component {
   }
 
   render() {
-    const { data } = this.props;
-    let cabecalho = [];
-    if (data.length > 0) cabecalho = Object.keys(data[0]);
-    cabecalho.splice(cabecalho.indexOf('residents'), 1);
     return (
       <div>
-        <button type="button" onClick={() => console.log(data)}>teste</button>
         <table>
           <thead>
             <tr>
-              {cabecalho.map((titulo) => (
-                <th className="cabecalho" key={titulo}>{titulo}</th>
-              ))}
+              <th>Name</th>
+              <th>Climate</th>
+              <th>Terrain</th>
+              <th>Diameter</th>
+              <th>Gravity</th>
+              <th>Rotation Period</th>
+              <th>Orbital Period</th>
+              <th>Population</th>
+              <th>Surface Water</th>
+              <th>Films</th>
+              <th>Created</th>
+              <th>Edited</th>
+              <th>url</th>
             </tr>
           </thead>
           <TableBody />
