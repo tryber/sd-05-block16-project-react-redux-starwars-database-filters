@@ -6,7 +6,7 @@ import TBody from './TBody';
 class Table extends React.Component {
   render() {
     const { data, loading } = this.props;
-    if (loading) return <h2>StarWars Datatable with Filters</h2>;
+    if (loading) return <h2>Loading...</h2>;
     return (
       <div>
         <h2>StarWars Datatable with Filters</h2>

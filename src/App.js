@@ -11,8 +11,6 @@ class App extends React.Component {
   }
 
   render() {
-    // const { loading } = this.props;
-    // if (loading) return <div>Loading...</div>;
     return (
       <div className="App">
         <Table />
@@ -21,17 +19,11 @@ class App extends React.Component {
   }
 }
 
-// const mapStateToProps = (state) => ({
-//   loading: state.fetchReducer.loading,
-//   data: state.fetchReducer.data,
-// });
-
 const mapDispatchToProps = (dispatch) => ({
   fetchAPI: () => dispatch(fetchAPI()),
 });
 
 App.propTypes = {
-  loading: propTypes.bool.isRequired,
   fetchAPI: propTypes.func.isRequired,
 };
 
