@@ -36,12 +36,12 @@ class Table extends React.Component {
     const { planetData, isFetching } = this.props;
     console.log(planetData);
     if (!isFetching && planetData.length > 0) {
-    return(
+      return (
         <table>
-            <tableHead />
+          <tableHead />
           <tbody>{this.tableRender()}</tbody>
         </table>
-        );
+      );
     }
     return <div>Searching...</div>;
   }

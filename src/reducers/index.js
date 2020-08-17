@@ -1,4 +1,3 @@
-import { combineReducers } from 'redux';
 import { SEARCH_PLANET, SEARCH_SUCCESS } from '../actions/index';
 
 const initialState = {
