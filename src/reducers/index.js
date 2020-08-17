@@ -1,5 +1,8 @@
-function emptyReducer() {
-  return {};
-}
+import { combineReducers } from 'redux';
+import starWars from './Worlds';
 
-export default emptyReducer;
+const rootReducer = combineReducers({
+  starWars,
+});
+
+export default rootReducer;
