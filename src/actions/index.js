@@ -10,7 +10,7 @@ const requestAPIdata = () => ({
 
 const receiveAPIdataSuccess = (data) => ({
   type: RECEIVE_API_DATA_SUCCESS,
-  data,
+  data: data.results,
 });
 
 const receiveAPIdataFailure = (error) => ({
@@ -24,7 +24,7 @@ export function fetchPlanets() {
 
     planetAPI()
       .then(
-        (planets) => dispatch(receiveAPIdataSuccess(planets)),
+        (data) => dispatch(receiveAPIdataSuccess(data)),
         (error) => dispatch(receiveAPIdataFailure(error)),
       );
   };

@@ -6,6 +6,7 @@ import {
 
 const INITIAL_API_STATE = {
   isFetching: false,
+  data: [],
 };
 
 const planetsReducer = (state = INITIAL_API_STATE, action) => {
@@ -19,7 +20,7 @@ const planetsReducer = (state = INITIAL_API_STATE, action) => {
     case RECEIVE_API_DATA_SUCCESS:
       return {
         ...state,
-        planets: action.planets,
+        data: action.data,
         isFetching: false,
       };
 
