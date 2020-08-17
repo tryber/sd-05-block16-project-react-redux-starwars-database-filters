@@ -4,38 +4,29 @@ import { connect } from 'react-redux';
 import fetchStarWars from '../actions/index';
 import './Table.css';
 
-
 class Table extends React.Component {
   componentDidMount() {
     const { startFetching } = this.props;
     startFetching();
   }
 
-  renderTableData() {
+  manyFilter() {
     const { data, filterParameter, filterNumeric } = this.props;
-    console.log(filterNumeric);
     let array = data;
     if (filterParameter !== '') {
       array = data.filter((item) => item.name.includes(filterParameter));
     }
     if (filterNumeric.length > 0 && array.length > 1) {
-      console.log('entrou aqui');
-      //campos são: ['population', 'diameter', 'rotation_period', 'surface_water'];
-      filterNumeric.forEach(({column, comparison, value}) => {
-        console.log('comparison do forEach', comparison);
-        console.log(typeof(array[0].population));
+      filterNumeric.forEach(({ column, comparison, value }) => {
         switch (comparison) {
           case ('maior que'):
-            console.log('entrou no case maior que');
-            //array.forEach((arrayItem) => console.log(typeof(arrayItem[column])));
-            array = array.filter((arrayItem) => parseInt(arrayItem[column]) > value);
+            //  array.forEach((arrayItem) => console.log(typeof(arrayItem[column])));
+            array = array.filter((arrayItem) => parseInt(arrayItem[column], 10) > value);
             break;
           case ('menor que'):
-            console.log('entrou no case menor que');
-            array = array.filter((arrayItem) => parseInt(arrayItem[column]) < value);
+            array = array.filter((arrayItem) => parseInt(arrayItem[column], 10) < value);
             break;
           case ('igual a'):
-            console.log('entrou no case igual a');
             array = array.filter((arrayItem) => arrayItem[column] === value);
             break;
           default:
@@ -43,6 +34,10 @@ class Table extends React.Component {
         }
       });
     }
+    return array;
+  }
+  renderTableData() {
+    const array = this.manyFilter();
 
     return (array.map((item) => (
       <tr key={item.name}>
@@ -87,7 +82,7 @@ const mapStateToProps = (state) => ({
   data: state.reducer.data,
   isFetching: state.reducer.isFetching,
   filterParameter: state.filters.filterByName.name,
-  filterNumeric: state.filterByNumericValues,
+  filterNumeric: state.filters.filterByNumericValues,
 });
 
 const mapDispatchToProps = (dispatch) => ({ startFetching: () => dispatch(fetchStarWars()) });
@@ -95,10 +90,11 @@ const mapDispatchToProps = (dispatch) => ({ startFetching: () => dispatch(fetchS
 export default connect(mapStateToProps, mapDispatchToProps)(Table);
 
 Table.propTypes = {
-  data: PropTypes.arrayOf(PropTypes.object).isRequired, //  ref1:
+  data: PropTypes.arrayOf(PropTypes.object).isRequired, //  ref1: An array of an object type
   isFetching: PropTypes.bool.isRequired,
   startFetching: PropTypes.func.isRequired,
   filterParameter: PropTypes.string.isRequired,
+  filterNumeric: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 //  ref1: https://app.slack.com/client/TMDDFEPFU/C013105FU2C/thread/C013105FU2C-1597370726.050700

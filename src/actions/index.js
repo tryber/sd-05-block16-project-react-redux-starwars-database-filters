@@ -25,7 +25,7 @@ export function filterData(event) {
   };
 }
 
-export function filterNumericFields( column, comparison, value ) {
+export function filterNumericFields(column, comparison, value) {
   return {
     type: FILTER_COLUMN,
     column,
