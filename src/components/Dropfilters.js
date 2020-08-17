@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { filterByNumericValues } from '../reducers/filters';
@@ -12,23 +13,23 @@ class Dropfilters extends Component {
       value: '',
     };
 
-    this.columnHandleChange = this.columnHandleChange.bind(this);
-    this.comparisonHandleChange = this.comparisonHandleChange.bind(this);
-    this.valueHandleChange = this.valueHandleChange.bind(this);
+    this.colChange = this.colChange.bind(this);
+    this.compChange = this.compChange.bind(this);
+    this.vChange = this.vChange.bind(this);
    // this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  columnHandleChange(event) {
-    this.setState({column: event.target.value});
-  };
+  colChange(event) {
+    this.setState({ column: event.target.value });
+  }
 
-  comparisonHandleChange(event) {
-    this.setState({comparison: event.target.value});
-  };
+  compChange(event) {
+    this.setState({ comparison: event.target.value });
+  }
 
-  valueHandleChange(event) {
-    this.setState({value: event.target.value});
-  };
+  vChange(event) {
+    this.setState({ value: event.target.value });
+  }
 
   // handleSubmit(values) {
   //   handleSubmit(this.state)
@@ -40,8 +41,8 @@ class Dropfilters extends Component {
     // const { handleSubmit } = this.props;
     return (
       <form>
-        <label> Selecione a coluna:
-          <select data-testid="column-filter" value={this.state.column} onChange={this.columnHandleChange}>
+        <label htmlFor="column"> Selecione a coluna:
+          <select data-testid="column-filter" value={this.state.column} onChange={this.colChange}>
             <option>selecione:</option>
             <option value="population">population</option>
             <option value="orbital_period">orbital period</option>
@@ -50,30 +51,34 @@ class Dropfilters extends Component {
             <option value="surface_water">surface water</option>
           </select>
         </label>
-        <label> Selecione a comparação:
-          <select data-testid="comparison-filter" value={this.state.comparison} onChange={this.comparisonHandleChange}>
+        <label htmlFor="comparison"> Selecione a comparação:
+          <select data-testid="comparison-filter" value={this.state.comparison} onChange={this.compChange}>
             <option>selecione:</option>
             <option value="Maior que">Maior que</option>
             <option value="Menor que">Menor que</option>
             <option value="Igual a">Igual a</option>
           </select>
         </label>
-        <input type="number" data-testid="value-filter" placeholder="insira o valor" onChange={this.valueHandleChange} />
-        <button type="button" data-testid="button-filter" onClick={() => {
-          this.props.handleSubmit(this.state)
-          console.log(this.state)}
-          }
-          >Filtrar</button>
-    </form>
-      )
+        <input type="number" data-testid="value-filter" placeholder="insira o valor" onChange={this.vChange} />
+        <button 
+          type="button" 
+          data-testid="button-filter"
+          onClick={ () => {this.props.handleSubmit(this.state)} }
+        >Filtrar</button>
+      </form>
+    );
   }
-};
+}
 
 const mapDispatchToProps = (dispatch) => ({
   handleSubmit: (values) => dispatch(filterByNumericValues(values)),
 });
 
 export default connect(null, mapDispatchToProps)(Dropfilters);
+
+Dropfilters.propTypes = {
+  handleSubmit: PropTypes.func.isRequired,
+};
 
 // inspired by https://pt-br.reactjs.org/docs/forms.html dropdown content
 

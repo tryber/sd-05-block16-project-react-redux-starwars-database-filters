@@ -1,8 +1,8 @@
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import Dropfilters from './Dropfilters';
-import FilterDisplay from './FilterDisplay'
-import { connect } from 'react-redux';
+import FilterDisplay from './FilterDisplay';
 import { filterByName } from '../reducers/filters';
 
 class SearchBar extends Component {

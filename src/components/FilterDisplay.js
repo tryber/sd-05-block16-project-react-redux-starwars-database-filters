@@ -11,23 +11,23 @@ class FilterDisplay extends Component {
   render() {
     // const { handleChangeName } = this.props;
     const { filterByNumericValues } = this.props;
-    if(filterByNumericValues.length > 0){
-    return (
-          <div>
-            <h2>Filtros ativos:</h2>
-            {filterByNumericValues.map( (filtro) => (
-              <div key={filtro.column}>
-                <ul>
-                  <li>{filtro.column}</li>
-                  <li>{filtro.comparison}</li>
-                  <li>{filtro.value}</li>
-                </ul>
+    if (filterByNumericValues.length > 0) {
+      return (
+        <div>
+          <h2>Filtros ativos:</h2>
+          {filterByNumericValues.map((filtro) => (
+            <div key={filtro.column}>
+              <ul>
+                <li>{filtro.column}</li>
+                <li>{filtro.comparison}</li>
+                <li>{filtro.value}</li>
+              </ul>
               <button type="button">X</button>
-              </div>
-             ) ) }
-          </div>
-    )
-    };
+            </div>
+          ))}
+        </div>
+      );
+    }
     return null;
   }
 }
@@ -38,12 +38,12 @@ class FilterDisplay extends Component {
 // });
 
 const mapStateToProps = (state) => ({
-  filterByNumericValues: state.filters.filterByNumericValues
+  filterByNumericValues: state.filters.filterByNumericValues,
 });
 
 export default connect(mapStateToProps)(FilterDisplay);
 
 FilterDisplay.propTypes = {
-  filterByNumericValues: propTypes.arrayOf(propTypes.object)
+  filterByNumericValues: propTypes.arrayOf(propTypes.object).isRequired,
  // handleChangeName: PropTypes.func.isRequired,
 };

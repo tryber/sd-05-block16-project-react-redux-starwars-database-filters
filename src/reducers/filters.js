@@ -15,13 +15,12 @@ const INITIAL_STATE = {
   filterByName: {
     name: '',
   },
-  filterByNumericValues: [
+  filterByNumericValues: []
   //  {
   //    column: 'population',
   //    comparison: 'maior que',
   //    value: '100000',
   //  }
-  ]
 };
 
 function filters(state = INITIAL_STATE, action) {
@@ -34,9 +33,9 @@ function filters(state = INITIAL_STATE, action) {
       return {
         ...state,
         filterByNumericValues: [
-        ...state.filterByNumericValues,
-        action.values
-      ]
+          ...state.filterByNumericValues,
+          action.values,
+        ],
       };
     default:
       return state;
