@@ -33,7 +33,7 @@ class TableBody extends React.Component {
 
 const mapStateToProps = (state) => ({
   data: state.starWars.data,
-  filter: state.filterReducer.filterByName.name,
+  filter: state.filters.filterByName.name,
 });
 
 TableBody.propTypes = {

@@ -9,7 +9,7 @@ const FILTER_INITIAL_STATE = {
   },
 };
 
-const FilterReducer = (state = FILTER_INITIAL_STATE, action) => {
+const filters = (state = FILTER_INITIAL_STATE, action) => {
   switch (action.type) {
     case FILTER_BY_NAME:
       return { ...state, filterByName: { name: action.name } };
@@ -18,4 +18,4 @@ const FilterReducer = (state = FILTER_INITIAL_STATE, action) => {
   }
 };
 
-export default FilterReducer;
+export default filters;
