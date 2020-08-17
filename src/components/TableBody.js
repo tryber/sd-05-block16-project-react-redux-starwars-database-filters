@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import propTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 class TableBody extends Component {
@@ -30,5 +31,9 @@ class TableBody extends Component {
 const mapStateToProps = (state) => ({
   data: state.requestReducer.data,
 });
+
+TableBody.propTypes = {
+  data: propTypes.arrayOf(propTypes.object).isRequired,
+};
 
 export default connect(mapStateToProps)(TableBody);
