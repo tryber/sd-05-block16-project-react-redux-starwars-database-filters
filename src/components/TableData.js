@@ -14,11 +14,10 @@ function filterByNumber(planets, myFilter) {
   }
   return planets;
 }
-// [Honestidade acadêmica]{Requito 3} - Function solucionada com ajuda.
-// (Lucas Allan, PR https://github.com/tryber/sd-05-block16-project-react-redux-starwars-database-filters/pull/16/files ).
+// [HA]{R3} - Ajuda (Lucas Allan, PR https://github.com/tryber/sd-05-block16-project-react-redux-starwars-database-filters/pull/16/files ).
 
 class TableData extends React.Component {
-  // [Honestidade acadêmica]{Requisito 1} - Tabela pensada em grupo.
+  // [HA]{R1} - Grupo.
 
   render() {
     const { data, filterName, filterNumber } = this.props;

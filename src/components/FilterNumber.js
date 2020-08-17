@@ -11,13 +11,12 @@ class FilterNumber extends React.Component {
       comparison: '',
       value: '',
     };
-    this.handleChange = this.handleChange.bind(this);
+    this.hChange = this.hChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
   }
 
-  // [Honestidade acadêmica] - Escrito com modelo.
-  // (Trybe Course, 'Forms em React').
-  handleChange(event) {
+  // [HA] - Modelo (Trybe Course, 'Forms em React').
+  hChange(event) {
     const { name, value } = event.target;
     this.setState({ [name]: value });
   }
@@ -29,27 +28,25 @@ class FilterNumber extends React.Component {
   }
 
   render() {
-    const { handleChange, handleClick } = this;
-    const { fetching } = this.props;
+    const { hChange, handleClick } = this;
+    const { fetching, filterNumber } = this.props;
     const columnOptions = ['', 'population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water'];
     const comparisonOptions = ['', 'maior que', 'menor que', 'igual a'];
+    const columnFilters = filterNumber
+      .map((filter) => filter.column ? filter.column : null);
+    const remainingColumns = columnOptions.filter((column) => !columnFilters.includes(column));
     return (
       <div>
         {!fetching && (
           <div>
             <h4>Apply more filters:</h4>
-            <select name="column" data-testid="column-filter" onChange={handleChange}>
-              {columnOptions.map((c) => <option key={c} value={c}>{c}</option>)}
+            <select name="column" data-testid="column-filter" onChange={hChange}>
+              {remainingColumns.map((c) => <option key={c} value={c}>{c}</option>)}
             </select>
-            <select name="comparison" data-testid="comparison-filter" onChange={handleChange}>
+            <select name="comparison" data-testid="comparison-filter" onChange={hChange}>
               {comparisonOptions.map((c) => <option key={c} value={c}>{c}</option>)}
             </select>
-            <input
-              data-testid="value-filter"
-              type="number"
-              name="value"
-              onChange={handleChange}
-            />
+            <input data-testid="value-filter" type="number" name="value" onChange={hChange} />
             <button type="button" data-testid="button-filter" onClick={handleClick}>
               Filtrar
             </button>
@@ -59,9 +56,11 @@ class FilterNumber extends React.Component {
     );
   }
 }
+ // [HA]{R4} - Ajuda. (columnFilters, Paulo Dandrea, PR https://github.com/tryber/sd-05-block16-project-react-redux-starwars-database-filters/pull/17/files).
 
 const mapStateToProps = (state) => ({
   fetching: state.planetReducer.fetching,
+  filterNumber: state.filters.filterByNumericValues,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -72,6 +71,7 @@ const mapDispatchToProps = (dispatch) => ({
 FilterNumber.propTypes = {
   fetching: propTypes.bool.isRequired,
   getNumberInput: propTypes.func.isRequired,
+  filterNumber: propTypes.arrayOf(propTypes.object).isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(FilterNumber);

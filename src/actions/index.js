@@ -25,8 +25,7 @@ export function failAction(err) {
 }
 
 const apiPlanets = 'https://swapi-trybe.herokuapp.com/api/planets/';
-// [Honestidade acadêmica] - Escrito com modelo.
-// (Trybe Course, 'React with Redux Part 2', Doguinhos).
+// [HA] - Modelo (Trybe Course, 'React with Redux Part 2', Doguinhos).
 export function fetchPlanetsThunk() {
   return (dispatch) => {
     dispatch(requestAction());

@@ -7,12 +7,10 @@ class FilterName extends React.Component {
 
   render() {
     const { fetching, getInput } = this.props;
-    // const { filterName } = this.props;
     return (
       <div>
         {!fetching && (
           <div>
-            {/* <p>{filterName.name}</p> */}
             <h4>Search for specific planet:</h4>
             <input
               data-testid="name-filter"
@@ -29,7 +27,6 @@ class FilterName extends React.Component {
 
 const mapStateToProps = (state) => ({
   fetching: state.planetReducer.fetching,
-  // filterName: state.filters.filterByName,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -39,8 +36,6 @@ const mapDispatchToProps = (dispatch) => ({
 FilterName.propTypes = {
   fetching: propTypes.bool.isRequired,
   getInput: propTypes.func.isRequired,
-  // filterName: propTypes.shape({
-  //   filterByName: propTypes.object }).isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(FilterName);
