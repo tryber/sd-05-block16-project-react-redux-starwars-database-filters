@@ -1,8 +1,8 @@
-import { FETCH_DATA, GET_ERROR, GET_RESULTS, FILTER_BY_NAME } from './actions';
+import { FETCH_DATA, GET_ERROR, GET_RESULTS } from './actions';
 // import { results } from '../testData';
 
 
-// estrutura inicial montada e nao utilizada
+// estrutura default combineReducers como amostra
 // export const mainReducer = combineReducers({
 //   reducer1,
 //   reducer2,

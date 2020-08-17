@@ -1,15 +1,45 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import propTypes from 'prop-types';
 import { filterByNumericValues, filterByName } from '../reducers/createActions';
-import { store } from './FetchData';
-// import { results } from '../testData';
+import SelectColumn from './SelectColumn';
+import SelectOrder from './SelectOrder';
+import SelectComparison from './SelectComparison';
+import Button from './Button';
+import Header from './HeaderTable';
+import RadioSort from './RadioSort';
+import TableBody from './TableBody';
+
+const InputProcurar = (findPlanet) => (
+  <div>
+    <label htmlFor="filterByName">Procurar</label>
+    <input
+      data-testid="name-filter"
+      name="filterByName"
+      type="text"
+      onChange={(e) => findPlanet(e)}
+    />
+  </div>
+);
+
+const InputComparar = (console) => (
+  <label htmlFor="filterByNumericValues_1">
+    <input
+      data-testid="value-filter"
+      name="filterByNumericValues_1"
+      type="number"
+      onChange={(e) => console.log(e.target.value)}
+    />
+  </label>
+);
+
 function Table({
+  data,
   filter,
-  searchPlanet,
   isFetching,
   planets,
-  values,
-  onClick,
+  // values,
+  // filterByNumericValues,
 }) {
   function findPlanet(event) {
     const { target: { value } } = event;
@@ -17,91 +47,34 @@ function Table({
       const { name } = planet;
       return (!value) ? true : name.includes(value);
     });
-    // console.log(...planetFinded);
     filter(planetFinded, value);
-    // return true;
   }
-    return (
-      isFetching ? <p>Loading...</p>
+
+  return (
+    isFetching ? <div className="loading">Loading...</div>
       : (
         <div className="body">
           <p>StarWars Datatable with Filters</p>
           {/* implementacao de formulario seguindo conteudo encontrado no site W3Schools */}
           <form>
             <div className="head">
-              <div>
-                <label>Procurar</label>
-                <input data-testid='name-filter' name="filterByName" type="text"  onChange={(e) => findPlanet(e)} />
-              </div>
-              <div>
-                <label htmlFor="select">Ordem</label>
-                <select name="select" onChange={(e) => console.log(e)}>
-                  <option value={'value'}>teste</option>
-                </select>
-                <input id="asc" name="filterByOrder" type="radio" value="asc" onChange={(e) => console.log(e.target.value)} />
-                <label htmlFor="asc">ASC</label>
-                <input id="dsc" name="filterByOrder" type="radio" value="dsc" onChange={(e) => console.log(e.target.value)} />
-                <label htmlFor="dsc">DSC</label>
-                <button name="order" type="button" onClick={(e) => console.log(e.target)}>Filtrar</button>
-              </div>
-              <div>
-                <div>
-                  <label>
-                    <input name="filter" type="dropdown" value={'value'} onChange={(e) => console.log(e)} />
-                  </label>
-                  <label>
-                    <input name="comparasion" type="dropdown" value={'value'} onChange={(e) => console.log(e)} />
-                  </label>
-                </div>
-                <label>
-                  <input name="filterByNumericValues_1" type="number" value={'value'} onChange={(e) => console.log(e)} />
-                </label>
-                <button name="colun" type="button" onClick={onClick}>Filtrar</button>
-              </div>
+              {InputProcurar(findPlanet)}
+              <SelectOrder data={data} />
+              <RadioSort value="ASD" />
+              <RadioSort value="DESC" />
+              <Button data="column-sort-button" />
+              <SelectColumn />
+              <SelectComparison />
+              {InputComparar(console)}
+              <Button data="button-filter" />
             </div>
           </form>
-          <div clasName="table">
+          <div className="table">
             <table className="border">
-              <tr>
-                <th>Planeta</th>
-                <th>Clima</th>
-                <th>Populacao</th>
-                <th>Criado</th>
-                <th>Diâmetro</th>
-                <th>Editado</th>
-                <th>Gravidade</th>
-                <th>Período Orbital</th>
-                <th>Periodo rotacional</th>
-                <th>Superfice molhada</th>
-                <th>Superfice terrena</th>
-                <th>Rota URL</th>
-                <th>Films</th>
-              </tr>
-              <tbody>
-                {
-                planets.map((planet, index) => (
-                  <tr key={index}>
-                    <td>{planet.name}</td>
-                    <td>{planet.climate}</td>
-                    <td>{planet.population}</td>
-                    <td>{planet.created}</td>
-                    <td>{planet.diameter}</td>
-                    <td>{planet.edited}</td>
-                    <td>{planet.gravity}</td>
-                    <td>{planet.orbital_period}</td>
-                    <td>{planet.rotation_period}</td>
-                    <td>{planet.surface_water}</td>
-                    <td>{planet.terrain}</td>
-                    <td>{planet.url}</td>
-                    <td>
-                      {planet.films.map((fiml, i) => (
-                        <li key={i}>{fiml}</li>
-                      ))}
-                    </td>
-                  </tr>
-                ))
-                }
-              </tbody>
+              <thead>
+                <Header />
+              </thead>
+              <TableBody />
             </table>
           </div>
         </div>
@@ -127,3 +100,12 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Table);
+
+Table.propTypes = {
+  data: propTypes.arrayOf.isRequired,
+  filter: propTypes.func.isRequired,
+  isFetching: propTypes.bool.isRequired,
+  planets: propTypes.arrayOf.isRequired,
+};
+
+// validacao de propTypes seguindo exemplos do conteudo do course.

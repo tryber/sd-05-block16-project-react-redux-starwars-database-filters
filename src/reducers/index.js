@@ -1,8 +1,7 @@
-import thunk from 'redux-thunk';
-import { createStore, applyMiddleware, combineReducers } from 'redux';
+import { combineReducers } from 'redux';
 import fetchReducer from './fetchReducer';
 import filterReducer from './filterReducer';
-import fetchData from '../components/FetchData';
+// import fetchData from '../components/FetchData';
 
 const reducer = combineReducers({
   fetchReducer,

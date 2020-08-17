@@ -1,5 +1,9 @@
 import {
-  FETCH_DATA, GET_RESULTS, GET_ERROR, FILTER_BY_NUMERIC_VALUES, FILTER_BY_NAME,
+  FETCH_DATA,
+  GET_RESULTS,
+  GET_ERROR,
+  FILTER_BY_NUMERIC_VALUES,
+  FILTER_BY_NAME,
 } from './actions';
 
 export const requestData = () => ({
