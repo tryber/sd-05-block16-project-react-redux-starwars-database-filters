@@ -6,7 +6,6 @@ class Table extends Component {
   render() {
     return (
       <div>
-        <p>Testando</p>
         <table>
           <TableHeader />
           <TableBody />
