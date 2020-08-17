@@ -43,8 +43,9 @@ class FilterNumber extends React.Component {
             <select
               name="comparison"
               data-testid="comparison-filter"
-              onChange={this.handleChange}>
-                {comparisonOptions.map((c) => <option key={c} value={c}>{c}</option>)}
+              onChange={this.handleChange}
+            >
+              {comparisonOptions.map((c) => <option key={c} value={c}>{c}</option>)}
             </select>
             <input
               data-testid="value-filter"
