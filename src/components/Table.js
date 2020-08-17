@@ -28,19 +28,20 @@ class Table extends React.Component {
 
   filterNumbers(filteredPlanets) {
     const { numericFilters } = this.props;
+    let planets = filteredPlanets;
     for (let i = 0; i < numericFilters.length; i += 1) {
       if (numericFilters[i].comparison === 'maior que') {
-        filteredPlanets = filteredPlanets.filter((planet) =>
+        planets = planets.filter((planet) =>
           Number(planet[numericFilters[i].column]) > Number(numericFilters[i].value));
       } else if (numericFilters[i].comparison === 'menor que') {
-        filteredPlanets = filteredPlanets.filter((planet) =>
+        planets = planets.filter((planet) =>
           Number(planet[numericFilters[i].column]) < Number(numericFilters[i].value));
       } else if (numericFilters[i].comparison === 'igual a') {
-        filteredPlanets = filteredPlanets.filter((planet) =>
+        planets = planets.filter((planet) =>
           Number(planet[numericFilters[i].column]) === Number(numericFilters[i].value));
       }
     }
-    return filteredPlanets;
+    return planets;
   }
 
   body() {
