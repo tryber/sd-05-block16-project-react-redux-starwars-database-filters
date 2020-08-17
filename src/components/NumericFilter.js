@@ -14,16 +14,25 @@ class NumericFilter extends React.Component {
     this.props.numericSearch(columnFilter, comparisonFilter, valueFilter);
   }
 
+  handleColumnOptions() {
+    const { numericFilters } = this.props;
+    const selectedFilterColumns = numericFilters.map(filter => filter.column);
+    let columns = [
+      'column',
+      'population',
+      'orbital_period',
+      'diameter',
+      'rotation_period',
+      'surface_water'];
+    columns = columns.filter(column => !selectedFilterColumns.includes(column));
+    return columns.map(column => <option value={column} key={column}>{column}</option>);
+  }
+
   render() {
     return (
       <div>
         <select data-testid="column-filter" id="column-filter">
-          <option value="column">coluna</option>
-          <option value="population">population</option>
-          <option value="orbital_period">orbital_period</option>
-          <option value="diameter">diameter</option>
-          <option value="rotation_period">rotation_period</option>
-          <option value="surface_water">surface_water</option>
+          {this.handleColumnOptions()}
         </select>
         <select data-testid="comparison-filter" id="comparison-filter">
           <option value="comparison">comparação</option>
@@ -45,8 +54,13 @@ const mapDispatchToProps = (dispatch) => ({
   numericSearch: (column, comparison, value) => dispatch(numericSearch(column, comparison, value)),
 });
 
-export default connect(null, mapDispatchToProps)(NumericFilter);
+const mapStateToProps = (state) => ({
+  numericFilters: state.filters.filterByNumericValues,
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(NumericFilter);
 
 NumericFilter.propTypes = {
   numericSearch: PropTypes.func.isRequired,
+  numericFilters: PropTypes.arrayOf(PropTypes.object),
 };
