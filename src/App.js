@@ -21,7 +21,7 @@ function App() {
       <section className="App-section">
         <Table />
       </section>
-      <section className="planet-image"/>
+      <section className="planet-image" />
       <footer className="App-footer">
         <Footer />
       </footer>
