@@ -10,6 +10,13 @@ class Table extends Component {
         <div>
           <h1>StarWars Datatable with Filters</h1>
           <table>
+            <theader>
+              <tr>
+                <th>Test A</th>
+                <th>Test B</th>
+                <th>Test C</th>
+              </tr>
+            </theader>
             <tbody>
               <tr>
                 <td>Test 1</td>
