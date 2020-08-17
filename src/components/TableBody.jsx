@@ -1,13 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import filters from '../services/filters';
 
 class TableBody extends React.Component {
   render() {
-    const { data } = this.props;
+    const { data, filter } = this.props;
+    const planets = filters(data, filter);
     return (
       <tbody>
-        {data.map((planet) => (
+        {planets.map((planet) => (
           <tr key={planet.name}>
             <td>{planet.name}</td>
             <td>{planet.climate}</td>
@@ -31,10 +33,12 @@ class TableBody extends React.Component {
 
 const mapStateToProps = (state) => ({
   data: state.starWars.data,
+  filter: state.filterReducer.filterByName.name,
 });
 
 TableBody.propTypes = {
   data: PropTypes.instanceOf(Array).isRequired,
+  filter: PropTypes.string.isRequired,
 };
 
 export default connect(mapStateToProps)(TableBody);
