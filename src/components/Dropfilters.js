@@ -63,7 +63,7 @@ class Dropfilters extends Component {
         <button
           type="button"
           data-testid="button-filter"
-          onClick={() => { this.props.handleSubmit(this.state) }}
+          onClick={() => { this.props.handleSubmit(this.state); }}
         >Filtrar</button></form>
     );
   }
