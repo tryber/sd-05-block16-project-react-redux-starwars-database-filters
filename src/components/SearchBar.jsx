@@ -8,7 +8,11 @@ class SearchBar extends React.Component {
     const { nameFilter } = this.props;
     return (
       <div>
-        <input type="text" data-testid="name-filter" onChange={(event) => nameFilter(event.target.value)} />
+        <input
+          type="text"
+          data-testid="name-filter"
+          onChange={(event) => nameFilter(event.target.value)}
+        />
       </div>
     );
   }
