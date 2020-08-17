@@ -49,19 +49,19 @@ export function filterNameAction(input) {
   };
 }
 
-export function filterNumberAction(column, comparison, value) {
+export function filterNumberAction(col, comp, v) {
   // console.log('received in action: ' + column, comparison, value);
   return {
     type: SELECT_NUMBER,
-    column,
-    comparison,
-    value,
+    col,
+    comp,
+    v,
   };
 }
 
-export function cancelFilterAction(index) {
+export function cancelFilterAction(i) {
   return {
     type: CANCEL_FILTER,
-    index,
+    i,
   };
 }

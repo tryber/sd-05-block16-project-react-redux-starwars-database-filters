@@ -55,7 +55,7 @@ class FilterNumber extends React.Component {
     );
   }
 }
- // [HA]{R4} - Ajuda. (diferença entre arrays, Paulo Dandrea, PR https://github.com/tryber/sd-05-block16-project-react-redux-starwars-database-filters/pull/17/files).
+ // [HA]{R4} - Ajuda. (subtrair arrays, Paulo Dandrea, PR https://github.com/tryber/sd-05-block16-project-react-redux-starwars-database-filters/pull/17/files).
 
 const mapStateToProps = (state) => ({
   fetching: state.planetReducer.fetching,

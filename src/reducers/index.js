@@ -38,29 +38,22 @@ function filters(state = initialStateInput, action) {
     case INPUT_NAME:
       return {
         ...state,
-        filterByName: {
-          ...state.filterByName,
-          name: action.input,
-        },
+        filterByName: { ...state.filterByName, name: action.input },
       };
     case SELECT_NUMBER:
       return {
         ...state,
         filterByNumericValues: [
           ...state.filterByNumericValues,
-          {
-            column: action.column,
-            comparison: action.comparison,
-            value: action.value,
-          },
+          { column: action.col, comparison: action.comp, value: action.v },
         ],
       };
     case CANCEL_FILTER:
       return {
         ...state,
         filterByNumericValues: [
-          ...state.filterByNumericValues.slice(0, action.index),
-          ...state.filterByNumericValues.slice(action.index + 1, state.filterByNumericValues.length),
+          ...state.filterByNumericValues.slice(0, action.i),
+          ...state.filterByNumericValues.slice(action.i + 1, state.filterByNumericValues.length),
         ],
       };
     default:
