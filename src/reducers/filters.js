@@ -27,8 +27,8 @@ const filters = (state = INITIAL_STATE, action) => {
             column: action.column,
             comparison: action.comparison,
             value: action.value,
-          }
-        ]
+          },
+        ],
       });
     default:
       return state;

@@ -23,26 +23,35 @@ class Table extends React.Component {
   constructor(props) {
     super(props);
     this.body = this.body.bind(this);
+    this.filterNumbers = this.filterNumbers.bind(this);
+  }
+
+  filterNumbers(numericFilters, filteredPlanets) {
+    if (numericFilters.length !== 0) {
+      for (let i = 0; i < numericFilters.length; i += 1) {
+        if (numericFilters[i].comparison === 'maior que') {
+          filteredPlanets = filteredPlanets.filter((planet) =>
+            Number(planet[numericFilters[i].column]) > Number(numericFilters[i].value));
+        }
+        else if (numericFilters[i].comparison === 'menor que') {
+          filteredPlanets = filteredPlanets.filter((planet) =>
+            Number(planet[numericFilters[i].column]) < Number(numericFilters[i].value));
+        }
+        else if (numericFilters[i].comparison === 'igual a') {
+          filteredPlanets = filteredPlanets.filter((planet) =>
+            Number(planet[numericFilters[i].column]) === Number(numericFilters[i].value));
+        }
+      }
+    }
+    return filteredPlanets;
   }
 
   body() {
     const { planets, nameFilter, numericFilters } = this.props;
     let filteredPlanets = planets;
-    if (nameFilter !== '') filteredPlanets = filteredPlanets.filter((planet) => planet.name.includes(nameFilter));
-    if (numericFilters.length !== 0) {
-      for (let i = 0; i < numericFilters.length; i += 1) {
-        if(numericFilters[i].comparison === 'maior que') {
-          filteredPlanets = filteredPlanets.filter(planet => Number(planet[numericFilters[i].column]) > Number(numericFilters[i].value));
-        }
-        else if(numericFilters[i].comparison === 'menor que') {
-          filteredPlanets = filteredPlanets.filter(planet => Number(planet[numericFilters[i].column]) < Number(numericFilters[i].value));
-        }
-        else if(numericFilters[i].comparison === 'igual a'){
-          filteredPlanets = filteredPlanets.filter(planet => Number(planet[numericFilters[i].column]) === Number(numericFilters[i].value));
-        };
-      };
-    };
-
+    if (nameFilter !== '') filteredPlanets = filteredPlanets.filter((planet) =>
+     planet.name.includes(nameFilter));
+    filteredPlanets = this.filterNumbers(numericFilters, filteredPlanets);
     return (
       <tbody>
         {filteredPlanets.map((planet) =>
@@ -98,5 +107,5 @@ Table.propTypes = {
   loading: PropTypes.bool.isRequired,
   planets: PropTypes.arrayOf(PropTypes.object).isRequired,
   nameFilter: PropTypes.string.isRequired,
-  numericFilters: PropTypes.array.isRequired,
+  numericFilters: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
