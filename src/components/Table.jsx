@@ -1,6 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchPlanets } from '../actions';
+import TableHead from './TableHead';
 
 class Table extends React.Component {
   componentDidMount() {
@@ -13,23 +15,7 @@ class Table extends React.Component {
     return (
       <div>
         <table>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Orbital Period</th>
-              <th>Rotation Period</th>
-              <th>Diameter</th>
-              <th>Climate</th>
-              <th>Gravity</th>
-              <th>Terrain</th>
-              <th>Surface Water</th>
-              <th>Population</th>
-              <th>Films</th>
-              <th>Created</th>
-              <th>Edited</th>
-              <th>URL</th>
-            </tr>
-          </thead>
+          <TableHead />
           {data.map((planet) => (
             <tbody>
               <tr key={planet.name}>
@@ -65,3 +51,9 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Table);
+
+Table.propTypes = {
+  data: PropTypes.arrayOf(PropTypes.object).isRequired, // trecho baseado no repo de varios colegas
+  /* isFetching: PropTypes.bool.isRequired, */
+  fetchPlanets: PropTypes.func.isRequired,
+};
