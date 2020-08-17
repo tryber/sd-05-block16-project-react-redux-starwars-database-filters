@@ -4,5 +4,4 @@ import starWaresReducer from './starWarsReducers';
 const rootReducer = combineReducers({
   starWaresReducer,
 });
-
 export default rootReducer;
