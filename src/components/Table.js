@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { handleGoFetch } from '../reducers';
 import HeaderTable from './HeaderTable';
+import datafilterfunction from '../dfilters';
 
 class Table extends Component {
   constructor(props) {
@@ -15,15 +16,16 @@ class Table extends Component {
     handleFetch();
   }
 
-  render() {
-    const { isfetching, data, filterByName } = this.props;
+    render() {
+    const { isfetching, data, filterByName, filterByNumericValues } = this.props;
+    let NameFilteredPlanets = data.filter((planets) => planets.name.includes(filterByName));
     return (
       <div>
         {isfetching && <h1>Loading...</h1>}
         {!data && <h2>Error fetching data!</h2>}
         <table>
           <HeaderTable />
-          {!isfetching && (data.filter((planets) => planets.name.includes(filterByName)))
+          {!isfetching && ((filterByNumericValues.length > 0) ? (datafilterfunction(NameFilteredPlanets, filterByNumericValues)) : NameFilteredPlanets)
           .map((planet) => (
             <tbody key={planet.name}>
               <tr>
@@ -57,6 +59,7 @@ const mapStateToProps = (state) => ({
   isfetching: state.fetchReducer.isfetching,
   data: state.fetchReducer.data,
   filterByName: state.filters.filterByName.name,
+  filterByNumericValues: state.filters.filterByNumericValues
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Table);
