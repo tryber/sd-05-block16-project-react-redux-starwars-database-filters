@@ -43,8 +43,7 @@ class Radio extends React.Component {
       <div>
         <div>
           <select
-            name="columnValue"
-            onChange={this.handleClick} id="order" data-testid="column-sort"
+            name="columnValue" onChange={this.handleClick} id="order" data-testid="column-sort"
           >
             { options.map((item) => (
               <option key={item}>{item}</option>
