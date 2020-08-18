@@ -22,7 +22,6 @@ class Select extends React.Component {
     });
   }
 
-  // Repositório do Anderson Godoy melhorou minha aplicação devido aos campos não selecionados
   changeFilters() {
     const { column, comparison, value } = this.state;
     const { filteredNumbers } = this.props;
