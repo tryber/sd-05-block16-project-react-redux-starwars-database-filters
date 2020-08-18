@@ -1,6 +1,6 @@
 export const FILTER_BY_NAME = 'FILTER_BY_NAME';
 export const FILTER_BY_NV = 'FILTER_BY_NV';
-export const REMOVE_FILTER = 'REMOVE_FILTER'
+export const REMOVE_FILTER = 'REMOVE_FILTER';
 
 export const filterByName = (input) => ({
   type: FILTER_BY_NAME,

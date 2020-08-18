@@ -11,7 +11,7 @@ class FilterDisplay extends Component {
   }
   render() {
     // const { handleChangeName } = this.props;
-    const { filterByNumericValues, removeFilter } = this.props;
+    const { filterByNumericValues, removeThisFilter } = this.props;
     if (filterByNumericValues.length > 0) {
       return (
         <div>
@@ -23,7 +23,7 @@ class FilterDisplay extends Component {
                 <li>{filtro.comparison}</li>
                 <li>{filtro.value}</li>
               </ul>
-              <button type="button" onClick={() => removeFilter(filtro.column)}>X</button>
+              <button type="button" onClick={() => removeThisFilter(filtro.column)}>X</button>
             </div>
           ))}
         </div>
@@ -33,13 +33,13 @@ class FilterDisplay extends Component {
   }
 }
 
-const mapDispatchToProps = { removeFilter: removeFilter }
+const mapDispatchToProps = { removeThisFilter: removeFilter };
 
 const mapStateToProps = (state) => ({
   filterByNumericValues: state.filters.filterByNumericValues,
 });
 
-export default connect(mapStateToProps,mapDispatchToProps)(FilterDisplay);
+export default connect(mapStateToProps, mapDispatchToProps)(FilterDisplay);
 
 FilterDisplay.propTypes = {
   filterByNumericValues: PropTypes.arrayOf(PropTypes.object).isRequired,
