@@ -1,7 +1,6 @@
 import filterSort from './FilterSort';
 
 export default function queryFilters(planet, textFilter, filters, order, sort) {
-
   let planetsFiltered = filterSort(planet, order, sort);
   if (filters.length < 1) {
     const text = planetsFiltered.filter((fil) =>

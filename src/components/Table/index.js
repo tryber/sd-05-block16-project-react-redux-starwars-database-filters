@@ -10,13 +10,12 @@ class Table extends React.Component {
   }
 
   render() {
-   
     const { planet, loading, QF, filters, order, sort } = this.props;
     let ths = [];
     if (planet.length > 0) ths = Object.keys(planet[0]);
     ths.splice(ths.indexOf('residents'), 1);
     const allPlanets = queryFilters(planet, QF, filters, order, sort);
-    if(!loading) return <h2>Loading</h2>
+    if (!loading) return <h2>Loading</h2>
     return (
       <table>
         <thead>

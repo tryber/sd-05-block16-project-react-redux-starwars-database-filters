@@ -48,15 +48,20 @@ class Radio extends React.Component {
             ))};
           </select>
         </div>
-          <input type="radio" onClick={this.handleClick} data-testid="column-sort-input" name="radio" id="ASC" value="ASC"/>
-          <label htmlFor="ASC">ASC</label>
-          <input type="radio" onClick={this.handleClick} data-testid="column-sort-input" name="radio" id="DESC" value="DESC"/>
-          <label htmlFor="DESC">DESC</label>
-        <button type="button" onClick={() => this.props.order(columnValue, radio)} data-testid="column-sort-button">Filtrar</button>
+        <input type="radio" onClick={this.handleClick} data-testid="column-sort-input" name="radio" id="ASC" value="ASC"/>
+        <label htmlFor="ASC">ASC</label>
+        <input type="radio" onClick={this.handleClick} data-testid="column-sort-input" name="radio" id="DESC" value="DESC"/>
+        <label htmlFor="DESC">DESC</label>
+        <button type="button"
+          onClick={() => this.props.order(columnValue, radio)}
+          data-testid="column-sort-button"
+        >
+          Filtrar
+        </button>
       </div>
     );
   }
-};
+}
 
 const mapDispatchToProps = (dispatch) => ({
   order: (a, b) => dispatch(setOrder(a, b)),

@@ -8,7 +8,7 @@ const initialState = {
   order: {
     column: 'Name',
     sort: 'ASC',
-  }
+  },
 };
 
 const FormReducer = (state = initialState, action) => {
@@ -34,7 +34,7 @@ const FormReducer = (state = initialState, action) => {
     case SET_ORDER:
       return {
         ...state, order: { column: action.column, sort: action.order },
-      }
+      };
     default:
       return state;
   }
