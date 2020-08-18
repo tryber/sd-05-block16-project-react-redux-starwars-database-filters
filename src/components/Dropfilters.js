@@ -66,7 +66,7 @@ class Dropfilters extends Component {
         <button
           type="button"
           data-testid="button-filter"
-          onClick={() => { this.props.handleSubmit(this.state);}}
+          onClick={() => { this.props.handleSubmit(this.state); }}
         >Filtrar</button></form>
     );
   }
@@ -84,7 +84,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(Dropfilters);
 
 Dropfilters.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
-  filterByNumericValues: PropTypes.arrayOf(PropTypes.object).isRequired,
+  numericValuesFilter: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 // inspired by https://pt-br.reactjs.org/docs/forms.html dropdown content:
