@@ -2,6 +2,7 @@ export const SEARCH_BEGIN = 'SEARCH_BEGIN';
 export const SEARCH_SUCCESS = 'SEARCH_SUCCESS';
 export const SEARCH_FAILURE = 'SEARCH_FAILURE';
 export const FILTER_NAME = 'FILTER_NAME';
+export const FILTER_BY_NUMERIC = 'FILTER_BY_NUMERIC';
 
 export const searchBegin = () => (
   {
@@ -39,4 +40,11 @@ export function fetchAPI() {
 export const filterName = (inputText) => ({
   type: FILTER_NAME,
   inputText,
+});
+
+export const filterByNumeric = (column, comparison, value) => ({
+  type: FILTER_BY_NUMERIC,
+  column,
+  comparison,
+  value,
 });

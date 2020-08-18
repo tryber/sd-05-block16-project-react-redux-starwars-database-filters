@@ -37,5 +37,5 @@ export default connect(mapStateToProps)(Table);
 
 Table.propTypes = {
   loading: propTypes.bool.isRequired,
-  data: propTypes.arrayOf(propTypes.Object).isRequired,
+  data: propTypes.arrayOf(propTypes.instanceOf(Object)).isRequired,
 };
