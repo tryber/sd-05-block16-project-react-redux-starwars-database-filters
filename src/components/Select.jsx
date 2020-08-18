@@ -52,7 +52,7 @@ class Select extends React.Component {
       <div>
         <select data-testid="column-filter" name="column" onChange={this.changeState}>
           {options.map((option) => (
-            <option value={option}>{option}</option>
+            <option key={option} value={option}>{option}</option>
           ))}
         </select>
         <select data-testid="comparison-filter" name="comparison" onChange={this.changeState}>
