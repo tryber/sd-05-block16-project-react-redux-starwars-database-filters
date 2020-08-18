@@ -32,8 +32,8 @@ class Dropfilters extends Component {
   }
 
   columnOptions() {
-    const { filterByNumericValues } = this.props;
-    const selectedFilterColumns = filterByNumericValues.map((filter) => filter.column);
+    const { numericValuesFilter } = this.props;
+    const selectedFilterColumns = numericValuesFilter.map((filter) => filter.column);
     let columns = [
       'coluna',
       'population',
@@ -66,14 +66,14 @@ class Dropfilters extends Component {
         <button
           type="button"
           data-testid="button-filter"
-          onClick={() => { this.props.handleSubmit(this.state);  }}
+          onClick={() => { this.props.handleSubmit(this.state);}}
         >Filtrar</button></form>
     );
   }
 }
 
 const mapStateToProps = (state) => ({
-  filterByNumericValues: state.filters.filterByNumericValues,
+  numericValuesFilter: state.filters.filterByNumericValues,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -84,6 +84,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(Dropfilters);
 
 Dropfilters.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
+  filterByNumericValues: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 // inspired by https://pt-br.reactjs.org/docs/forms.html dropdown content:
