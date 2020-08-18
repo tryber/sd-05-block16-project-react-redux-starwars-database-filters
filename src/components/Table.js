@@ -4,6 +4,29 @@ import { connect } from 'react-redux';
 import TableHead from './TableHead';
 import { thunkPlanet } from '../actions/index';
 
+const filterPlanet = (planetList, filter) => {
+  if (filter.length < 1) {
+    return planetList;
+  }
+  let results = planetList;
+  filter.forEach((data) => {
+    const { column, comparison, value } = data;
+    results = results.filter((planet) => {
+      switch (comparison) {
+        case 'maior que':
+          return Number(planet[column]) > Number(value);
+        case 'igual a':
+          return Number(planet[column]) === Number(value);
+        case 'menor que':
+          return Number(planet[column]) < Number(value);
+        default:
+          return planet;
+      }
+    });
+  });
+  return results;
+};
+
 class Table extends React.Component {
   componentDidMount() {
     const { fetchPlanets } = this.props;
@@ -33,9 +56,8 @@ class Table extends React.Component {
     ));
   } */
 
-  tableRenderFilter(filter) {
-    const { planetData } = this.props;
-    return planetData
+  tableRenderFilter(filter, planetas) {
+    return planetas
       .filter((data) => data.name.includes(filter))
       .map((data) => (
         <tr key={data.name}>
@@ -56,12 +78,13 @@ class Table extends React.Component {
   }
 
   render() {
-    const { planetData, isFetching, filter } = this.props;
+    const { planetData, isFetching, filter, filtroCompleto } = this.props;
+    const alo = filterPlanet(planetData, filtroCompleto);
     if (!isFetching && planetData) {
       return (
         <table>
           <TableHead />
-          <tbody>{this.tableRenderFilter(filter)}</tbody>
+          <tbody>{this.tableRenderFilter(filter, alo)}</tbody>
         </table>
       );
     }
@@ -73,6 +96,7 @@ const mapStateToProps = (state) => ({
   planetData: state.planetReducer.data,
   isFetching: state.planetReducer.isFetching,
   filter: state.filters.filterByName.name,
+  filtroCompleto: state.filters.filterByNumericValues,
 });
 
 const mapDispatchToProps = (dispatch) => ({ fetchPlanets: () => dispatch(thunkPlanet()) });
