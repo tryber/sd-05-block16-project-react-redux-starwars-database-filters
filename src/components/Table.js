@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import propTypes from 'prop-types';
 import TBody from './TBody';
+import FilterBar from './FilterBar';
 
 class Table extends React.Component {
   render() {
@@ -10,6 +11,9 @@ class Table extends React.Component {
     return (
       <div>
         <h2>StarWars Datatable with Filters</h2>
+        <div>
+          <FilterBar />
+        </div>
         <table>
           <thead>
             <tr>

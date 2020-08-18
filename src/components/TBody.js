@@ -4,24 +4,20 @@ import propTypes from 'prop-types';
 
 class TBody extends React.Component {
   render() {
-    const { data } = this.props;
+    const { data, name } = this.props;
+    let dataFilter;
+    if (name === '') {
+      dataFilter = data;
+    } else {
+      dataFilter = data.filter((planet) => planet.name.toLowerCase().includes(name.toLowerCase()));
+    }
     return (
       <tbody>
-        {data.map((planet) => (
+        {dataFilter.map((planet) => (
           <tr key={planet.name}>
-            <td>{planet.name}</td>
-            <td>{planet.rotation_period}</td>
-            <td>{planet.orbital_period}</td>
-            <td>{planet.diameter}</td>
-            <td>{planet.climate}</td>
-            <td>{planet.gravity}</td>
-            <td>{planet.terrain}</td>
-            <td>{planet.surface_water}</td>
-            <td>{planet.population}</td>
-            <td>{planet.films}</td>
-            <td>{planet.created}</td>
-            <td>{planet.edited}</td>
-            <td>{planet.url}</td>
+            {Object.entries(planet)
+              .filter((element) => element[0] !== 'residents')
+              .map((element) => <td key={element[1]}>{element[1]}</td>)}
           </tr>
         ))}
       </tbody>
@@ -31,10 +27,12 @@ class TBody extends React.Component {
 
 const mapStateToProps = (state) => ({
   data: state.fetchReducer.data,
+  name: state.filters.filterByName.name,
 });
 
 export default connect(mapStateToProps)(TBody);
 
 TBody.propTypes = {
   data: propTypes.arrayOf(propTypes.Object).isRequired,
+  name: propTypes.string.isRequired,
 };

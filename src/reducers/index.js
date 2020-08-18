@@ -1,14 +1,10 @@
 import { combineReducers } from 'redux';
-import { SEARCH_BEGIN, SEARCH_SUCCESS, SEARCH_FAILURE } from '../actions';
+import { SEARCH_BEGIN, SEARCH_SUCCESS, SEARCH_FAILURE, FILTER_NAME } from '../actions';
 
 const initialState = {
   loading: true,
-  filters: {
-    filterByName: {
-      name: '',
-    },
-  },
   data: [],
+  error: '',
 };
 
 function fetchReducer(state = initialState, action) {
@@ -35,6 +31,26 @@ function fetchReducer(state = initialState, action) {
   }
 }
 
-const rootReducer = combineReducers({ fetchReducer });
+const initialStateFilter = {
+  filterByName: {
+    name: '',
+  },
+};
+
+function filters(state = initialStateFilter, action) {
+  switch (action.type) {
+    case FILTER_NAME:
+      return {
+        ...state,
+        filterByName: {
+          name: action.inputText,
+        },
+      };
+    default:
+      return state;
+  }
+}
+
+const rootReducer = combineReducers({ fetchReducer, filters });
 
 export default rootReducer;
