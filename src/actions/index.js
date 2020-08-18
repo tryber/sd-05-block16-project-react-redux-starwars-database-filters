@@ -3,6 +3,7 @@ export const SEARCH_SUCCESS = 'SEARCH_SUCCESS';
 export const SEARCH_FAILURE = 'SEARCH_FAILURE';
 export const FILTER_NAME = 'FILTER_NAME';
 export const FILTER_BY_NUMERIC = 'FILTER_BY_NUMERIC';
+export const REPLACE_FILTERS = 'REPLACE_FILTERS';
 
 export const searchBegin = () => (
   {
@@ -47,4 +48,9 @@ export const filterByNumeric = (column, comparison, value) => ({
   column,
   comparison,
   value,
+});
+
+export const replaceFilters = (payload) => ({
+  type: REPLACE_FILTERS,
+  payload,
 });

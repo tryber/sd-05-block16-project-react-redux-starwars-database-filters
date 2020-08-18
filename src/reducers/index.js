@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { SEARCH_BEGIN, SEARCH_SUCCESS, SEARCH_FAILURE, FILTER_NAME, FILTER_BY_NUMERIC } from '../actions';
+import { SEARCH_BEGIN, SEARCH_SUCCESS, SEARCH_FAILURE, FILTER_NAME, FILTER_BY_NUMERIC, REPLACE_FILTERS } from '../actions';
 
 const initialState = {
   loading: true,
@@ -41,12 +41,7 @@ const initialStateFilter = {
 function filters(state = initialStateFilter, action) {
   switch (action.type) {
     case FILTER_NAME:
-      return {
-        ...state,
-        filterByName: {
-          name: action.inputText,
-        },
-      };
+      return { ...state, filterByName: { name: action.inputText } };
     case FILTER_BY_NUMERIC:
       return {
         ...state,
@@ -59,6 +54,8 @@ function filters(state = initialStateFilter, action) {
           },
         ],
       };
+    case REPLACE_FILTERS:
+      return { ...state, filterByNumericValues: action.payload };
     default:
       return state;
   }

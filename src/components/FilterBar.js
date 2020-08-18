@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import propTypes from 'prop-types';
-import { filterName, filterByNumeric } from '../actions';
+import { filterName, filterByNumeric, replaceFilters } from '../actions';
 
 class FilterBar extends Component {
   render() {
-    const { nameInput, filterByNum } = this.props;
-    const columnOpt = ['population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water'];
+    const { nameInput, filterByNum, selectedFilters, replaceAll } = this.props;
+    const dafaultColumnOpt = ['population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water'];
     const comparisonOpt = ['maior que', 'menor que', 'igual a'];
+    let columnOpt = dafaultColumnOpt;
+    selectedFilters.forEach((filter) => columnOpt = columnOpt.filter((opt) => opt !== filter.column));
     const allValues = {};
     return (
       <div>
@@ -36,19 +38,34 @@ class FilterBar extends Component {
         >
           Filtrar
         </button>
+        <div>
+          {selectedFilters.map((filter) => (
+            <div data-testid="filter">
+              <label>{`${filter.column} ${filter.comparison} ${filter.value}`}</label>
+              <button type="button" onClick={() => replaceAll(selectedFilters.filter((d) => d.column !== filter.column))}>X</button>
+            </div>
+          ))}
+        </div>
       </div>
     );
   }
 }
 
+const mapStateToProps = (state) => ({
+  selectedFilters: state.filters.filterByNumericValues,
+});
+
 const mapDispatchToProps = (dispatch) => ({
   nameInput: (inputText) => dispatch(filterName(inputText)),
   filterByNum: (column, comparison, value) => dispatch(filterByNumeric(column, comparison, value)),
+  replaceAll: (payload) => dispatch(replaceFilters(payload)),
 });
 
-export default connect(null, mapDispatchToProps)(FilterBar);
+export default connect(mapStateToProps, mapDispatchToProps)(FilterBar);
 
 FilterBar.propTypes = {
   nameInput: propTypes.func.isRequired,
   filterByNum: propTypes.func.isRequired,
+  selectedFilters: propTypes.arrayOf(propTypes.instanceOf(Object)).isRequired,
+  replaceAll: propTypes.func.isRequired,
 };
