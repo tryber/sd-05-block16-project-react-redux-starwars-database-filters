@@ -31,11 +31,19 @@ class Dropfilters extends Component {
     this.setState({ value: event.target.value });
   }
 
-  // handleSubmit(values) {
-  //   handleSubmit(this.state)
-  //   console.log(this.state.column + this.state.comparison + this.state.value);
-  //   event.preventDefault();
-  // }
+  columnOptions() {
+    const { filterByNumericValues } = this.props;
+    const selectedFilterColumns = filterByNumericValues.map((filter) => filter.column);
+    let columns = [
+      'coluna',
+      'population',
+      'orbital_period',
+      'diameter',
+      'rotation_period',
+      'surface_water'];
+    columns = columns.filter((column) => !selectedFilterColumns.includes(column));
+    return columns.map((column) => <option value={column} key={column}>{column}</option>);
+  }
 
   render() {
     const tsc = this.state.comparison;
@@ -43,12 +51,7 @@ class Dropfilters extends Component {
       <form>
         <label htmlFor="column"> Selecione a coluna:
           <select data-testid="column-filter" value={this.state.column} onChange={this.colChange}>
-            <option>selecione:</option>
-            <option value="population">population</option>
-            <option value="orbital_period">orbital_period</option>
-            <option value="diameter">diameter</option>
-            <option value="rotation_period">rotation_period</option>
-            <option value="surface_water">surface_water</option>
+            {this.columnOptions()}
           </select>
         </label>
         <label htmlFor="comparison"> Selecione a comparação:
@@ -63,23 +66,27 @@ class Dropfilters extends Component {
         <button
           type="button"
           data-testid="button-filter"
-          onClick={() => { this.props.handleSubmit(this.state); }}
+          onClick={() => { this.props.handleSubmit(this.state);  }}
         >Filtrar</button></form>
     );
   }
 }
 
+const mapStateToProps = (state) => ({
+  filterByNumericValues: state.filters.filterByNumericValues,
+});
+
 const mapDispatchToProps = (dispatch) => ({
   handleSubmit: (values) => dispatch(filterByNumericValues(values)),
 });
 
-export default connect(null, mapDispatchToProps)(Dropfilters);
+export default connect(mapStateToProps, mapDispatchToProps)(Dropfilters);
 
 Dropfilters.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
 };
 
-// inspired by https://pt-br.reactjs.org/docs/forms.html dropdown content
+// inspired by https://pt-br.reactjs.org/docs/forms.html dropdown content:
 
 //  <button type="submit" value="Enviar" data-testid="button-filter">Filtrar</button>
 // form onSubmit={this.handleSubmit}
