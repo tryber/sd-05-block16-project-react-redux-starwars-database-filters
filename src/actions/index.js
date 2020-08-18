@@ -20,21 +20,19 @@ export const REQUEST_PLANETS_FAILURE = 'REQUEST_PLANETS_FAILURE';
 
 const requestPlanets = () => ({
   type: REQUEST_PLANETS,
-
-})
+});
 
 const requestPlanetsSuccess = (results) => ({
   type: REQUEST_PLANETS_SUCCESS,
-  data:results,
-  
-})
+  data: results,
+});
 
 const requestPlanetsFailure = (error) => ({
   type: REQUEST_PLANETS_FAILURE,
   error,
-})
+});
 
-export function fetchPlanets(){
+export function fetchPlanets() {
   return (dispatch) => {
     dispatch(requestPlanets());
 
@@ -42,7 +40,6 @@ export function fetchPlanets(){
       .then(
         (results) => dispatch(requestPlanetsSuccess(results)),
         (error) => dispatch(requestPlanetsFailure(error.message)),
-      )
-
-  }
+      );
+  };
 }
