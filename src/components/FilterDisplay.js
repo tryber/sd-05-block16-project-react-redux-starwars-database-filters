@@ -16,7 +16,7 @@ class FilterDisplay extends Component {
         <div>
           <h2>Filtros ativos:</h2>
           {filterByNumericValues.map((filtro) => (
-            <div key={filtro.column}>
+            <div key={filtro.column} data-testid='filter'>
               <ul>
                 <li>{filtro.column}</li>
                 <li>{filtro.comparison}</li>

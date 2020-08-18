@@ -45,18 +45,18 @@ class Dropfilters extends Component {
           <select data-testid="column-filter" value={this.state.column} onChange={this.colChange}>
             <option>selecione:</option>
             <option value="population">population</option>
-            <option value="orbital_period">orbital period</option>
+            <option value="orbital_period">orbital_period</option>
             <option value="diameter">diameter</option>
-            <option value="rotation_period">rotation period</option>
-            <option value="surface_water">surface water</option>
+            <option value="rotation_period">rotation_period</option>
+            <option value="surface_water">surface_water</option>
           </select>
         </label>
         <label htmlFor="comparison"> Selecione a comparação:
           <select data-testid="comparison-filter" value={tsc} onChange={this.compChange}>
             <option>selecione:</option>
-            <option value="Maior que">Maior que</option>
-            <option value="Menor que">Menor que</option>
-            <option value="Igual a">Igual a</option>
+            <option value="maior que">maior que</option>
+            <option value="menor que">menor que</option>
+            <option value="igual a">igual a</option>
           </select>
         </label>
         <input type="number" data-testid="value-filter" onChange={this.vChange} />

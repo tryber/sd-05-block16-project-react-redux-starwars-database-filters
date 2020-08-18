@@ -2,7 +2,7 @@ export default function datafilterfunction(filteredPlanets, filterByNumericValue
   // const { numericFilters } = this.props;
   let planets = filteredPlanets;
   for (let i = 0; i < filterByNumericValues.length; i += 1) {
-    if (filterByNumericValues[i].comparison === 'Maior que') {
+    if (filterByNumericValues[i].comparison === 'maior que') {
       planets = planets.filter((planet) =>
         Number(planet[filterByNumericValues[i].column]) > Number(filterByNumericValues[i].value));
     } else if (filterByNumericValues[i].comparison === 'menor que') {

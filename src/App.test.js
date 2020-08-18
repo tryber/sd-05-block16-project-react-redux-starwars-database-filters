@@ -131,7 +131,7 @@ describe.only('2 - Sua página deve ter um campo de texto que filtra a tabela pa
   });
 });
 
-describe('3 - Sua página deve ter um filtro para valores numéricos', () => {
+describe.only('3 - Sua página deve ter um filtro para valores numéricos', () => {
   beforeAll(mockFetch);
   beforeEach(cleanup);
 
