@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import propTypes from 'prop-types';
 import { filterName } from '../actions';
 
 class FilterBar extends Component {
@@ -23,3 +24,7 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export default connect(null, mapDispatchToProps)(FilterBar);
+
+FilterBar.propTypes = {
+  filterName: propTypes.func.isRequired,
+};
