@@ -14,7 +14,12 @@ class Table extends Component {
   }
 
   render() {
-    if (!this.props.planets) { return <h1>Loading...</h1>; }
+    const { planets, filterName } = this.props;
+    if (!planets) { return <h1>Loading...</h1>; }
+    let planetas = planets;
+    if (filterName !== '') {
+      planetas = planets.filter((planeta) => planeta.name.includes(filterName));
+    }
     return (
       <div>
         <table className="table">
@@ -22,7 +27,7 @@ class Table extends Component {
             <PlanetHeder />
           </thead>
           <tbody>
-            {this.props.planets.map((planet) => <Planet planet={planet} />)}
+            {planetas.map((planet) => <Planet planet={planet} />)}
           </tbody>
         </table>
         {this.props.planets.isFetching && 'Loading...'}
@@ -34,6 +39,7 @@ class Table extends Component {
 
 const mapStateToProps = (state) => ({
   planets: state.starWaresReducer.planets,
+  filterName: state.filterNameReducer.nameInput,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -42,6 +48,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 Table.propTypes = {
   planets: PropTypes.arrayOf(PropTypes.object).isRequired,
+  filterName: PropTypes.string.isRequired,
   getCurrentSW: PropTypes.func.isRequired,
 };
 

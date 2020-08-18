@@ -23,5 +23,4 @@ export default function planet(props) {
 
 planet.propTypes = {
   planet: PropTypes.arrayOf(PropTypes.object).isRequired,
-
 };

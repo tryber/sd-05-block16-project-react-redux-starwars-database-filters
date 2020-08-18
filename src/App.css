@@ -1,7 +1,14 @@
 .App {
+  padding: 5px;
   text-align: center;
 }
 
+.header {
+  color: white;
+  height: 100px;
+}
+
 .table {
+  background-color: whitesmoke;
   border: 1px solid black;
 }
