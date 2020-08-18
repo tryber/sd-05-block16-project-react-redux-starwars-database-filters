@@ -43,5 +43,5 @@ export default connect(mapStateToProps, mapDispatchToProps)(FilterDisplay);
 
 FilterDisplay.propTypes = {
   filterByNumericValues: PropTypes.arrayOf(PropTypes.object).isRequired,
-  removeFilter: PropTypes.func.isRequired,
+  removeThisFilter: PropTypes.func.isRequired,
 };
