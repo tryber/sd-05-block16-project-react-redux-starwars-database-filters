@@ -21,6 +21,21 @@ function handleConst(selectedFilters) {
   };
 }
 
+function Element1(props) {
+  return (
+    <div>
+      <input
+        type="number"
+        data-testid="value-filter"
+        onChange={(e) => { props.allV.num = e.target.value; }}
+      />
+      <button data-testid="button-filter" type="submit" onClick={() => props.handleClick(props.allV)}>
+        Filtrar
+      </button>
+    </div>
+  );
+}
+
 class FilterBar extends Component {
   constructor(props) {
     super(props);
@@ -48,14 +63,7 @@ class FilterBar extends Component {
           dataTestId="comparison-filter" defaultOpt="Comparacao" arrayOpt={comparisonOpt}
           onChange={(e) => { allV.comparison = e.target.value; }}
         />
-        <input
-          type="number"
-          data-testid="value-filter"
-          onChange={(e) => { allV.num = e.target.value; }}
-        />
-        <button data-testid="button-filter" type="submit" onClick={() => this.handleClick(allV)}>
-          Filtrar
-        </button>
+        <Element1 allV={allV} handleClick={this.handleClick} />
         {selectedFilters.map((filter) => (
           <div data-testid="filter">
             <span>{`${filter.column} ${filter.comparison} ${filter.value}`}</span>
@@ -89,4 +97,9 @@ FilterBar.propTypes = {
   filterByNum: propTypes.func.isRequired,
   selectedFilters: propTypes.arrayOf(propTypes.instanceOf(Object)).isRequired,
   replaceAll: propTypes.func.isRequired,
+};
+
+Element1.propTypes = {
+  allV: propTypes.objectOf(propTypes.string).isRequired,
+  handleClick: propTypes.func.isRequired,
 };
