@@ -14,11 +14,11 @@ class Table extends Component {
   }
 
   render() {
-    const { planets, filterName } = this.props;
+    const { planets, filters } = this.props;
     if (!planets) { return <h1>Loading...</h1>; }
     let planetas = planets;
-    if (filterName !== '') {
-      planetas = planets.filter((planeta) => planeta.name.includes(filterName));
+    if (filters !== '') {
+      planetas = planets.filter((planeta) => planeta.name.includes(filters));
     }
     return (
       <div>
@@ -39,7 +39,7 @@ class Table extends Component {
 
 const mapStateToProps = (state) => ({
   planets: state.starWaresReducer.planets,
-  filterName: state.filterNameReducer.nameInput,
+  filters: state.filters.filterByName.name,  
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -48,7 +48,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 Table.propTypes = {
   planets: PropTypes.arrayOf(PropTypes.object).isRequired,
-  filterName: PropTypes.string.isRequired,
+  filters: PropTypes.string.isRequired,
   getCurrentSW: PropTypes.func.isRequired,
 };
 
