@@ -48,7 +48,11 @@ class FilterBar extends Component {
           dataTestId="comparison-filter" defaultOpt="Comparacao" arrayOpt={comparisonOpt}
           onChange={(e) => { allV.comparison = e.target.value; }}
         />
-        <input type="number" data-testid="value-filter" onChange={(e) => { allV.num = e.target.value; }} />
+        <input
+          type="number"
+          data-testid="value-filter"
+          onChange={(e) => { allV.num = e.target.value; }}
+        />
         <button data-testid="button-filter" type="submit" onClick={() => this.handleClick(allV)}>
           Filtrar
         </button>
