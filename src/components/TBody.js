@@ -6,7 +6,7 @@ class TBody extends React.Component {
   render() {
     const { data, name, filterByNum } = this.props;
     let dataFilter;
-    dataFilter = data.filter((planet) => (name === '') ? true : planet.name.toLowerCase().includes(name.toLowerCase()));
+    dataFilter = data.filter((planet) => (name === '' ? true : planet.name.toLowerCase().includes(name.toLowerCase())));
     filterByNum.forEach((obj) => {
       switch (obj.comparison) {
         case 'maior que':
@@ -21,6 +21,7 @@ class TBody extends React.Component {
         default:
           return dataFilter;
       }
+      return dataFilter;
     });
     return (
       <tbody>
