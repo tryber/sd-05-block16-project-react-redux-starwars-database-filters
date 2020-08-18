@@ -5,6 +5,7 @@ export const RECEIVE_STARWARS_SUCCESS = 'RECEIVE_STARWARS_SUCCESS';
 export const RECEIVE_STARWARS_FAILURE = 'RECEIVE_STARWARS_FAILURE';
 export const FILTER_BY_NAME = 'FILTER_BY_NAME';
 export const NUMERIC_FILTER = 'NUMERIC_FILTER';
+export const DELETE_FILTER = 'DELETE_FILTER';
 
 const requestStarWars = () => ({
   type: REQUEST_STARWARS,
@@ -42,4 +43,9 @@ export const numericFilter = ({ column, comparison, value }) => ({
   column,
   comparison,
   value,
+});
+
+export const deleteFilter = (newFilter) => ({
+  type: DELETE_FILTER,
+  newFilter,
 });

@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { numericFilter } from '../actions';
 
+// Requisito 4 foi realizado com ajuda do Felipe.
+
 let options = [
   'selecione',
   'population',

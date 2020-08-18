@@ -1,6 +1,7 @@
 import {
   FILTER_BY_NAME,
   NUMERIC_FILTER,
+  DELETE_FILTER,
 } from '../actions/index';
 
 
@@ -26,6 +27,10 @@ const filters = (state = FILTER_INITIAL_STATE, action) => {
             value: action.value,
           },
         ],
+      };
+    case DELETE_FILTER:
+      return {
+        ...state, filterByNumericValues: [...action.newFilter],
       };
     default:
       return state;
