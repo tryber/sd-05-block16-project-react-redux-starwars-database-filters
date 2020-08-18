@@ -1,5 +1,10 @@
-function emptyReducer() {
-  return {};
-}
+import { combineReducers } from 'redux';
+import starWars from './Worlds';
+import filters from './FilterReducer';
 
-export default emptyReducer;
+const rootReducer = combineReducers({
+  starWars,
+  filters,
+});
+
+export default rootReducer;
