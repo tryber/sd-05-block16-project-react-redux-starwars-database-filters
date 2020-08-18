@@ -6,6 +6,8 @@
 .header {
   color: white;
   height: 100px;
+  display: flex;
+  justify-content: space-around;
 }
 
 .table {
