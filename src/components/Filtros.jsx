@@ -24,7 +24,13 @@ class Filtros extends React.Component {
             <span>{filtro.column}</span>
             <span>{filtro.comparison}</span>
             <span>{filtro.value}</span>
-            <button name={filtro.column} onClick={(event) => this.makeNewFilter(event)} type="button">X</button>
+            <button
+              name={filtro.column}
+              onClick={(event) => this.makeNewFilter(event)}
+              type="button"
+            >
+              X
+            </button>
           </div>
         ))}
       </div>
