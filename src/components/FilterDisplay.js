@@ -1,6 +1,7 @@
-import propTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { removeFilter } from '../reducers/filters';
 
 
 class FilterDisplay extends Component {
@@ -10,7 +11,7 @@ class FilterDisplay extends Component {
   }
   render() {
     // const { handleChangeName } = this.props;
-    const { filterByNumericValues } = this.props;
+    const { filterByNumericValues, removeFilter } = this.props;
     if (filterByNumericValues.length > 0) {
       return (
         <div>
@@ -22,7 +23,7 @@ class FilterDisplay extends Component {
                 <li>{filtro.comparison}</li>
                 <li>{filtro.value}</li>
               </ul>
-              <button type="button">X</button>
+              <button type="button" onClick={() => removeFilter(filtro.column)}>X</button>
             </div>
           ))}
         </div>
@@ -31,19 +32,16 @@ class FilterDisplay extends Component {
     return null;
   }
 }
-// {event => this.props.filterByName({ name: event.target.value })}
 
-// const mapDispatchToProps = (dispatch) => ({
-//  handleChangeName: (event) => dispatch(filterByName(event.target.value)),
-// });
+const mapDispatchToProps = { removeFilter: removeFilter }
 
 const mapStateToProps = (state) => ({
   filterByNumericValues: state.filters.filterByNumericValues,
 });
 
-export default connect(mapStateToProps)(FilterDisplay);
+export default connect(mapStateToProps,mapDispatchToProps)(FilterDisplay);
 
 FilterDisplay.propTypes = {
-  filterByNumericValues: propTypes.arrayOf(propTypes.object).isRequired,
- // handleChangeName: PropTypes.func.isRequired,
+  filterByNumericValues: PropTypes.arrayOf(PropTypes.object).isRequired,
+  removeFilter: PropTypes.func.isRequired,
 };
