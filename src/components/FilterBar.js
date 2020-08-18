@@ -5,7 +5,12 @@ import { filterName, filterByNumeric, replaceFilters } from '../actions';
 import Select from './Select';
 
 class FilterBar extends Component {
-  handleConst = (selectedFilters) => {
+  constructor(props) {
+    super(props);
+    this.handleConst = this.handleConst.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+  }
+  handleConst (selectedFilters) {
     const dafaultColumnOpt = ['population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water'];
     const comparisonOpt = ['maior que', 'menor que', 'igual a'];
     let columnOpt = dafaultColumnOpt;
@@ -22,7 +27,7 @@ class FilterBar extends Component {
     }
   }
 
-  handleClick = (allValues) => {
+  handleClick (allValues) {
     if (allValues.column && allValues.comparison && allValues.num)
     return this.props.filterByNum(allValues.column, allValues.comparison, allValues.num);
   }
