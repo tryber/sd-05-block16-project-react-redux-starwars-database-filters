@@ -5,6 +5,7 @@ const initialState = {
   filterByName: {
     name: '',
   },
+  filterByNumericValues: [],
   isLoading: true,
   data: [],
   erro: '',
@@ -36,6 +37,19 @@ function filters(state = initialState, action) {
         erro: action.payload,
         isLoading: action.isLoading,
       };
+    case (Actions.FILTER_SELECTION):
+      return {
+        ...state,
+        filterByNumericValues: [
+          ...state.filterByNumericValues,
+          action.payload
+        ]
+      }
+    case (Actions.FILTER_REPLACEMENT):
+      return {
+        ...state,
+        filterByNumericValues: action.payload
+      }
     default:
       return state;
   }

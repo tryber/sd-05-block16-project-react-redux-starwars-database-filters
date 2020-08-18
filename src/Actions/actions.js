@@ -2,8 +2,10 @@ const APPLY_FILTER = 'UPDATEFILTER';
 const REQUEST = 'REQUEST';
 const REQUEST_SUCESS = 'REQUEST_SUCESS';
 const REQUEST_FAIL = 'REQUEST_FAIL';
+const FILTER_SELECTION = 'SELECTION';
+const FILTER_REPLACEMENT = 'FILTER_REPLACEMENT';
 
-const Actions = { APPLY_FILTER, REQUEST, REQUEST_SUCESS, REQUEST_FAIL };
+const Actions = { APPLY_FILTER, REQUEST, REQUEST_SUCESS, REQUEST_FAIL, FILTER_SELECTION, FILTER_REPLACEMENT };
 
 export function updateFilter(payload) {
   return {
@@ -43,6 +45,18 @@ export function getAPI() {
       .then((resp) => resp.json()
         .then((e) => dispatch(requestSucess(e)))
         .catch((e) => dispatch(requestFail(e))));
+  };
+}
+export function selectionFilter(payload) {
+  return {
+    type: FILTER_SELECTION,
+    payload,
+  };
+}
+export function replaceFilters(payload) {
+  return {
+    type: FILTER_REPLACEMENT,
+    payload,
   };
 }
 
