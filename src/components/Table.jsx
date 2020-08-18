@@ -39,7 +39,7 @@ class Table extends Component {
 
 const mapStateToProps = (state) => ({
   planets: state.starWaresReducer.planets,
-  filters: state.filters.filterByName.name,  
+  filters: state.filters.filterByName.name,
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -10,7 +10,7 @@ function filters(state = INITIALSTATUS, action) {
   switch (action.type) {
     case FILTER_BY_NAME:
       return {
-        ...state, filterByName: {name: action.name},
+        ...state, filterByName: { name: action.name },
       };
     default:
       return state;
