@@ -22,14 +22,15 @@ function handleConst(selectedFilters) {
 }
 
 function Element1(props) {
+  const { ch, clic } = props;
   return (
     <div>
       <input
         type="number"
         data-testid="value-filter"
-        onChange={(e) => { props.allV.num = e.target.value; }}
+        onChange={ch}
       />
-      <button data-testid="button-filter" type="submit" onClick={() => props.handleClick(props.allV)}>
+      <button data-testid="button-filter" type="submit" onClick={clic}>
         Filtrar
       </button>
     </div>
@@ -63,7 +64,7 @@ class FilterBar extends Component {
           dataTestId="comparison-filter" defaultOpt="Comparacao" arrayOpt={comparisonOpt}
           onChange={(e) => { allV.comparison = e.target.value; }}
         />
-        <Element1 allV={allV} handleClick={this.handleClick} />
+        <Element1 ch={(e) => { allV.num = e.target.value; }} clic={() => this.handleClick(allV)} />
         {selectedFilters.map((filter) => (
           <div data-testid="filter">
             <span>{`${filter.column} ${filter.comparison} ${filter.value}`}</span>
@@ -100,6 +101,6 @@ FilterBar.propTypes = {
 };
 
 Element1.propTypes = {
-  allV: propTypes.objectOf(propTypes.string).isRequired,
-  handleClick: propTypes.func.isRequired,
+  ch: propTypes.func.isRequired,
+  clic: propTypes.func.isRequired,
 };
