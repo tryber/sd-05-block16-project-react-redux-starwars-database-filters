@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { setOrder } from '../../actions';
 
@@ -36,23 +37,37 @@ class Radio extends React.Component {
     });
   }
 
-  
   render() {
     const { options, radio, columnValue } = this.state;
     return (
       <div>
         <div>
-          <select name="columnValue" onChange={this.handleClick} id="order" data-testid='column-sort'>
+          <select name="columnValue" onChange={this.handleClick} id="order" data-testid="column-sort">
             { options.map((item) => (
               <option key={item}>{item}</option>
             ))};
           </select>
         </div>
-        <input type="radio" onClick={this.handleClick} data-testid="column-sort-input" name="radio" id="ASC" value="ASC"/>
+        <input
+          type="radio"
+          onClick={this.handleClick}
+          data-testid="column-sort-input"
+          name="radio"
+          id="ASC"
+          value="ASC"
+        />
         <label htmlFor="ASC">ASC</label>
-        <input type="radio" onClick={this.handleClick} data-testid="column-sort-input" name="radio" id="DESC" value="DESC"/>
+        <input
+          type="radio"
+          onClick={this.handleClick}
+          data-testid="column-sort-input"
+          name="radio"
+          id="DESC"
+          value="DESC"
+        />
         <label htmlFor="DESC">DESC</label>
-        <button type="button"
+        <button 
+          type="button"
           onClick={() => this.props.order(columnValue, radio)}
           data-testid="column-sort-button"
         >
@@ -66,5 +81,9 @@ class Radio extends React.Component {
 const mapDispatchToProps = (dispatch) => ({
   order: (a, b) => dispatch(setOrder(a, b)),
 });
+
+Radio.propTypes = {
+  order: PropTypes.string.isRequired,
+}
 
 export default connect(null, mapDispatchToProps)(Radio);

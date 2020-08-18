@@ -15,7 +15,7 @@ class Table extends React.Component {
     if (planet.length > 0) ths = Object.keys(planet[0]);
     ths.splice(ths.indexOf('residents'), 1);
     const allPlanets = queryFilters(planet, QF, filters, order, sort);
-    if (!loading) return <h2>Loading</h2>
+    if (!loading) return <h2>Loading</h2>;
     return (
       <table>
         <thead>
@@ -57,6 +57,9 @@ Table.propTypes = {
   getPlanet: PropTypes.func.isRequired,
   QF: PropTypes.string.isRequired,
   filters: PropTypes.arrayOf(PropTypes.string).isRequired,
+  sort: PropTypes.string.isRequired,
+  order: PropTypes.string.isRequired,
+  loading: PropTypes.bool.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Table);

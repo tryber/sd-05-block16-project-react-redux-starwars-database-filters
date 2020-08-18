@@ -20,12 +20,12 @@ const numberOrder = [
 function ASC(planets, order, sort) {
   let newArray;
   if (sort === 'ASC' && stringOrder.includes(order)) {
-    newArray = planets.sort( function(a, b) {
-      if(a[order] > b[order]) {
+    newArray = planets.sort(function (a, b) {
+      if (a[order] > b[order]) {
         return 1;
       }
 
-      if(a[order] < b[order]) {
+      if (a[order] < b[order]) {
         return -1;
       }
       return 0;
@@ -33,7 +33,7 @@ function ASC(planets, order, sort) {
   }
 
   if (sort === 'ASC' && numberOrder.includes(order)) {
-    newArray = planets.sort( function(a, b) {
+    newArray = planets.sort(function (a, b) {
       return a[order] - b[order];
     });
   }
@@ -43,12 +43,12 @@ function ASC(planets, order, sort) {
 function DESC(planets, order, sort) {
   let newArray;
   if (sort === 'DESC' && stringOrder.includes(order)) {
-    newArray = planets.sort( function(c, d) {
-      if(c[order] > d[order]) {
+    newArray = planets.sort(function (c, d) {
+      if (c[order] > d[order]) {
         return 1;
       }
 
-      if(c[order] < d[order]) {
+      if (c[order] < d[order]) {
         return -1;
       }
       return 0;
@@ -57,7 +57,7 @@ function DESC(planets, order, sort) {
   }
 
   if (sort === 'DESC' && numberOrder.includes(order)) {
-    newArray = planets.sort( function(c, d) {
+    newArray = planets.sort(function (c, d) {
       return c[order] - d[order];
     })
     .reverse();
