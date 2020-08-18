@@ -1,5 +1,8 @@
-export default function queryFilters(planet, textFilter, filters) {
-  let planetsFiltered = planet;
+import filterSort from './FilterSort';
+
+export default function queryFilters(planet, textFilter, filters, order, sort) {
+
+  let planetsFiltered = filterSort(planet, order, sort);
   if (filters.length < 1) {
     const text = planetsFiltered.filter((fil) =>
       fil.name.toLowerCase().includes(textFilter.toLowerCase()),
@@ -25,6 +28,5 @@ export default function queryFilters(planet, textFilter, filters) {
         (fil) => Number(fil[filter.column]) === Number(filter.value));
     }
   });
-  // console.log (planetsFiltered);
   return planetsFiltered;
 }

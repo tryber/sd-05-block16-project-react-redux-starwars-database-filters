@@ -3,6 +3,7 @@ const { REQUEST_API, GET_PLANETS } = require('../actions');
 const initialState = {
   data: [],
   isFetching: false,
+  
 };
 
 const PlanetReducer = (state = initialState, action) => {

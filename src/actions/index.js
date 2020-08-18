@@ -3,6 +3,7 @@ export const GET_PLANETS = 'GET_PLANNETS';
 export const QUERY_FORM = 'QUERY_FORM';
 export const QUERY_SELECTOR = 'QUERY_SELECTOR';
 export const DELETE_FILTER = 'DELETE_FILTER';
+export const SET_ORDER = 'SET_ORDER';
 
 const requestAPI = () => ({
   type: REQUEST_API,
@@ -28,6 +29,12 @@ export const querySelector = ({ column, comparison, value }) => ({
   column,
   comparison,
   value,
+});
+
+export const setOrder = (column, order) => ({
+  type: SET_ORDER,
+  column,
+  order,
 });
 
 export function fetchPlannets() {

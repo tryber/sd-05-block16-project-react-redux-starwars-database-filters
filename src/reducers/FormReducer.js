@@ -1,10 +1,14 @@
-import { QUERY_FORM, QUERY_SELECTOR, DELETE_FILTER } from '../actions';
+import { QUERY_FORM, QUERY_SELECTOR, DELETE_FILTER, SET_ORDER } from '../actions';
 
 const initialState = {
   filterByName: {
     name: '',
   },
   filterByNumericValues: [],
+  order: {
+    column: 'Name',
+    sort: 'ASC',
+  }
 };
 
 const FormReducer = (state = initialState, action) => {
@@ -27,6 +31,10 @@ const FormReducer = (state = initialState, action) => {
       return {
         ...state, filterByNumericValues: [...action.newFilter],
       };
+    case SET_ORDER:
+      return {
+        ...state, order: { column: action.column, sort: action.order },
+      }
     default:
       return state;
   }

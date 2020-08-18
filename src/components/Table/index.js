@@ -10,11 +10,13 @@ class Table extends React.Component {
   }
 
   render() {
-    const { planet, QF, filters } = this.props;
+   
+    const { planet, loading, QF, filters, order, sort } = this.props;
     let ths = [];
     if (planet.length > 0) ths = Object.keys(planet[0]);
     ths.splice(ths.indexOf('residents'), 1);
-    const allPlanets = queryFilters(planet, QF, filters);
+    const allPlanets = queryFilters(planet, QF, filters, order, sort);
+    if(!loading) return <h2>Loading</h2>
     return (
       <table>
         <thead>
@@ -40,8 +42,11 @@ class Table extends React.Component {
 
 const mapStateToProps = (state) => ({
   planet: state.planets.data,
+  loading: state.planets.isFetching,
   QF: state.filters.filterByName.name,
   filters: state.filters.filterByNumericValues,
+  order: state.filters.order.column,
+  sort: state.filters.order.sort,
 });
 
 const mapDispatchToProps = (dispatch) => ({
