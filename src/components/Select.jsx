@@ -3,6 +3,15 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { numericFilter } from '../actions';
 
+let options = [
+  'selecione',
+  'population',
+  'orbital_period',
+  'diameter',
+  'rotation_period',
+  'surface_water',
+];
+
 class Select extends React.Component {
   constructor(props) {
     super(props);
@@ -33,15 +42,16 @@ class Select extends React.Component {
   }
 
   render() {
+    const { filtros } = this.props;
+    filtros.forEach((filtro) => {
+      options = options.filter((option) => option !== filtro.column);
+    });
     return (
       <div>
         <select data-testid="column-filter" name="column" onChange={this.changeState}>
-          <option value="selecione">selecione</option>
-          <option value="population">population</option>
-          <option value="orbital_period">orbital_period</option>
-          <option value="diameter">diameter</option>
-          <option value="rotation_period">rotation_period</option>
-          <option value="surface_water">surface_water</option>
+          {options.map((option) => (
+            <option value={option}>{option}</option>
+          ))}
         </select>
         <select data-testid="comparison-filter" name="comparison" onChange={this.changeState}>
           <option value="selecione">selecione</option>
@@ -62,12 +72,17 @@ class Select extends React.Component {
   }
 }
 
+const mapStateToProps = (state) => ({
+  filtros: state.filters.filterByNumericValues,
+});
+
 const mapDispatchToProps = (dispatch) => ({
   filteredNumbers: (event) => dispatch(numericFilter(event)),
 });
 
 Select.propTypes = {
   filteredNumbers: PropTypes.func.isRequired,
+  filtros: PropTypes.instanceOf(Array).isRequired,
 };
 
-export default connect(null, mapDispatchToProps)(Select);
+export default connect(mapStateToProps, mapDispatchToProps)(Select);
