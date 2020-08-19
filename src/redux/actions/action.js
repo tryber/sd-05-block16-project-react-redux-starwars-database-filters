@@ -30,6 +30,6 @@ function ReduxThunk(name) {
         (error) => dispatch(requicaoMalSucedida(error)),
       );
   };
-};
+}
 
 export default ReduxThunk;

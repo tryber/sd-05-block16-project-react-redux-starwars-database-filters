@@ -29,6 +29,6 @@ const VerificaActions = (state = STATE_INICIAL, action) => {
     };
   }
   return state;
-}
+};
 
 export default VerificaActions;
