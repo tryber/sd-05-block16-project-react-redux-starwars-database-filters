@@ -11,14 +11,17 @@ class Table extends React.Component {
     getCurrentPlanets();
   }
   render() {
-    const { swPlanetss, isFetching } = this.props;
+    const { swPlanetss, isFetching, textFilter } = this.props;
     if (isFetching) { return <p>Carregando...</p>; }
+    
     return (
       <section>
         <table>
           <TableHeaders />
-          {swPlanetss.map((elements) => (
-            <tbody>
+          {swPlanetss
+          .filter((planet) => (planet.name.toLowerCase().includes(textFilter.toLowerCase()) ))
+          .map((elements) => (
+            <tbody key={elements.name}>
               <tr>
                 <td>{elements.name}</td>
                 <td>{elements.rotation_period}</td>
@@ -45,6 +48,7 @@ class Table extends React.Component {
 const mapStateToProps = (state) => ({
   swPlanetss: state.swPlanetss.data,
   isFetching: state.swPlanetss.isFetching,
+  textFilter: state.filters.filterByName.name,
 });
 const mapDispatchToProps = (dispatch) => ({
   getCurrentPlanets: () => dispatch(fetchPlanets()) });

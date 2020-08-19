@@ -17,6 +17,7 @@ import getPlanets from '../services/data';
 export const REQUEST_PLANETS = 'REQUEST_PLANETS';
 export const REQUEST_PLANETS_SUCCESS = 'REQUEST_PLANETS_SUCESS';
 export const REQUEST_PLANETS_FAILURE = 'REQUEST_PLANETS_FAILURE';
+export const SEARCH_FILTER = 'SEARCH_FILTER';
 
 const requestPlanets = () => ({
   type: REQUEST_PLANETS,
@@ -31,6 +32,14 @@ const requestPlanetsFailure = (error) => ({
   type: REQUEST_PLANETS_FAILURE,
   error,
 });
+
+export function searchFilter(string) {
+  return(
+    {
+    type: SEARCH_FILTER,
+    payload: string,
+  })
+}
 
 export function fetchPlanets() {
   return (dispatch) => {
