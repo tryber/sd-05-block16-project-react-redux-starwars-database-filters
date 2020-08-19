@@ -29,7 +29,7 @@ const mapDispatchToProps = (dispatch) => ({
 export default connect(mapStateToProps, mapDispatchToProps)(PartButton);
 
 PartButton.propTypes = {
-  setFilter: PropTypes.func.isRequired,
+  chooseFilter: PropTypes.func.isRequired,
   column: PropTypes.string.isRequired,
   comparison: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,

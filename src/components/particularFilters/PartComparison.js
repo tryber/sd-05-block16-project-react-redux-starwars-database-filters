@@ -17,5 +17,5 @@ const mapDispatchToProps = { chooseFilter: partComparison };
 export default connect(null, mapDispatchToProps)(PartComparison);
 
 PartComparison.propTypes = {
-  setFilter: PropTypes.func.isRequired,
+  chooseFilter: PropTypes.func.isRequired,
 };

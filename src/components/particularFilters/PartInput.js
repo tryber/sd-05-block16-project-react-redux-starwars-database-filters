@@ -16,5 +16,5 @@ const mapDispatchToProps = { chooseFilter: partValue };
 export default connect(null, mapDispatchToProps)(PartInput);
 
 PartInput.propTypes = {
-  setFilter: PropTypes.func.isRequired,
+  chooseFilter: PropTypes.func.isRequired,
 };
