@@ -27,12 +27,28 @@ const filterPlanet = (planetList, filter) => {
   return results;
 };
 
-class Table extends React.Component {
-  constructor(props) {
-    super(props);
-    this.tableRenderFilter = this.tableRenderFilter.bind(this);
-  }
+function tableRenderFilter(filter, planetas) {
+  return planetas
+    .filter((data) => data.name.includes(filter))
+    .map((data) => (
+      <tr key={data.name}>
+        <td>{data.name}</td>
+        <td>{data.rotation_period}</td>
+        <td>{data.orbital_period}</td>
+        <td>{data.diameter}</td>
+        <td>{data.climate}</td>
+        <td>{data.gravity}</td>
+        <td>{data.terrain}</td>
+        <td>{data.surface_water}</td>
+        <td>{data.population}</td>
+        <td>{data.films}</td>
+        <td>{data.created}</td>
+        <td>{data.edited}</td>
+      </tr>
+    ));
+}
 
+class Table extends React.Component {
   componentDidMount() {
     const { fetchPlanets } = this.props;
     fetchPlanets();
@@ -41,27 +57,6 @@ class Table extends React.Component {
   // referencia de tabelas em html5 https://flatschart.com/html5/tabelas.html
   // https://stackoverflow.com/questions/44249478/expected-this-to-be-used-by-class-method
 
-  tableRenderFilter(filter, planetas) {
-    return planetas
-      .filter((data) => data.name.includes(filter))
-      .map((data) => (
-        <tr key={data.name}>
-          <td>{data.name}</td>
-          <td>{data.rotation_period}</td>
-          <td>{data.orbital_period}</td>
-          <td>{data.diameter}</td>
-          <td>{data.climate}</td>
-          <td>{data.gravity}</td>
-          <td>{data.terrain}</td>
-          <td>{data.surface_water}</td>
-          <td>{data.population}</td>
-          <td>{data.films}</td>
-          <td>{data.created}</td>
-          <td>{data.edited}</td>
-        </tr>
-      ));
-  }
-
   render() {
     const { planetData, isFetching, filter, filtroCompleto } = this.props;
     const alo = filterPlanet(planetData, filtroCompleto);
@@ -69,7 +64,7 @@ class Table extends React.Component {
       return (
         <table>
           <TableHead />
-          <tbody>{this.tableRenderFilter(filter, alo)}</tbody>
+          <tbody>{tableRenderFilter(filter, alo)}</tbody>
         </table>
       );
     }
