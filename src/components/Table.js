@@ -35,28 +35,7 @@ class Table extends React.Component {
 
   // referencia de tabelas em html5 https://flatschart.com/html5/tabelas.html
 
-  /* tableRender() {
-    const { planetData } = this.props;
-    return planetData.map((data) => (
-      <tr key={data.name}>
-        <td>{data.name}</td>
-        <td>{data.rotation_period}</td>
-        <td>{data.orbital_period}</td>
-        <td>{data.diameter}</td>
-        <td>{data.climate}</td>
-        <td>{data.gravity}</td>
-        <td>{data.terrain}</td>
-        <td>{data.surface_water}</td>
-        <td>{data.population}</td>
-        <td>{data.films}</td>
-        <td>{data.created}</td>
-        <td>{data.edited}</td>
-        <td>{data.url}</td>
-      </tr>
-    ));
-  } */
-
-  tableRenderFilter = (filter, planetas) => {
+  tableRenderFilter(filter, planetas) {
     return planetas
       .filter((data) => data.name.includes(filter))
       .map((data) => (
@@ -75,7 +54,7 @@ class Table extends React.Component {
           <td>{data.edited}</td>
         </tr>
       ));
-  };
+  }
 
   render() {
     const { planetData, isFetching, filter, filtroCompleto } = this.props;
