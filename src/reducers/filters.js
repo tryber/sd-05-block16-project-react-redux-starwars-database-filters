@@ -29,25 +29,21 @@ export default function filters(state = INITIAL_STATE, action) {
     case PART_FILTER:
       return {
         ...state,
-        filterByNumericValues: [
-          ...state.filterByNumericValues,
+        filterByNumericValues: [...state.filterByNumericValues,
           { column: action.column, comparison: action.comparison, value: action.value },
         ],
       };
     case PART_COMPARISON:
       return {
-        ...state,
-        newFilter: { ...state.newFilter, comparison: action.comparison },
+        ...state, newFilter: { ...state.newFilter, comparison: action.comparison },
       };
     case PART_COLUMN:
       return {
-        ...state,
-        newFilter: { ...state.newFilter, column: action.column },
+        ...state, newFilter: { ...state.newFilter, column: action.column },
       };
     case PART_VALUE:
       return {
-        ...state,
-        newFilter: { ...state.newFilter, value: action.value },
+        ...state, newFilter: { ...state.newFilter, value: action.value },
       };
     default:
       return state;
