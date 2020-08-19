@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { sortColumn } from '../actions';
 
@@ -17,7 +18,7 @@ class Order extends React.Component {
   handleOnChangeColumn(event) {
     let { value } = event.target;
     //  manobra técnica para o Name que está diferente nos testes:
-    if ( value === 'name') value = 'Name';
+    if (value === 'name') value = 'Name';
     this.setState({ column: value });
   }
 
@@ -68,3 +69,8 @@ export default connect(mapStateToProps, mapDispatchToProps)(Order);
 
 //  https://www.w3schools.com/tags/att_input_type_radio.asp
 //  http://react.tips/radio-buttons-in-reactjs/
+
+Order.propTypes = {
+  sendSort: PropTypes.func.isRequired,
+  data: PropTypes.arrayOf(PropTypes.object).isRequired,
+};

@@ -143,3 +143,5 @@ Table.propTypes = {
 //  https://medium.com/@ricardoreis_22930/operadores-de-compara%C3%A7%C3%A3o-comparison-operators-d2bc3ed734a3
 //  https://www.sitepoint.com/sort-an-array-of-objects-in-javascript/
 //  ref2: https://www.educative.io/edpresso/how-to-sort-an-array-of-objects-in-javascript
+//  https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice
+//
