@@ -28,12 +28,18 @@ const filterPlanet = (planetList, filter) => {
 };
 
 class Table extends React.Component {
+  constructor(props) {
+    super(props);
+    this.tableRenderFilter = this.tableRenderFilter.bind(this);
+  }
+
   componentDidMount() {
     const { fetchPlanets } = this.props;
     fetchPlanets();
   }
 
   // referencia de tabelas em html5 https://flatschart.com/html5/tabelas.html
+  // https://stackoverflow.com/questions/44249478/expected-this-to-be-used-by-class-method
 
   tableRenderFilter(filter, planetas) {
     return planetas
