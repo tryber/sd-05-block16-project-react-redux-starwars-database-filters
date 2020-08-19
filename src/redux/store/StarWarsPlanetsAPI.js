@@ -4,7 +4,7 @@ const StarWarsPlanetsAPI = () => (
   fetch(APIStarWarsPalnets)
     .then((response) => (
       response.json()
-      .then((json) => (response.ok ? Promise.resolve(json) : Promise.reject(json))
+      .then((json) => (response.ok ? Promise.resolve(json) : Promise.reject(json)),
     )))
 );
 

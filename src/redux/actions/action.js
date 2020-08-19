@@ -23,7 +23,7 @@ export const loading = () => ({
 
 function ReduxThunk(name) {
   return (dispatch) => {
-    dispatch(loading(name))
+    dispatch(loading(name));
     return StarWarsPlanetsAPI()
       .then(
         (payload) => dispatch(requicaoBemSucedida(payload)),

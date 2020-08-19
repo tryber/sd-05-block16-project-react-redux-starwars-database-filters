@@ -11,7 +11,7 @@ const VerificaActions = (state = STATE_INICIAL, action) => {
       ...state,
       loadind: false,
       payload: action.payload.results[0],
-    }
+    };
   }
 
   if (action.type === REQUISICAO_MAL_SUCEDIDA) {
@@ -19,14 +19,14 @@ const VerificaActions = (state = STATE_INICIAL, action) => {
       ...state,
       loading: false,
       payload: action.error,
-    }
+    };
   }
 
   if (action.type === LOADING) {
     return {
       ...state,
       loading: true,
-    }
+    };
   }
   return state;
 }
