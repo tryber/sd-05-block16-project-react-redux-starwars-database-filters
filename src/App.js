@@ -4,6 +4,7 @@ import Table from './components/Table';
 import Search from './components/Search';
 import FilterNumeric from './components/FilterNumeric';
 import FilterStatus from './components/FilterStatus';
+import Order from './components/Order';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Search />
         <FilterNumeric />
         <FilterStatus />
+        <Order />
       </div>
       <Table />
     </div>

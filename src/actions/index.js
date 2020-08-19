@@ -5,6 +5,7 @@ export const RECEIVE_DATA = 'RECEIVE_DATA';
 export const FILTER_DATA = 'FILTER_DATA';
 export const FILTER_COLUMN = 'FILTER_COLUMN';
 export const DELETE_ITEM = 'DELETE_ITEM';
+export const SORT_COLUMN = 'SORT_COLUMN';
 
 function requestData() {
   return {
@@ -23,6 +24,14 @@ export function filterData(event) {
   return {
     type: FILTER_DATA,
     payload: event.target.value,
+  };
+}
+
+export function sortColumn(column, sort) {
+  return {
+    type: SORT_COLUMN,
+    column,
+    sort,
   };
 }
 
