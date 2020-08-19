@@ -108,4 +108,5 @@ Table.propTypes = {
   isFetching: PropTypes.bool.isRequired,
   fetchPlanets: PropTypes.func.isRequired,
   filter: PropTypes.string.isRequired,
+  filtroCompleto: PropTypes.string.isRequired,
 };

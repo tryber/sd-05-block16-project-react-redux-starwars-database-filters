@@ -8,7 +8,7 @@ const PartColumn = ({ partFilter, filters }) => {
   if (filters.length > 0) {
     filters.forEach((each) => {
       coluna.splice(coluna.indexOf(each.column), 1);
-    })
+    });
   }
   return (
     <select onChange={({ target }) => partFilter(target.value)} data-testid="column-filter">
@@ -34,5 +34,4 @@ export default connect(mapStateToProps, mapDispatchToProps)(PartColumn);
 PartColumn.propTypes = {
   filters: PropTypes.arrayOf(PropTypes.object).isRequired,
   partFilter: PropTypes.func.isRequired,
-  choosen: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
