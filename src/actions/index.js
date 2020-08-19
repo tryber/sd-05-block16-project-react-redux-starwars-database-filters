@@ -34,11 +34,11 @@ const requestPlanetsFailure = (error) => ({
 });
 
 export function searchFilter(string) {
-  return(
-    {
+  return (
+  {
     type: SEARCH_FILTER,
     payload: string,
-  })
+  });
 }
 
 export function fetchPlanets() {

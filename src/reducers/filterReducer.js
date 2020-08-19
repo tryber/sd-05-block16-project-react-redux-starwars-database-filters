@@ -1,25 +1,25 @@
 import {
   SEARCH_FILTER,
-} from '../actions'
+} from '../actions';
 
 const filterInitial = {
-  filterByName:{
-    name:''
-  }
-}
+  filterByName: {
+    name: '',
+  },
+};
 const filters = (state = filterInitial, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case SEARCH_FILTER:
       return {
         ...state,
         filterByName: {
           name: action.payload,
-        }
+        },
       };
-      default:
-        return state
+    default:
+      return state;
   }
-}
+};
 
 
 export default filters;

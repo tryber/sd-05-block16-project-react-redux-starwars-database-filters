@@ -13,13 +13,13 @@ class Table extends React.Component {
   render() {
     const { swPlanetss, isFetching, textFilter } = this.props;
     if (isFetching) { return <p>Carregando...</p>; }
-    
+
     return (
       <section>
         <table>
           <TableHeaders />
           {swPlanetss
-          .filter((planet) => (planet.name.toLowerCase().includes(textFilter.toLowerCase()) ))
+          .filter((planet) => (planet.name.toLowerCase().includes(textFilter.toLowerCase())))
           .map((elements) => (
             <tbody key={elements.name}>
               <tr>
@@ -58,6 +58,7 @@ Table.propTypes = {
   getCurrentPlanets: PropTypes.func.isRequired,
   swPlanetss: PropTypes.func.isRequired,
   isFetching: PropTypes.bool.isRequired,
+  textFilter: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Table);

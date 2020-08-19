@@ -5,7 +5,8 @@
 // const store = createStore(reducer, applyMiddleware(thunk));
 
 // export default store;
-
+// Store mudada de acordo com recomendação do Rafael Quinteiro para rodar
+// o devtools
 import thunk from 'redux-thunk';
 import { createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
