@@ -56,7 +56,7 @@ class Table extends React.Component {
     ));
   } */
 
-  tableRenderFilter(filter, planetas) {
+  tableRenderFilter = (filter, planetas) => {
     return planetas
       .filter((data) => data.name.includes(filter))
       .map((data) => (
@@ -75,7 +75,7 @@ class Table extends React.Component {
           <td>{data.edited}</td>
         </tr>
       ));
-  }
+  };
 
   render() {
     const { planetData, isFetching, filter, filtroCompleto } = this.props;
