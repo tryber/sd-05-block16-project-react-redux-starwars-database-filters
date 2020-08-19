@@ -1,0 +1,19 @@
+table, td, th {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+table, th {
+  background-color: lightgray;
+}
+
+table.tabela {
+  background: white;
+}
+
+
+table.tabela tr:nth-child(even) /* CSS3 */ {
+  background: lightgray;
+}
+
+/* http://www.mhavila.com.br/topicos/web/css_tabelas.html */
