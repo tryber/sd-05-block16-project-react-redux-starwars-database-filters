@@ -1,5 +1,5 @@
 // import fetch from "node-fetch";
-import { getApiPlanet } from '../apiPlanet';
+import getApiPlanet from '../apiPlanet';
 
 export const REQUEST_PLANETS_API = 'REQUEST_PLANETS_API';
 export const RECEIVE_PLANETS_API = 'RECEIVE_PLANETS_API';
@@ -9,13 +9,12 @@ const requestPlanetsApi = () => ({ // action retorna um obj
   isBatatinha: true,
 });
 
-const receivePlanetsApi = planets => {
+const receivePlanetsApi = planets => ({
   // console.log(planets)
-  return {
     type: RECEIVE_PLANETS_API,
     results: planets.results,
-  }; // action retorna um obj
-};
+  // action retorna um obj
+});
 
 export function fetchPlanets() { // action creator retorna uma função
   return (dispatch) => { // thunk declarado (Thunk é o retorno de uma função)

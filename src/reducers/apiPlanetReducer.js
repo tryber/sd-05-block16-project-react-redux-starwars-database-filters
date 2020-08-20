@@ -14,7 +14,7 @@ const apiPlanet = (state = INITIAL_PLANETS_API, action) => {
     case REQUEST_PLANETS_API:
       return {
         ...state,
-        isFetching: action.isBatatinha, 
+        isFetching: action.isBatatinha,
         // isBatatinha -> actionApi.js | export isFetching to Table.js
       };
     case RECEIVE_PLANETS_API:

@@ -19,7 +19,7 @@ function cabecalho() { // não tem props como parametro pois não é utilizado
         <th>URL</th>
       </tr>
     </thead>
-  )
-};
+  );
+}
 
 export default cabecalho;

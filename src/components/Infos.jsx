@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 function Infos(sacola) { // a props se chama sacola =D
   const { batatinha } = sacola;

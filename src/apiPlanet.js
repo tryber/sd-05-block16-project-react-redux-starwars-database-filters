@@ -1,6 +1,6 @@
 const API_PLANET = 'https://swapi-trybe.herokuapp.com/api/planets/';
 
-export const getApiPlanet = () => (
+const getApiPlanet = () => (
   fetch(API_PLANET)
     .then((response) => (
       response
@@ -8,3 +8,5 @@ export const getApiPlanet = () => (
         .then((json) => (response.ok ? Promise.resolve(json) : Promise.reject(json)))
   ))
 );
+
+export default getApiPlanet;
