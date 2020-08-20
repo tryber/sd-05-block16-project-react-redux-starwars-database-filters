@@ -15,13 +15,15 @@ class Table extends React.Component {
 
   render() {
     // results e isFetching estão vindo do mapStateToProps
-    const { results, isFetching } = this.props;
+    const { results, isFetching, nombreProcurado } = this.props;
+    const allInfos = results.filter((planeta) =>
+      planeta.name.toLowerCase().indexOf(nombreProcurado.toLowerCase()) >= 0);
     return (
       <div>StarWars Datatable with Filters
         <table>
           <Cabecalho />
           {  // if ternário
-            isFetching === false ? results.map((batatinha) => (
+            isFetching === false ? allInfos.map((batatinha) => (
               <Infos batatinha={batatinha} />
             )) : null
           }
@@ -38,6 +40,7 @@ const mapStateToProps = (state) => ({ // é executada toda vez que a store é al
   // apiplanetReducer -> reducer/index.js | isFetching -> actions/actionApi.js
   isFetching: state.apiPlanetReducer.isFetching,
   results: state.apiPlanetReducer.batatinhaResults,
+  nombreProcurado: state.filters.filterByName.name, // filterByname.
 }); // o Objeto retornado é uma props acessível no componente Table
 
 const mapDispatchToProps = (dispatch) => ({
@@ -52,4 +55,5 @@ Table.propTypes = {
   isFetching: propTypes.bool.isRequired,
   results: propTypes.arrayOf(propTypes.instanceOf(Object)).isRequired,
   getPlanets: propTypes.func.isRequired,
+  nombreProcurado: propTypes.string.isRequired,
 };
