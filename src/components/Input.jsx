@@ -26,4 +26,4 @@ export default connect(null, mapDispatchToProps)(Input);
 
 Input.propTypes = {
   searchByName: propTypes.func.isRequired,
-}
+};
