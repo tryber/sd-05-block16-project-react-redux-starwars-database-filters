@@ -14,12 +14,7 @@ const initialState = {
 function filters(state = initialState, action) {
   switch (action.type) {
     case (Actions.APPLY_FILTER):
-      return {
-        ...state,
-        filterByName: {
-          name: action.filter,
-        },
-      };
+      return { ...state, filterByName: { name: action.filter } };
     case (Actions.REQUEST):
       return {
         ...state,
@@ -40,16 +35,10 @@ function filters(state = initialState, action) {
     case (Actions.FILTER_SELECTION):
       return {
         ...state,
-        filterByNumericValues: [
-          ...state.filterByNumericValues,
-          action.payload
-        ]
-      }
+        filterByNumericValues: [...state.filterByNumericValues, action.payload],
+      };
     case (Actions.FILTER_REPLACEMENT):
-      return {
-        ...state,
-        filterByNumericValues: action.payload
-      }
+      return { ...state, filterByNumericValues: action.payload };
     default:
       return state;
   }

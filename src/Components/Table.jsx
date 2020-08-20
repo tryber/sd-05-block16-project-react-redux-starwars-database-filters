@@ -3,30 +3,35 @@ import { connect } from 'react-redux';
 import propTypes from 'prop-types';
 import Planet from './planet';
 
-function Table(props) {
-  if (props.isLoading) return <h1>No data</h1>;
-  const { filterUpdate, data, arrayFilter } = props;
+function small(data, arrayFilter) {
   let planets = data.results.map((e) => {
     delete e.residents;
     const t = { ...e };
     return t;
   });
-  const topo = Object.entries(planets[0]).map((e) => e[0].replace(/_/, ' '));
   arrayFilter.forEach((e) => {
     switch (e.comparison) {
-      case `maior que`:
+      case 'maior que':
         planets = planets.filter((planet) => Number(planet[e.column]) > e.value);
         break;
-      case `menor que`:
+      case 'menor que':
         planets = planets.filter((planet) => Number(planet[e.column]) < e.value);
         break;
-      case `igual a`:
+      case 'igual a':
         planets = planets.filter((planet) => (planet[e.column]) === e.value);
         break;
       default:
         break;
     }
   });
+  return planets;
+}
+
+function Table(props) {
+  if (props.isLoading) return <h1>No data</h1>;
+  const { filterUpdate, data, arrayFilter } = props;
+  const planets = small(data, arrayFilter);
+  const topo = Object.entries(planets[0]).map((e) => e[0].replace(/_/, ' '));
   return (
     <table>
       <thead>
@@ -59,5 +64,6 @@ export default connect(mapStateToProps, null)(Table);
 Table.propTypes = {
   filterUpdate: propTypes.string.isRequired,
   data: propTypes.arrayOf(propTypes.instanceOf(Object)).isRequired,
+  arrayFilter: propTypes.arrayOf(propTypes.instanceOf(Object)).isRequired,
   isLoading: propTypes.bool.isRequired,
 };

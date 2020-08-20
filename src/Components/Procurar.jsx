@@ -6,61 +6,91 @@ import '../App.css';
 
 const basicOptionsSelect1 = ['population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water'];
 const optionsSelect2 = ['maior que', 'menor que', 'igual a'];
+const values = {};
 
 function EntrySeach(props) {
-  return <div className="flex-me column-me">
-        <label htmlFor="look">Procurar</label>
-        <input name="look" type="text" data-testid="name-filter" onChange={props.handlerChange} />
-      </div>
+  return (
+    <div className="flex-me column-me">
+      <label htmlFor="look">Procurar</label>
+      <input name="look" type="text" data-testid="name-filter" onChange={props.handlerChange} />
+    </div>
+  );
 }
+EntrySeach.propTypes = { handlerChange: propTypes.func.isRequired };
+function ColumnSearch(props) {
+  return (
+    <div className="flex-me column-me">
+      <select data-testid="column-filter" onChange={(e) => (values.column = e.target.value)}>
+        <option value="" disabled selected>
+          Coluna
+        </option>
+        {props.optionsSelect1.map((e) => (
+          <option value={e}>{e}</option>
+        ))}
+      </select>
+    </div>
+  );
+}
+ColumnSearch.propTypes = {
+  optionsSelect1: propTypes.arrayOf(propTypes.instanceOf(Object)).isRequired,
+};
+
+function ComparisonSearch(props) {
+  return (
+    <div className="flex-me column-me">
+      <select
+        data-testid="comparison-filter"
+        onChange={(e) => (values.comparison = e.target.value)}
+      >
+        <option value="" disabled selected>
+          Comparação
+        </option>
+        {props.optionsSelect2.map((e) => (
+          <option value={e}>{e}</option>
+        ))}
+      </select>
+    </div>
+  );
+}
+
+function ButtonAdd(props) {
+  return (
+    <div className="flex-me column-me">
+      <input
+        type="number"
+        name=""
+        data-testid="value-filter"
+        onChange={(e) => (values.value = e.target.value)}
+      />
+      <button data-testid="button-filter" onClick={() => props.sF(values)}>
+        Add
+      </button>
+    </div>
+  );
+}
+ButtonAdd.propTypes = {
+  sF: propTypes.func.isRequired,
+};
+
 function Procurar(props) {
+  const { replaceFilters: rF, selectionFilter: sF, usedFilters: uF } = props;
   const handlerChange = (event) => {
     props.updateFilter(event.target.value);
   };
-
   let optionsSelect1 = basicOptionsSelect1;
   props.usedFilters.forEach((e) => {
     optionsSelect1 = optionsSelect1.filter((o) => o !== e.column);
   });
-
-  const values = {};
   return (
     <div className="flex-me">
       <EntrySeach handlerChange={handlerChange} />
-      <div className="flex-me column-me">
-        <label htmlFor="look">Procurar</label>
-        <input name="look" type="text" data-testid="name-filter" onChange={handlerChange} />
-      </div>
-      <div className="flex-me column-me">
-        <select data-testid="column-filter" onChange={(e) => (values.column = e.target.value)}>
-          <option value="" disabled selected>
-            Coluna
-          </option>
-          {optionsSelect1.map((e) => (
-            <option value={e}>{e}</option>
-          ))}
-        </select>
-      </div>
-      <div className="flex-me column-me">
-        <select data-testid="comparison-filter" onChange={(e) => (values.comparison = e.target.value)}>
-          <option value="" disabled selected>
-            Comparação
-          </option>
-          {optionsSelect2.map((e) => (
-            <option value={e}>{e}</option>
-          ))}
-        </select>
-      </div>
-      <div className="flex-me column-me">
-        <input type="number" name="" data-testid="value-filter" onChange={(e) => (values.value = e.target.value)} />
-        <button data-testid="button-filter" onClick={() => props.selectionFilter(values)}>
-          Add
-        </button>
-      </div>
+      <ColumnSearch optionsSelect1={optionsSelect1} />
+      <ComparisonSearch optionsSelect2={optionsSelect2} />
+      <ButtonAdd sF={sF} />
       <div className="column-me">
         {props.usedFilters.map((e) => (
           <div data-testid="filter" key={`${e.column}d`}>
-            <button key={`${e.column}b`} id={e.column} onClick={() => props.replaceFilters(props.usedFilters.filter((u) => u.column !== e.column))}>
+            <button key={`${e.column}b`} id={e.column} onClick={() => rF(uF.filter((u) => u.column !== e.column))}>
               x
             </button>
             <label htmlFor={e.column} key={`${e.column}l`}>{`${e.column} ${e.comparison} ${e.value}`}</label>
@@ -84,7 +114,14 @@ const mapDispatchToProps = (dispatch) => ({
 export default connect(mapStateToProps, mapDispatchToProps)(Procurar);
 
 Procurar.propTypes = {
-  updateFilter: propTypes.func.isRequired,
+  // updateFilter: propTypes.func.isRequired,
   selectionFilter: propTypes.func.isRequired,
+  replaceFilters: propTypes.func.isRequired,
   usedFilters: propTypes.arrayOf(propTypes.instanceOf(Object)).isRequired,
+};
+EntrySeach.propTypes = {
+  // optionsSelect1: propTypes.arrayOf(propTypes.instanceOf(Object)).isRequired,
+};
+ComparisonSearch.propTypes = {
+  optionsSelect2: propTypes.arrayOf(propTypes.instanceOf(Object)).isRequired,
 };
