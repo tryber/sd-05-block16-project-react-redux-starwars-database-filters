@@ -6,3 +6,5 @@ const rootReducer = combineReducers({
 });
 
 export default rootReducer;
+
+/* Estrutura retirada dos exercícios do bloco 16 */

@@ -9,3 +9,5 @@ const StarWarsPlanetsAPI = () => (
 );
 
 export default StarWarsPlanetsAPI;
+
+/* Estrutura retirada dos exercícios do bloco 16 */

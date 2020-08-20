@@ -1,4 +1,4 @@
-import { StarWarsPlanetsAPI } from '../store/StarWarsPlanetsAPI';
+import StarWarsPlanetsAPI  from '../../services/StarWarsPlanetsAPI';
 
 export const REQUISICAO_BEM_SUCEDIDA = 'REQUISICAO_BEM_SUCEDIDA';
 export const REQUISICAO_MAL_SUCEDIDA = 'REQUISICAO_MAL_SUCEDIDA';
@@ -33,3 +33,5 @@ function ReduxThunk(name) {
 }
 
 export default ReduxThunk;
+
+/* Estrutura retirada dos exercícios do bloco 16 */

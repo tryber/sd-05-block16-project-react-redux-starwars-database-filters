@@ -32,3 +32,5 @@ const VerificaActions = (state = STATE_INICIAL, action) => {
 };
 
 export default VerificaActions;
+
+/* Estrutura retirada dos exercícios do bloco 16 */
