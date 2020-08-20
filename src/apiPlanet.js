@@ -1,4 +1,4 @@
-const API_PLANET = "https://swapi-trybe.herokuapp.com/api/planets/";
+const API_PLANET = 'https://swapi-trybe.herokuapp.com/api/planets/';
 
 export const getApiPlanet = () => (
   fetch(API_PLANET)
