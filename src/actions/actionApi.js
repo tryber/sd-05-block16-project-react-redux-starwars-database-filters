@@ -9,10 +9,10 @@ const requestPlanetsApi = () => ({ // action retorna um obj
   isBatatinha: true,
 });
 
-const receivePlanetsApi = planets => ({
+const receivePlanetsApi = (planets) => ({
   // console.log(planets)
-    type: RECEIVE_PLANETS_API,
-    results: planets.results,
+  type: RECEIVE_PLANETS_API,
+  results: planets.results,
   // action retorna um obj
 });
 
