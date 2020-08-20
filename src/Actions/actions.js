@@ -11,7 +11,7 @@ const Actions = {
   REQUEST_SUCESS,
   REQUEST_FAIL,
   FILTER_SELECTION,
-  FILTER_REPLACEMENT
+  FILTER_REPLACEMENT,
 };
 
 export function updateFilter(payload) {

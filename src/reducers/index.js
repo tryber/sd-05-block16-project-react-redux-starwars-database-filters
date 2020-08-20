@@ -44,5 +44,4 @@ function filters(state = initialState, action) {
   }
 }
 
-
 export default combineReducers({ filters });
