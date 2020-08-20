@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import PropTypes, { string } from 'prop-types';
+import PropTypes, { string, object } from 'prop-types';
 
 
 let filteredPlanets = [];
@@ -87,9 +87,9 @@ export default connect(mapStateToProps)(TableBody);
 
 TableBody.propTypes = {
   error: PropTypes.string,
-  planets: PropTypes.arrayOf(filteredPlanets).isRequired,
+  planets: PropTypes.arrayOf(object).isRequired,
   // name: PropTypes.string.isRequired,
-  filterSetUp: PropTypes.objectOf(string).isRequired,
+  filterSetUp: PropTypes.arrayOf(string).isRequired,
 };
 
 TableBody.defaultProps = {
