@@ -14,9 +14,9 @@ const colunas = [
 
 const comparação = [
   ['COMPARAÇÃO'],
-  ['Maior que'],
-  ['Menor que'],
-  ['Igual a'],
+  ['maior que'],
+  ['igual a'],
+  ['menor que'],
 ];
 
 class Header extends Component {
@@ -94,8 +94,8 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 Header.propTypes = {
-  filterByName: PropTypes.string.isRequired,
-  filterByNumericValues: PropTypes.arrayOf(PropTypes.object).isRequired,
+  filterByName: PropTypes.func.isRequired,
+  filterByNumericValues: PropTypes.func.isRequired,
 };
 
 export default connect(null, mapDispatchToProps)(Header);

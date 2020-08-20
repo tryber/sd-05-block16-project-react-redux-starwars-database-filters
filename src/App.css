@@ -5,8 +5,8 @@
 
 .header {
   color: white;
-  height: 100px;
   display: flex;
+  height: 100px;
   justify-content: space-around;
 }
 

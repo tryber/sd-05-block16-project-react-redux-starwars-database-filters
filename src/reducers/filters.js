@@ -4,11 +4,7 @@ const INITIALSTATUS = {
   filterByName: {
     name: '',
   },
-  filterByNumericValues: {
-    column: '',
-    comparison: '',
-    value: '',
-  },
+  filterByNumericValues: [],
 };
 
 function filters(state = INITIALSTATUS, action) {
@@ -20,9 +16,9 @@ function filters(state = INITIALSTATUS, action) {
     case FILTER_BY_NUMERIC_VALUES:
       return {
         ...state,
-        filterByNumericValues: {
+        filterByNumericValues: [...state.filterByNumericValues, {
           column: action.column, comparison: action.comparison, value: action.value,
-        },
+        }],
       };
     default:
       return state;

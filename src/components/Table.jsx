@@ -17,9 +17,19 @@ class Table extends Component {
     const { planets, filters } = this.props;
     if (!planets) { return <h1>Loading...</h1>; }
     let planetas = planets;
-    if (filters !== '') {
-      planetas = planets.filter((planeta) => planeta.name.includes(filters));
+    if (filters.filterByName.name !== '') {
+      planetas = planetas.filter((planeta) => planeta.name.includes(filters.filterByName.name));
     }
+    filters.filterByNumericValues.forEach((filtro) => {
+      const { column, comparison, value } = filtro;
+      if (column !== 'COLUNAS' && comparison === 'maior que' && value !== '') {
+        planetas = planetas.filter((planeta) => (planeta[column] > Number(value)));
+      } else if (column !== 'COLUNAS' && comparison === 'menor que' && value !== '') {
+        planetas = planetas.filter((planeta) => (planeta[column] < Number(value)));
+      } else if (column !== 'COLUNAS' && comparison === 'igual a' && value !== '') {
+        planetas = planetas.filter((planeta) => (Number(planeta[column]) === Number(value)));
+      }
+    });
     return (
       <div>
         <table className="table">
@@ -27,7 +37,7 @@ class Table extends Component {
             <PlanetHeder />
           </thead>
           <tbody>
-            {planetas.map((planet) => <Planet planet={planet} />)}
+            {planetas.map((planet) => <Planet planet={planet} key={planet.name} />)}
           </tbody>
         </table>
         {this.props.planets.isFetching && 'Loading...'}
@@ -39,7 +49,7 @@ class Table extends Component {
 
 const mapStateToProps = (state) => ({
   planets: state.starWaresReducer.planets,
-  filters: state.filters.filterByName.name,
+  filters: state.filters,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -47,8 +57,8 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 Table.propTypes = {
-  planets: PropTypes.arrayOf(PropTypes.object).isRequired,
-  filters: PropTypes.string.isRequired,
+  planets: PropTypes.instanceOf(Object).isRequired,
+  filters: PropTypes.instanceOf(Object).isRequired,
   getCurrentSW: PropTypes.func.isRequired,
 };
 
