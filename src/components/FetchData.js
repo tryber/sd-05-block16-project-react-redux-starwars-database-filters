@@ -7,17 +7,14 @@ export default function fetchData() {
       .then((response) => response.json())
       .then(
         (obj) => dispatch(getResults(obj.results)),
-        (error) => dispatch(getError(error)),
+        (error) => dispatch(getError(error.ok || error.statusText)),
       );
   };
 }
 
-
 // store.dispatch(fetchData());
 // const mapDispatchToProps = (dispatch) => ({
-//   fetchData: () => dispatch(fetchData()),// });
-
-// export const store = createStore(reducer, applyMiddleware(thunk));
-// store.subscribe(() => console.log(store.getState()));
+//   fetchData: () => dispatch(fetchData()),
+// });
 
 // export default connect(null, mapDispatchToProps)(fetchData);

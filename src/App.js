@@ -25,7 +25,7 @@ class App extends Component {
 }
 
 export const store = createStore(reducer, applyMiddleware(thunk));
-store.subscribe(() => console.log(store.getState().filters.filterByName.name));
+store.subscribe(() => console.log(store.getState().filters));
 
 const mapDispatchToProps = (dispatch) => ({
   LoadData: () => dispatch(fetchData()),

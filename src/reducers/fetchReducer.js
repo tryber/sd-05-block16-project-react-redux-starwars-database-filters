@@ -1,12 +1,9 @@
-import { FETCH_DATA, GET_ERROR, GET_RESULTS } from './actions';
-// import { results } from '../testData';
-
-
-// estrutura default combineReducers como amostra
-// export const mainReducer = combineReducers({
-//   reducer1,
-//   reducer2,
-// });
+import {
+  FETCH_DATA,
+  GET_ERROR,
+  GET_RESULTS,
+  SORTED_COLUMN,
+} from './actions';
 
 const initialState = {
   data: [],
@@ -22,7 +19,6 @@ function fetchReducer(state = initialState, action) {
         isFetching: true,
       };
     case GET_RESULTS:
-      // console.log(action.payload);
       return {
         ...state,
         data: [...action.payload],
@@ -34,6 +30,12 @@ function fetchReducer(state = initialState, action) {
         error: action.payload,
         isFetching: false,
       };
+    case SORTED_COLUMN:
+      return {
+        ...state,
+        data: [...action.payload],
+      };
+
     default:
       return state;
   }

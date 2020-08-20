@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
-import propTypes from 'prop-types';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { sortByAttribute } from '../reducers/createActions';
 
 class RadioSort extends Component {
   render() {
-    const { value } = this.props;
+    const { value, order: { sort }, selectAttribute } = this.props;
     return (
       <div>
         <input
@@ -12,7 +14,8 @@ class RadioSort extends Component {
           name="filterByOrder"
           type="radio"
           value={value}
-          onChange={() => console.log('RadioSort')}
+          onChange={(e) => selectAttribute(e)}
+          checked={(sort === value) ? 1 : 0}
         />
         <label htmlFor={value}>{value}</label>
       </div>
@@ -20,10 +23,23 @@ class RadioSort extends Component {
   }
 }
 
-export default RadioSort;
+const mapStateToProps = (state) => {
+  const { filters: { order } } = state;
+  return {
+    ...state,
+    order,
+  };
+};
+const mapDispatchToProps = (dispatch) => ({
+  selectAttribute: (e) => dispatch(sortByAttribute(e)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(RadioSort);
 
 RadioSort.propTypes = {
-  value: propTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
+  order: PropTypes.shape({ sort: PropTypes.string.isRequired }).isRequired,
+  selectAttribute: PropTypes.func.isRequired,
 };
 
 RadioSort.defaultProp = {
