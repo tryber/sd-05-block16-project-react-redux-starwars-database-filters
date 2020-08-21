@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
 
 class Headers extends React.Component {
   render() {
@@ -21,7 +20,7 @@ class Headers extends React.Component {
       </table>
     );
   }
-};
+}
 
 export default Headers;
 /* Estrutura retirada dos exercícios do bloco 16 */
