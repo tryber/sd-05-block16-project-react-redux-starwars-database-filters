@@ -6,8 +6,8 @@ const STATE_INICIAL = {
   filters: {
     filterByName: {
       name: '',
-    }
-  }
+    },
+  },
 };
 
 const reducerVerificaActions = (state = STATE_INICIAL, action) => {
@@ -23,7 +23,7 @@ const reducerVerificaActions = (state = STATE_INICIAL, action) => {
         ...state,
         resultPlanets: action.resultPlanets,
         fazendoRequisicao: false,
-      }; 
+      };
     default:
       return state;
   }

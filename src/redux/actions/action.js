@@ -15,11 +15,6 @@ export const requicaoBemSucedida = (planets) => ({ /* Informa que a requisição
   resultPlanets: planets.results, /* Puxando o results da StarWarsPlanetsAPI.js */
 });
 
-// export const filtrandoNomeDePlanetas = (filtro) => ({ /* Informa que a requisição foi bem sucedida */
-//   type: REQUISICAO_BEM_SUCEDIDA,
-//   resultPlanets: planets.results, /* Puxando o results da StarWarsPlanetsAPI.js */
-// });
-
 // Actions creator retorna uma função
 export function fetchAPIStarWarsPlanets() {
 /* essa função acima chama a Api que está em services/StarWarsPlanetsAPI.js */
