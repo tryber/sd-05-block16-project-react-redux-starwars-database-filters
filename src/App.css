@@ -23,9 +23,41 @@ td {
   border: 0.5px solid black;
   padding: 2px;
 }
+
 .flex-me {
   display: flex;
+  justify-content: flex-start;
+  padding-left: 35px;
+}
+
+.filters {
+  display: flex;
+  flex-direction: column;
 }
 .column-me {
   flex-direction: column;
+}
+
+.center-me {
+  justify-content: center;
+  padding-bottom: 1px;
+  width: 150px;
+}
+
+header, footer {
+  background-image: url(https://starwarsblog.starwars.com/wp-content/uploads/2020/04/star-wars-backgrounds-36-1-1536x864.jpg);
+  background-size: 100vh;
+  height: 200px;
+  justify-content: center;
+  padding-top: 50px;
+}
+
+footer {
+  height: 80px;
+  justify-content: center;
+  padding-top: 50px;
+}
+
+body {
+  background-color: rgba(0, 0, 0, 0.061);
 }

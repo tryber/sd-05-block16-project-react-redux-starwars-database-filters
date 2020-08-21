@@ -20,8 +20,12 @@ function EntrySeach(props) {
 EntrySeach.propTypes = { handlerChange: propTypes.func.isRequired };
 function ColumnSearch(props) {
   return (
-    <div className="flex-me column-me">
-      <select data-testid="column-filter" onChange={(e) => (values.column = e.target.value)}>
+    <div className="flex-me center-me">
+      <select
+        data-testid="column-filter"
+        onChange={(e) => (values.column = e.target.value)}
+        className="center-me"
+      >
         <option value="" disabled selected>
           Coluna
         </option>
@@ -38,8 +42,9 @@ ColumnSearch.propTypes = {
 
 function ComparisonSearch(props) {
   return (
-    <div className="flex-me column-me">
+    <div className="flex-me center-me">
       <select
+        className="center-me"
         data-testid="comparison-filter"
         onChange={(e) => (values.comparison = e.target.value)}
       >
@@ -56,14 +61,19 @@ function ComparisonSearch(props) {
 
 function ButtonAdd(props) {
   return (
-    <div className="flex-me column-me">
+    <div className="flex-me column-me center-me">
       <input
+        className="center-me"
         type="number"
         name=""
         data-testid="value-filter"
         onChange={(e) => (values.value = e.target.value)}
       />
-      <button data-testid="button-filter" onClick={() => props.sF(values)}>
+      <button
+        data-testid="button-filter"
+        onClick={() => props.sF(values)}
+        className="center-me"
+      >
         Add
       </button>
     </div>
@@ -102,14 +112,16 @@ function Procurar(props) {
     optionsSelect1 = optionsSelect1.filter((o) => o !== e.column);
   });
   return (
-    <div className="flex-me">
+    <div className="flex-me header">
       <div>
         <OrderToMe />
       </div>
       <EntrySeach handlerChange={handlerChange} />
-      <ColumnSearch optionsSelect1={optionsSelect1} />
-      <ComparisonSearch optionsSelect2={optionsSelect2} />
-      <ButtonAdd sF={sF} />
+      <div className="filters ">
+        <ColumnSearch optionsSelect1={optionsSelect1} />
+        <ComparisonSearch optionsSelect2={optionsSelect2} />
+        <ButtonAdd sF={sF} />
+      </div>
       <FiltersBox old={props} rF={rF} uF={uF} />
     </div>
   );

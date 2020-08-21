@@ -17,6 +17,7 @@ class App extends React.Component {
           <Procurar />
         </header>
         <Table />
+        <footer></footer>
       </div>
     );
   }
