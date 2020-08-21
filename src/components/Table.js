@@ -59,7 +59,11 @@ class Table extends React.Component {
 */
 
 /* os states que vou usar mapStateToProps vem do reducer initial_state*/
-/* O valor do statedoReducerVerificaActions vai ser três infos (o state, o reducer que contêm a action e a action que quero)*/
+/*
+  O valor do statedoReducerVerificaActions
+  vai ser três infos(o state, o reducer que
+  contêm a action e a action que quero)
+*/
 const mapStateToProps = (state) => {
   console.log(state);
   return {

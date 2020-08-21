@@ -15,7 +15,8 @@ export const requicaoBemSucedida = (planets) => ({ /* Informa que a requisição
 });
 
 // Actions creator retorna uma função
-export function fetchAPIStarWarsPlanets() { /* essa função chama a Api que está em services/StarWarsPlanetsAPI.js */
+export function fetchAPIStarWarsPlanets() {
+/* essa função acima chama a Api que está em services/StarWarsPlanetsAPI.js */
   return (dispatch) => { // Ação sincrona para verificar a requisição
     dispatch(fazendoRequicaoAPI());
     return StarWarsPlanetsAPI()// Ação assincrona para receber informações da API
