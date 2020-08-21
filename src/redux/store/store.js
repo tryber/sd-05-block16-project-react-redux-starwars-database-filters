@@ -1,9 +1,7 @@
 import { createStore, applyMiddleware } from 'redux';
-// import { DevTools } from 'redux-devtools';
-import ReduxThunk from 'redux-thunk';
-import reducers from '../reducers/index';
-// import starWarsAPI from '../../services/StarWarsPlanetsAPI';
+import thunk from 'redux-thunk';
+import reducer from '../reducers/planetsReducer';
 
-const store = createStore(reducers, applyMiddleware(ReduxThunk));
+const store = createStore(reducer, applyMiddleware(thunk));
 
 export default store;

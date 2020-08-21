@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import VerificaActions from '../reducers/verificaActions';
+import planetsReducer from './planetsReducer';
 
 const rootReducer = combineReducers({
-  VerificaActions,
+  planetsReducer,
 });
 
 export default rootReducer;

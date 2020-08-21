@@ -1,54 +1,74 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import TableHeaders from './TableHeaders';
+import { fetchAPIStarWarsPlanets } from '../redux/actions/action';
 
 class Table extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      loading: false,
-      payload: [],
-      error: error,
-    };
-    
+  componentDidMount() {
+    const { StarWarsPlanetsAPI } = this.props;
+    StarWarsPlanetsAPI();
+    /* 
+    componentDidMount(quando montado), toda vez que o componente é renderizado, é feita uma chamada na API.
+    */
   }
 
   render() {
-    const { loading, payload, error } = this.state;
-    if (!loading && payload) {
-      return (
-        <div>
-          <tr>
-            <TableHeaders />
-            <th>name</th>
-            <th>rotation_period</th>
-            <th>orbital_period</th>
-            <th>diameter</th>
-            <th>climate</th>
-            <th>gravity</th>
-            <th>terrain</th>
-            <th>surface_water</th>
-            <th>population</th>
-          </tr>
-          <tr>
-            <td>{payload.name}</td>
-            <td>{payload.rotation_period}</td>
-            <td>{payload.diameter}</td>
-            <td>{payload.climate}</td>
-            <td>{payload.gravity}</td>
-            <td>{payload.terrain}</td>
-            <td>{payload.surface_water}</td>
-            <td>{payload.population}</td>
-          </tr>
-        </div>
-      );
-    }
+    const { resultPlanets } = this.props;
+    // console.log(resultPlanets);
+    return (
+      <div>
+        <h1>renderizar isto na tela</h1>
+        <table>
+          <thead>
+            <tr>
+              <th>name</th>
+              <th>rotation_period</th>
+              <th>orbital_period</th>
+              <th>diameter</th>
+              <th>climate</th>
+              <th>gravity</th>
+              <th>terrain</th>
+              <th>surface_water</th>
+              <th>population</th>
+            </tr>
+          </thead>
+          <tbody>
+            {resultPlanets.map((planet) => {
+              return (<tr>
+              <td>{planet.name}</td>
+              <td>{planet.rotation_period}</td>
+              <td>{planet.diameter}</td>
+              <td>{planet.climate}</td>
+              <td>{planet.gravity}</td>
+              <td>{planet.terrain}</td>
+              <td>{planet.surface_water}</td>
+            </tr>)
+            })}
+          </tbody>
+        </table>
+      </div>
+    );
   }
 }
 
-const mapStateToProps = (state) => ({
-  payload: state.verificaActions.payload,
+/*
+  mapStateToProps faz o papel do subscribe no redux
+  e no react faz papel no render
+*/
+
+/* os states que vou usar mapStateToProps vem do reducer initial_state */
+/* O valor do statedoReducerVerificaActions 
+vai ser três infos (o state, o reducer que contêm a action e a action que quero) */
+const mapStateToProps = (state) => {
+  console.log(state);
+  return {
+    fazendoRequisicao: state.fazendoRequisicao,
+    resultPlanets: state.resultPlanets,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  StarWarsPlanetsAPI: () => dispatch(fetchAPIStarWarsPlanets()),
 });
 
-export default connect(mapStateToProps)(Table);
+export default connect(mapStateToProps, mapDispatchToProps)(Table);
 /* Estrutura retirada dos exercícios do bloco 16 */
