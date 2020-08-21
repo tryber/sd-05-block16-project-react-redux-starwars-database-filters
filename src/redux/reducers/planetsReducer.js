@@ -2,7 +2,7 @@ import { REQUISICAO_BEM_SUCEDIDA, FAZENDO_REQUISICAO_API } from '../actions/acti
 
 const STATE_INICIAL = {
   fazendoRequisicao: true,
-  data: [],
+  resultPlanets: [],
   filters: {
     filterByName: {
       name: '',
@@ -21,7 +21,7 @@ const reducerVerificaActions = (state = STATE_INICIAL, action) => {
     case REQUISICAO_BEM_SUCEDIDA:
       return {
         ...state,
-        data: action.resultPlanets,
+        resultPlanets: action.data,
         fazendoRequisicao: false,
       };
     default:

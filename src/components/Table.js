@@ -64,7 +64,7 @@ const mapStateToProps = (state) => {
   console.log(state);
   return {
     fazendoRequisicao: state.fazendoRequisicao,
-    resultPlanets: state.data,
+    resultPlanets: state.resultPlanets,
   };
 };
 
