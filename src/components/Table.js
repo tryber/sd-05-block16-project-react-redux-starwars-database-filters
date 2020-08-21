@@ -8,7 +8,10 @@ class Table extends React.Component {
     const { StarWarsPlanetsAPI } = this.props;
     console.log('api', StarWarsPlanetsAPI);
     StarWarsPlanetsAPI();
-    /* componentDidMount,quando montado,toda vez que o componente é renderizado é feita umaChamada na API.*/
+    /*
+      componentDidMount,quando montado, toda vez que o
+      componente é renderizado é feita umaChamada na API.
+    */
   }
 
   render() {
