@@ -21,8 +21,8 @@ class Table extends React.Component {
     console.log('fazendoRequisicao', fazendoRequisicao);
     return (
       <div>
-        <Headers />
         <table>
+          <Headers />
           <tbody>
             {resultPlanets.map((planet) => (
               <tr>
