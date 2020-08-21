@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { fetchAPIStarWarsPlanets } from '../redux/actions/action';
+import Headers from './Headers';
 
 class Table extends React.Component {
   componentDidMount() {
@@ -19,21 +20,8 @@ class Table extends React.Component {
     console.log('resultPlanets', resultPlanets);
     return (
       <div>
-        <h1>renderizar isto na tela</h1>
+        <Headers />
         <table>
-          <thead>
-            <tr>
-              <th>name</th>
-              <th>rotation_period</th>
-              <th>orbital_period</th>
-              <th>diameter</th>
-              <th>climate</th>
-              <th>gravity</th>
-              <th>terrain</th>
-              <th>surface_water</th>
-              <th>population</th>
-            </tr>
-          </thead>
           <tbody>
             {resultPlanets.map((planet) => {
               return (
