@@ -2,7 +2,7 @@ import { REQUISICAO_BEM_SUCEDIDA, FAZENDO_REQUISICAO_API } from '../actions/acti
 
 const STATE_INICIAL = {
   fazendoRequisicao: true,
-  resultPlanets: []
+  resultPlanets: [],
 };
 
 const reducerVerificaActions = (state = STATE_INICIAL, action) => {
