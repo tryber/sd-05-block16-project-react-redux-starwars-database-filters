@@ -23,7 +23,7 @@ class Table extends React.Component {
         <Headers />
         <table>
           <tbody>
-            {resultPlanets.map((planet) => {
+            { resultPlanets.map((planet => {
               return (
                 <tr>
                   <td>{planet.name}</td>
@@ -35,7 +35,7 @@ class Table extends React.Component {
                   <td>{planet.surface_water}</td>
                 </tr>
               );
-            })
+            }))
             }
           </tbody>
         </table>
