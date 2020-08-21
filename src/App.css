@@ -1,38 +1,63 @@
-.App {
-  text-align: center;
+table {
+  border: 0.5px solid black;
+  border-spacing: 0;
+  padding: 2px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+thead {
+  border: 0.5px solid red;
+  padding: 2px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+tr {
+  border: 0.5px solid black;
+  padding: 2px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+th {
+  border: 0.5px solid black;
+  padding: 2px;
+}
+
+td {
+  border: 0.5px solid black;
+  padding: 2px;
+}
+
+.flex-me {
+  display: flex;
+  justify-content: flex-start;
+  padding-left: 35px;
+}
+
+.filters {
   display: flex;
   flex-direction: column;
-  align-items: center;
+}
+.column-me {
+  flex-direction: column;
+}
+
+.center-me {
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  padding-bottom: 1px;
+  width: 150px;
 }
 
-.App-link {
-  color: #61dafb;
+header, footer {
+  background-image: url(https://starwarsblog.starwars.com/wp-content/uploads/2020/04/star-wars-backgrounds-36-1-1536x864.jpg);
+  background-size: 100vh;
+  height: 200px;
+  justify-content: center;
+  padding-top: 50px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+footer {
+  height: 80px;
+  justify-content: center;
+  padding-top: 50px;
+}
+
+body {
+  background-color: rgba(0, 0, 0, 0.061);
 }
