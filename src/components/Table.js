@@ -7,7 +7,7 @@ class Table extends React.Component {
     const { StarWarsPlanetsAPI } = this.props;
     StarWarsPlanetsAPI();
     /* 
-    componentDidMount(quando montado), toda vez que o componente é renderizado, é feita uma chamada na API.
+    componentDidMount, quando montado, toda vez que o componente é renderizado é feita uma chamada na API.
     */
   }
 
@@ -33,16 +33,19 @@ class Table extends React.Component {
           </thead>
           <tbody>
             {resultPlanets.map((planet) => {
-              return (<tr>
-              <td>{planet.name}</td>
-              <td>{planet.rotation_period}</td>
-              <td>{planet.diameter}</td>
-              <td>{planet.climate}</td>
-              <td>{planet.gravity}</td>
-              <td>{planet.terrain}</td>
-              <td>{planet.surface_water}</td>
-            </tr>)
-            })}
+              return (
+                <tr>
+                  <td>{planet.name}</td>
+                  <td>{planet.rotation_period}</td>
+                  <td>{planet.diameter}</td>
+                  <td>{planet.climate}</td>
+                  <td>{planet.gravity}</td>
+                  <td>{planet.terrain}</td>
+                  <td>{planet.surface_water}</td>
+                </tr>
+              );
+            })
+            }
           </tbody>
         </table>
       </div>
@@ -55,7 +58,7 @@ class Table extends React.Component {
   e no react faz papel no render
 */
 
-/* os states que vou usar mapStateToProps vem do reducer initial_state */
+/*os states que vou usar mapStateToProps vem do reducer initial_state */
 /* O valor do statedoReducerVerificaActions 
 vai ser três infos (o state, o reducer que contêm a action e a action que quero) */
 const mapStateToProps = (state) => {
