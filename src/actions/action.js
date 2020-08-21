@@ -1,4 +1,4 @@
-import StarWarsPlanetsAPI from '../../services/StarWarsPlanetsAPI';
+import StarWarsPlanetsAPI from '../services/StarWarsPlanetsAPI';
 
 export const REQUISICAO_BEM_SUCEDIDA = 'REQUISICAO_BEM_SUCEDIDA';
 export const FAZENDO_REQUISICAO_API = 'FAZENDO_REQUISICAO_API';

@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { fetchAPIStarWarsPlanets } from '../redux/actions/action';
+import { fetchAPIStarWarsPlanets } from '../actions/action';
 import Headers from './Headers';
 
 class Table extends React.Component {
