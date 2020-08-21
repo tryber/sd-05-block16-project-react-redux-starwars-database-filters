@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import propTypes from 'prop-types';
 import { updateFilter, selectionFilter, replaceFilters } from '../Actions/actions';
+import OrderToMe from './order';
 import '../App.css';
 
 const basicOptionsSelect1 = ['population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water'];
@@ -72,6 +73,25 @@ ButtonAdd.propTypes = {
   sF: propTypes.func.isRequired,
 };
 
+function FiltersBox(actualProps) {
+  const { old: props, rF, uF } = actualProps;
+  return (
+    <div className="column-me">
+      {props.usedFilters.map((e) => (
+        <div data-testid="filter" key={`${e.column}d`}>
+          <button key={`${e.column}b`} id={e.column} onClick={() => rF(uF.filter((u) => u.column !== e.column))}>
+            x
+          </button>
+          <label htmlFor={e.column} key={`${e.column}l`}>{`${e.column} ${e.comparison} ${e.value}`}</label>
+        </div>
+      ))}
+    </div>
+  );
+}
+FiltersBox.propTypes = {
+  /* actualProps: propTypes.instanceOf(Object).isRequired, */
+  usedFilters: propTypes.func.isRequired,
+};
 function Procurar(props) {
   const { replaceFilters: rF, selectionFilter: sF, usedFilters: uF } = props;
   const handlerChange = (event) => {
@@ -83,20 +103,14 @@ function Procurar(props) {
   });
   return (
     <div className="flex-me">
+      <div>
+        <OrderToMe />
+      </div>
       <EntrySeach handlerChange={handlerChange} />
       <ColumnSearch optionsSelect1={optionsSelect1} />
       <ComparisonSearch optionsSelect2={optionsSelect2} />
       <ButtonAdd sF={sF} />
-      <div className="column-me">
-        {props.usedFilters.map((e) => (
-          <div data-testid="filter" key={`${e.column}d`}>
-            <button key={`${e.column}b`} id={e.column} onClick={() => rF(uF.filter((u) => u.column !== e.column))}>
-              x
-            </button>
-            <label htmlFor={e.column} key={`${e.column}l`}>{`${e.column} ${e.comparison} ${e.value}`}</label>
-          </div>
-        ))}
-      </div>
+      <FiltersBox old={props} rF={rF} uF={uF} />
     </div>
   );
 }

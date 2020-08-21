@@ -18,7 +18,7 @@ function small(data, arrayFilter) {
         planets = planets.filter((planet) => Number(planet[e.column]) < e.value);
         break;
       case 'igual a':
-        planets = planets.filter((planet) => (planet[e.column]) === e.value);
+        planets = planets.filter((planet) => planet[e.column] === e.value);
         break;
       default:
         break;
@@ -26,11 +26,26 @@ function small(data, arrayFilter) {
   });
   return planets;
 }
+const ASC = ({ a, b, t, col }) => {
+  if (t === 'ASC') {
+    return a[col] > b[col] ? 1 : -1;
+  }
+  return a[col] < b[col] ? 1 : -1;
+};
+function organizeMe(a, b, type) {
+  const col = type.column.toLowerCase();
+  const check = ['name', 'climate', 'gravity', 'terrain'].find((e) => e === col);
+  if (check) return ASC({ a, b, t: type.sort, col });
 
+  if (type.sort === 'ASC') {
+    return parseInt(a[col], 10) - parseInt(b[col], 10);
+  }
+  return parseInt(b[col], 10) - parseInt(a[col], 10);
+}
 function Table(props) {
   if (props.isLoading) return <h1>No data</h1>;
-  const { filterUpdate, data, arrayFilter } = props;
-  const planets = small(data, arrayFilter);
+  const { filterUpdate, data, arrayFilter, order } = props;
+  const planets = small(data, arrayFilter).sort((a, b) => (order.sort === 'ASC' ? organizeMe(a, b, order) : organizeMe(a, b, order)));
   const topo = Object.entries(planets[0]).map((e) => e[0].replace(/_/, ' '));
   return (
     <table>
@@ -57,6 +72,7 @@ const mapStateToProps = (state) => ({
   data: state.filters.data,
   isLoading: state.filters.isLoading,
   arrayFilter: state.filters.filterByNumericValues,
+  order: state.filters.order,
 });
 
 export default connect(mapStateToProps, null)(Table);
@@ -66,4 +82,5 @@ Table.propTypes = {
   data: propTypes.arrayOf(propTypes.instanceOf(Object)).isRequired,
   arrayFilter: propTypes.arrayOf(propTypes.instanceOf(Object)).isRequired,
   isLoading: propTypes.bool.isRequired,
+  order: propTypes.instanceOf(Object).isRequired,
 };
