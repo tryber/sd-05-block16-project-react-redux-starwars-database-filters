@@ -16,33 +16,38 @@ class Table extends React.Component {
   }
 
   render() {
-    const { resultPlanets } = this.props;
+    const { resultPlanets, fazendoRequisicao } = this.props;
     console.log('resultPlanets', resultPlanets);
+    console.log('fazendoRequisicao', fazendoRequisicao);
     return (
       <div>
         <Headers />
         <table>
           <tbody>
-            { resultPlanets.map((planet) => {
-              return (
-                <tr>
-                  <td>{planet.name}</td>
-                  <td>{planet.rotation_period}</td>
-                  <td>{planet.diameter}</td>
-                  <td>{planet.climate}</td>
-                  <td>{planet.gravity}</td>
-                  <td>{planet.terrain}</td>
-                  <td>{planet.surface_water}</td>
-                </tr>
-              );
-            })
+            {resultPlanets.map((planet) => (
+              <tr>
+                <td>{planet.name}</td>
+                <td>{planet.rotation_period}</td>
+                <td>{planet.diameter}</td>
+                <td>{planet.climate}</td>
+                <td>{planet.gravity}</td>
+                <td>{planet.terrain}</td>
+                <td>{planet.surface_water}</td>
+              </tr>
+            ))
             }
           </tbody>
         </table>
+        {fazendoRequisicao && 'Loading...'}
       </div>
     );
   }
 }
+
+/*
+  {fazendoRequisicao && 'Loading...'} enquanto fazendoRequisicao
+  for true, o texto loading vai aparecer na tela.
+*/
 
 /*
   mapStateToProps faz o papel do subscribe no redux
@@ -70,6 +75,7 @@ const mapDispatchToProps = (dispatch) => ({
 Table.propTypes = {
   resultPlanets: PropTypes.arrayOf.isRequired,
   StarWarsPlanetsAPI: PropTypes.func.isRequired,
+  fazendoRequisicao: PropTypes.bool.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Table);

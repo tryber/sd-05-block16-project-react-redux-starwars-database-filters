@@ -2,6 +2,7 @@ import StarWarsPlanetsAPI from '../../services/StarWarsPlanetsAPI';
 
 export const REQUISICAO_BEM_SUCEDIDA = 'REQUISICAO_BEM_SUCEDIDA';
 export const FAZENDO_REQUISICAO_API = 'FAZENDO_REQUISICAO_API';
+export const FILTRANDO_NOME_DE_PLANETAS = 'FILTRANDO_NOME_DE_PLANETAS';
 // Levar em consideraçao a action pqEstáVindoDa API eDepois o reducer(verSeOsNomesEstãoCoincidindo)
 // Actions retornam objetos
 export const fazendoRequicaoAPI = () => ({ /* Informa que eu estou fazendo uma Requisição na API */
@@ -13,6 +14,11 @@ export const requicaoBemSucedida = (planets) => ({ /* Informa que a requisição
   type: REQUISICAO_BEM_SUCEDIDA,
   resultPlanets: planets.results, /* Puxando o results da StarWarsPlanetsAPI.js */
 });
+
+// export const filtrandoNomeDePlanetas = (filtro) => ({ /* Informa que a requisição foi bem sucedida */
+//   type: REQUISICAO_BEM_SUCEDIDA,
+//   resultPlanets: planets.results, /* Puxando o results da StarWarsPlanetsAPI.js */
+// });
 
 // Actions creator retorna uma função
 export function fetchAPIStarWarsPlanets() {

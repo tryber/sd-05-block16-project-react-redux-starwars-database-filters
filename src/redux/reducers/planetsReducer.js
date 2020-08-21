@@ -3,6 +3,11 @@ import { REQUISICAO_BEM_SUCEDIDA, FAZENDO_REQUISICAO_API } from '../actions/acti
 const STATE_INICIAL = {
   fazendoRequisicao: true,
   resultPlanets: [],
+  filters: {
+    filterByName: {
+      name: '',
+    }
+  }
 };
 
 const reducerVerificaActions = (state = STATE_INICIAL, action) => {
@@ -18,7 +23,7 @@ const reducerVerificaActions = (state = STATE_INICIAL, action) => {
         ...state,
         resultPlanets: action.resultPlanets,
         fazendoRequisicao: false,
-      };
+      }; 
     default:
       return state;
   }
