@@ -7,12 +7,9 @@ import NumberFilter from './components/NumberFilter';
 function App() {
   return (
     <div className="App">
-      <header className="App-header" />
       <div>
         <TextFilter />
         <NumberFilter />
-      </div>
-      <div>
         <Table />
       </div>
     </div>
