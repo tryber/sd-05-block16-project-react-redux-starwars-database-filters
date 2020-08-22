@@ -5,6 +5,7 @@ export const REQUEST_OK = 'REQUEST_OK';
 export const REQUEST_FAILED = 'REQUEST_FAILED';
 export const REQUEST_LOADING = 'REQUEST_LOADING';
 export const TEXT_INPUT = 'TEXT-INPUT';
+export const NUMBER_FILTER = 'NUMBER_FILTER';
 
 export const requestSuccess = (data) => ({
   type: REQUEST_OK,
@@ -39,5 +40,16 @@ export function textFilter(textInput) {
   return {
     type: TEXT_INPUT,
     textInput,
+  };
+}
+
+// Action Creator para filtrar input de número, parâmetro
+// configurado como um objeto contendo os três parâmetros
+export function numberFilter({column,comparison,value}) {
+  return {
+    type: NUMBER_FILTER,
+    column,
+    comparison,
+    value,
   };
 }
