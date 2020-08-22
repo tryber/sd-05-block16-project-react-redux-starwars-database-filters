@@ -7,11 +7,13 @@ import NumberFilter from './components/NumberFilter';
 function App() {
   return (
     <div className="App">
-      <div>
-        <TextFilter />
-        <NumberFilter />
-        <Table />
-      </div>
+      <header className="App-header">
+        <div>
+          <TextFilter />
+          <NumberFilter />
+          <Table />
+        </div>
+      </header>
     </div>
   );
 }
