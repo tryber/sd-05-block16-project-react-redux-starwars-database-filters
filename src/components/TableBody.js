@@ -4,7 +4,9 @@ import { connect } from 'react-redux';
 
 class TableBody extends Component {
   render() {
-    const { data } = this.props;
+    const { data, filterByName } = this.props;
+    const filteredPlanetsByName = data.filter((planets) => planets.name.includes(filterByName));
+    console.log(filteredPlanetsByName);
     return (
       data.map((planet) => (
         <tbody key={planet.name}>
@@ -30,10 +32,12 @@ class TableBody extends Component {
 
 const mapStateToProps = (state) => ({
   data: state.requestReducer.data,
+  filterByName: state.filters.filterByName.name,
 });
 
 TableBody.propTypes = {
   data: propTypes.arrayOf(propTypes.object).isRequired,
+  filterByName: propTypes.string.isRequired,
 };
 
 export default connect(mapStateToProps)(TableBody);
