@@ -4,6 +4,7 @@ import planetAPI from '../services/requestAPI.js';
 export const REQUEST_OK = 'REQUEST_OK';
 export const REQUEST_FAILED = 'REQUEST_FAILED';
 export const REQUEST_LOADING = 'REQUEST_LOADING';
+export const TEXT_INPUT = 'TEXT-INPUT';
 
 export const requestSuccess = (data) => ({
   type: REQUEST_OK,
@@ -30,5 +31,13 @@ export function thunkStarWars() {
         (results) => dispatch(requestSuccess(results)),
         (error) => dispatch(requestFail(error)),
       );
+  };
+}
+
+// Action Creator para filtrar input de texto
+export function textFilter(textInput) {
+  return {
+    type: TEXT_INPUT,
+    textInput,
   };
 }

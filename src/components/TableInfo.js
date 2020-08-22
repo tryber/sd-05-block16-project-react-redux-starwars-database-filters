@@ -3,11 +3,13 @@ import propTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 // tabela que receberá o corpo da função
-
 class TableInfo extends React.Component {
   render() {
-    const { data } = this.props;
-    return data.map((planet) => (
+    const { data, text } = this.props;
+    const filterPlanets = data.filter((input) =>
+      input.name.toUpperCase().includes(text.name.toUpperCase()),
+    );
+    return filterPlanets.map((planet) => (
       <tbody key={planet.name}>
         <tr>
           <td>{planet.name}</td>
@@ -29,11 +31,12 @@ class TableInfo extends React.Component {
   }
 }
 
-const mapDispatchToProps = (state) => ({
+const mapStateToProps = (state) => ({
   data: state.planetReducer.data,
+  text: state.filters.filterByName,
 });
 
-export default connect(mapDispatchToProps)(TableInfo);
+export default connect(mapStateToProps)(TableInfo);
 
 TableInfo.propTypes = {
   data: propTypes.arrayOf(propTypes.object).isRequired,
