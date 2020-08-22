@@ -40,4 +40,5 @@ export default connect(mapStateToProps)(TableInfo);
 
 TableInfo.propTypes = {
   data: propTypes.arrayOf(propTypes.object).isRequired,
+  text: propTypes.arrayOf(propTypes.object).isRequired,
 };

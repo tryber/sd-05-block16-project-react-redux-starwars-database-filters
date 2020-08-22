@@ -27,11 +27,10 @@ export const requestLoading = () => ({
 export function thunkStarWars() {
   return (dispatch) => {
     dispatch(requestLoading());
-    return planetAPI()
-      .then(
-        (results) => dispatch(requestSuccess(results)),
-        (error) => dispatch(requestFail(error)),
-      );
+    return planetAPI().then(
+      (results) => dispatch(requestSuccess(results)),
+      (error) => dispatch(requestFail(error)),
+    );
   };
 }
 
@@ -45,7 +44,7 @@ export function textFilter(textInput) {
 
 // Action Creator para filtrar input de número, parâmetro
 // configurado como um objeto contendo os três parâmetros
-export function numberFilter({column,comparison,value}) {
+export function numberFilter({ column, comparison, value }) {
   return {
     type: NUMBER_FILTER,
     column,
