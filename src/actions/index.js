@@ -1,10 +1,3 @@
-// export const RECEIVE_PLANETS = 'RECEIVE_PLANETS';
-
-// export const receivePlanets = (algo) => ({ 
-//   type: RECEIVE_PLANETS, 
-//   algo,
-// })
-
 // Referência: aula ao vivo 16.4
 
 import { getPlanets } from '../service/planetsAPI';
@@ -15,26 +8,25 @@ export const REQUEST_PLANETS = 'REQUEST_PLANETS';
 
 const requestPlanets = () => ({
   type: REQUEST_PLANETS,
-})
+});
 
 const receivePlanetsFailure = (error) => ({
   type: RECEIVE_PLANETS_FAILURE,
   error,
-})
+});
 
 const receivePlanetsSuccess = ({ results }) => ({
-  type: RECEIVE_PLANETS_SUCCESS,  
-})
+  type: RECEIVE_PLANETS_SUCCESS,
+});
 
 export function fetchPlanets() {
   return (dispatch) => {
     dispatch(requestPlanets());
-  
+
     return getPlanets()
       .then(
-        (results) => dispatch
-        (receivePlanetsSuccess(results)),
+        (results) => dispatch(receivePlanetsSuccess(results)),
         (error) => dispatch(receivePlanetsFailure(error.message)),
       );
-  }
+  };
 }

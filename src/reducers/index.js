@@ -6,32 +6,31 @@ import {
 
 const INITIAL_PLANET = {
   isFetching: false,
-}
+};
 
 const reducer = (state = INITIAL_PLANET, action) => {
-
-  switch(action.type) {
+  switch (action.type) {
     case REQUEST_PLANETS:
       return {
         ...state,
         isFetching: true,
-      }
+      };
     case RECEIVE_PLANETS_SUCCESS:
       return {
         ...state,
         isFetching: false,
-      }
+      };
     case RECEIVE_PLANETS_FAILURE:
       return {
         ...state,
         error: action.error,
         isFetching: false,
-      }
+      };
 
     default:
       return state;
   }
-}
+};
 
 export default reducer;
 
