@@ -41,7 +41,8 @@ class NumberFilter extends React.Component {
         >
           {itemsComparison.map((items) => (<option>{items}</option>))}
         </select>
-        <input type="number"
+        <input
+          type="number"
           data-testid="value-filter"
           onChange={(event) => this.setState({ value: event.target.value })}
         />
