@@ -23,7 +23,6 @@ class NumberFilter extends React.Component {
     };
   }
   // IndexOf fonte MDN
-  // eslint-disable-next-line lines-between-class-members
   render() {
     const { handleChangeNumber, filterByNumericValues } = this.props;
     const columnUse = filterByNumericValues.map((e) => e.column);
@@ -42,16 +41,11 @@ class NumberFilter extends React.Component {
         >
           {itemsComparison.map((items) => (<option>{items}</option>))}
         </select>
-        <input
-          type="number"
+        <input type="number"
           data-testid="value-filter"
           onChange={(event) => this.setState({ value: event.target.value })}
         />
-        <button
-          type="button"
-          data-testid="button-filter"
-          onClick={() => handleChangeNumber(this.state)}
-        >
+        <button data-testid="button-filter" onClick={() => handleChangeNumber(this.state)}>
           Filter
         </button>
       </div>
