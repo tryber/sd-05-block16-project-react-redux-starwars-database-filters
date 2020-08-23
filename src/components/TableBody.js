@@ -2,15 +2,33 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+function filterNumber(allPlanets, filter) {
+  switch (filter.comparison) {
+    case 'maior que':
+      return allPlanets.filter((planet) => Number(planet[filter.column]) > Number(filter.value));
+    case 'menor que':
+      return allPlanets.filter((planet) => Number(planet[filter.column]) < Number(filter.value));
+    case 'igual a':
+      return allPlanets.filter((planet) => Number(planet[filter.column]) === Number(filter.value));
+    default:
+      return allPlanets;
+  }
+}
+
+function filterName(allPlanets, filterByName) {
+  return (allPlanets.filter(
+    (planet) => planet.name.toLowerCase().includes(filterByName.name.toLowerCase()),
+  ));
+}
+
 class TableBody extends Component {
   render() {
-    const { data, filterByName } = this.props;
-    const filteredPlanetsByName = data.filter(
-      (planets) => planets.name.toLowerCase().includes(filterByName.name.toLowerCase()),
-    );
-
+    const { data, filterByName, filterByNumericValues } = this.props;
+    let allPlanets = data;
+    filterByNumericValues.forEach((filter) => { allPlanets = filterNumber(allPlanets, filter); });
+    allPlanets = filterName(allPlanets, filterByName);
     return (
-      filteredPlanetsByName.map((planet) => (
+      allPlanets.map((planet) => (
         <tbody key={planet.name}>
           <tr>
             <td>{planet.name}</td>
@@ -35,11 +53,13 @@ class TableBody extends Component {
 const mapStateToProps = (state) => ({
   data: state.requestReducer.data,
   filterByName: state.filters.filterByName,
+  filterByNumericValues: state.filters.filterByNumericValues,
 });
 
 TableBody.propTypes = {
   data: PropTypes.arrayOf(PropTypes.object).isRequired,
-  filterByName: PropTypes.arrayOf(PropTypes.object).isRequired,
+  filterByName: PropTypes.string.isRequired,
+  filterByNumericValues: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default connect(mapStateToProps)(TableBody);
