@@ -1,5 +1,3 @@
-/* eslint-disable react/jsx-first-prop-new-line */
-/* eslint-disable lines-between-class-members */
 import React from 'react';
 import { connect } from 'react-redux';
 import propTypes from 'prop-types';
@@ -25,18 +23,21 @@ class NumberFilter extends React.Component {
     };
   }
   // IndexOf fonte MDN
+  // eslint-disable-next-line lines-between-class-members
   render() {
     const { handleChangeNumber, filterByNumericValues } = this.props;
     const columnUse = filterByNumericValues.map((e) => e.column);
     const columnAvailable = itemsDropdown.filter((e) => columnUse.indexOf(e) === -1);
     return (
       <div>
-        <select data-testid="column-filter"
+        <select
+          data-testid="column-filter"
           onChange={(event) => this.setState({ column: event.target.value })}
         >
           {columnAvailable.map((items) => (<option>{items}</option>))}
         </select>
-        <select data-testid="comparison-filter"
+        <select
+          data-testid="comparison-filter"
           onChange={(event) => this.setState({ comparison: event.target.value })}
         >
           {itemsComparison.map((items) => (<option>{items}</option>))}

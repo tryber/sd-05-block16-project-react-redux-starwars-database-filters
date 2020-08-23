@@ -1,4 +1,4 @@
-import planetAPI from '../services/requestAPI.js';
+import planetAPI from '../services/requestAPI';
 
 // Definindo as actions e em seguida a action creator correspondente
 export const REQUEST_OK = 'REQUEST_OK';
@@ -6,6 +6,7 @@ export const REQUEST_FAILED = 'REQUEST_FAILED';
 export const REQUEST_LOADING = 'REQUEST_LOADING';
 export const TEXT_INPUT = 'TEXT-INPUT';
 export const NUMBER_FILTER = 'NUMBER_FILTER';
+export const DELETE_FILTER = 'DELETE_FILTER';
 
 export const requestSuccess = (data) => ({
   type: REQUEST_OK,
@@ -50,5 +51,13 @@ export function numberFilter({ column, comparison, value }) {
     column,
     comparison,
     value,
+  };
+}
+
+// Action creator para remover o filtro
+export function deleteFilter(item) {
+  return {
+    type: DELETE_FILTER,
+    item,
   };
 }

@@ -3,6 +3,7 @@ import './App.css';
 import Table from './components/Table';
 import TextFilter from './components/TextFilter';
 import NumberFilter from './components/NumberFilter';
+import DeleteFilter from './actions/DeleteFilter';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         <div>
           <TextFilter />
           <NumberFilter />
+          <DeleteFilter />
           <Table />
         </div>
       </header>
