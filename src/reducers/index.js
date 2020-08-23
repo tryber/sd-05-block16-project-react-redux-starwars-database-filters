@@ -1,3 +1,5 @@
+import { combineReducers } from 'redux';
+
 import {
   RECEIVE_PLANETS_FAILURE,
   RECEIVE_PLANETS_SUCCESS,
@@ -6,6 +8,8 @@ import {
 
 const INITIAL_PLANET = {
   isFetching: false,
+  data: [],
+  error: '',
 };
 
 const reducer = (state = INITIAL_PLANET, action) => {
@@ -19,6 +23,7 @@ const reducer = (state = INITIAL_PLANET, action) => {
       return {
         ...state,
         isFetching: false,
+        data: action.data,
       };
     case RECEIVE_PLANETS_FAILURE:
       return {
@@ -32,7 +37,11 @@ const reducer = (state = INITIAL_PLANET, action) => {
   }
 };
 
-export default reducer;
+const rootReducer = combineReducers({
+  reducer,
+});
+
+export default rootReducer;
 
 // function emptyReducer() {
 //   return {};

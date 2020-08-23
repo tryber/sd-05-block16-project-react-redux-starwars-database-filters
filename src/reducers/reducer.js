@@ -1,7 +1,7 @@
-import { combineReducers } from 'redux';
+// import { combineReducers } from 'redux';
 
-const rootReducer = combineReducers({
-  reducersASeremCriados,
-});
+// const rootReducer = combineReducers({
+//   reducer,
+// });
 
-export default rootReducer;
+// export default rootReducer;
