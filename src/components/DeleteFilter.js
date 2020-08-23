@@ -1,42 +1,42 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { deleteFilter } from '../actions/index';
+import { deleteFilterAction } from '../actions/index';
 
-class ActiveFilter extends Component {
+class DeleteFilter extends React.Component {
   render() {
     const { filterByNumericValues, deleteFilter } = this.props;
-    return(
+    return (
       <div>
         <h3>Filtros selecionados</h3>
-        filterByNumericValues.map((filter, item) => (
+        {filterByNumericValues.map((filter, item) => (
           <p data-testid="filter" key={filterByNumericValues.column}>
-            <section>
-              <button onClick={() => deleteFilter(item)}>
+            <div>
+              <button type="button" onClick={() => deleteFilter(item)}>
                 X
               </button>
               {`${filter.column} ${filter.comparison} ${filter.value}`}
-            </section>
-          </p>));
+            </div>
+          </p>
+        ))}
+        ;
       </div>
     );
   }
 }
 
-const mapStateToProps = () => {
-  const mapStateToProps = (state) => ({
-    filterByNumericValues: state.filters.filterByNumericValues,
-  });
-}
+const mapStateToProps = (state) => ({
+  filterByNumericValues: state.filters.filterByNumericValues,
+  item: state.filters.item,
+});
 
-const mapDispatchToProps {
-  deleteFilter: deleteFilter
-}
+const mapDispatchToProps = (dispatch) => ({
+  deleteFilter: (element) => dispatch(deleteFilterAction(element)),
+});
 
-export default connect(mapStateToProps, mapDispatchToProps)(ActiveFilter);
+export default connect(mapStateToProps, mapDispatchToProps)(DeleteFilter);
 
-ActiveFilter.propTypes = {
+DeleteFilter.propTypes = {
   filterByNumericValues: propTypes.arrayOf(propTypes.object).isRequired,
   deleteFilter: propTypes.func.isRequired,
 };
-

@@ -55,7 +55,7 @@ export function numberFilter({ column, comparison, value }) {
 }
 
 // Action creator para remover o filtro
-export function deleteFilter(item) {
+export function deleteFilterAction(item) {
   return {
     type: DELETE_FILTER,
     item,
