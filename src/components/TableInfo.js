@@ -12,6 +12,7 @@ function filterByNumber(arrayPlanets, filter) {
   if (filter.comparison === 'igual a') {
     return arrayPlanets.filter((planet) => Number(planet[filter.column]) === Number(filter.value));
   }
+  return arrayPlanets;
 }
 
 // tabela que receberá o corpo da função
@@ -25,10 +26,10 @@ class TableInfo extends React.Component {
       filterPlanets = filterByNumber(filterPlanets, filter);
     });
 
-    filterPlanets = filterPlanets.filter((input) =>
-      input.name.toUpperCase().includes(text.name.toUpperCase()),
+    filterPlanets = filterPlanets.filter(
+      (input) => input.name.toUpperCase().includes(text.name.toUpperCase()),
     );
-    
+
     return filterPlanets.map((planet) => (
       <tbody key={planet.name}>
         <tr>
@@ -61,5 +62,6 @@ export default connect(mapStateToProps)(TableInfo);
 
 TableInfo.propTypes = {
   data: propTypes.arrayOf(propTypes.object).isRequired,
-  text: propTypes.arrayOf(propTypes.object).isRequired,
+  text: propTypes.string.isRequired,
+  filterByNumericValues: propTypes.arrayOf(propTypes.object).isRequired,
 };
