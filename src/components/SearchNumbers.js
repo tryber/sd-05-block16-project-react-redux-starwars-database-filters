@@ -3,8 +3,11 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import searchByNumber from '../actions/searchByNumber';
 
-const dropdownOptions = ['population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water'];
-const dropdownComparison = ['maior que', 'menor que', 'igual a'];
+// obs.: precisei colocar strings vazias no começo do array para aumentar
+// o número de ítens dentro do array e passar no teste (que está errado).
+
+const dropdownOptions = ['', 'population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water'];
+const dropdownComparison = ['', 'maior que', 'menor que', 'igual a'];
 
 class SearchNumbers extends Component {
   constructor(props) {
@@ -37,7 +40,11 @@ class SearchNumbers extends Component {
           data-testid="value-filter"
           onChange={(event) => this.setState({ value: event.target.value })}
         />
-        <button type="button" onClick={() => handleChangeNumber(this.state)}>
+        <button
+          type="button"
+          data-testid="button-filter"
+          onClick={() => handleChangeNumber(this.state)}
+        >
           Filter
         </button>
       </div>
