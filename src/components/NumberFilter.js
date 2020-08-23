@@ -32,30 +32,24 @@ class NumberFilter extends React.Component {
       <div>
         <select
           data-testid="column-filter"
-          onChange={(event) => this.setState({ column: event.target.value })}
-        >
-          {columnAvailable.map((items) => {
+          onChange={(event) => this.setState({ column: event.target.value })}>
+          {columnAvailable.map(items => {
             return <option>{items}</option>;
           })}
         </select>
-        <select
-          data-testid="comparison-filter"
-          onChange={(event) => this.setState({ comparison: event.target.value })}
-        >
-          {itemsComparison.map((items) => {
+        <select data-testid="comparison-filter" 
+        onChange={(event) => this.setState({ comparison: event.target.value })}>
+          {itemsComparison.map(items => {
             return <option>{items}</option>;
           })}
         </select>
-        <input
-          type="number"
+        <input type="number"
           data-testid="value-filter"
-          onChange={(event) => this.setState({ value: event.target.value })}
-        />
+          onChange={(event) => this.setState({ value: event.target.value })} />
         <button
-          data-testid="button-filter"
           type="button"
-          onClick={() => handleChangeNumber(this.state)}
-        >
+          data-testid="button-filter"
+          onClick={() => handleChangeNumber(this.state)}>
           Filter
         </button>
       </div>
