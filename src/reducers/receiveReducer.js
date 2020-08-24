@@ -3,7 +3,7 @@ import { RP_SUCESS, RP_FAILED, REQUEST_PLANETS, NAME } from '../actions/index';
 const INITIAL_STATE = {
   filters: [
     {
-      name: ',',
+      name: '',
     },
   ],
   data: '',
