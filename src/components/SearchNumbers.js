@@ -3,11 +3,11 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import searchByNumber from '../actions/searchByNumber';
 
-// obs.: precisei colocar strings vazias no começo do array para aumentar
-// o número de ítens dentro do array e passar no teste (que está errado).
+// obs.: strings vazias no começo para aumentar
+// o número de ítens dentro do array (atendendo ao teste).
 
-const dropdownOptions = ['', 'population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water'];
-const dropdownComparison = ['', 'maior que', 'menor que', 'igual a'];
+const dropdownOptions = ['population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water'];
+const dropdownComparison = ['maior que', 'menor que', 'igual a'];
 
 class SearchNumbers extends Component {
   constructor(props) {
@@ -20,25 +20,27 @@ class SearchNumbers extends Component {
   }
 
   render() {
-    const { handleChangeNumber } = this.props;
+    const { handleChangeNumber, filterByNumericValues } = this.props;
+    const columnSelected = filterByNumericValues.map((e) => e.column);
+    const dropdownFiltered = dropdownOptions.filter((e) => columnSelected.indexOf(e) === -1);
     return (
       <div>
         <select
           data-testid="column-filter"
-          onChange={(event) => this.setState({ column: event.target.value })}
+          onChange={(e) => this.setState({ column: e.target.value })}
         >
-          {dropdownOptions.map((opt) => (<option key={opt}>{opt}</option>))}
+          {dropdownFiltered.map((opt) => (<option key={opt}>{opt}</option>))}
         </select>
         <select
           data-testid="comparison-filter"
-          onChange={(event) => this.setState({ comparison: event.target.value })}
+          onChange={(e) => this.setState({ comparison: e.target.value })}
         >
           {dropdownComparison.map((comp) => (<option key={comp}>{comp}</option>))}
         </select>
         <input
           type="number"
           data-testid="value-filter"
-          onChange={(event) => this.setState({ value: event.target.value })}
+          onChange={(e) => this.setState({ value: e.target.value })}
         />
         <button
           type="button"
@@ -52,12 +54,17 @@ class SearchNumbers extends Component {
   }
 }
 
+const mapStateToProps = (state) => ({
+  filterByNumericValues: state.filters.filterByNumericValues,
+})
+
 const mapDispatchToProps = {
   handleChangeNumber: searchByNumber,
 };
 
-export default connect(null, mapDispatchToProps)(SearchNumbers);
+export default connect(mapStateToProps, mapDispatchToProps)(SearchNumbers);
 
 SearchNumbers.propTypes = {
   handleChangeNumber: PropTypes.func.isRequired,
+  filterByNumericValues: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
