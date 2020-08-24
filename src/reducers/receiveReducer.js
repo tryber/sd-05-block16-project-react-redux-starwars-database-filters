@@ -34,7 +34,7 @@ const emptyReducer = (state = INITIAL_STATE, action) => {
         ...state,
         filters: {
           filterByName: {
-            name: action.name,
+            name: action.filters.filterByName.name,
           },
         },
       };

@@ -31,5 +31,9 @@ export function fetchPlanets() {
 
 export const filterName = (name) => ({
   type: NAME,
-  name,
+  filters: {
+    filterByName: {
+      name,
+    }
+  },
 });
