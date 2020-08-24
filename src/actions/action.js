@@ -13,7 +13,7 @@ export const fazendoRequicaoAPI = () => ({ /* Informa que eu estou fazendo uma R
 export const requicaoBemSucedida = (planets) => ({
   /* Informa que a requisição foi bem sucedida */
   type: REQUISICAO_BEM_SUCEDIDA,
-  data: planets.results,/* Puxando o results da StarWarsPlanetsAPI.js */
+  data: planets.results, /* Puxando o results da StarWarsPlanetsAPI.js */
 });
 
 // Actions creator retorna uma função
