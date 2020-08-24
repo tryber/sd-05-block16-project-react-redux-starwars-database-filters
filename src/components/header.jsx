@@ -53,8 +53,8 @@ class Header extends Component {
             data-testid="column-filter" type="ComboBox"
             name="column" onChange={this.trocarState}
           >
-            {(this.state.columnFilter.filter((parametro) => !this.props.filtersArray.includes(parametro)))
-              .map((value) => <option key={value}>{value}</option>)}
+            {(this.state.columnFilter.filter((parametro) => !this.props.filtersArray
+              .includes(parametro))).map((value) => <option key={value}>{value}</option>)}
           </select>
           <select
             data-testid="comparison-filter" type="ComboBox"
@@ -146,7 +146,7 @@ class Header extends Component {
 
 const mapStateToProps = (state) => ({
   filters: state.filters.filterByNumericValues,
-  filtersArray: state.filters.filterByNumericValues.map(filtro => filtro.column),
+  filtersArray: state.filters.filterByNumericValues.map((filtro) => (filtro.column)),
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -160,6 +160,7 @@ Header.propTypes = {
   filterByName: PropTypes.func.isRequired,
   filterByNumericValues: PropTypes.func.isRequired,
   filters: PropTypes.instanceOf(Object).isRequired,
+  filtersArray: PropTypes.instanceOf(Object).isRequired,
   clearFilter: PropTypes.func.isRequired,
 };
 
