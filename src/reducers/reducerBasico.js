@@ -5,6 +5,7 @@ const INITIAL_STATE = {
 };
 
 function reducerBasico(state = INITIAL_STATE, action) {
+  let valor;
   switch (action.type) {
     case 'PEGAR_OS_DADOS':
       return {
@@ -12,7 +13,7 @@ function reducerBasico(state = INITIAL_STATE, action) {
         isLoading: true,
       };
     case 'GUARDAR_DADOS':
-      const valor = Object.keys(action.payload[0]);
+      valor = Object.keys(action.payload[0]);
       return {
         ...state,
         cabecalho: valor.filter((titulo) => (titulo !== 'residents')),
