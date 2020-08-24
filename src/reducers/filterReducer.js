@@ -11,7 +11,12 @@ const INITIAL_STATE = {
 function filterReducer(state = INITIAL_STATE, action) {
   switch (action.type) {
     case FILTER_NAME:
-      return { filters: { filterByName: { name: action.name } } };
+      return {
+        filters: {
+          ...state.filters,
+          filterByName: { ...state.filterByName, name: action.name },
+        },
+      };
     default:
       return state;
   }

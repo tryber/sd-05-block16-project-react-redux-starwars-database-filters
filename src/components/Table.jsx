@@ -16,7 +16,7 @@ class Table extends React.Component {
       <div>
         <table>
           <TableHead />
-          {data.filter((planet) => planet.name.includes(nameFilter.name))
+          {data.filter((planet) => planet.name.includes(nameFilter))
           // lógica do filter consultada no repo da Juliette
             .map((planet) => (
               <tbody>
@@ -46,7 +46,7 @@ class Table extends React.Component {
 const mapStateToProps = (state) => ({
   data: state.planetsReducer.data,
   isFetching: state.planetsReducer.isFetching,
-  nameFilter: state.filterReducer.filters.filterByName,
+  nameFilter: state.filterReducer.filters.filterByName.name,
 });
 
 const mapDispatchToProps = (dispatch) => ({
