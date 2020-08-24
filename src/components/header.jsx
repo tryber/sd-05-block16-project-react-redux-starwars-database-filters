@@ -1,16 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { filterByName, filterByNumericValues } from '../actions';
-
-const colunas = [
-  ['COLUNAS'],
-  ['population'],
-  ['orbital_period'],
-  ['diameter'],
-  ['rotation_period'],
-  ['surface_water'],
-];
+import { filterByName, filterByNumericValues, clearFilter } from '../actions';
 
 const comparação = [
   ['COMPARAÇÃO'],
@@ -23,6 +14,14 @@ class Header extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      expectedColumnFilters: [
+        'COLUNAS',
+        'population',
+        'orbital_period',
+        'diameter',
+        'rotation_period',
+        'surface_water',
+      ],
       column: [],
       comparison: [],
       value: [],
@@ -30,6 +29,7 @@ class Header extends Component {
     this.trocarState = this.trocarState.bind(this);
   }
 
+  // alterar valores no State.
   trocarState(event) {
     const { name, value } = event.target;
     this.setState(() => ({
@@ -37,6 +37,14 @@ class Header extends Component {
     }));
   }
 
+  // comondos a executar ao aparter o botão do filtro.
+  async clickDuplo() {
+    await this.props.filterByNumericValues(this.state.column,
+      this.state.comparison, this.state.value);
+    this.colunasSelact();
+  }
+
+  // filtrar pela coluna.
   filterValues() {
     return (
       <div>
@@ -45,7 +53,7 @@ class Header extends Component {
             data-testid="column-filter" type="ComboBox"
             name="column" onChange={this.trocarState}
           >
-            {colunas.map((value) => <option key={value}>{value}</option>)}
+            {this.state.expectedColumnFilters.map((value) => <option key={value}>{value}</option>)}
           </select>
           <select
             data-testid="comparison-filter" type="ComboBox"
@@ -61,41 +69,94 @@ class Header extends Component {
           />
         </div>
         <button
-          data-testid="button-filter" onClick={() =>
-          this.props.filterByNumericValues(this.state.column,
-          this.state.comparison, this.state.value)}
+          data-testid="button-filter" onClick={() => (this.clickDuplo())}
         >Filtrar</button>
       </div>
     );
   }
 
+  // remover o item selecionado da filtro.
+  colunasSelact() {
+    const { filters } = this.props;
+    const colunas = ['COLUNAS', 'population', 'orbital_period',
+      'diameter', 'rotation_period', 'surface_water',
+    ];
+    if (filters.length > 0) {
+      filters.forEach((Select) => {
+        colunas.splice(colunas.indexOf(Select.column), 1);
+        this.setState({ expectedColumnFilters: colunas });
+      });
+    }
+  }
+
+  // excluir seleção.
+  removeFilter() {
+    const { filters } = this.props;
+    if (filters.length > 0) {
+      return (
+        <div>
+          <div>
+            <p className="textHeder">Filtros</p>
+          </div>
+          <div>
+            {filters.map((filtro) => (
+              <div data-testid="filter" className="removeFilterItem" key={filtro.column}>
+                <button className="buttonRemove" onClick={() => (this.clickRemove(filtro))}>
+                  X
+                </button>
+                <div>
+                  {filtro.column} {filtro.comparison} {filtro.value}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      );
+    }
+  }
+
+  clickRemove(filtro) {
+    this.props.clearFilter(filtro.column);
+  }
+
+  // header visual para o usuário.
   render() {
     return (
       <div className="header">
-        <div>
-          <p>Procurar pelo nome:</p>
+        <div className="prourarNome">
+          <p className="textHeder">Procurar pelo nome:</p>
           <input
             data-testid="name-filter" type="text" name="name-filter"
             onChange={(event) => { this.props.filterByName(event.target.value); }}
           />
         </div>
-        <div>
+        <div className="filtrarValorNumber">
           {this.filterValues()}
+        </div>
+        <div className="removeFilter">
+          {this.removeFilter()}
         </div>
       </div>
     );
   }
 }
 
+const mapStateToProps = (state) => ({
+  filters: state.filters.filterByNumericValues,
+});
+
 const mapDispatchToProps = (dispatch) => ({
   filterByName: (name) => dispatch(filterByName(name)),
   filterByNumericValues: (column, comparison, value) =>
-  dispatch(filterByNumericValues(column, comparison, value)),
+    dispatch(filterByNumericValues(column, comparison, value)),
+  clearFilter: (column) => dispatch(clearFilter(column)),
 });
 
 Header.propTypes = {
   filterByName: PropTypes.func.isRequired,
   filterByNumericValues: PropTypes.func.isRequired,
+  filters: PropTypes.instanceOf(Object).isRequired,
+  clearFilter: PropTypes.func.isRequired,
 };
 
-export default connect(null, mapDispatchToProps)(Header);
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

@@ -7,7 +7,6 @@ import Planet from './planet';
 import '../App.css';
 
 class Table extends Component {
-
   componentDidMount() {
     const { getCurrentSW } = this.props;
     getCurrentSW();
@@ -17,7 +16,7 @@ class Table extends Component {
     const { planets, filters } = this.props;
     if (!planets) { return <h1>Loading...</h1>; }
     let planetas = planets;
-    if (filters.filterByName.name !== '') {
+    if (filters.filterByName.name !== {}) {
       planetas = planetas.filter((planeta) => planeta.name.includes(filters.filterByName.name));
     }
     filters.filterByNumericValues.forEach((filtro) => {
@@ -52,8 +51,8 @@ const mapStateToProps = (state) => ({
   filters: state.filters,
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  getCurrentSW: () => dispatch(fechStarWars()),
+const mapDispathToProps = (dispath) => ({
+  getCurrentSW: () => dispath(fechStarWars()),
 });
 
 Table.propTypes = {
@@ -62,4 +61,4 @@ Table.propTypes = {
   getCurrentSW: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Table);
+export default connect(mapStateToProps, mapDispathToProps)(Table);

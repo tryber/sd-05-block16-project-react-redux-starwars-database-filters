@@ -8,7 +8,6 @@ const requestSW = () => ({
   type: REQUEST_SW,
 });
 
-
 const receiveSWFailure = (error) => ({
   type: RECEIVE_SW_FAILURE,
   error,
@@ -27,7 +26,7 @@ export function fechStarWars() {
       .then(
         (results) => dispath(receiveSWSuccess(results.results)))
       .catch(
-      (error) => dispath(receiveSWFailure(error.message)));
+        (error) => dispath(receiveSWFailure(error.message)));
   };
 }
 
@@ -45,4 +44,11 @@ export const filterByNumericValues = (column, comparison, value) => ({
   column,
   comparison,
   value,
+});
+
+export const CLEAR_FILTER = 'CLEAR_FILTER';
+
+export const clearFilter = (column) => ({
+  type: 'CLEAR_FILTER',
+  column,
 });

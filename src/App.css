@@ -6,11 +6,49 @@
 .header {
   color: white;
   display: flex;
-  height: 100px;
-  justify-content: space-around;
+  height: 120px;
+  justify-content: center;
+}
+
+.prourarNome {
+  align-self: center;
+  margin: 0 30px;
+}
+
+.textHeder {
+  color: white;
+  margin: 5px;
+}
+
+.filtrarValorNumber {
+  align-self: center;
+  margin: 0 30px;
+}
+
+.removeFilter {
+  align-self: center;
+}
+
+.removeFilterItem {
+  align-items: center;
+  background-color: white;
+  border-radius: 3%;
+  color: black;
+  display: flex;
+  justify-items: center;
+  margin: 1px;
+  padding: 0px 10px 0px 0px;
+}
+
+.buttonRemove {
+  background-color: rgb(202, 32, 32);
+  border-radius: 50%;
+  color: white;
+  justify-self: center;
+  margin: 5px;
 }
 
 .table {
-  background-color: whitesmoke;
+  background-color: rgb(255, 233, 226);
   border: 1px solid black;
 }
