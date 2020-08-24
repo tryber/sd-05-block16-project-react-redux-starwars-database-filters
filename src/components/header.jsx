@@ -113,6 +113,7 @@ class Header extends Component {
         </div>
       );
     }
+    return ('');
   }
 
   clickRemove(filtro) {
