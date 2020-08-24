@@ -63,8 +63,8 @@ class Table extends React.Component {
 const mapStateToProps = (state) => {
   console.log('state', state);
   return {
-    fazendoRequisicao: state.fazendoRequisicao,
-    resultPlanets: state.resultPlanets,
+    fazendoRequisicao: state.planetsReducer.fazendoRequisicao,
+    resultPlanets: state.planetsReducer.resultPlanets,
   };
 };
 

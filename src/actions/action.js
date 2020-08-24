@@ -13,7 +13,7 @@ export const fazendoRequicaoAPI = () => ({ /* Informa que eu estou fazendo uma R
 export const requicaoBemSucedida = (planets) => ({
   /* Informa que a requisição foi bem sucedida */
   type: REQUISICAO_BEM_SUCEDIDA,
-  data: planets.results, /* Puxando o results da StarWarsPlanetsAPI.js */
+  data: planets, /* Puxando o results da StarWarsPlanetsAPI.js */
 });
 
 // Actions creator retorna uma função
@@ -24,7 +24,7 @@ export default function fetchAPIStarWarsPlanets() {
     console.log(requicaoBemSucedida());
     return StarWarsPlanetsAPI()// Ação assincrona para receber informações da API
       .then(
-        (planet) => dispatch(requicaoBemSucedida(planet)),
+        (planet) => dispatch(requicaoBemSucedida(planet.results)),
       );
   };
 }
