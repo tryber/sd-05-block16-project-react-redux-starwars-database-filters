@@ -1,5 +1,7 @@
-function emptyReducer() {
-  return {};
-}
+import { combineReducers } from 'redux';
+import reducerBasico from './reducerBasico';
 
-export default emptyReducer;
+
+export default combineReducers({
+  reducerBasico,
+});
