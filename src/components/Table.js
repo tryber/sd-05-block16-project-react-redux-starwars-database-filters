@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { fetchAPIStarWarsPlanets } from '../actions/action';
+import fetchAPIStarWarsPlanets from '../actions/action';
 import Headers from './Headers';
 
 class Table extends React.Component {
@@ -61,19 +61,22 @@ class Table extends React.Component {
   contêm a action e a action que quero)
 */
 const mapStateToProps = (state) => {
-  console.log(state);
+  console.log("state", state);
   return {
     fazendoRequisicao: state.fazendoRequisicao,
     resultPlanets: state.resultPlanets,
   };
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  StarWarsPlanetsAPI: () => dispatch(fetchAPIStarWarsPlanets()),
-});
+const mapDispatchToProps = (dispatch) => {
+  console.log('verificando dispatch', dispatch);
+  return {
+    StarWarsPlanetsAPI: () => dispatch(fetchAPIStarWarsPlanets()),
+  }
+};
 
 Table.propTypes = {
-  resultPlanets: PropTypes.arrayOf.isRequired,
+  resultPlanets: PropTypes.array.isRequired,
   StarWarsPlanetsAPI: PropTypes.func.isRequired,
   fazendoRequisicao: PropTypes.bool.isRequired,
 };

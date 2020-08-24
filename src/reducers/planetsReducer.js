@@ -5,20 +5,23 @@ const STATE_INICIAL = {
   resultPlanets: [],
   filters: {
     filterByName: {
-      name: '',
+      name: '', 
     },
   },
 };
 
 const reducerVerificaActions = (state = STATE_INICIAL, action) => {
-  console.log(action);
+  console.log('action reducer', action);
   switch (action.type) {
     case FAZENDO_REQUISICAO_API:
+      console.log('Olá');
       return {
         ...state,
+        resultPlanets: [],
         fazendoRequisicao: action.fazendoRequisicao,
       };
     case REQUISICAO_BEM_SUCEDIDA:
+      console.log('oi');
       return {
         ...state,
         resultPlanets: action.data,
