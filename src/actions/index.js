@@ -24,16 +24,16 @@ export function fetchPlanets() {
     dispatch(rqPlanets());
     return requestPlanets().then(
       (data) => dispatch(rpSucess(data.results)),
-      (error) => dispatch(rpFailed(error.message)),
+      (error) => dispatch(rpFailed(error.message))
     );
   };
 }
 
 export const filterName = (name) => ({
   type: NAME,
-  filters: {
-    filterByName: {
+  filters: [
+    {
       name,
     },
-  },
+  ],
 });

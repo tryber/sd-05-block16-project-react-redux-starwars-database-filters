@@ -1,11 +1,11 @@
 import { RP_SUCESS, RP_FAILED, REQUEST_PLANETS, NAME } from '../actions/index';
 
 const INITIAL_STATE = {
-  filters: {
-    filterByName: {
-      name: '',
+  filters: [
+    {
+      name: ',',
     },
-  },
+  ],
   data: '',
   fetching: true,
 };
@@ -32,11 +32,11 @@ const emptyReducer = (state = INITIAL_STATE, action) => {
     case NAME:
       return {
         ...state,
-        filters: {
-          filterByName: {
-            name: action.filters.filterByName.name,
+        filters: [
+          {
+            name: action.filters[0].name,
           },
-        },
+        ],
       };
     default:
       return state;
