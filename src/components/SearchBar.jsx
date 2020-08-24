@@ -1,5 +1,6 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { filterName } from '../actions';
 
@@ -24,3 +25,7 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export default connect(null, mapDispatchToProps)(SearchBar);
+
+SearchBar.propTypes = {
+  filterByName: PropTypes.func.isRequired,
+};
