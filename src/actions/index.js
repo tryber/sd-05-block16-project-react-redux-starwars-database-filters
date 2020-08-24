@@ -33,7 +33,7 @@ export const filterName = (name) => ({
   type: NAME,
   filters: {
     filterByName: {
-      name: name,
+      name,
     },
   },
 });
