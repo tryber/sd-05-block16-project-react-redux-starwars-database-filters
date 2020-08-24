@@ -20,7 +20,6 @@ function mapArray(array) {
       <td>{arr.films}</td>
       <td>{arr.created}</td>
       <td>{arr.edited}</td>
-      <td>{arr.url}</td>
     </tr>
   ));
 }
