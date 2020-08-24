@@ -1,31 +1,37 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import './App.css';
 import Table from './components/Table';
+import { filterName } from './actions';
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      search: '',
-    };
-    this.searchPlanet = this.searchPlanet.bind(this);
-  }
-
-  searchPlanet(e) {
-    this.setState({
-      search: e.target.value,
-    });
+    this.state = {};
   }
 
   render() {
     return (
       <div>
         Procurar:
-        <input onChange={(e) => this.searchPlanet(e)} type="text" />
-        <Table search={this.state.search} />
+        <input
+          data-testid="name-filter"
+          onChange={(e) => this.props.f_Name(e.target.value)}
+          type="text"
+        />
+        <Table />
       </div>
     );
   }
 }
 
-export default App;
+const mapDispatchToProps = (dispatch) => ({
+  f_Name: (name) => dispatch(filterName(name)),
+});
+
+export default connect(null, mapDispatchToProps)(App);
+
+App.propTypes = {
+  f_Name: PropTypes.func.isRequired,
+};

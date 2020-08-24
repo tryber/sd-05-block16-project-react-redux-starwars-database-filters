@@ -3,6 +3,7 @@ import requestPlanets from '../services/planetAPI';
 export const RP_SUCESS = 'SUCESS';
 export const RP_FAILED = 'FAILED';
 export const REQUEST_PLANETS = 'REQUEST_PLANETS';
+export const NAME = 'NAME';
 
 export const rqPlanets = () => ({
   type: REQUEST_PLANETS,
@@ -27,3 +28,8 @@ export function fetchPlanets() {
     );
   };
 }
+
+export const filterName = (name) => ({
+  type: NAME,
+  name,
+});

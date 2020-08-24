@@ -4,8 +4,14 @@ import PropTypes from 'prop-types';
 import { fetchPlanets } from '../actions';
 import Loading from '../components/Loading';
 
-function mapArray(array) {
-  return array.map((arr) => (
+function mapArray(array, text) {
+  const filteredPlanets = array.filter((arr) => arr.name.includes(text));
+
+  // .includes é uma função verifica se uma determidada
+  // string possui o texto passado como paramêtro;
+  // fonte: https://www.youtube.com/watch?v=XiAtxDeP-p8;
+
+  return filteredPlanets.map((arr) => (
     <tr key={arr.name}>
       <td>{arr.name}</td>
       <td>{arr.rotation_period}</td>
@@ -38,7 +44,7 @@ class Table extends Component {
   render() {
     if (this.props.fetching) return <Loading />;
     const { planets } = this.props;
-    // const { search } = this.props;
+    const { search } = this.props;
     return (
       <table>
         <thead>
@@ -58,7 +64,7 @@ class Table extends Component {
             <th>edited</th>
           </tr>
         </thead>
-        <tbody>{mapArray(planets)}</tbody>
+        <tbody>{mapArray(planets, search)}</tbody>
       </table>
     );
   }
@@ -67,6 +73,7 @@ class Table extends Component {
 const mapStateToProps = (state) => ({
   planets: state.emptyReducer.data,
   fetching: state.emptyReducer.fetching,
+  search: state.emptyReducer.filters.filterByName.name,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -77,6 +84,7 @@ Table.propTypes = {
   fetchP: PropTypes.func.isRequired,
   fetching: PropTypes.string.isRequired,
   planets: PropTypes.arrayOf(PropTypes.object).isRequired,
+  search: PropTypes.string.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Table);
