@@ -5,7 +5,7 @@ const STATE_INICIAL = {
   resultPlanets: [],
   filters: {
     filterByName: {
-      name: '', 
+      name: '',
     },
   },
 };

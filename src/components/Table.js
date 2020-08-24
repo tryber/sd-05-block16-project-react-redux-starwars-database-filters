@@ -61,7 +61,7 @@ class Table extends React.Component {
   contêm a action e a action que quero)
 */
 const mapStateToProps = (state) => {
-  console.log("state", state);
+  console.log('state', state);
   return {
     fazendoRequisicao: state.fazendoRequisicao,
     resultPlanets: state.resultPlanets,
@@ -72,11 +72,11 @@ const mapDispatchToProps = (dispatch) => {
   console.log('verificando dispatch', dispatch);
   return {
     StarWarsPlanetsAPI: () => dispatch(fetchAPIStarWarsPlanets()),
-  }
+  };
 };
 
 Table.propTypes = {
-  resultPlanets: PropTypes.array.isRequired,
+  resultPlanets: PropTypes.arrayOf.isRequired,
   StarWarsPlanetsAPI: PropTypes.func.isRequired,
   fazendoRequisicao: PropTypes.bool.isRequired,
 };
