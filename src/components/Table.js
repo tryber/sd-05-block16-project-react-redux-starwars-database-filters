@@ -73,7 +73,7 @@ class Table extends Component {
 const mapStateToProps = (state) => ({
   planets: state.emptyReducer.data,
   fetching: state.emptyReducer.fetching,
-  search: state.emptyReducer.filters.filterByName.name,
+  search: state.emptyReducer.filterByName.name,
 });
 
 const mapDispatchToProps = (dispatch) => ({
