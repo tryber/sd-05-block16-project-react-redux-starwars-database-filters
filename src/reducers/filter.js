@@ -1,12 +1,14 @@
 import { RP_SUCESS, RP_FAILED, REQUEST_PLANETS, NAME } from '../actions/index';
 
 const INITIAL_STATE = {
-    filterByName: {
-      name: '',
-    },
+  filterByName: {
+    name: '',
+  },
   data: '',
   fetching: true,
 };
+// Ajustado de acordo com a estrutura certa passada
+// pelos colegas no slack (Juliette).
 
 const emptyReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
@@ -30,9 +32,9 @@ const emptyReducer = (state = INITIAL_STATE, action) => {
     case NAME:
       return {
         ...state,
-          filterByName: {
-            name: action.filters.filterByName.name,
-          },
+        filterByName: {
+          name: action.filters.filterByName.name,
+        },
       };
     default:
       return state;
