@@ -56,7 +56,6 @@ class Table extends Component {
             <th>films</th>
             <th>created</th>
             <th>edited</th>
-            <th>url</th>
           </tr>
         </thead>
         <tbody>{mapArray(planets)}</tbody>
