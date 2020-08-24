@@ -12,6 +12,7 @@ function filterReducer(state = INITIAL_STATE, action) {
   switch (action.type) {
     case FILTER_NAME:
       return {
+        ...state,
         filters: {
           ...state.filters,
           filterByName: { ...state.filterByName, name: action.name },
