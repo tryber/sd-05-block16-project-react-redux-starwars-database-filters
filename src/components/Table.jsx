@@ -56,9 +56,13 @@ const mapDispathToProps = (dispath) => ({
 });
 
 Table.propTypes = {
-  planets: PropTypes.instanceOf(Object).isRequired,
+  planets: PropTypes.arrayOf(PropTypes.instanceOf(Object)),
   filters: PropTypes.instanceOf(Object).isRequired,
   getCurrentSW: PropTypes.func.isRequired,
+};
+
+Table.defaultProps = {
+  planets: undefined,
 };
 
 export default connect(mapStateToProps, mapDispathToProps)(Table);

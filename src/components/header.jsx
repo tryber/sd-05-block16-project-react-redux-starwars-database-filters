@@ -14,7 +14,7 @@ class Header extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      expectedColumnFilters: [
+      columnFilter: [
         'COLUNAS',
         'population',
         'orbital_period',
@@ -53,7 +53,8 @@ class Header extends Component {
             data-testid="column-filter" type="ComboBox"
             name="column" onChange={this.trocarState}
           >
-            {this.state.expectedColumnFilters.map((value) => <option key={value}>{value}</option>)}
+            {(this.state.columnFilter.filter((parametro) => !this.props.filtersArray.includes(parametro)))
+              .map((value) => <option key={value}>{value}</option>)}
           </select>
           <select
             data-testid="comparison-filter" type="ComboBox"
@@ -84,7 +85,7 @@ class Header extends Component {
     if (filters.length > 0) {
       filters.forEach((Select) => {
         colunas.splice(colunas.indexOf(Select.column), 1);
-        this.setState({ expectedColumnFilters: colunas });
+        this.setState({ columnFilter: colunas });
       });
     }
   }
@@ -98,7 +99,7 @@ class Header extends Component {
           <div>
             <p className="textHeder">Filtros</p>
           </div>
-          <div>
+          <div >
             {filters.map((filtro) => (
               <div data-testid="filter" className="removeFilterItem" key={filtro.column}>
                 <button className="buttonRemove" onClick={() => (this.clickRemove(filtro))}>
@@ -118,6 +119,7 @@ class Header extends Component {
 
   clickRemove(filtro) {
     this.props.clearFilter(filtro.column);
+    this.colunasSelact();
   }
 
   // header visual para o usuário.
@@ -144,6 +146,7 @@ class Header extends Component {
 
 const mapStateToProps = (state) => ({
   filters: state.filters.filterByNumericValues,
+  filtersArray: state.filters.filterByNumericValues.map(filtro => filtro.column),
 });
 
 const mapDispatchToProps = (dispatch) => ({
