@@ -3,42 +3,57 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchPlanets } from '../actions';
 import TableHeaders from './tableheaders';
+import TableValues from './tableValues';
 
 class Table extends React.Component {
+  constructor(props) {
+    super(props);
+    this.filterTest = this.filterTest.bind(this);
+  }
   componentDidMount() {
     const { getCurrentPlanets } = this.props;
     // console.log('antes de chamar')
     getCurrentPlanets();
   }
-  render() {
-    const { swPlanetss, isFetching, textFilter } = this.props;
-    if (isFetching) { return <p>Carregando...</p>; }
+  filterTest() {
+    const { swPlanetss, filter } = this.props;
+    let data = swPlanetss;
+    if (filter.length > 0) {
+      filter.forEach((element) => {
+        const { column, comparison, value } = element;
+        if (comparison === 'maior que') {
+          data = data.filter((plani) => +plani[column] > +value);
+        } else if (comparison === 'menor que') {
+          data = data.filter((plani) => +plani[column] < +value);
+        } else if (comparison === 'igual a') {
+          data = data.filter((plani) => +plani[column] === +value);
+        }
+      });
+    }
+    return data;
+  }
 
+  render() {
+    const { swPlanetss, isFetching, textFilter, filter } = this.props;
+    this.filterTest();
+    if (isFetching) {
+      return <p>Carregando...</p>;
+    }
+    let planet = swPlanetss;
+    if (filter.length > 0) planet = this.filterTest();
     return (
       <section>
         <table>
           <TableHeaders />
-          {swPlanetss
-          .filter((planet) => (planet.name.toLowerCase().includes(textFilter.toLowerCase())))
-          .map((elements) => (
-            <tbody key={elements.name}>
-              <tr>
-                <td>{elements.name}</td>
-                <td>{elements.rotation_period}</td>
-                <td>{elements.orbital_period}</td>
-                <td>{elements.diameter}</td>
-                <td>{elements.climate}</td>
-                <td>{elements.gravity}</td>
-                <td>{elements.terrain}</td>
-                <td>{elements.surface_water}</td>
-                <td>{elements.population}</td>
-                <td>{elements.films}</td>
-                <td>{elements.created}</td>
-                <td>{elements.edited}</td>
-                <td>{elements.url}</td>
-              </tr>
-            </tbody>
-          ))}
+          <tbody>
+            {planet
+              .filter((planets) =>
+                planets.name.toLowerCase().includes(textFilter.toLowerCase()),
+              )
+              .map((elements) => (
+                <TableValues key={elements.diameter} elements={elements} />
+              ))}
+          </tbody>
         </table>
       </section>
     );
@@ -49,16 +64,19 @@ const mapStateToProps = (state) => ({
   swPlanetss: state.swPlanetss.data,
   isFetching: state.swPlanetss.isFetching,
   textFilter: state.filters.filterByName.name,
+  filter: state.filters.filterByNumericValues,
 });
 const mapDispatchToProps = (dispatch) => ({
-  getCurrentPlanets: () => dispatch(fetchPlanets()) });
+  getCurrentPlanets: () => dispatch(fetchPlanets()),
+});
 // Dúvida solucionada no site
 // https://stackoverflow.com/questions/38684925/react-eslint-error-missing-in-props-validation
 Table.propTypes = {
   getCurrentPlanets: PropTypes.func.isRequired,
-  swPlanetss: PropTypes.func.isRequired,
+  swPlanetss: PropTypes.arrayOf.isRequired,
   isFetching: PropTypes.bool.isRequired,
-  textFilter: PropTypes.func.isRequired,
+  textFilter: PropTypes.string.isRequired,
+  filter: PropTypes.arrayOf.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Table);

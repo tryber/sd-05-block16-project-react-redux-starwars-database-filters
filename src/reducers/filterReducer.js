@@ -1,11 +1,12 @@
 import {
-  SEARCH_FILTER,
+  SEARCH_FILTER, TOTAL_FILTER,
 } from '../actions';
 
 const filterInitial = {
   filterByName: {
     name: '',
   },
+  filterByNumericValues: [],
 };
 const filters = (state = filterInitial, action) => {
   switch (action.type) {
@@ -15,6 +16,11 @@ const filters = (state = filterInitial, action) => {
         filterByName: {
           name: action.payload,
         },
+      };
+    case TOTAL_FILTER:
+      return {
+        ...state,
+        filterByNumericValues: [...state.filterByNumericValues, action.payload],
       };
     default:
       return state;

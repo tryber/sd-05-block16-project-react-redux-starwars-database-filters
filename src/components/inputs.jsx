@@ -2,13 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { searchFilter } from '../actions/index';
-
+import SelectInputs from './selectInputs';
 
 class SearchBar extends React.Component {
   render() {
     const { getValue } = this.props;
     return (
-      <div>
+      <form>
         <label htmlFor="searchbar">Procurar planeta</label>
         <input
           type="text"
@@ -16,7 +16,8 @@ class SearchBar extends React.Component {
           id="searchbar"
           onChange={(event) => getValue(event.target.value)}
         />
-      </div>
+        <SelectInputs />
+      </form>
     );
   }
 }

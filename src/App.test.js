@@ -131,7 +131,7 @@ describe('2 - Sua página deve ter um campo de texto que filtra a tabela para so
   });
 });
 
-describe.skip('3 - Sua página deve ter um filtro para valores numéricos', () => {
+describe('3 - Sua página deve ter um filtro para valores numéricos', () => {
   beforeAll(mockFetch);
   beforeEach(cleanup);
 
@@ -310,7 +310,7 @@ describe.skip('3 - Sua página deve ter um filtro para valores numéricos', () =
   });
 });
 
-describe.skip('4 -  Sua página deverá ser carregada com somente um filtro de valores numéricos', () => {
+describe('4 -  Sua página deverá ser carregada com somente um filtro de valores numéricos', () => {
   test('check avaiable filters', async () => {
     const initialState = getStore().getState();
 
