@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-first-prop-new-line */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -42,8 +43,7 @@ class SearchNumbers extends Component {
           data-testid="value-filter"
           onChange={(e) => this.setState({ value: e.target.value })}
         />
-        <button
-          type="button"
+        <button type="button"
           data-testid="button-filter"
           onClick={() => handleChangeNumber(this.state)}
         >
@@ -56,7 +56,7 @@ class SearchNumbers extends Component {
 
 const mapStateToProps = (state) => ({
   filterByNumericValues: state.filters.filterByNumericValues,
-})
+});
 
 const mapDispatchToProps = {
   handleChangeNumber: searchByNumber,
