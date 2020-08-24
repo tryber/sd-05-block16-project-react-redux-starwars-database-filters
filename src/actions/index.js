@@ -1,18 +1,18 @@
-import { requestPlanets } from '../services/planetAPI';
+import requestPlanets from '../services/planetAPI';
 export const RP_SUCESS = 'SUCESS';
 export const RP_FAILED = 'FAILED';
 export const REQUEST_PLANETS = 'REQUEST_PLANETS';
 
-const rqPlanets = () => ({
+export const rqPlanets = () => ({
   type: REQUEST_PLANETS,
 })
 
-const rpSucess = (data) => ({
+export const rpSucess = (data) => ({
   type: RP_SUCESS,
   data,
 })
 
-const rpFailed = (error) => ({
+export const rpFailed = (error) => ({
   type: RP_FAILED,
   error,
 })
@@ -20,9 +20,8 @@ const rpFailed = (error) => ({
 export function fetchPlanets() {
   return (dispatch) => {
     dispatch(rqPlanets());
-  return requestPlanets()
-    .then((data) => dispatch(rpSucess(data)),
-    (error) => dispatch(rpFailed((error.message))),
+  return requestPlanets().then((data) => dispatch(rpSucess(data.results)),
+     (error) => dispatch(rpFailed((error.message))),
     )
-  }
+  };
 }

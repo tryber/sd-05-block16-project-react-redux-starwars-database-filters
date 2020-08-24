@@ -1,9 +1,10 @@
 import { RP_SUCESS, RP_FAILED, REQUEST_PLANETS } from '../actions/index';
 const INITIAL_STATE = {
-  fetching: false,
+  data: '',
+  fetching: true,
 };
 
-function emptyReducer(state =  INITIAL_STATE, action) {
+const emptyReducer = (state =  INITIAL_STATE, action) => {
   switch(action.type){
     case REQUEST_PLANETS:
       return{
@@ -14,7 +15,7 @@ function emptyReducer(state =  INITIAL_STATE, action) {
       return {
         ...state,
         fetching: false,
-        data,
+        data: action.data
       }
       case RP_FAILED:
         return{

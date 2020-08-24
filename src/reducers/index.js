@@ -1,9 +1,8 @@
-
 import { combineReducers } from 'redux';
-import receiveReducer from './receiveReducer';
+import emptyReducer from './receiveReducer';
 
 const rootReducer = combineReducers({
-  receiveReducer,
+  emptyReducer,
 })
 
 export default rootReducer;
