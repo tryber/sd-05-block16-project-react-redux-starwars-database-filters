@@ -34,6 +34,6 @@ export const filterName = (name) => ({
   filters: {
     filterByName: {
       name,
-    }
+    },
   },
 });
