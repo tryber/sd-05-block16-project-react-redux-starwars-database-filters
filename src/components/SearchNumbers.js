@@ -7,8 +7,8 @@ import searchByNumber from '../actions/searchByNumber';
 // obs.: strings vazias no começo para aumentar
 // o número de ítens dentro do array (atendendo ao teste).
 
-const dropdownOptions = ['population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water'];
-const dropdownComparison = ['maior que', 'menor que', 'igual a'];
+const dropdownOptions = ['', 'population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water'];
+const dropdownComparison = ['', 'maior que', 'menor que', 'igual a'];
 
 class SearchNumbers extends Component {
   constructor(props) {
