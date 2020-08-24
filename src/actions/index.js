@@ -4,6 +4,8 @@ export const RP_SUCESS = 'SUCESS';
 export const RP_FAILED = 'FAILED';
 export const REQUEST_PLANETS = 'REQUEST_PLANETS';
 export const NAME = 'NAME';
+export const COLUMN = 'COLUMN';
+export const COMP = 'COMP';
 
 export const rqPlanets = () => ({
   type: REQUEST_PLANETS,
@@ -36,4 +38,13 @@ export const filterName = (name) => ({
       name,
     },
   },
+});
+
+export const filterValues = (column, comp, value) => ({
+  type: COLUMN,
+  filterByNumericValues: [{
+    column,
+    comp,
+    value,
+  }],
 });
