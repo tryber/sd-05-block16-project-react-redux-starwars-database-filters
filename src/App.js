@@ -12,12 +12,16 @@ class App extends Component {
       column: '',
       comp: '',
       value: '',
+      filter: true,
     };
   }
 
   render() {
     const { filterV } = this.props;
     const { column, comp, value } = this.state;
+    const colunas = ['', 'population', 'orbital_period',
+      'diameter', 'rotation_period', 'surface_water'];
+    const comparacao = ['', 'maior que', 'menor que', 'igual a'];
     return (
       <div> Procurar:
         <input
@@ -29,17 +33,14 @@ class App extends Component {
             filterV(e.target.value, comp, value);
             this.setState({ column: e.target.value });
           }}
-        > <option>population</option><option>orbital_period</option>
-          <option>diameter</option><option>rotation_period</option>
-          <option>surface_water</option></select>
+        > {colunas.map((item) => <option>{item}</option>)} </select>
         <select
           data-testid="comparison-filter"
           onChange={(e) => {
             filterV(column, e.target.value, value);
             this.setState({ comp: e.target.value });
           }}
-        > <option>Maior que</option><option>Menor que</option><option>Igual à</option>
-        </select>
+        >{ comparacao.map((item) => <option>{item}</option>) }</select>
         <input
           type="number" data-testid="value-filter"
           onChange={(e) => {

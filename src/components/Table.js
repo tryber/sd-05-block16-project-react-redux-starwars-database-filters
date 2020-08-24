@@ -42,6 +42,21 @@ class Table extends Component {
   }
 
   render() {
+    const headers = [
+      'Name',
+      'rotation period',
+      'orbital period',
+      'diameter',
+      'climate',
+      'gravity',
+      'terrain',
+      'surface water',
+      'population',
+      'residents',
+      'films',
+      'created',
+      'edited,',
+    ];
     if (this.props.fetching) return <Loading />;
     const { planets } = this.props;
     const { search } = this.props;
@@ -49,19 +64,9 @@ class Table extends Component {
       <table>
         <thead>
           <tr>
-            <th>Name</th>
-            <th>rotation period</th>
-            <th>orbital period</th>
-            <th>diameter</th>
-            <th>climate</th>
-            <th>gravity</th>
-            <th>terrain</th>
-            <th>surface water</th>
-            <th>population</th>
-            <th>residents</th>
-            <th>films</th>
-            <th>created</th>
-            <th>edited</th>
+            {headers.map((item) => (
+              <th>{item}</th>
+            ))}
           </tr>
         </thead>
         <tbody>{mapArray(planets, search)}</tbody>
