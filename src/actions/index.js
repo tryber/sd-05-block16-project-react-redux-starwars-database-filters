@@ -1,6 +1,6 @@
-// Referência: aula ao vivo 16.4
+// Referências: aula ao vivo 16.4 e Juliette: https://github.com/tryber/sd-05-block16-project-react-redux-starwars-database-filters/tree/juliette-react-redux-starwars-datatable-filters
 
-import { getPlanets } from '../service/planetsAPI';
+import getPlanets from '../service/planetsAPI';
 
 export const RECEIVE_PLANETS_FAILURE = 'RECEIVE_PLANETS_FAILURE';
 export const RECEIVE_PLANETS_SUCCESS = 'RECEIVE_PLANETS_SUCCESS';
@@ -20,31 +20,30 @@ const receivePlanetsSuccess = (data) => ({
   data,
 });
 
-const PLANETS_API = 'https://swapi-trybe.herokuapp.com/api/planets/';
-
-export function fetchPlanets() {
-  return (dispatch) => {
-    dispatch(requestPlanets());
-    return fetch(PLANETS_API)
-      .then((response) => response.json())
-      .then(
-        (json) => {
-          console.log(json.results);
-          return dispatch(receivePlanetsSuccess(json.results));
-        },
-        (error) => dispatch(receivePlanetsFailure(error.message)),
-      );
-  };
-}
+// const PLANETS_API = 'https://swapi-trybe.herokuapp.com/api/planets/';
 
 // export function fetchPlanets() {
 //   return (dispatch) => {
 //     dispatch(requestPlanets());
-
-//     return getPlanets()
+//     return fetch(PLANETS_API)
+//       .then((response) => response.json())
 //       .then(
-//         (results) => dispatch(receivePlanetsSuccess(results)),
-//         (error) => dispatch(receivePlanetsFailure(error.message)),
+//         (data) => {
+//           console.log(data.results);
+//           return dispatch(receivePlanetsSuccess(data.results));
+//         },
+//         (error) => dispatch(receivePlanetsFailure(error)),
 //       );
 //   };
 // }
+
+export function fetchPlanets() {
+  return (dispatch) => {
+    dispatch(requestPlanets());
+    return getPlanets()
+      .then(
+        (results) => dispatch(receivePlanetsSuccess(results)),
+        (error) => dispatch(receivePlanetsFailure(error.message)),
+      );
+  };
+}
