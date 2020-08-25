@@ -89,7 +89,7 @@ class Table extends React.Component {
 const mapStateToProps = (state) => ({
   fazendoRequisicao: state.planetsReducer.fazendoRequisicao,
   data: state.planetsReducer.data,
-  filter: state.reducerFilter.filters.filterByName.name,
+  filter: state.reducerFilter.filterByName.name,
 });
 
 const mapDispatchToProps = (dispatch) => ({
