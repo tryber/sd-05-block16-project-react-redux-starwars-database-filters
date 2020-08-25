@@ -33,6 +33,6 @@ LinhaTabela.propTypes = {
   surface_water: PropTypes.string,
   terrain: PropTypes.string,
   rotation_period: PropTypes.string,
-}.isRequired
+}.isRequired;
 
 export default LinhaTabela;
