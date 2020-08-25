@@ -6,12 +6,12 @@ import filterPlanetsName from '../actions/filterPlanetsName';
 import Headers from './Headers';
 
 const renderTable = (data, filter) => {
-  let filteredData = data;
+  let filtra = data;
   if (filter !== '') {
-    filteredData = filteredData.filter((planet) => planet.name.toLowerCase().includes(filter.toLowerCase()));
+    filtra = filtra.filter((planet) => planet.name.toLowerCase().includes(filter.toLowerCase()));
   }
 
-  return filteredData.map((planet) => (
+  return filtra.map((planet) => (
     <tr>
       <td>{planet.name}</td>
       <td>{planet.rotation_period}</td>
@@ -22,7 +22,7 @@ const renderTable = (data, filter) => {
       <td>{planet.surface_water}</td>
     </tr>
   ));
-}
+};
 
 class Table extends React.Component {
   componentDidMount() {
@@ -74,14 +74,11 @@ class Table extends React.Component {
   vai ser três infos(o state, o reducer que
   contêm a action e a action que quero)
 */
-const mapStateToProps = (state) => {
-  // console.log('state', state);
-  return {
-    fazendoRequisicao: state.planetsReducer.fazendoRequisicao,
-    data: state.planetsReducer.data,
-    filter: state.reducerFilter.filterByName.name,
-  };
-};
+const mapStateToProps = (state) => ({
+  fazendoRequisicao: state.planetsReducer.fazendoRequisicao,
+  data: state.planetsReducer.data,
+  filter: state.reducerFilter.filterByName.name,
+});
 
 const mapDispatchToProps = (dispatch) => ({
   StarWarsPlanetsAPI: () => dispatch(fetchAPIStarWarsPlanets()),
