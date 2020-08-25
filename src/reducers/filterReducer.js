@@ -8,7 +8,7 @@ const INITIAL_STATE = {
   },
 };
 
-function filterReducer(state = INITIAL_STATE, action) {
+function filters(state = INITIAL_STATE, action) {
   switch (action.type) {
     case FILTER_NAME:
       return {
@@ -23,4 +23,4 @@ function filterReducer(state = INITIAL_STATE, action) {
   }
 }
 
-export default filterReducer;
+export default filters;
