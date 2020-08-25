@@ -4,7 +4,7 @@ class FiltroNumericos extends React.Component {
   render() {
     return (
       <div>
-        <select data-testid='column-filter'>
+        <select data-testid="column-filter">
           <option disabled selected>Coluna</option>
           <option>population</option>
           <option>orbital_period</option>
@@ -12,14 +12,14 @@ class FiltroNumericos extends React.Component {
           <option>rotation_period</option>
           <option>surface_water</option>
         </select>
-        <select data-testid='comparison-filter'>
+        <select data-testid="comparison-filter">
           <option disabled selected>Comparação</option>
           <option>Maior que</option>
           <option>Menor que</option>
           <option>Igual</option>
         </select>
-        <input type="number" data-testid='value-filter' />
-        <button data-testid='button-filter'>Filtrar</button>
+        <input type="number" data-testid="value-filter" />
+        <button data-testid="button-filter">Filtrar</button>
       </div>
     );
   }

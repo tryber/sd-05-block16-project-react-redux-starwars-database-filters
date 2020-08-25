@@ -1,5 +1,4 @@
 import React from 'react';
-import FiltroNumerico from './FiltrosNumericos';
 
 class Headers extends React.Component {
   render() {
