@@ -1,4 +1,5 @@
 import React from 'react';
+import FiltroNumerico from './FiltrosNumericos';
 
 class Headers extends React.Component {
   render() {
@@ -14,8 +15,13 @@ class Headers extends React.Component {
           <th>terrain</th>
           <th>surface_water</th>
           <th>population</th>
+          <th>films</th>
+          <th>created</th>
+          <th>edited</th>
+          <th>url</th>
         </tr>
       </thead>
+
     );
   }
 }

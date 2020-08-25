@@ -2,8 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import fetchAPIStarWarsPlanets from '../actions/action';
-import filterPlanetsName from '../actions/filterPlanetsName';
+import { filtrarPlanetsName } from '../actions/actionFilterPlanetsName';
 import Headers from './Headers';
+import FiltroNumericos from './FiltrosNumericos';
 
 const renderTable = (data, filter) => {
   let filtra = data;
@@ -15,11 +16,17 @@ const renderTable = (data, filter) => {
     <tr>
       <td>{planet.name}</td>
       <td>{planet.rotation_period}</td>
+      <td>{planet.orbital_period}</td>
       <td>{planet.diameter}</td>
       <td>{planet.climate}</td>
       <td>{planet.gravity}</td>
       <td>{planet.terrain}</td>
       <td>{planet.surface_water}</td>
+      <td>{planet.population}</td>
+      <td>{planet.films}</td>
+      <td>{planet.created}</td>
+      <td>{planet.edited}</td>
+      <td>{planet.url}</td>
     </tr>
   ));
 };
@@ -40,12 +47,17 @@ class Table extends React.Component {
     // console.log(this.props);
     return (
       <div>
-        <label htmlFor="search">Procurar: </label>
-        <input
-          data-testid="name-filter"
-          id="search"
-          onChange={(event) => dispatchSearch(event.target.value)}
-        />
+        <div>
+          <label htmlFor="search">Procurar: </label>
+          <input
+            data-testid="name-filter"
+            id="search"
+            onChange={(event) => dispatchSearch(event.target.value)}
+          />
+        </div>
+        <div>
+          <FiltroNumericos />
+        </div>
         <table>
           <Headers />
           <tbody>
@@ -77,12 +89,12 @@ class Table extends React.Component {
 const mapStateToProps = (state) => ({
   fazendoRequisicao: state.planetsReducer.fazendoRequisicao,
   data: state.planetsReducer.data,
-  filter: state.reducerFilter.filterByName.name,
+  filter: state.reducerFilter.filters.filterByName.name,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   StarWarsPlanetsAPI: () => dispatch(fetchAPIStarWarsPlanets()),
-  dispatchSearch: (name) => dispatch(filterPlanetsName(name)),
+  dispatchSearch: (name) => dispatch(filtrarPlanetsName(name)),
 });
 
 Table.propTypes = {
