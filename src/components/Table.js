@@ -18,7 +18,7 @@ class Table extends React.Component {
 
   renderTable(data, filter) {
     if (filter !== '') {
-      data = data.filter((planet) => planet.name.toLowerCase().includes(filter.toLowerCase()));
+      data = this.data.filter((planet) => planet.name.toLowerCase().includes(this.filter.toLowerCase()));
     }
 
     return data.map((planet) => (
@@ -43,7 +43,7 @@ class Table extends React.Component {
         <input
           data-testid="name-filter"
           id="search"
-          onChange = {(event) => dispatchSearch(event.target.value)}
+          onChange={(event) => dispatchSearch(event.target.value)}
         />
         <table>
           <Headers />
