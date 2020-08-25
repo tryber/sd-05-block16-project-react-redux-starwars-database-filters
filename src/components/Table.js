@@ -1,8 +1,8 @@
 import React from 'react';
+import propTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchPlanets } from '../actions';
 
-import propTypes from 'prop-types';
 import TableHeader from './TableHeader';
 
 // Referência: Juliette (https://github.com/tryber/sd-05-block16-project-react-redux-starwars-database-filters/tree/juliette-react-redux-starwars-datatable-filters)
