@@ -44,7 +44,7 @@ export function fetchPlanets() {
       .then(
         (results) => dispatch(receivePlanetsSuccess(results)),
         (error) => dispatch(receivePlanetsFailure(error.message)),
-      );      
+      );
   };
 }
 console.log(getPlanets());
