@@ -18,7 +18,7 @@ class Table extends React.Component {
 
   renderTable(data, filter) {
     if (filter !== '') {
-      data = this.data.filter((planet) => planet.name.toLowerCase().includes(this.filter.toLowerCase()));
+      data = data.filter((planet) => planet.name.toLowerCase().includes(filter.toLowerCase()));
     }
 
     return data.map((planet) => (
