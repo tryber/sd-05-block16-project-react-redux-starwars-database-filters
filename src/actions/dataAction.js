@@ -1,4 +1,4 @@
-import { fetcher } from '../services/fetcher';
+import fetcher from '../services/fetcher';
 
 export const SUCESSO = 'SUCESSO';
 export const CARREGANDO = 'CARREGANDO';

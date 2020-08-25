@@ -8,15 +8,16 @@ const INICIAL_STATE = {
   isFetching: true,
   planetas: [],
   erro: '',
-}
+};
 
 const dataReducer = (state = INICIAL_STATE, action) => {
   switch (action.type) {
     case SUCESSO:
+      console.log(action.data)
       return {
         ...state,
         planetas: action.data,
-        isFetching: false
+        isFetching: false,
       };
     case CARREGANDO:
       return {
@@ -25,11 +26,11 @@ const dataReducer = (state = INICIAL_STATE, action) => {
     case FALHA:
       return {
         ...state,
-        erro: action.erro
+        erro: action.erro,
       };
     default:
       return state;
   }
-}
+};
 
 export default dataReducer;
