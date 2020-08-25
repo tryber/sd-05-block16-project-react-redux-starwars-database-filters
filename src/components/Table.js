@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import fetchAPIStarWarsPlanets from '../actions/action';
+import filterPlanetsName from '../actions/filterPlanetsName';
 import Headers from './Headers';
 
 class Table extends React.Component {
@@ -10,32 +11,40 @@ class Table extends React.Component {
     console.log('api', StarWarsPlanetsAPI);
     StarWarsPlanetsAPI();
     /*
-      componentDidMount,quando montado, toda vez que o
-      componente é renderizado é feita umaChamada na API.
+    componentDidMount,quando montado, toda vez que o
+    componente é renderizado é feita umaChamada na API.
     */
   }
 
+  renderTable(data, filter) {
+    if (filter !== "") {
+      data = data.filter((planet) => planet.name.toLowerCase().includes(filter.toLowerCase()));
+    }
+
+    return data.map((planet) => (
+      <tr>
+        <td>{planet.name}</td>
+        <td>{planet.rotation_period}</td>
+        <td>{planet.diameter}</td>
+        <td>{planet.climate}</td>
+        <td>{planet.gravity}</td>
+        <td>{planet.terrain}</td>
+        <td>{planet.surface_water}</td>
+      </tr>
+    ))
+  }
+
   render() {
-    const { resultPlanets, fazendoRequisicao } = this.props;
-    console.log('resultPlanets', resultPlanets);
-    console.log('fazendoRequisicao', fazendoRequisicao);
+    const { data, fazendoRequisicao, dispatchSearch, filter } = this.props;
+    console.log(this.props);
     return (
       <div>
+        <label htmlFor="searchForPlanet">Procurar: </label>
+        <input data-testid='name-filter' id="searchForPlanet" onChange={(event)=> dispatchSearch(event.target.value)} />
         <table>
           <Headers />
           <tbody>
-            {resultPlanets.map((planet) => (
-              <tr>
-                <td>{planet.name}</td>
-                <td>{planet.rotation_period}</td>
-                <td>{planet.diameter}</td>
-                <td>{planet.climate}</td>
-                <td>{planet.gravity}</td>
-                <td>{planet.terrain}</td>
-                <td>{planet.surface_water}</td>
-              </tr>
-            ))
-            }
+            {this.renderTable(data, filter)}
           </tbody>
         </table>
         {fazendoRequisicao && 'Loading...'}
@@ -56,7 +65,7 @@ class Table extends React.Component {
 
 /* os states que vou usar mapStateToProps vem do reducer initial_state*/
 /*
-  O valor do statedoReducerVerificaActions
+  O valor do state do verificandoRequisicaoAPI
   vai ser três infos(o state, o reducer que
   contêm a action e a action que quero)
 */
@@ -64,14 +73,15 @@ const mapStateToProps = (state) => {
   console.log('state', state);
   return {
     fazendoRequisicao: state.planetsReducer.fazendoRequisicao,
-    resultPlanets: state.planetsReducer.resultPlanets,
+    data: state.planetsReducer.data,
+    filter: state.reducerFilter.filterByName.name,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
-  console.log('verificando dispatch', dispatch);
   return {
     StarWarsPlanetsAPI: () => dispatch(fetchAPIStarWarsPlanets()),
+    dispatchSearch: (name) => dispatch(filterPlanetsName(name))
   };
 };
 

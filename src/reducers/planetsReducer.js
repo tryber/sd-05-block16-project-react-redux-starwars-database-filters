@@ -2,29 +2,22 @@ import { REQUISICAO_BEM_SUCEDIDA, FAZENDO_REQUISICAO_API } from '../actions/acti
 
 const STATE_INICIAL = {
   fazendoRequisicao: true,
-  resultPlanets: [],
-  filters: {
-    filterByName: {
-      name: '',
-    },
-  },
+  data: [],
 };
 
-const reducerVerificaActions = (state = STATE_INICIAL, action) => {
-  console.log('action reducer', action);
+const verificandoRequisicaoAPI = (state = STATE_INICIAL, action) => {
   switch (action.type) {
     case FAZENDO_REQUISICAO_API:
-      console.log('Olá');
+      console.log('fazendo requisicao');
       return {
         ...state,
-        resultPlanets: [],
         fazendoRequisicao: action.fazendoRequisicao,
       };
     case REQUISICAO_BEM_SUCEDIDA:
-      console.log('oi');
+      console.log('sucedida');
       return {
         ...state,
-        resultPlanets: action.data,
+        data: action.data,
         fazendoRequisicao: false,
       };
     default:
@@ -32,5 +25,5 @@ const reducerVerificaActions = (state = STATE_INICIAL, action) => {
   }
 };
 
-export default reducerVerificaActions;
+export default verificandoRequisicaoAPI;
 /* Estrutura retirada dos exercícios do bloco 16 */
