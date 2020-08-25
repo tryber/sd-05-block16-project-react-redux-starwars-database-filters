@@ -5,10 +5,29 @@ import fetchAPIStarWarsPlanets from '../actions/action';
 import filterPlanetsName from '../actions/filterPlanetsName';
 import Headers from './Headers';
 
+const renderTable = (data, filter) => {
+  let filteredData = data;
+  if (filter !== '') {
+    filteredData = filteredData.filter((planet) => planet.name.toLowerCase().includes(filter.toLowerCase()));
+  }
+
+  return filteredData.map((planet) => (
+    <tr>
+      <td>{planet.name}</td>
+      <td>{planet.rotation_period}</td>
+      <td>{planet.diameter}</td>
+      <td>{planet.climate}</td>
+      <td>{planet.gravity}</td>
+      <td>{planet.terrain}</td>
+      <td>{planet.surface_water}</td>
+    </tr>
+  ));
+}
+
 class Table extends React.Component {
   componentDidMount() {
     const { StarWarsPlanetsAPI } = this.props;
-    console.log('api', StarWarsPlanetsAPI);
+    // console.log('api', StarWarsPlanetsAPI);
     StarWarsPlanetsAPI();
     /*
     componentDidMount,quando montado, toda vez que o
@@ -16,27 +35,9 @@ class Table extends React.Component {
     */
   }
 
-  renderTable(data, filter) {
-    if (filter !== '') {
-      data = data.filter((planet) => planet.name.toLowerCase().includes(filter.toLowerCase()));
-    }
-
-    return data.map((planet) => (
-      <tr>
-        <td>{planet.name}</td>
-        <td>{planet.rotation_period}</td>
-        <td>{planet.diameter}</td>
-        <td>{planet.climate}</td>
-        <td>{planet.gravity}</td>
-        <td>{planet.terrain}</td>
-        <td>{planet.surface_water}</td>
-      </tr>
-    ));
-  }
-
   render() {
     const { data, fazendoRequisicao, dispatchSearch, filter } = this.props;
-    console.log(this.props);
+    // console.log(this.props);
     return (
       <div>
         <label htmlFor="search">Procurar: </label>
@@ -48,7 +49,7 @@ class Table extends React.Component {
         <table>
           <Headers />
           <tbody>
-            {this.renderTable(data, filter)}
+            {renderTable(data, filter)}
           </tbody>
         </table>
         {fazendoRequisicao && 'Loading...'}
@@ -74,7 +75,7 @@ class Table extends React.Component {
   contêm a action e a action que quero)
 */
 const mapStateToProps = (state) => {
-  console.log('state', state);
+  // console.log('state', state);
   return {
     fazendoRequisicao: state.planetsReducer.fazendoRequisicao,
     data: state.planetsReducer.data,

@@ -8,13 +8,13 @@ const STATE_INICIAL = {
 const verificandoRequisicaoAPI = (state = STATE_INICIAL, action) => {
   switch (action.type) {
     case FAZENDO_REQUISICAO_API:
-      console.log('fazendo requisicao');
+      // console.log('fazendo requisicao');
       return {
         ...state,
         fazendoRequisicao: action.fazendoRequisicao,
       };
     case REQUISICAO_BEM_SUCEDIDA:
-      console.log('sucedida');
+      // console.log('sucedida');
       return {
         ...state,
         data: action.data,

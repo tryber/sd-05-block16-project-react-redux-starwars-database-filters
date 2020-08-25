@@ -7,7 +7,7 @@ const STATE_INICIAL = {
 };
 
 const filters = (state = STATE_INICIAL, action) => {
-  console.log('action reducer', action);
+  // console.log('action reducer', action);
   switch (action.type) {
     case FILTER_NAME_PLANET:
       return {
