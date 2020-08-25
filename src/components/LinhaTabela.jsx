@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class LinhaTabela extends React.Component {
 
@@ -21,5 +22,17 @@ class LinhaTabela extends React.Component {
     );
   }
 }
+
+LinhaTabela.propTypes = {
+  climate: PropTypes.string,
+  diameter: PropTypes.string,
+  gravity: PropTypes.string,
+  name: PropTypes.string,
+  orbital_period: PropTypes.string,
+  population: PropTypes.string,
+  surface_water: PropTypes.string,
+  terrain: PropTypes.string,
+  rotation_period: PropTypes.string,
+}.isRequired
 
 export default LinhaTabela;
