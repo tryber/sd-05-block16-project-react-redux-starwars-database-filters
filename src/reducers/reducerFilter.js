@@ -14,12 +14,7 @@ const STATE_INICIAL = {
       }
     ]
   }
-}
-// filterByName: {
-//   name: '',
-//   },
-// filterByNumericValues: [{ column, comparison, value }],
-// };
+};
 
 const filters = (state = STATE_INICIAL, action) => {
   // console.log('action reducer', action);
@@ -36,9 +31,9 @@ const filters = (state = STATE_INICIAL, action) => {
     case FILTER_VALUES:
       return {
         ...state,
-        filterByNumericValues: action.column,
-        filterByNumericValues: action.comparison,
-        filterByNumericValues: action.value,
+        column: action.column,
+        comparison: action.comparison,
+        value: action.value,
       };
     default:
       return state;
