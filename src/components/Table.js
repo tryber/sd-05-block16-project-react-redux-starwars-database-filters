@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { fetchPlanets } from '../actions';
 
 import TableHeader from './TableHeader';
+import TableBody from './TableBody';
 
 // Referência: Juliette (https://github.com/tryber/sd-05-block16-project-react-redux-starwars-database-filters/tree/juliette-react-redux-starwars-datatable-filters)
 
@@ -21,6 +22,7 @@ class Table extends React.Component {
         <h1> StarWars Database Filters </h1>
         <table>
           <TableHeader />
+          <TableBody />
         </table>
       </div>
     );

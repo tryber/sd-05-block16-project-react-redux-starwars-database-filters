@@ -17,7 +17,7 @@ const receivePlanetsFailure = (error) => ({
 
 const receivePlanetsSuccess = (data) => ({
   type: RECEIVE_PLANETS_SUCCESS,
-  data,
+  data: data.results,
 });
 
 // const PLANETS_API = 'https://swapi-trybe.herokuapp.com/api/planets/';
@@ -44,6 +44,7 @@ export function fetchPlanets() {
       .then(
         (results) => dispatch(receivePlanetsSuccess(results)),
         (error) => dispatch(receivePlanetsFailure(error.message)),
-      );
+      );      
   };
 }
+console.log(getPlanets());
