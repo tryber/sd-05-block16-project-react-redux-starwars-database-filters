@@ -8,7 +8,7 @@ import { applyMiddleware, createStore } from 'redux';
 import thunk from 'redux-thunk';
 import testData from './testData';
 import App from './App';
-import reducer from './redux/reducers';
+import reducer from './reducers';
 
 const getStore = (initialState) => {
   if (!initialState) return createStore(reducer, applyMiddleware(thunk));
