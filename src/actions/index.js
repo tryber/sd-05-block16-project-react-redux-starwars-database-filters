@@ -1,4 +1,4 @@
-import getPlanets from '../../services';
+import getPlanets from '../services';
 
 export const REQUEST_PLANETS = 'REQUEST_PLANETS';
 export const FAILED_REQUEST = 'FAILED_REQUEST';

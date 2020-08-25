@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import propTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchSWAPI } from '../redux/actions/index';
+import { fetchSWAPI } from '../actions/index';
 import TableBody from '../components/TableBody';
 import TableHeader from '../components/TableHeader';
 
