@@ -13,7 +13,6 @@ const INICIAL_STATE = {
 const dataReducer = (state = INICIAL_STATE, action) => {
   switch (action.type) {
     case SUCESSO:
-      console.log(action.data)
       return {
         ...state,
         planetas: action.data,

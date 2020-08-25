@@ -13,7 +13,7 @@ function sucesso(data) {
 }
 
 function falha(erro) {
-  return { type: FALHA, erro }
+  return { type: FALHA, erro };
 }
 
 export function fetcherThunk() {
@@ -22,6 +22,6 @@ export function fetcherThunk() {
     return fetcher().then(
       (r) => dispatch(sucesso(r.results),
       (erro) => dispatch(falha(erro)),
-      ))
+      ));
   };
 }
