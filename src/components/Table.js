@@ -17,7 +17,7 @@ class Table extends React.Component {
   }
 
   renderTable(data, filter) {
-    if (filter !== "") {
+    if (filter !== '') {
       data = data.filter((planet) => planet.name.toLowerCase().includes(filter.toLowerCase()));
     }
 
@@ -31,7 +31,7 @@ class Table extends React.Component {
         <td>{planet.terrain}</td>
         <td>{planet.surface_water}</td>
       </tr>
-    ))
+    ));
   }
 
   render() {
@@ -39,8 +39,12 @@ class Table extends React.Component {
     console.log(this.props);
     return (
       <div>
-        <label htmlFor="searchForPlanet">Procurar: </label>
-        <input data-testid='name-filter' id="searchForPlanet" onChange={(event)=> dispatchSearch(event.target.value)} />
+        <label htmlFor="search">Procurar: </label>
+        <input
+          data-testid="name-filter"
+          id="search"
+          onChange = {(event) => dispatchSearch(event.target.value)}
+        />
         <table>
           <Headers />
           <tbody>
@@ -78,16 +82,16 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    StarWarsPlanetsAPI: () => dispatch(fetchAPIStarWarsPlanets()),
-    dispatchSearch: (name) => dispatch(filterPlanetsName(name))
-  };
-};
+const mapDispatchToProps = (dispatch) => ({
+  StarWarsPlanetsAPI: () => dispatch(fetchAPIStarWarsPlanets()),
+  dispatchSearch: (name) => dispatch(filterPlanetsName(name)),
+});
 
 Table.propTypes = {
-  resultPlanets: PropTypes.arrayOf.isRequired,
+  filter: PropTypes.string.isRequired,
+  data: PropTypes.arrayOf.isRequired,
   StarWarsPlanetsAPI: PropTypes.func.isRequired,
+  dispatchSearch: PropTypes.func.isRequired,
   fazendoRequisicao: PropTypes.bool.isRequired,
 };
 
