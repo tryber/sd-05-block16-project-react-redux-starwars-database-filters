@@ -34,7 +34,7 @@ const mapStateToprops = (state) => ({
 });
 
 TableBody.propTypes = {
-  planets: propTypes.objectOf(propTypes.string).isRequired,
+  planets: propTypes.arrayOf(propTypes.object).isRequired,
 };
 
 export default connect(mapStateToprops)(TableBody);
