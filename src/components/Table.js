@@ -1,6 +1,8 @@
 import React from 'react';
-import { fetchPlanets } from '../actions';
 import { connect } from 'react-redux';
+import { fetchPlanets } from '../actions';
+
+import propTypes from 'prop-types';
 import TableHeader from './TableHeader';
 
 // Referência: Juliette (https://github.com/tryber/sd-05-block16-project-react-redux-starwars-database-filters/tree/juliette-react-redux-starwars-datatable-filters)
@@ -35,3 +37,8 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Table);
+
+Table.propTypes = {
+  isFetching: propTypes.bool.isRequired,
+  fetchPlanets: propTypes.func.isRequired,
+};
