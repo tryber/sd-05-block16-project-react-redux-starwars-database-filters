@@ -1,5 +1,8 @@
-function emptyReducer() {
-  return {};
-}
+import { combineReducers } from 'redux';
+import dataReducer from './dataReducer';
 
-export default emptyReducer;
+const rootReducer = combineReducers({
+  dataReducer,
+});
+
+export default rootReducer;
