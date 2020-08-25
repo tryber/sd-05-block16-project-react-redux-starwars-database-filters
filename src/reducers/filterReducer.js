@@ -1,11 +1,10 @@
-import { FILTER_NAME } from '../actions';
+import { FILTER_NAME, FILTER_VALUES } from '../actions';
 
 const INITIAL_STATE = {
-  filters: {
-    filterByName: {
-      name: '',
-    },
+  filterByName: {
+    name: '',
   },
+  filterByNumericValues: [],
 };
 
 function filters(state = INITIAL_STATE, action) {
@@ -13,11 +12,20 @@ function filters(state = INITIAL_STATE, action) {
     case FILTER_NAME:
       return {
         ...state,
-        filters: {
-          ...state.filters,
-          filterByName: { ...state.filterByName, name: action.name },
-        },
+        filterByName: { name: action.name },
       };
+    case FILTER_VALUES:
+      return {
+        ...state,
+        filterByNumericValues: [
+          {
+            column: action.column,
+            comparison: action.comparison,
+            value: action.value,
+          },
+        ],
+      };
+
     default:
       return state;
   }
