@@ -8,7 +8,7 @@ import { applyMiddleware, createStore } from 'redux';
 import thunk from 'redux-thunk';
 import testData from './testData';
 import App from './App';
-import reducer from './reducers';
+import reducer from './redux/reducers';
 
 const getStore = (initialState) => {
   if (!initialState) return createStore(reducer, applyMiddleware(thunk));
@@ -274,7 +274,7 @@ describe('3 - Sua página deve ter um filtro para valores numéricos', () => {
         filterByNumericValues:
         [
           { column: 'surface_water', comparison: 'menor que', value: '40' },
-          { column: 'diameter', comparison: 'maior que', value: '8900' }
+          { column: 'diameter', comparison: 'maior que', value: '8900' },
         ],
       },
     };
