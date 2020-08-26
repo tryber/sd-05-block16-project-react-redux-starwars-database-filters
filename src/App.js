@@ -1,18 +1,19 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import './App.css';
 import { connect } from 'react-redux';
 import Table from './components/Table';
 import { resolverPlanets } from './actions';
 
 class App extends Component {
-
   componentDidMount() {
-    this.props.getPlanets();
+    const { getPlanets } = this.props;
+    getPlanets();
   }
 
   render() {
     const { planetasDoReducer } = this.props;
-    console.log(planetasDoReducer);
+    console.log('ae', planetasDoReducer);
     return (
       <div>
         <Table />
@@ -22,11 +23,16 @@ class App extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  planetasDoReducer: state.planetsReducer,
+  planetasDoReducer: state.reducerPlanets.planets,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   getPlanets: () => dispatch(resolverPlanets()),
 });
+
+App.propTypes = {
+  planetasDoReducer: PropTypes.number.isRequired,
+  getPlanets: PropTypes.func.isRequired,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
