@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import './App.css';
 import { connect } from 'react-redux';
-import Table from './components/Table';
 import { resolverPlanets } from './actions';
+import Table from './components/Table';
+import './App.css';
 
 class App extends Component {
   componentDidMount() {
