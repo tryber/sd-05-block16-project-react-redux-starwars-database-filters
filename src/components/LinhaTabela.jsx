@@ -4,19 +4,18 @@ import PropTypes from 'prop-types';
 class LinhaTabela extends React.Component {
 
   render() {
-    const { climate, diameter, gravity, name, orbital_period,
-      population, surface_water, terrain, rotation_period } = this.props.planeta;
+    const { climate, diameter, gravity, name, population, terrain } = this.props.planeta;
 
     return (
       <tr>
         <th>{name}</th>
-        <th>{rotation_period}Horas</th>
-        <th>{orbital_period}</th>
+        <th>{this.props.planeta.rotation_period}Horas</th>
+        <th>{this.props.planeta.orbital_period}</th>
         <th>{diameter}KM</th>
         <th>{climate}</th>
         <th>{gravity}</th>
         <th>{terrain}</th>
-        <th>{surface_water}</th>
+        <th>{this.props.planeta.surface_water}</th>
         <th>{population}</th>
       </tr>
     );
