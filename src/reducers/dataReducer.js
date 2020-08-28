@@ -8,6 +8,7 @@ const INICIAL_STATE = {
   isFetching: true,
   planetas: [],
   erro: '',
+  filters: '',
 };
 
 const dataReducer = (state = INICIAL_STATE, action) => {

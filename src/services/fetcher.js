@@ -1,9 +1,8 @@
-const URL = 'https://swapi-trybe.herokuapp.com/api/planets/';
+const URL = 'https://swapi-trybe.herokuapp.com/api/planets';
 
 const fetcher = () => (
   fetch(URL)
-  .then((response) => response.json()
-  .then(response.ok ? Promise.reject(response) : Promise.resolve(response)),
+  .then((response) => response.json().then((data) => (data)),
 ));
 
 export default fetcher;

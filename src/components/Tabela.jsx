@@ -25,6 +25,10 @@ class Tabela extends React.Component {
               <th>Terreno</th>
               <th>Agua na Superfície</th>
               <th>População</th>
+              <th>Criado</th>
+              <th>Editado</th>
+              <th>Filmes</th>
+              <th>URL</th>
             </tr>
           </thead>
           <tbody>
