@@ -29,6 +29,10 @@ class LinhaTabela extends React.Component {
 
 LinhaTabela.propTypes = {
   planeta: PropTypes.shape({
+    created: PropTypes.string,
+    edited: PropTypes.string,
+    url: PropTypes.string,
+    films: PropTypes.instanceOf(Array),
     climate: PropTypes.string,
     diameter: PropTypes.string,
     gravity: PropTypes.string,
@@ -38,7 +42,7 @@ LinhaTabela.propTypes = {
     surface_water: PropTypes.string,
     terrain: PropTypes.string,
     rotation_period: PropTypes.string,
-  }).isRequired
-}
+  }).isRequired,
+};
 
 export default LinhaTabela;
