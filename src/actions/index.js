@@ -5,6 +5,7 @@ import getPlanets from '../service/planetsAPI';
 export const RECEIVE_PLANETS_FAILURE = 'RECEIVE_PLANETS_FAILURE';
 export const RECEIVE_PLANETS_SUCCESS = 'RECEIVE_PLANETS_SUCCESS';
 export const REQUEST_PLANETS = 'REQUEST_PLANETS';
+export const INPUT_TEXT = 'INPUT_TEXT';
 
 const requestPlanets = () => ({
   type: REQUEST_PLANETS,
@@ -48,3 +49,10 @@ export function fetchPlanets() {
   };
 }
 console.log(getPlanets());
+
+export function filterByName(inputText) {
+  return {
+    type: INPUT_TEXT,
+    inputText,
+  };
+}

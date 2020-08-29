@@ -4,6 +4,7 @@ import {
   RECEIVE_PLANETS_FAILURE,
   RECEIVE_PLANETS_SUCCESS,
   REQUEST_PLANETS,
+  INPUT_TEXT,
 } from '../actions';
 
 const INITIAL_PLANET = {
@@ -37,8 +38,27 @@ const reducer = (state = INITIAL_PLANET, action) => {
   }
 };
 
+const INITIAL_FILTER = {
+  filterByName: {
+    text: '',
+  },  
+};
+
+function filters(state = INITIAL_FILTER, action) {
+  switch (action.type) {
+    case INPUT_TEXT:
+      return {
+        ...state,
+        filterByName: { name: action.inputText },
+      };    
+    default:
+      return state;
+  }
+}
+
 const rootReducer = combineReducers({
   reducer,
+  filters,
 });
 
 export default rootReducer;
