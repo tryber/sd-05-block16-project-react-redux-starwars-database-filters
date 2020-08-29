@@ -41,7 +41,7 @@ const reducer = (state = INITIAL_PLANET, action) => {
 const INITIAL_FILTER = {
   filterByName: {
     text: '',
-  },  
+  },
 };
 
 function filters(state = INITIAL_FILTER, action) {
@@ -50,7 +50,7 @@ function filters(state = INITIAL_FILTER, action) {
       return {
         ...state,
         filterByName: { name: action.inputText },
-      };    
+      };
     default:
       return state;
   }

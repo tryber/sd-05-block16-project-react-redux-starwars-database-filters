@@ -29,7 +29,7 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 FilterByName.propTypes = {
-  inputText: propTypes.func.isRequired,
+  input: propTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(FilterByName);
