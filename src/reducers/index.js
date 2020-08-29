@@ -40,7 +40,7 @@ const reducer = (state = INITIAL_PLANET, action) => {
 
 const INITIAL_FILTER = {
   filterByName: {
-    text: '',
+    inpuTtext: '',
   },
 };
 
