@@ -34,7 +34,7 @@ class Table extends React.Component {
         <td>{planet.edited}</td>
         <td>{planet.url}</td>
       </tr>
-    ))
+    ));
   }
 
   render() {
@@ -75,7 +75,7 @@ class Table extends React.Component {
 */
 
 const filtraPlanetas = (planetas, filtroDeTexto) => {
-  console.log('planetas', planetas)
+  console.log('planetas', planetas);
   let planetasExibidos = planetas;
   if (filtroDeTexto !== '') {
     planetasExibidos = planetasExibidos.filter((planet) => planet.name
