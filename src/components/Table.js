@@ -74,21 +74,47 @@ class Table extends React.Component {
   contêm a action e a action que quero)
 */
 
-const filtraPlanetas = (planetas, filtroDeTexto) => {
+function filterByNumber(arrayPlanets, filterByNumericValues) {
+  if (filterByNumericValues.comparison === 'Maior que') {
+    return arrayPlanets.filter((planet) => Number(planet[filterByNumericValues.column]) > Number(filterByNumericValues.value));
+  }
+  if (filterByNumericValues.comparison === 'Menor que') {
+    return arrayPlanets.filter((planet) => Number(planet[filterByNumericValues.column]) < Number(filterByNumericValues.value));
+  }
+  if (filterByNumericValues.comparison === 'Igual a') {
+    return arrayPlanets.filter((planet) => Number(planet[filterByNumericValues.column]) === Number(filterByNumericValues.value));
+  }
+  return arrayPlanets;
+}
+
+const filtraPlanetas = (planetas, filtroDeTexto, filterByNumericValues) => {
   console.log('planetas', planetas);
+  console.log('planetas', filtroDeTexto);
+  console.log('planetas', filterByNumericValues);
+
   let planetasExibidos = planetas;
+    filterByNumericValues.forEach((filter) => {
+      planetasExibidos = filterByNumber(planetasExibidos, filter);
+    });
+
   if (filtroDeTexto !== '') {
     planetasExibidos = planetasExibidos.filter((planet) => planet.name
-    .toLowerCase().includes(filtroDeTexto.toLowerCase()));
+      .toLowerCase().includes(filtroDeTexto.toLowerCase()));
   }
 
   return planetasExibidos;
 };
 
-const mapStateToProps = (state) => ({
-  fazendoRequisicao: state.planetsReducer.fazendoRequisicao,
-  data: filtraPlanetas(state.planetsReducer.data, state.reducerFilter.filterByName.name),
-});
+const mapStateToProps = (state) => {
+  console.log("coisa", state);
+  return {
+    fazendoRequisicao: state.planetsReducer.fazendoRequisicao,
+    data: filtraPlanetas(
+      state.planetsReducer.data, 
+      state.reducerFilter.filterByName.name, 
+      state.reducerFilter.filterByNumericValues),
+  };
+};
 
 const mapDispatchToProps = (dispatch) => ({
   StarWarsPlanetsAPI: () => dispatch(fetchAPIStarWarsPlanets()),

@@ -4,13 +4,7 @@ const STATE_INICIAL = {
   filterByName: {
     name: '',
   },
-  filterByNumericValues: [
-    {
-      column: '',
-      comparison: '',
-      value: 0,
-    },
-  ],
+  filterByNumericValues: [],
 };
 
 const filters = (state = STATE_INICIAL, action) => {

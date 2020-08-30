@@ -5,10 +5,20 @@ import { filtrarPlanetsName } from '../actions/actionFilterPlanetsName';
 import { filterValues } from '../actions/actionFilterPlanetsName';
 
 class FiltrosDaPagina extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      column: '',
+      comparison: '',
+      value: 0,
+    }
+    this.handleColumnChange = this.handleColumnChange.bind(this);
+    this.handleComparisonChange = this.handleComparisonChange.bind(this);
+    this.handleValueChange = this.handleValueChange.bind(this);
+  }
+
   handleColumnChange(event) {
-    this.setState({
-      column: event.target.value,
-    });
+    this.setState({ column: event.target.value });
   }
 
   handleComparisonChange(event) {
@@ -79,9 +89,6 @@ class FiltrosDaPagina extends React.Component {
 const mapStateToProps = (state) => {
   console.log('filterByNumericValues', state.column);
   return {
-    column: state.reducerFilter.column,
-    comparison: state.reducerFilter.comparison,
-    value: state.reducerFilter.value,
     data: state.planetsReducer.data,
   };
 };
