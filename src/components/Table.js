@@ -16,8 +16,29 @@ class Table extends React.Component {
     */
   }
 
+  renderTable() {
+    const { data } = this.props;
+    return data.map((planet) => (
+      <tr>
+        <td>{planet.name}</td>
+        <td>{planet.rotation_period}</td>
+        <td>{planet.orbital_period}</td>
+        <td>{planet.diameter}</td>
+        <td>{planet.climate}</td>
+        <td>{planet.gravity}</td>
+        <td>{planet.terrain}</td>
+        <td>{planet.surface_water}</td>
+        <td>{planet.population}</td>
+        <td>{planet.films}</td>
+        <td>{planet.created}</td>
+        <td>{planet.edited}</td>
+        <td>{planet.url}</td>
+      </tr>
+    ))
+  }
+
   render() {
-    const { data, fazendoRequisicao } = this.props;
+    const { fazendoRequisicao } = this.props;
     console.log('table', this.props);
     return (
       <div>
@@ -27,24 +48,7 @@ class Table extends React.Component {
         <table>
           <Headers />
           <tbody>
-            {data.map((planet) => (
-              <tr>
-                <td>{planet.name}</td>
-                <td>{planet.rotation_period}</td>
-                <td>{planet.orbital_period}</td>
-                <td>{planet.diameter}</td>
-                <td>{planet.climate}</td>
-                <td>{planet.gravity}</td>
-                <td>{planet.terrain}</td>
-                <td>{planet.surface_water}</td>
-                <td>{planet.population}</td>
-                <td>{planet.films}</td>
-                <td>{planet.created}</td>
-                <td>{planet.edited}</td>
-                <td>{planet.url}</td>
-              </tr>
-            ))
-            }
+            {this.renderTable()}
           </tbody>
         </table>
         {fazendoRequisicao && 'Loading...'}
