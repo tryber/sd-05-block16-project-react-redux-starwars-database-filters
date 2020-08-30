@@ -22,10 +22,11 @@ const filters = (state = INITIAL_STATE, action) => {
         filterByNumericValues: [
           ...state.filterByNumericValues,
           {
-          column: action.column,
-          comparison: action.comparison,
-          value: action.value,
-        }],
+            column: action.column,
+            comparison: action.comparison,
+            value: action.value,
+          },
+        ],
       };
     default:
       return state;

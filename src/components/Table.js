@@ -29,7 +29,7 @@ function filArray(array, text) {
   // .includes é uma função verifica se uma determidada
   // string possui o texto passado como paramêtro;
   // fonte: https://www.youtube.com/watch?v=XiAtxDeP-p8;
-  
+
 function mapArray(array) {
   return array.map((arr) => (
     <tr key={arr.name}>
@@ -84,7 +84,9 @@ class Table extends Component {
             ))}
           </tr>
         </thead>
-        <tbody>{mapArray(filArray(filterNumber(filteredPlanets, filter[filter.length - 2]), search))}</tbody>
+        <tbody>{mapArray(filArray(filterNumber(filteredPlanets,
+          filter[filter.length - 2]), search))}
+        </tbody>
       </table>
     );
   }
@@ -94,7 +96,7 @@ const mapStateToProps = (state) => ({
   planets: state.emptyReducer.data,
   fetching: state.emptyReducer.fetching,
   search: state.filters.filterByName.name,
-  filter: state.filters.filterByNumericValues
+  filter: state.filters.filterByNumericValues,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -107,6 +109,7 @@ Table.propTypes = {
   fetching: PropTypes.string.isRequired,
   planets: PropTypes.arrayOf(PropTypes.object).isRequired,
   search: PropTypes.string.isRequired,
+  filter: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Table)
+export default connect(mapStateToProps, mapDispatchToProps)(Table);

@@ -8,15 +8,15 @@ class App extends Component {
 
   render() {
     return (
-    <div>
-      <header >
-        <SearchBar />
-      </header>
-      <body>
-        <Table />
-      </body>
-    </div>
-    )
+      <div>
+        <header >
+          <SearchBar />
+        </header>
+        <body>
+          <Table />
+        </body>
+      </div>
+    );
   }
 }
 
