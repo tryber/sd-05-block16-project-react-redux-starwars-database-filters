@@ -22,7 +22,7 @@ class Inicial extends React.Component {
       );
     }
     if (!isFetching && name !== '') {
-      const PlanetasFiltrados = planetas.filter((planeta) => (planeta.name.includes(name)))
+      const PlanetasFiltrados = planetas.filter((planeta) => (planeta.name.includes(name)));
       return (
         <div>
           <InputFilter />
@@ -53,11 +53,11 @@ const mapStateToProps = (state) => ({
 });
 
 Inicial.propTypes = {
-  onLoad: PropTypes.func,
-  planetas: PropTypes.instanceOf(Array),
-  isFetching: PropTypes.bool,
-  erro: PropTypes.string,
-  filter: PropTypes.shape({ name: PropTypes.string })
+  onLoad: PropTypes.func.isRequired,
+  planetas: PropTypes.instanceOf(Array).isRequired,
+  isFetching: PropTypes.bool.isRequired,
+  erro: PropTypes.string.isRequired,
+  filter: PropTypes.shape({ name: PropTypes.string }).isRequired,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Inicial);
