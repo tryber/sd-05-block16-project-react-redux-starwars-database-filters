@@ -1,5 +1,7 @@
-function emptyReducer() {
-  return {};
-}
+import { combineReducers } from 'redux';
+import tablesReducer from './tablesReducer'
 
-export default emptyReducer;
+const MyReducer = combineReducers({tablesReducer});
+
+
+export default MyReducer;
