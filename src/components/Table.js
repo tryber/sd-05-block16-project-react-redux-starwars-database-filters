@@ -8,7 +8,7 @@ import FiltrosDaPagina from './HeaderPagina';
 class Table extends React.Component {
   componentDidMount() {
     const { StarWarsPlanetsAPI } = this.props;
-    // console.log('api', StarWarsPlanetsAPI);
+    console.log('api', StarWarsPlanetsAPI);
     StarWarsPlanetsAPI();
     /*
     componentDidMount,quando montado, toda vez que o
@@ -34,12 +34,12 @@ class Table extends React.Component {
         <td>{planet.edited}</td>
         <td>{planet.url}</td>
       </tr>
-    ));
+    ))
   }
 
   render() {
     const { fazendoRequisicao } = this.props;
-    // console.log('table', this.props);
+    console.log('table', this.props);
     return (
       <div>
         <div>
@@ -75,11 +75,11 @@ class Table extends React.Component {
 */
 
 const filtraPlanetas = (planetas, filtroDeTexto) => {
-  // console.log('planetas', planetas)
+  console.log('planetas', planetas)
   let planetasExibidos = planetas;
   if (filtroDeTexto !== '') {
     planetasExibidos = planetasExibidos.filter((planet) => planet.name
-      .toLowerCase().includes(filtroDeTexto.toLowerCase()));
+    .toLowerCase().includes(filtroDeTexto.toLowerCase()));
   }
 
   return planetasExibidos;
@@ -87,7 +87,7 @@ const filtraPlanetas = (planetas, filtroDeTexto) => {
 
 const mapStateToProps = (state) => ({
   fazendoRequisicao: state.planetsReducer.fazendoRequisicao,
-  data: filtraPlanetas(state.planetsReducer.data, state.reducerFilter.filters.filterByName.name),
+  data: filtraPlanetas(state.planetsReducer.data, state.reducerFilter.filterByName.name),
 });
 
 const mapDispatchToProps = (dispatch) => ({

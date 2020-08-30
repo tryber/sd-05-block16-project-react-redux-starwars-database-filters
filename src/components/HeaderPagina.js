@@ -31,7 +31,7 @@ class FiltrosDaPagina extends React.Component {
           onChange={(event) => dispatchSearch(event.target.value)}
         />
       </div>
-    );
+    )
   }
 
   renderFiltrosValoresNum() {
@@ -59,7 +59,7 @@ class FiltrosDaPagina extends React.Component {
             () => dispatchFilterValues(
               this.state.column,
               this.state.comparison,
-              this.state.value,
+              this.state.value
             )}
         >Filtrar</button>
       </div>
@@ -91,7 +91,7 @@ const mapDispatchToProps = (dispatch) => ({
   dispatchFilterValues: (
     column,
     comparison,
-    value,
+    value
   ) => dispatch(filterValues(column, comparison, value)),
 });
 
