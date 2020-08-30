@@ -37,7 +37,6 @@ class FiltrosDaPagina extends React.Component {
         <input
           type="text"
           data-testid="name-filter"
-          id="search"
           onChange={(event) => dispatchSearch(event.target.value)}
         />
       </div>
