@@ -1,9 +1,9 @@
 export const FILTER_NAME_PLANET = 'FILTER_NAME_PLANET';
 export const FILTER_VALUES = 'FILTER_VALUES';
 
-export const filtrarPlanetsName = (name) => ({
+export const filtrarPlanetsName = (value) => ({
   type: FILTER_NAME_PLANET,
-  name,
+  value,
 });
 
 export const filterValues = (column, comparison, value) => ({

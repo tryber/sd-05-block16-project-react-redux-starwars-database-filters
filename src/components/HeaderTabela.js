@@ -1,6 +1,6 @@
 import React from 'react';
 
-class Headers extends React.Component {
+class HeadersTabela extends React.Component {
   render() {
     return (
       <thead>
@@ -25,5 +25,5 @@ class Headers extends React.Component {
   }
 }
 
-export default Headers;
+export default HeadersTabela;
 /* Estrutura retirada dos exercícios do bloco 16 */

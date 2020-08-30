@@ -10,10 +10,10 @@ export const fazendoRequicaoAPI = () => ({ /* Informa que eu estou fazendo uma R
   fazendoRequisicao: true,
 });
 
-export const requicaoBemSucedida = (planets) => ({
+export const requicaoBemSucedida = ({results}) => ({
   /* Informa que a requisição foi bem sucedida */
   type: REQUISICAO_BEM_SUCEDIDA,
-  data: planets, /* Puxando o results da StarWarsPlanetsAPI.js */
+  data: results, /* Puxando o results da StarWarsPlanetsAPI.js */
 });
 
 // Actions creator retorna uma função
@@ -23,7 +23,7 @@ export default function fetchAPIStarWarsPlanets() {
     dispatch(fazendoRequicaoAPI());
     return StarWarsPlanetsAPI()// Ação assincrona para receber informações da API
       .then(
-        (planet) => dispatch(requicaoBemSucedida(planet.results)),
+        (planet) => dispatch(requicaoBemSucedida(planet)),
       );
   };
 }

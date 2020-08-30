@@ -1,27 +1,31 @@
 import { FILTER_NAME_PLANET, FILTER_VALUES } from '../actions/actionFilterPlanetsName';
 
 const STATE_INICIAL = {
-  filterByName: {
-    name: '',
+  filters:
+  {
+    filterByName: {
+      name: '',
+    },
   },
   filterByNumericValues: [
     {
       column: '',
       comparison: '',
-      value: '',
+      value: 0,
     },
   ],
 };
 
 const filters = (state = STATE_INICIAL, action) => {
   console.log('action reducer', action);
-  console.log('state', state);
   switch (action.type) {
     case FILTER_NAME_PLANET:
       return {
         ...state,
-        filterByName: {
-          name: action.name,
+        filters: {
+          filterByName: {
+            name: action.value,
+          },
         },
       };
     case FILTER_VALUES:
