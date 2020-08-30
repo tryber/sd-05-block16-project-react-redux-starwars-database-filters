@@ -82,7 +82,7 @@ function filterByNumber(arrayPlanets, filterByNumericValues) {
   }
   if (filterByNumericValues.comparison === 'Menor que') {
     return arrayPlanets
-      .filter((planet) => 
+      .filter((planet) =>
         Number(planet[filterByNumericValues.column]) < Number(filterByNumericValues.value));
   }
   if (filterByNumericValues.comparison === 'Igual a') {
@@ -111,15 +111,13 @@ const filtraPlanetas = (planetas, filtroDeTexto, filterByNumericValues) => {
   return planetasExibidos;
 };
 
-const mapStateToProps = (state) => {
-  return {
-    fazendoRequisicao: state.planetsReducer.fazendoRequisicao,
-    data: filtraPlanetas(
-      state.planetsReducer.data,
-      state.reducerFilter.filterByName.name,
-      state.reducerFilter.filterByNumericValues),
-  };
-};
+const mapStateToProps = (state) => ({
+  fazendoRequisicao: state.planetsReducer.fazendoRequisicao,
+  data: filtraPlanetas(
+    state.planetsReducer.data,
+    state.reducerFilter.filterByName.name,
+    state.reducerFilter.filterByNumericValues),
+});
 
 const mapDispatchToProps = (dispatch) => ({
   StarWarsPlanetsAPI: () => dispatch(fetchAPIStarWarsPlanets()),
