@@ -1,4 +1,5 @@
 import React from 'react';
+import { BrowserRouter } from 'react';
 import ReactDOM from 'react-dom';
 import Store from './redux/store/index';
 import { Provider } from 'react-redux';
@@ -11,7 +12,7 @@ ReactDOM.render(
     <BrowserRouter>
       <App />
     </BrowserRouter>
-  </Provider>, 
+  </Provider>,
   document.getElementById('root'));
-  
+
 serviceWorker.unregister();

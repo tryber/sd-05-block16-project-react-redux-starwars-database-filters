@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 /* Retorno API consultado StackOverflow
   https://stackoverflow.com/questions/55888233/filter-api-result-with-react */
@@ -6,15 +6,15 @@ import React, { Component } from 'react';
 function Table() {
   return (
     <div>
-     <div>StarWars Datatable with Filters</div>
+      <div>StarWars Datatable with Filters</div>
       <table>
         <thead>
-        <tr>
+         <tr>
           <th></th>
         </tr>
         </thead>
         <tbody>
-        <tr>
+          <tr>
           <th></th>
         </tr>
         </tbody>

@@ -13,4 +13,4 @@ const requestApi = () => ({
 const receiveApi = () => ({
   type: RECEIVE_API,
   payload: planetas.results,
-})
+});

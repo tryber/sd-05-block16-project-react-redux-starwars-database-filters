@@ -3,7 +3,7 @@ import { REQUEST_API, RECEIVE_API } from '../actions';
 const INITIALSTATE = {
   data: [],
   isLoading: false,
- };
+};
 
 // tenho ainda que implementar o isLoading
 
@@ -21,7 +21,7 @@ const reduceApi = (state = INITIALSTATE, action) => {
         ...state,
         data: action.payload.results,
         isLoading: false,
-        };
+      };
     default:
       return state;
   }
