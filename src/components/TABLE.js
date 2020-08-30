@@ -15,31 +15,10 @@ function Table() {
         <tr>
           <th></th>
         </tr>
-        <tr>
-          <th></th>
-        </tr>
-        <tr>
-          <th></th>
-        </tr>
-        <tr>
-          <th></th>
-        </tr>
-        <tr>
-          <th></th>
-        </tr>
-        <tr>
-        <tr>
-          <th></th>
-        </tr>
-        <tr>
-          <th></th>
-        </tr>
-          <th></th>
-        </tr>
         </tbody>
       </table>
     </div>
-  )
-};
+  );
+}
 
 export default Table;
