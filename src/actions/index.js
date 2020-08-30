@@ -41,8 +41,8 @@ export const filterName = (name) => ({
 });
 
 export const filterValues = (column, comparison, value) => ({
-  type: COLUMN,  
-    column,
-    comparison,
-    value,
-})
+  type: COLUMN,
+  column,
+  comparison,
+  value,
+});
