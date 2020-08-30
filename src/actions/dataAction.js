@@ -18,7 +18,7 @@ function falha(erro) {
 }
 
 function newFilter({ target: { value } }) {
-  return { type: NEW_FILTER, value }
+  return { type: NEW_FILTER, value };
 }
 
 export function fetcherThunk() {

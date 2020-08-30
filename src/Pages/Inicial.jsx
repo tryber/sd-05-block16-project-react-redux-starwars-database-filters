@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import Tabela from '../components/Tabela';
 import { fetcherThunk } from '../actions/dataAction';
 import Loading from '../components/Loading';
@@ -20,7 +21,7 @@ class Inicial extends React.Component {
         </div>
       );
     }
-    if(!isFetching && name !== '') {
+    if (!isFetching && name !== '') {
       const PlanetasFiltrados = planetas.filter((planeta) => (planeta.name.includes(name)))
       return (
         <div>
@@ -30,7 +31,7 @@ class Inicial extends React.Component {
       );
     }
     if (erro !== '') {
-      return(
+      return (
         <div>
           DEU RUIM, FI!!
         </div>
@@ -44,13 +45,19 @@ const mapDispatchToProps = (dispatch) => ({
   onLoad: () => dispatch(fetcherThunk()),
 });
 
-
-
 const mapStateToProps = (state) => ({
   planetas: state.filters.planetas,
   isFetching: state.filters.isFetching,
   erro: state.filters.erro,
   filter: state.filters.filterByName,
 });
+
+Inicial.propTypes = {
+  onLoad: PropTypes.func,
+  planetas: PropTypes.instanceOf(Array),
+  isFetching: PropTypes.bool,
+  erro: PropTypes.string,
+  filter: PropTypes.shape({ name: PropTypes.string })
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Inicial);
