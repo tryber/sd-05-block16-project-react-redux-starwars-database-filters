@@ -1,18 +1,17 @@
 .App {
-  border: solid 2px black ;
+  border: black solid 2px ;
   width: 99.5%;
-  
-}
 
-.tabela {
-  border: groove black 1px;
-  height: 48vh;
 }
-
 .filtros{
   height: 48vh;
 }
 
-table, tr, th {
+.tabela {
+  border: black groove 1px;
+  height: 48vh;
+}
+
+table, th, tr {
   border: black 1px solid;
 }

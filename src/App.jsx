@@ -1,13 +1,13 @@
 import React from 'react';
 import './App.css';
-import Table from './components/tabela'
-import Pesquisar from './components/busca'
+import Table from './components/tabela';
+import Pesquisar from './components/busca';
 
 function App() {
   return (
     <div className="App">
       <div className="filtros">
-        <Pesquisar /> 
+        <Pesquisar />
       </div>
       <div className="tabela">
         <Table />

@@ -1,15 +1,15 @@
-import Actions from '../actions/index';
+// import actions from '../actions/index';
 import { myApisCategorys } from '../APIs/apis';
 
- const initState = {
-   default: () => myApisCategorys(),
- }
+const initState = {
+  default: () => myApisCategorys(),
+};
 
 function reducerFilter(state = initState, actions) {
-  switch(actions){
+  switch (actions) {
     default:
       return state;
-    
+
   }
 }
 export default reducerFilter;

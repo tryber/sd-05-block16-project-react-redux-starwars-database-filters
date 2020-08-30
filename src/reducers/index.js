@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
-import tablesReducer from './tablesReducer'
+import tablesReducer from './tablesReducer';
 
-const MyReducer = combineReducers({tablesReducer});
+const MyReducer = combineReducers({ tablesReducer });
 
 
 export default MyReducer;

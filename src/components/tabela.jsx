@@ -10,7 +10,7 @@ class Table extends React.Component {
           <th>teste 3</th>
         </tr>
       </table>
-    )
+    );
   }
 }
 

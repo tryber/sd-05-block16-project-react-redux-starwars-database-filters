@@ -1,4 +1,3 @@
-import { myApisCategorys } from '../APIs/apis'
-// cria objetos 
-
-async 
+/* import { myApisCategorys } from '../APIs/apis';
+// cria objetos
+ */

@@ -9,7 +9,7 @@ class Busca extends React.Component {
           <label htmlFor="Pesq">pesquisar</label>
           <input type="text" id="Pesq" />
           <div>
-            <select name="" data-testid='column-filter'>
+            <select name="" data-testid="column-filter">
               <option value="">escolha uma categoria</option>
               <option value="population">population</option>
               <option value="orbital_period">orbital_period</option>
@@ -21,7 +21,7 @@ class Busca extends React.Component {
           </div>
         </form>
       </div>
-    )
+    );
   }
 }
 
