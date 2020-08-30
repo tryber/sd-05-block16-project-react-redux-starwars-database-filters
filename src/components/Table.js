@@ -1,17 +1,37 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { fetchPlanets } from '../actions';
+import { fetchPlanets, filterValues } from '../actions';
 import Loading from '../components/Loading';
 
-function mapArray(array, text) {
-  const filteredPlanets = array.filter((arr) => arr.name.includes(text));
+function filterNumber(allPlanets, filter) {
+  if (filter === undefined) {
+    return allPlanets;
+  }
+  switch (filter.comparison) {
+    case 'maior que':
+      return allPlanets.filter((planet) => Number(planet[filter.column]) > Number(filter.value));
+    case 'menor que':
+      return allPlanets.filter((planet) => Number(planet[filter.column]) < Number(filter.value));
+    case 'igual a':
+      return allPlanets.filter((planet) => Number(planet[filter.column]) === Number(filter.value));
+    default:
+      return allPlanets;
+  }
+}
+ // solução retirada do repositório:
+ // https://github.com/tryber/sd-05-block16-project-react-redux-starwars-database-filters/blob/marina-barcelos-react-redux-starwars/src/components/TableBody.js
+ // A função filterNumber ela filtra de acordo com o case que recebe do parâmetro filter;
 
+function filArray(array, text) {
+  return array.filter((arr) => arr.name.includes(text));
+}
   // .includes é uma função verifica se uma determidada
   // string possui o texto passado como paramêtro;
   // fonte: https://www.youtube.com/watch?v=XiAtxDeP-p8;
-
-  return filteredPlanets.map((arr) => (
+  
+function mapArray(array) {
+  return array.map((arr) => (
     <tr key={arr.name}>
       <td>{arr.name}</td>
       <td>{arr.rotation_period}</td>
@@ -33,7 +53,9 @@ function mapArray(array, text) {
 class Table extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      filterTable: false,
+    };
   }
 
   componentDidMount() {
@@ -43,23 +65,16 @@ class Table extends Component {
 
   render() {
     const headers = [
-      'Name',
-      'rotation period',
-      'orbital period',
-      'diameter',
-      'climate',
-      'gravity',
-      'terrain',
-      'surface water',
-      'population',
-      'residents',
-      'films',
-      'created',
+      'Name', 'rotation period', 'orbital period', 'diameter',
+      'climate', 'gravity', 'terrain', 'surface water',
+      'population', 'residents', 'films', 'created',
       'edited,',
     ];
-    if (this.props.fetching) return <Loading />;
     const { planets } = this.props;
     const { search } = this.props;
+    const { filter } = this.props;
+    if (this.props.fetching) return <Loading />;
+    const filteredPlanets = filterNumber(planets, filter[filter.length - 1]);
     return (
       <table>
         <thead>
@@ -69,7 +84,7 @@ class Table extends Component {
             ))}
           </tr>
         </thead>
-        <tbody>{mapArray(planets, search)}</tbody>
+        <tbody>{mapArray(filArray(filterNumber(filteredPlanets, filter[filter.length - 2]), search))}</tbody>
       </table>
     );
   }
@@ -79,10 +94,12 @@ const mapStateToProps = (state) => ({
   planets: state.emptyReducer.data,
   fetching: state.emptyReducer.fetching,
   search: state.filters.filterByName.name,
+  filter: state.filters.filterByNumericValues
 });
 
 const mapDispatchToProps = (dispatch) => ({
   fetchP: () => dispatch(fetchPlanets()),
+  filterV: (name1, name2, name3) => dispatch(filterValues(name1, name2, name3)),
 });
 
 Table.propTypes = {
@@ -92,4 +109,4 @@ Table.propTypes = {
   search: PropTypes.string.isRequired,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Table);
+export default connect(mapStateToProps, mapDispatchToProps)(Table)

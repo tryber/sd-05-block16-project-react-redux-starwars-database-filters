@@ -5,7 +5,7 @@ export const RP_FAILED = 'FAILED';
 export const REQUEST_PLANETS = 'REQUEST_PLANETS';
 export const NAME = 'NAME';
 export const COLUMN = 'COLUMN';
-export const COMP = 'COMP';
+export const COMPARISON = 'COMP';
 
 export const rqPlanets = () => ({
   type: REQUEST_PLANETS,
@@ -40,11 +40,9 @@ export const filterName = (name) => ({
   },
 });
 
-export const filterValues = (column, comp, value) => ({
-  type: COLUMN,
-  filterByNumericValues: [{
+export const filterValues = (column, comparison, value) => ({
+  type: COLUMN,  
     column,
-    comp,
+    comparison,
     value,
-  }],
-});
+})
