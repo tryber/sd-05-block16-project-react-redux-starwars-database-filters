@@ -76,13 +76,19 @@ class Table extends React.Component {
 
 function filterByNumber(arrayPlanets, filterByNumericValues) {
   if (filterByNumericValues.comparison === 'Maior que') {
-    return arrayPlanets.filter((planet) => Number(planet[filterByNumericValues.column]) > Number(filterByNumericValues.value));
+    return arrayPlanets
+      .filter((planet) =>
+        Number(planet[filterByNumericValues.column]) > Number(filterByNumericValues.value));
   }
   if (filterByNumericValues.comparison === 'Menor que') {
-    return arrayPlanets.filter((planet) => Number(planet[filterByNumericValues.column]) < Number(filterByNumericValues.value));
+    return arrayPlanets
+      .filter((planet) => 
+        Number(planet[filterByNumericValues.column]) < Number(filterByNumericValues.value));
   }
   if (filterByNumericValues.comparison === 'Igual a') {
-    return arrayPlanets.filter((planet) => Number(planet[filterByNumericValues.column]) === Number(filterByNumericValues.value));
+    return arrayPlanets
+      .filter((planet) =>
+        Number(planet[filterByNumericValues.column]) === Number(filterByNumericValues.value));
   }
   return arrayPlanets;
 }
@@ -93,9 +99,9 @@ const filtraPlanetas = (planetas, filtroDeTexto, filterByNumericValues) => {
   console.log('planetas', filterByNumericValues);
 
   let planetasExibidos = planetas;
-    filterByNumericValues.forEach((filter) => {
-      planetasExibidos = filterByNumber(planetasExibidos, filter);
-    });
+  filterByNumericValues.forEach((filter) => {
+    planetasExibidos = filterByNumber(planetasExibidos, filter);
+  });
 
   if (filtroDeTexto !== '') {
     planetasExibidos = planetasExibidos.filter((planet) => planet.name
@@ -106,12 +112,11 @@ const filtraPlanetas = (planetas, filtroDeTexto, filterByNumericValues) => {
 };
 
 const mapStateToProps = (state) => {
-  console.log("coisa", state);
   return {
     fazendoRequisicao: state.planetsReducer.fazendoRequisicao,
     data: filtraPlanetas(
-      state.planetsReducer.data, 
-      state.reducerFilter.filterByName.name, 
+      state.planetsReducer.data,
+      state.reducerFilter.filterByName.name,
       state.reducerFilter.filterByNumericValues),
   };
 };

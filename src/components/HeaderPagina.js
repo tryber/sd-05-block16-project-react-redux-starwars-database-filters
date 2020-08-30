@@ -11,7 +11,7 @@ class FiltrosDaPagina extends React.Component {
       column: '',
       comparison: '',
       value: 0,
-    }
+    };
     this.handleColumnChange = this.handleColumnChange.bind(this);
     this.handleComparisonChange = this.handleComparisonChange.bind(this);
     this.handleValueChange = this.handleValueChange.bind(this);
