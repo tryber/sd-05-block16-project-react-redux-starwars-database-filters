@@ -1,12 +1,10 @@
 import React from 'react';
 import './App.css';
-import Tabela from './components/Tabela';
+import Inicial from './Pages/Inicial';
 
 function App() {
   return (
-    <div className="App">
-      <Tabela />
-    </div>
+    <Inicial />
   );
 }
 

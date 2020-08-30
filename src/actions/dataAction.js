@@ -3,6 +3,7 @@ import fetcher from '../services/fetcher';
 export const SUCESSO = 'SUCESSO';
 export const CARREGANDO = 'CARREGANDO';
 export const FALHA = 'FALHA';
+export const NEW_FILTER = 'NEW_FILTER';
 
 function carregando() {
   return { type: CARREGANDO };
@@ -16,6 +17,10 @@ function falha(erro) {
   return { type: FALHA, erro };
 }
 
+function newFilter({ target: { value } }) {
+  return { type: NEW_FILTER, value }
+}
+
 export function fetcherThunk() {
   return (dispatch) => {
     dispatch(carregando());
@@ -25,3 +30,5 @@ export function fetcherThunk() {
       ));
   };
 }
+
+export default newFilter;

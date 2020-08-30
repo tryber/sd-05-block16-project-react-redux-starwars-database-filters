@@ -2,13 +2,14 @@ import {
   SUCESSO,
   FALHA,
   CARREGANDO,
+  NEW_FILTER,
 } from '../actions/dataAction';
 
 const INICIAL_STATE = {
   isFetching: true,
   planetas: [],
   erro: '',
-  filters: '',
+  filterByName: { name: '' },
 };
 
 const dataReducer = (state = INICIAL_STATE, action) => {
@@ -27,6 +28,11 @@ const dataReducer = (state = INICIAL_STATE, action) => {
       return {
         ...state,
         erro: action.erro,
+      };
+    case NEW_FILTER:
+      return {
+        ...state,
+        filterByName: { name: action.value },
       };
     default:
       return state;
