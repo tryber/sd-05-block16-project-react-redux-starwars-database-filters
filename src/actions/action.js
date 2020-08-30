@@ -10,7 +10,7 @@ export const fazendoRequicaoAPI = () => ({ /* Informa que eu estou fazendo uma R
   fazendoRequisicao: true,
 });
 
-export const requicaoBemSucedida = ({results}) => ({
+export const requicaoBemSucedida = ({ results }) => ({
   /* Informa que a requisição foi bem sucedida */
   type: REQUISICAO_BEM_SUCEDIDA,
   data: results, /* Puxando o results da StarWarsPlanetsAPI.js */
