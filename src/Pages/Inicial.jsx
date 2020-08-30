@@ -58,6 +58,6 @@ Inicial.propTypes = {
   isFetching: PropTypes.bool.isRequired,
   erro: PropTypes.string.isRequired,
   filter: PropTypes.shape({ name: PropTypes.string }).isRequired,
-}
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Inicial);
