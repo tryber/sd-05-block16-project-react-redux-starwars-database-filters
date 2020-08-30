@@ -4,4 +4,4 @@ const rootReducer  = combineReducers ({
   reducerFilter,
 });
 
-export default combineReducers;
+export default rootReducer;
