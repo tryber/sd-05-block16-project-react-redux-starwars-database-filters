@@ -9,7 +9,7 @@ const INITIALSTATE = {
 
 // tenho que importar dados da API para receber "results"
 
-const reduceApi = (state = INITIALSTATE, action) => {
+export const reduceApi = (state = INITIALSTATE, action) => {
   switch (action.type) {
     case REQUEST_API:
       return {
@@ -26,5 +26,3 @@ const reduceApi = (state = INITIALSTATE, action) => {
       return state;
   }
 };
-
-export default reduceApi;
