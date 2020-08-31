@@ -5,6 +5,9 @@ const INITIALSTATE = {
   isLoading: false,
 };
 
+/* CONSULTEI REPO DO COLEGA DE TURMA - FELIPE VIEIRA PARA TENTAR ENXERGAR 
+MELHOR LÓGICA DESSE REDUCER */
+
 // tenho ainda que implementar o isLoading
 
 // tenho que importar dados da API para receber "results"
