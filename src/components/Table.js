@@ -75,17 +75,17 @@ class Table extends React.Component {
 */
 
 function filterByNumber(arrayPlanets, filterByNumericValues) {
-  if (filterByNumericValues.comparison === 'Maior que') {
+  if (filterByNumericValues.comparison === 'maior que') {
     return arrayPlanets
       .filter((planet) =>
         Number(planet[filterByNumericValues.column]) > Number(filterByNumericValues.value));
   }
-  if (filterByNumericValues.comparison === 'Menor que') {
+  if (filterByNumericValues.comparison === 'menor que') {
     return arrayPlanets
       .filter((planet) =>
         Number(planet[filterByNumericValues.column]) < Number(filterByNumericValues.value));
   }
-  if (filterByNumericValues.comparison === 'Igual a') {
+  if (filterByNumericValues.comparison === 'igual a') {
     return arrayPlanets
       .filter((planet) =>
         Number(planet[filterByNumericValues.column]) === Number(filterByNumericValues.value));
