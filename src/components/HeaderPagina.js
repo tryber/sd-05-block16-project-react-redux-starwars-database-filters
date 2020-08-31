@@ -59,7 +59,7 @@ class FiltrosDaPagina extends React.Component {
           <option disabled selected>Comparação</option>
           <option>maior que</option>
           <option>menor que</option>
-          <option>igual</option>
+          <option>igual a</option>
         </select>
         <input type="number" data-testid="value-filter" onChange={this.handleValueChange} />
         <button
