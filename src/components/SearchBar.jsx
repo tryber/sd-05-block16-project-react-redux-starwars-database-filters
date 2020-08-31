@@ -3,9 +3,16 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { filterName, filterValues } from '../actions';
 
+const comparacao = ['', 'maior que', 'menor que', 'igual a'];
 const colunas = ['', 'population', 'orbital_period', 'diameter',
   'rotation_period', 'surface_water'];
-const comparacao = ['', 'maior que', 'menor que', 'igual a'];
+
+function removeC(e = '') {
+  if (e === '') return colunas;
+  const index = colunas.indexOf(e);
+  colunas.splice(index, 1);
+  return colunas;
+}
 
 class SearchBar extends Component {
   constructor(props) {
@@ -20,34 +27,34 @@ class SearchBar extends Component {
   render() {
     const { filterV, f_Name } = this.props;
     const { column, comparison, value } = this.state;
-    return (
-      <div> Procurar:
+    return (<div> Procurar:
         <input
           data-testid="name-filter"
           onChange={(e) => f_Name(e.target.value)} type="text"
         />
-        <select
-          data-testid="column-filter" onChange={(e) => {
-            this.setState({ column: e.target.value });
-          }}
-        > {colunas.map((i) => (<option>{i}</option>))}
-        </select>
-        <select
-          onChange={(e) => {
-            this.setState({ comparison: e.target.value });
-          }}
-          data-testid="comparison-filter"
-        > {comparacao.map((j) => (<option>{j}</option>))} </select>
-        <input
-          type="number"
-          data-testid="value-filter"
-          onChange={(e) => {
-            this.setState({ value: e.target.value });
-          }}
-        /> <button
-          onClick={() => filterV(column, comparison, value)}
-          data-testid="button-filter"
-        > Filtrar </button> </div>);
+      <select
+        data-testid="column-filter" onChange={(e) => {
+          this.setState({ column: e.target.value });
+        }}
+      > {colunas.map((i) => (<option>{i}</option>))}
+      </select>
+      <select
+        onChange={(e) => {
+          this.setState({ comparison: e.target.value });
+        }}
+        data-testid="comparison-filter"
+      > {comparacao.map((j) => (<option>{j}</option>))} </select>
+      <input
+        type="number" data-testid="value-filter"
+        onChange={(e) => {
+          this.setState({ value: e.target.value });
+        }}
+      /> <button
+        onClick={() => {
+          filterV(column, comparison, value);
+          removeC(column);
+        }} data-testid="button-filter"
+      > Filtrar </button> </div>);
   }
 }
 
