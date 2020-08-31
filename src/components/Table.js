@@ -93,7 +93,8 @@ function filterByNumber(arrayPlanets, filterByNumericValues) {
   return arrayPlanets;
 }
 
-/* A function filterByNumber foi retirado do código da minha colega de turma Nat Macedo e adpatado para o meu código*/
+/* A function filterByNumber foi retirado do código
+da minha colega de turma Nat Macedo e adpatado para o meu código*/
 
 const filtraPlanetas = (planetas, filtroDeTexto, filterByNumericValues) => {
   console.log('planetas', planetas);
