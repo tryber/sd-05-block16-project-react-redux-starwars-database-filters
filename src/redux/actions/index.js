@@ -1,5 +1,3 @@
-import axios from 'axios';
-
 const PLANET_API = 'https://swapi-trybe.herokuapp.com/api/planets/?format=json';
 
 export const PLANETS_REQUEST_FAILURE = 'PLANETS_REQUEST_FAILURE';

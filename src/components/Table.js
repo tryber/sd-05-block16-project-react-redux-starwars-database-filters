@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import uuid from 'react-uuid'
 import { fetchActionPlanets } from '../redux/actions';
 
 class Table extends Component {
@@ -16,13 +17,10 @@ class Table extends Component {
 
   render() {
     const { planets } = this.props.planetReducer;
-    console.log('reducer', this.props.planetReducer)
-
     let planetas = [];
     // GODOY
     if (planets.length > 0) planetas = Object.keys(planets[0]);
 
-    console.log('planetasaasa', planetas)
     return (
       <table>
         <thead>
@@ -33,10 +31,10 @@ class Table extends Component {
           </tr>
         </thead>
         <tbody>
-          {planets.map((info) => (
-            <tr key={(((1+Math.random())*0x10000)|0).toString(16).substring(1)}>
+          {planets.map((orbit) => (
+            <tr key={uuid()}>
               {planetas.map((data) => (
-                <td key={(((1+Math.random())*0x10000)|0).toString(16).substring(1)}>{info[data]}</td>
+                <td key={uuid()}>{orbit[data]}</td>
               ))}
             </tr>
           ))}
@@ -56,5 +54,12 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   getPlanets: (e) => dispatch(fetchActionPlanets(e)),
 });
+
+
+Table.propTypes = {
+  planets: PropTypes.arrayOf(PropTypes.object).isRequired,
+  getPlanets: PropTypes.func.isRequired,
+  loading: PropTypes.bool.isRequired,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Table);
