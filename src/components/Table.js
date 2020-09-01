@@ -11,24 +11,30 @@ class Table extends React.Component {
   }
 
   render() {
-    /* console.log(this.props); */
-    if (this.props.isLoading) return <h1>loading...</h1>;
+   /*  console.log(this.props); */
+    const { data, cabecalho, isLoading, nomeProcurado } = this.props;
+    if (isLoading) return <h1>loading...</h1>;
+    const planetas = data.filter((planeta) =>
+      planeta.name.toLowerCase().indexOf(nomeProcurado.toLowerCase()) >= 0);
     return (
       <div>
         <div>StarWars Datatable with Filters</div>
         <table>
           <thead>
             <tr>
-              {this.props.cabecalho.map((titulo) => (
+              {cabecalho.map((titulo) => (
                 <th>{titulo}</th>
               ))}
             </tr>
           </thead>
           <tbody>
-            {/* <Planeta data={this.props.data.map()} /> */}
-            {this.props.data.map((inforPlaneta) => (
+            { isLoading === false ? planetas.map((inforPlaneta) => (
+              <Planeta cabec={cabecalho} data={inforPlaneta} />
+            )) : null
+            }
+            {/* {this.props.data.map((inforPlaneta) => (
               <Planeta cabec={this.props.cabecalho} data={inforPlaneta} />
-            ))}
+            ))} */}
           </tbody>
         </table>
       </div>
@@ -40,6 +46,7 @@ const mapStateToProps = (state) => ({
   data: state.reducerBasico.data,
   cabecalho: state.reducerBasico.cabecalho,
   isLoading: state.reducerBasico.isLoading,
+  nomeProcurado: state.filters.filterByName.name,
 });
 
 // todas as actions que for utilizar tem que estar dentro do mapDispatch
@@ -53,6 +60,7 @@ Table.propTypes = {
   cabecalho: Proptypes.arrayOf(Proptypes.object).isRequired,
   isLoading: Proptypes.bool.isRequired,
   startAPI: Proptypes.func.isRequired,
+  nomeProcurado: Proptypes.string.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Table);
