@@ -28,6 +28,7 @@ class Table extends React.Component {
   render() {
     const { data, nameFilter, numericFilter } = this.props;
     let planets = data;
+    // eslint-disable-next-line react/prop-types
     numericFilter.forEach((filter) => { planets = allFilters(data, filter); });
     return (
       <div>
