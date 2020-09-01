@@ -25,7 +25,7 @@ export const filterName = (name) => ({
   name,
 });
 
-export const filterValues = (column, comparison, value) => ({
+export const filterValues = ({ column, comparison, value }) => ({
   type: FILTER_VALUES,
   column,
   comparison,

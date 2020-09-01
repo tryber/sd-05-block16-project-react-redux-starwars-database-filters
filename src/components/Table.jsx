@@ -4,6 +4,21 @@ import { connect } from 'react-redux';
 import { fetchPlanets } from '../actions';
 import TableHead from './TableHead';
 
+// lógica da function retirada do repo de diversos colegas, principalmente da Julliete e Marina
+
+function allFilters(data, filter) {
+  if (filter.comparison === 'maior que') {
+    return data.filter((planet) => Number(planet[filter.column]) > filter.value);
+  }
+  if (filter.comparison === 'menor que') {
+    return data.filter((planet) => Number(planet[filter.column]) < filter.value);
+  }
+  if (filter.comparison === 'igual') {
+    return data.filter((planet) => Number(planet[filter.column]) === filter.value);
+  }
+  return data;
+}
+
 class Table extends React.Component {
   componentDidMount() {
     const { getPlanets } = this.props;
@@ -11,12 +26,14 @@ class Table extends React.Component {
   }
 
   render() {
-    const { data, nameFilter } = this.props;
+    const { data, nameFilter, numericFilter } = this.props;
+    let planets = data;
+    numericFilter.forEach((filter) => { planets = allFilters(data, filter); });
     return (
       <div>
         <table>
           <TableHead />
-          {data.filter((planet) => planet.name.includes(nameFilter))
+          {planets.filter((planet) => planet.name.includes(nameFilter))
           // lógica do filter consultada no repo da Juliette
             .map((planet) => (
               <tbody>
@@ -47,6 +64,7 @@ const mapStateToProps = (state) => ({
   data: state.planetsReducer.data,
   isFetching: state.planetsReducer.isFetching,
   nameFilter: state.filters.filterByName.name,
+  numericFilter: state.filters.filterByNumericValues,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -61,5 +79,8 @@ Table.propTypes = {
   getPlanets: PropTypes.func.isRequired,
   nameFilter: PropTypes.shape({
     filters: { filterByName: PropTypes.object },
+  }).isRequired,
+  numericFilter: PropTypes.shape({
+    filters: { filterByNumericValues: PropTypes.arrayOf(PropTypes.object) },
   }).isRequired,
 };
