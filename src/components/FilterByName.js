@@ -5,14 +5,13 @@ import { connect } from 'react-redux';
 import { filterByName } from '../actions/index';
 
 function FilterByName({ searchFilter }) {
-  console.log(searchFilter);
   return (
     <section>
       <label htmlFor="name">Search</label>
       <input
         data-testid="name-filter"
         type="text"
-        onChange={({ target }) => searchFilter(target.value)}
+        onChange={(event) => searchFilter(event.target.value)}
       />
     </section>
   );
@@ -27,5 +26,5 @@ const mapDispatchToProps = (dispatch) => ({
 export default connect(null, mapDispatchToProps)(FilterByName);
 
 FilterByName.propTypes = {
-  name: propTypes.func.isRequired,
+  searchFilter: propTypes.func.isRequired,
 };

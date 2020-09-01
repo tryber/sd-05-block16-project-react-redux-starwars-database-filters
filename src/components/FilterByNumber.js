@@ -18,35 +18,34 @@ class filterByNumeric extends Component {
       comparison: 'maior que',
       value: 1000,
     };
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(element) {
+    this.setState({ [element.target.id]: element.target.value });
   }
 
   render() {
-    const handleChange = (element) => (
-      this.setState({ [element.target.id]: element.target.value }));
     const { handleClick } = this.props;
     return (
       <div>
-        <select
-          id="column"
-          data-testid="column-filter"
-          onChange={handleChange}
-        >
+        <select id="column" data-testid="column-filter" onChange={this.handleChange}>
           <option>Coluna</option>
           {selectFunction(col)}
         </select>
         <select
           id="comparison"
           data-testid="comparison-filter"
-          onChange={handleChange}
+          onChange={this.handleChange}
         >
           {selectFunction(comparison)}
         </select>
-        <label>
+        <label htmlFor="">
           <input
             id="value"
             data-testid="value-filter"
             type="number"
-            onChange={handleChange}
+            onChange={this.handleChange}
           />
         </label>
         <button type="button" data-testid="button-filter" onClick={() => handleClick(this.state)}>
