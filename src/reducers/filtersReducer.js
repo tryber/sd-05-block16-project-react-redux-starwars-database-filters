@@ -16,7 +16,7 @@ const filterByName = (state = INITIAL_FILTER, action) => {
       return {
         ...state,
         filterByNumericValues: [action.results],
-      }
+      };
     default:
       return state;
   }

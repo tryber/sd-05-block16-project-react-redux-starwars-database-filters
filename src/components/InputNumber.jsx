@@ -1,6 +1,6 @@
-import React from "react";
-import { connect } from "react-redux";
-import { filterByNumber } from "../actions/actionFilter";
+import React from 'react';
+import { connect } from 'react-redux';
+import { filterByNumber } from '../actions/actionFilter';
 
 class InputNumber extends React.Component {
   constructor(props) {
@@ -9,7 +9,7 @@ class InputNumber extends React.Component {
       column: 'population',
       comparison: 'maior que',
       value: '100000',
-    }
+    };
   }
 
   render() {
