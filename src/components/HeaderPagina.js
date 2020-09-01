@@ -46,10 +46,13 @@ class FiltrosDaPagina extends React.Component {
 
   renderFiltrosValoresNum() {
     const { dispatchFilterValues, options, dispatchSetValueOptions } = this.props;
-    console.log('gggg', options)
+    console.log('gggg', options);
     return (
       <div>
-        <select data-testid="column-filter" onChange={(event) => dispatchSetValueOptions(event.target.value)}>
+        <select
+          data-testid="column-filter"
+          onChange={(event) => dispatchSetValueOptions(event.target.value)}
+        >
           {options.map((option) => <option value={option}>{option}</option>)}
         </select>
         <select data-testid="comparison-filter" onChange={this.handleComparisonChange}>
@@ -97,24 +100,26 @@ const mapDispatchToProps = (dispatch) => ({
     comparison,
     value,
   ) => dispatch(filterValues(column, comparison, value)),
-  dispatchSetValueOptions: (
-    population,
-    orbital_period,
-    diameter,
-    rotation_period,
-    surface_water,
-  ) => dispatch(setValueOptions(
-    population,
-    orbital_period,
-    diameter,
-    rotation_period,
-    surface_water,
-  )),
+  // dispatchSetValueOptions: (
+  //   population,
+  //   orbital_period,
+  //   diameter,
+  //   rotation_period,
+  //   surface_water,
+  // ) => dispatch(setValueOptions(
+  //   population,
+  //   orbital_period,
+  //   diameter,
+  //   rotation_period,
+  //   surface_water,
+  // )),
 });
 
 FiltrosDaPagina.propTypes = {
   dispatchSearch: PropTypes.func.isRequired,
   dispatchFilterValues: PropTypes.func.isRequired,
+  dispatchSetValueOptions: PropTypes.func.isRequired,
+  options: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(FiltrosDaPagina);
