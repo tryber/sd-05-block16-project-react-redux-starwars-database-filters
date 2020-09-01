@@ -1,7 +1,7 @@
-import { FILTER_BY_NAME } from '../actions/actionFilter'
+import { FILTER_BY_NAME } from '../actions/actionFilter';
 
 const INITIAL_FILTER = {
-    filterByName: { name: '' },
+  filterByName: { name: '' },
 };
 
 const filterByName = (state = INITIAL_FILTER, action) => {
