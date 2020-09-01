@@ -36,7 +36,7 @@ class NumericFilters extends React.Component {
 
   render() {
     const options = ['population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water'];
-    const options2 = ['', 'menor que', 'maior que', 'igual'];
+    const options2 = ['menor que', 'maior que', 'igual'];
 
     return (
       <div>
