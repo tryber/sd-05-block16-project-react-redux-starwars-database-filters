@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { filtrarPlanetsName } from '../actions/actionFilterPlanetsName';
 import { filterValues } from '../actions/actionFilterPlanetsName';
-import { setValueOptions } from '../actions/actionFilterPlanetsName';
+// import { setValueOptions } from '../actions/actionFilterPlanetsName';
 
 class FiltrosDaPagina extends React.Component {
   constructor(props) {

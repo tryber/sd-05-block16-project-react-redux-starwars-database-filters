@@ -31,7 +31,9 @@ const ReducerFilter = (state = STATE_INICIAL, action) => {
         ...state,
         options: [
           ...state.options,
-          { population: action.population, orbital_period: action.orbital_period,
+          {
+            population: action.population,
+            orbital_period: action.orbital_period,
             diameter: action.diameter,
             rotation_period: action.rotation_period,
             surface_water: action.surface_water,
