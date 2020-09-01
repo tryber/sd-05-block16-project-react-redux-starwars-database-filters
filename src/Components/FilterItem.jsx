@@ -3,49 +3,47 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import RemoveFilterButton from './RemoveFilterButton';
 
-const Item = (props) => {
-  const {
-    column, comparison, value, index,
-  } = props;
-  return (
-    <li className="filter-item-container" data-testid="filter" key={index}>
-      <RemoveFilterButton filterIndex={index} />
-      <span className="filter-item-column">{column}</span>
-      <span className="filter-item-comparison">{comparison}</span>
-      <span className="filter-item-value">{value}</span>
-    </li>
-  );
-};
-
-class FilterItem extends Component {
+class Item extends Component {
   render() {
-    const { column, comparison, value } = this.props;
+    const {
+      item: { column, comparison, value },
+      index,
+      columnValues,
+      numericValues,
+    } = this.props;
+    const comparisonText = columnValues.find((item) => item.value === comparison);
+    const columText = numericValues.find((item) => item.value === column);
     return (
-      <Item column={column} comparison={comparison} value={value} />
+      <li className="filter-item-container" data-testid="filter" key={index}>
+        <RemoveFilterButton filterIndex={index} />
+        <span className="filter-item-column">{columText.text}</span>
+        <span className="filter-item-comparison">{comparisonText.text}</span>
+        <span className="filter-item-value">{value}</span>
+      </li>
     );
   }
 }
 
-const mapStateToProps = ({ filterReducer: { filters } }) => {
-  const { column, comparison, value } = filters;
-  return {
-    column,
-    comparison,
-    value,
-  };
-};
+const mapStateToProps = ({ temporaryFilter: { filtersOptions } }) => ({
+  columnValues: filtersOptions.comparison,
+  numericValues: filtersOptions.numeric,
+});
 
-FilterItem.propTypes = {
-  column: PropTypes.string.isRequired,
-  comparison: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
-};
+export default connect(mapStateToProps)(Item);
 
 Item.propTypes = {
-  column: PropTypes.string.isRequired,
-  comparison: PropTypes.string.isRequired,
-  value: PropTypes.number.isRequired,
+  item: PropTypes.shape({
+    column: PropTypes.string.isRequired,
+    comparison: PropTypes.string.isRequired,
+    value: PropTypes.number.isRequired,
+  }).isRequired,
   index: PropTypes.number.isRequired,
+  columnValues: PropTypes.shape({
+    value: PropTypes.string,
+    text: PropTypes.string,
+  }).isRequired,
+  numericValues: PropTypes.shape({
+    value: PropTypes.string,
+    text: PropTypes.string,
+  }).isRequired,
 };
-
-export default connect(mapStateToProps)(FilterItem);

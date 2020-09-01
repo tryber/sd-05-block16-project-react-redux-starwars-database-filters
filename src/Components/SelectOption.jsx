@@ -34,7 +34,7 @@ SelectOption.propTypes = {
   }).isRequired,
 };
 
-const mapStateToProps = ({ filterReducer: { filtersOptions } }) => ({
+const mapStateToProps = ({ temporaryFilter: { filtersOptions } }) => ({
   numeric: filtersOptions.numeric,
   comparison: filtersOptions.comparison,
 });

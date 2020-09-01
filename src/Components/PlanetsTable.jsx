@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
+import Table from './Table';
 
 export default class PlanetsTable extends Component {
   render() {
     return (
       <div>
-        Tabela Aqui
+        Star Wars Planets
+        <Table />
       </div>
     );
   }

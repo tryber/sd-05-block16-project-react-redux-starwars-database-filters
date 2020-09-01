@@ -1,4 +1,6 @@
-import { FILTER_BY_NAME, RESET_FILTER_BY_NAME } from '../Actions';
+import {
+  FILTER_BY_NAME, RESET_FILTER_BY_NAME, SEND_FILTER, REMOVE_FILTER,
+} from '../Actions';
 
 const INITIAL_STATE = {
   filters: {
@@ -6,22 +8,6 @@ const INITIAL_STATE = {
       name: false,
     },
     filterByNumericValues: [],
-  },
-  filtersOptions: {
-    numeric: [
-      { value: 'clear_filter', text: 'Coluna' },
-      { value: 'population', text: 'População' },
-      { value: 'orbital_period', text: 'Período Orbital' },
-      { value: 'diameter', text: 'Diâmetro' },
-      { value: 'rotation_period', text: 'Periodo de rotação' },
-      { value: 'surface_water', text: 'Superfície d\'Água' },
-    ],
-    comparison: [
-      { value: 'clear_filter', text: 'Comparação' },
-      { value: 'bigger_than', text: '>' },
-      { value: 'less_than', text: '<' },
-      { value: 'equal_to', text: '=' },
-    ],
   },
 };
 
@@ -41,6 +27,24 @@ const filterReducer = (state = INITIAL_STATE, action) => {
         filters: {
           ...state.filters,
           filterByName: false,
+        },
+      };
+    case SEND_FILTER:
+      return {
+        ...state,
+        filters: {
+          ...state.filters,
+          filterByNumericValues: [...state.filters.filterByNumericValues, { ...action.payload }],
+        },
+      };
+    case REMOVE_FILTER:
+      return {
+        ...state,
+        filters: {
+          ...state.filters,
+          filterByNumericValues: [
+            ...state.filters.filterByNumericValues.filter((_, index) => index !== action.payload),
+          ],
         },
       };
     default:

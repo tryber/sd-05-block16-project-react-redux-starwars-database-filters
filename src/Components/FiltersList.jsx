@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import FilterItem from './FilterItem';
+import ListFilterItems from './ListFilterItems';
 
 class FiltersList extends Component {
   render() {
@@ -7,7 +7,7 @@ class FiltersList extends Component {
       <div className="filters-list-container">
         <h2 className="filters-list-title">Filtros Ativos</h2>
         <ul className="unordered-list-filter">
-          <FilterItem />
+          <ListFilterItems />
         </ul>
       </div>
     );
