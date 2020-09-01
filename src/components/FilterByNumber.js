@@ -40,7 +40,7 @@ class filterByNumeric extends Component {
         >
           {selectFunction(comparison)}
         </select>
-        <label htmlFor="">
+        <label htmlFor="value">
           <input
             id="value"
             data-testid="value-filter"
