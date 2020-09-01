@@ -16,6 +16,13 @@ class Table extends React.Component {
     */
   }
 
+  // componentDidUpdate() {
+  //   const { filterByNumericValues } = this.props;
+  //   console.log('filterByNumericValues componentDidUpdate', filterByNumericValues);
+  //   const result = filterByNumericValues[0];
+  //   console.log('result.column', result);
+  // }
+
   renderTable() {
     const { data } = this.props;
     return data.map((planet) => (
@@ -97,9 +104,9 @@ function filterByNumber(arrayPlanets, filterByNumericValues) {
 da minha colega de turma Nat Macedo e adpatado para o meu código*/
 
 const filtraPlanetas = (planetas, filtroDeTexto, filterByNumericValues) => {
-  console.log('planetas', planetas);
-  console.log('planetas', filtroDeTexto);
-  console.log('planetas', filterByNumericValues);
+  // console.log('', planetas);
+  // console.log('planetas', filtroDeTexto);
+  // console.log('column', filterByNumericValues);
 
   let planetasExibidos = planetas;
   filterByNumericValues.forEach((filter) => {
@@ -118,8 +125,9 @@ const mapStateToProps = (state) => ({
   fazendoRequisicao: state.planetsReducer.fazendoRequisicao,
   data: filtraPlanetas(
     state.planetsReducer.data,
-    state.filters.filterByName.name,
-    state.filters.filterByNumericValues),
+    state.ReducerFilter.filterByName.name,
+    state.ReducerFilter.filterByNumericValues),
+  filterByNumericValues: state.ReducerFilter.filterByNumericValues,
 });
 
 const mapDispatchToProps = (dispatch) => ({

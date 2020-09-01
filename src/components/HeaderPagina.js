@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { filtrarPlanetsName } from '../actions/actionFilterPlanetsName';
 import { filterValues } from '../actions/actionFilterPlanetsName';
+import { setValueOptions } from '../actions/actionFilterPlanetsName';
 
 class FiltrosDaPagina extends React.Component {
   constructor(props) {
@@ -12,14 +13,14 @@ class FiltrosDaPagina extends React.Component {
       comparison: '',
       value: 0,
     };
-    this.handleColumnChange = this.handleColumnChange.bind(this);
+    // this.handleColumnChange = this.handleColumnChange.bind(this);
     this.handleComparisonChange = this.handleComparisonChange.bind(this);
     this.handleValueChange = this.handleValueChange.bind(this);
   }
 
-  handleColumnChange(event) {
-    this.setState({ column: event.target.value });
-  }
+  // handleColumnChange(event) {
+  //   this.setState({ column: event.target.value });
+  // }
 
   handleComparisonChange(event) {
     this.setState({ comparison: event.target.value });
@@ -44,16 +45,12 @@ class FiltrosDaPagina extends React.Component {
   }
 
   renderFiltrosValoresNum() {
-    const { dispatchFilterValues } = this.props;
+    const { dispatchFilterValues, options, dispatchSetValueOptions } = this.props;
+    console.log('gggg', options)
     return (
       <div>
-        <select data-testid="column-filter" onChange={this.handleColumnChange}>
-          <option disabled selected>Coluna</option>
-          <option>population</option>
-          <option>orbital_period</option>
-          <option>diameter</option>
-          <option>rotation_period</option>
-          <option>surface_water</option>
+        <select data-testid="column-filter" onChange={(event) => dispatchSetValueOptions(event.target.value)}>
+          {options.map((option) => <option value={option}>{option}</option>)}
         </select>
         <select data-testid="comparison-filter" onChange={this.handleComparisonChange}>
           <option disabled selected>Comparação</option>
@@ -86,9 +83,10 @@ class FiltrosDaPagina extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log('filterByNumericValues', state.column);
+  console.log('filterByNumericValues', state);
   return {
     data: state.planetsReducer.data,
+    options: state.ReducerFilter.options,
   };
 };
 
@@ -99,6 +97,19 @@ const mapDispatchToProps = (dispatch) => ({
     comparison,
     value,
   ) => dispatch(filterValues(column, comparison, value)),
+  dispatchSetValueOptions: (
+    population,
+    orbital_period,
+    diameter,
+    rotation_period,
+    surface_water,
+  ) => dispatch(setValueOptions(
+    population,
+    orbital_period,
+    diameter,
+    rotation_period,
+    surface_water,
+  )),
 });
 
 FiltrosDaPagina.propTypes = {
