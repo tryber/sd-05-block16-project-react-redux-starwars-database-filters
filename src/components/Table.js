@@ -16,7 +16,8 @@ class Table extends Component {
   }
 
   render() {
-    const { loading, planets } = this.props.planetReducer;
+    const { loading, planets } = this.props;
+    
     if (loading) return <h1>Carregando</h1>;
     let planetas = [];
     // GODOY
@@ -46,10 +47,8 @@ class Table extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  planetReducer: {
-    loading: state.planetReducer.isFetching,
-    planets: state.planetReducer.planets,
-  },
+  loading: state.planetReducer.isFetching,
+  planets: state.planetReducer.data,
 });
 
 const mapDispatchToProps = (dispatch) => ({
