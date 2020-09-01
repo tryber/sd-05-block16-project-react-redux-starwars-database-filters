@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { fetchSWAPI } from '../actions/index';
 import TableBody from '../components/TableBody';
 import TableHeader from '../components/TableHeader';
+import FilterByName from '../components/FilterByName';
+import FilterByNumber from '../components/FilterByNumber';
 
 class Table extends Component {
   componentDidMount() {
@@ -15,10 +17,14 @@ class Table extends Component {
     const { loading } = this.props;
     if (loading) return <h1>LOADING</h1>;
     return (
-      <table>
-        <TableHeader />
-        <TableBody />
-      </table>
+      <section>
+        <FilterByName />
+        <FilterByNumber />
+        <table>
+          <TableHeader />
+          <TableBody />
+        </table>
+      </section>
     );
   }
 }

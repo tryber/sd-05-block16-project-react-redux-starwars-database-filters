@@ -2,12 +2,31 @@ import React, { Component } from 'react';
 import propTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+function filterNumber(allPlanets, filter) {
+  switch (filter.comparison) {
+    case 'maior que':
+      return allPlanets.filter((planet) => Number(planet[filter.column]) > Number(filter.value));
+    case 'menor que':
+      return allPlanets.filter((planet) => Number(planet[filter.column]) < Number(filter.value));
+    case 'igual a':
+      return allPlanets.filter((planet) => Number(planet[filter.column]) === Number(filter.value));
+    default:
+      return allPlanets;
+  }
+}
+
+const filterInput = (planets, filterByName) => planets.filter((e) => e.name.includes(filterByName));
+
+
 class TableBody extends Component {
   render() {
-    const { planets } = this.props;
+    const { planets, filterByName, filterByNumericValues } = this.props;
+    let allPlanets = planets;
+    filterByNumericValues.forEach((filter) => { allPlanets = filterNumber(allPlanets, filter); });
+    allPlanets = filterInput(allPlanets, filterByName);
     return (
-      <tbody className="table-body">
-        {planets.map((planet) => (
+      allPlanets.map((planet) => (
+        <tbody className="table-body">
           <tr key={planet.name}>
             <td key={planet.name}>{planet.name}</td>
             <td key={planet.rotation_period}>{planet.rotation_period}</td>
@@ -23,18 +42,26 @@ class TableBody extends Component {
             <td key={planet.created}>{planet.created}</td>
             <td key={planet.edited}>{planet.edited}</td>
           </tr>
-        ))}
-      </tbody>
-    );
+        </tbody>
+      )));
   }
 }
 
 const mapStateToprops = (state) => ({
   planets: state.reducer.data,
+  filterByName: state.filters.filterByName.name,
+  filterByNumericValues: state.filters.filterByNumericValues,
 });
 
 TableBody.propTypes = {
   planets: propTypes.arrayOf(propTypes.object).isRequired,
+  filterByName: propTypes.string.isRequired,
+  filterByNumericValues: propTypes.shape({
+    column: propTypes.string.isRequired,
+    comparison: propTypes.string.isRequired,
+    values: propTypes.number.isRequired,
+  }).isRequired,
 };
+
 
 export default connect(mapStateToprops)(TableBody);
