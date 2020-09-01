@@ -5,6 +5,7 @@ const INITIAL_STATE = {
     filterByName: {
       name: false,
     },
+    filterByNumericValues: [],
   },
   filtersOptions: {
     numeric: [

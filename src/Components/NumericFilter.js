@@ -2,6 +2,7 @@ import React from 'react';
 import SelectOptions from './SelectOptions';
 import InputNumber from './InputNumber';
 import './NumericFilter.css';
+import ButtonFilter from './ButtonFilter';
 
 const DATA_TESTID = {
   COLUMN_FILTER: 'column-filter',
@@ -23,6 +24,7 @@ export default class NumericFilters extends React.Component {
           />
         </div>
         <InputNumber />
+        <ButtonFilter />
       </div>
     );
   }
