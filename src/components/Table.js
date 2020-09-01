@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import uuid from 'react-uuid'
+import uuid from 'react-uuid';
 import { fetchActionPlanets } from '../redux/actions';
 
 class Table extends Component {
@@ -17,7 +17,7 @@ class Table extends Component {
 
   render() {
     const { loading, planets } = this.props.planetReducer;
-    if( loading ) return <h1>Carregando</h1>;
+    if (loading) return <h1>Carregando</h1>;
     let planetas = [];
     // GODOY
     if (planets.length > 0) planetas = Object.keys(planets[0]);
@@ -59,10 +59,8 @@ const mapDispatchToProps = (dispatch) => ({
 
 Table.propTypes = {
   planets: PropTypes.arrayOf(PropTypes.object).isRequired,
-  planetReducer: PropTypes.arrayOf(PropTypes.object).isRequired,
   getPlanets: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
-  planetReducer: PropTypes.object.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Table);

@@ -6,7 +6,7 @@ import {
 
 const INITIAL_STATE = {
   isFetching: false,
-  planets: [],
+  data: [],
 };
 
 const reducerPlanets = (state = INITIAL_STATE, action) => {
@@ -21,7 +21,7 @@ const reducerPlanets = (state = INITIAL_STATE, action) => {
     case PLANETS_REQUEST_SUCCESS:
       return {
         ...state,
-        planets: action.payload,
+        data: action.payload,
         isFetching: false,
       };
     case PLANETS_REQUEST_FAILURE:
