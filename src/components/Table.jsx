@@ -8,13 +8,13 @@ import TableHead from './TableHead';
 
 function allFilters(data, filter) {
   if (filter.comparison === 'maior que') {
-    return data.filter((planet) => Number(planet[filter.column]) > filter.value);
+    return data.filter((planet) => Number(planet[filter.column]) > Number(filter.value));
   }
   if (filter.comparison === 'menor que') {
-    return data.filter((planet) => Number(planet[filter.column]) < filter.value);
+    return data.filter((planet) => Number(planet[filter.column]) < Number(filter.value));
   }
-  if (filter.comparison === 'igual') {
-    return data.filter((planet) => Number(planet[filter.column]) === filter.value);
+  if (filter.comparison === 'igual a') {
+    return data.filter((planet) => Number(planet[filter.column]) === Number(filter.value));
   }
   return data;
 }
@@ -29,13 +29,14 @@ class Table extends React.Component {
     const { data, nameFilter, numericFilter } = this.props;
     let planets = data;
     // eslint-disable-next-line react/prop-types
-    numericFilter.forEach((filter) => { planets = allFilters(data, filter); });
+    numericFilter.forEach((filter) => { planets = allFilters(planets, filter); });
+    planets = planets.filter((planet) => planet.name.includes(nameFilter));
     return (
       <div>
         <table>
           <TableHead />
-          {planets.filter((planet) => planet.name.includes(nameFilter))
-          // lógica do filter consultada no repo da Juliette
+          {/* // lógica do filter consultada no repo da Juliette */}
+          {planets
             .map((planet) => (
               <tbody>
                 <tr key={planet.name}>

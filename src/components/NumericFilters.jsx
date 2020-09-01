@@ -36,17 +36,16 @@ class NumericFilters extends React.Component {
 
   render() {
     const options = ['population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water'];
-    const options2 = ['menor que', 'maior que', 'igual'];
+    const options2 = ['menor que', 'maior que', 'igual a'];
 
     return (
       <div>
         <select data-testid="column-filter" placeholder="Selecione" onChange={this.colChange}>
-          <option value="" disabled selected>Selecione</option>
-          {/*  https://stackoverflow.com/questions/5805059/how-do-i-make-a-placeholder-for-a-select-box */}
+          <option value="" defaultValue>Selecione</option>
           {options.map((opcao) => (<option>{opcao}</option>))}
         </select>
         <select data-testid="comparison-filter" onChange={this.compChange}>
-          <option value="" disabled selected>Selecione</option>
+          <option value="" defaultValue>Selecione</option>
           {options2.map((opcao) => (<option>{opcao}</option>))}
         </select>
         <input data-testid="value-filter" type="number" onChange={this.valueChange} />
