@@ -1,12 +1,14 @@
 import React from 'react';
 import Table from './components/Table';
-import Input from './components/Input';
+import InputName from './components/InputName';
+import InputNumber from './components/InputNumber';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <Input />
+        <InputName />
+        <InputNumber />
         <Table />
       </header>
     </div>

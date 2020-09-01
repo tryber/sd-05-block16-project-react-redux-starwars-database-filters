@@ -1,18 +1,20 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import propTypes from 'prop-types';
-import { filterPlanet } from '../actions/actionFilter';
+import React from "react";
+import { connect } from "react-redux";
+import { filterByNumber } from "../actions/actionFilter";
 
-class Input extends React.Component {
+class InputNumber extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      column: 'population',
+      comparison: 'maior que',
+      value: '100000',
+    }
+  }
+
   render() {
-    const { searchByName } = this.props;
     return (
       <div>
-        <input // campo para filtrar por nome
-          data-testid="name-filter"
-          type="text"
-          onChange={(event) => searchByName(event.target.value)}
-        />
         <select data-testid="column-filter">
           <option value="population">population</option>
           <option value="orbital_period">orbital_period</option>
@@ -26,18 +28,19 @@ class Input extends React.Component {
           <option value="igual">Igual a</option>
         </select>
         <input type="number" data-testid="value-filter" />
-        <button data-testis="button-filter">Adicionar Filtro</button>
+        <button
+          data-testis="button-filter"
+          onClick={() => filterByNumber(this.state)}
+        >
+          Adicionar Filtro
+        </button>
       </div>
     );
   }
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  searchByName: (nome) => dispatch(filterPlanet(nome)),
+  filterByNumber: (number) => dispatch(filterByNumber(number)),
 });
 
-export default connect(null, mapDispatchToProps)(Input);
-
-Input.propTypes = {
-  searchByName: propTypes.func.isRequired,
-};
+export default connect(null, mapDispatchToProps)(InputNumber);
