@@ -17,7 +17,7 @@ class Table extends Component {
 
   render() {
     const { loading, planets } = this.props;
-    
+
     if (loading) return <h1>Carregando</h1>;
     let planetas = [];
     // GODOY
