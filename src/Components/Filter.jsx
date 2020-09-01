@@ -1,4 +1,5 @@
 import React from 'react';
+import './Filter.css';
 
 const Filter = () => (
   <div className="filter-container">
