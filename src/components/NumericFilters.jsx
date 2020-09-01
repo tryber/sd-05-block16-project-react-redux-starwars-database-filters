@@ -12,7 +12,7 @@ class NumericFilters extends React.Component {
       value: '',
     };
     this.valueChange = this.valueChange.bind(this);
-    this.handleClick = this.handleClick.bind(this);
+    this.hClick = this.hClick.bind(this);
     this.compChange = this.compChange.bind(this);
     this.colChange = this.colChange.bind(this);
   }
@@ -29,7 +29,7 @@ class NumericFilters extends React.Component {
     this.setState({ comparison: event.target.value });
   }
 
-  handleClick() {
+  hClick() {
     const { filterNValues } = this.props;
     filterNValues(this.state);
   }
@@ -50,7 +50,7 @@ class NumericFilters extends React.Component {
           {options2.map((opcao) => (<option>{opcao}</option>))}
         </select>
         <input data-testid="value-filter" type="number" onChange={this.valueChange} />
-        <button type="button" data-testid="button-filter" onClick={this.handleClick}>Filtrar</button>
+        <button type="button" data-testid="button-filter" onClick={this.hClick}>Filtrar</button>
       </div>
     );
   }
