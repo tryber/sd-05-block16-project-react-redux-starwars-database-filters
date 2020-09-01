@@ -6,14 +6,11 @@ import { filterByName } from '../actions/index';
 
 function FilterByName({ searchFilter }) {
   return (
-    <section>
-      <label htmlFor="name">Search</label>
-      <input
-        data-testid="name-filter"
-        type="text"
-        onChange={(event) => searchFilter(event.target.value)}
-      />
-    </section>
+    <input
+      data-testid="name-filter"
+      type="text"
+      onChange={(event) => searchFilter(event.target.value)}
+    />
   );
 }
 
