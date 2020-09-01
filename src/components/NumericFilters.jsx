@@ -46,7 +46,7 @@ class NumericFilters extends React.Component {
           {options.map((opcao) => (<option>{opcao}</option>))}
         </select>
         <select data-testid="comparison-filter" onChange={this.compChange}>
-          {/* <option value="" disabled selected>Selecione</option> */}
+          <option value="" disabled selected>Selecione</option>
           {options2.map((opcao) => (<option>{opcao}</option>))}
         </select>
         <input data-testid="value-filter" type="number" onChange={this.valueChange} />
