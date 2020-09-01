@@ -16,7 +16,8 @@ class Table extends Component {
   }
 
   render() {
-    const { planets } = this.props.planetReducer;
+    const { loading, planets } = this.props.planetReducer;
+    if( loading ) return <h1>Carregando</h1>;
     let planetas = [];
     // GODOY
     if (planets.length > 0) planetas = Object.keys(planets[0]);
@@ -58,8 +59,10 @@ const mapDispatchToProps = (dispatch) => ({
 
 Table.propTypes = {
   planets: PropTypes.arrayOf(PropTypes.object).isRequired,
+  planetReducer: PropTypes.arrayOf(PropTypes.object).isRequired,
   getPlanets: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
+  planetReducer: PropTypes.object.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Table);
