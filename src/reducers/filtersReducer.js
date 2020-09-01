@@ -1,10 +1,12 @@
+import { FILTER_BY_NAME } from '../actions/actionFilter'
+
 const INITIAL_FILTER = {
-  filterByName: { name: '' },
+    filterByName: { name: '' },
 };
 
 const filterByName = (state = INITIAL_FILTER, action) => {
   switch (action.type) {
-    case 'FILTER_BY_NAME':
+    case FILTER_BY_NAME:
       return {
         ...state,
         filterByName: { name: action.results },

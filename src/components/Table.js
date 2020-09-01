@@ -16,6 +16,7 @@ class Table extends React.Component {
   render() {
     // results e isFetching estão vindo do mapStateToProps
     const { results, isFetching, nombreProcurado } = this.props;
+    // console.log(this.props)
     const allInfos = results.filter((planeta) =>
       planeta.name.toLowerCase().indexOf(nombreProcurado.toLowerCase()) >= 0);
     return (
