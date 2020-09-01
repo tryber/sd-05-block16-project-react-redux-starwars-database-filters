@@ -5,7 +5,13 @@ const STATE_INICIAL = {
     name: '',
   },
   filterByNumericValues: [],
-  options: [],
+  columns: [
+      'population',
+      'orbital_period',
+      'diameter',
+      'rotation_period',
+      'surface_water',
+  ],
 };
 
 const ReducerFilter = (state = STATE_INICIAL, action) => {
@@ -25,20 +31,7 @@ const ReducerFilter = (state = STATE_INICIAL, action) => {
           ...state.filterByNumericValues,
           { column: action.column, comparison: action.comparison, value: action.value },
         ],
-      };
-    case SET_VALUE_OPTIONS:
-      return {
-        ...state,
-        options: [
-          ...state.options,
-          {
-            population: action.population,
-            orbital_period: action.orbital_period,
-            diameter: action.diameter,
-            rotation_period: action.rotation_period,
-            surface_water: action.surface_water,
-          },
-        ],
+        columns: state.columns.filter((column) => column !== action.column)
       };
     default:
       return state;
