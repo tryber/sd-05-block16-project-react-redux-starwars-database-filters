@@ -47,9 +47,9 @@ class FiltrosDaPagina extends React.Component {
     const { dispatchRemoverFiltroDaTela } = this.props;
     console.log('showFilters', filters);
     const teste = filters.map((element) =>
-      <div>
+      <div data-testid="filter">
         <button onClick={() => dispatchRemoverFiltroDaTela(element.column)}>X</button>
-        <p data-testid="filter">{element.column} {element.comparison} {element.value}</p>
+        <p>{element.column} {element.comparison} {element.value}</p>
       </div>,
     );
     return teste;
