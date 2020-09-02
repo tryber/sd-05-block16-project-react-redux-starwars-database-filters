@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import uuid from 'react-uuid';
 import { fetchActionPlanets } from '../actions';
 import TableBody from './TableBody';
 
@@ -20,7 +19,7 @@ class Table extends Component {
         <thead>
           <tr>
             {cabecalho.map((titulo) => (
-              <th key={uuid()}>{titulo}</th>
+              <th key={Math.floor((((Math.random()) * 0x100000)))}>{titulo}</th>
             ))}
           </tr>
         </thead>

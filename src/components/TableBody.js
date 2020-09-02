@@ -1,12 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import uuid from 'react-uuid';
 
 class TableBody extends React.Component {
   render() {
     const { data } = this.props;
     return (
-      <tr key={uuid()}>
+      <tr key={Math.floor((((Math.random()) * 0x100000)))}>
         {<td>{data.name}</td>}
         {<td>{data.rotation_period}</td>}
         {<td>{data.orbital_period}</td>}
