@@ -76,7 +76,7 @@ class FiltrosDaPagina extends React.Component {
   }
   O primeiro map da função renderColumns faz a filtragem do state de
   filters(column: action.column, comparison: action.comparison, value: action.value),
-  retirando somente column. O segundo filter retira 
+  retirando somente column. O segundo filter retira
   de columns(array que foi declarado acima)a opção que incluso em currentFilterColumns e
   o terceiro map cria options para cada coluna restante
   */

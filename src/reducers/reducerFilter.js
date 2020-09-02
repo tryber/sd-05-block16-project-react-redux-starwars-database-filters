@@ -30,8 +30,7 @@ const filters = (state = STATE_INICIAL, action) => {
         ...state,
         filterByNumericValues: [
           ...state.filterByNumericValues
-            .filter((filtro) =>
-              filtro.column === action.column ? !filtro.column : filtro.column),
+            .filter((filtro) => filtro.column !== action.column),
         ],
       };
     default:
