@@ -125,9 +125,9 @@ const mapStateToProps = (state) => ({
   fazendoRequisicao: state.planetsReducer.fazendoRequisicao,
   data: filtraPlanetas(
     state.planetsReducer.data,
-    state.ReducerFilter.filterByName.name,
-    state.ReducerFilter.filterByNumericValues),
-  filterByNumericValues: state.ReducerFilter.filterByNumericValues,
+    state.filters.filterByName.name,
+    state.filters.filterByNumericValues),
+  filterByNumericValues: state.filters.filterByNumericValues,
 });
 
 const mapDispatchToProps = (dispatch) => ({

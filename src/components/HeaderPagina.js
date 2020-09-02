@@ -5,6 +5,15 @@ import { filtrarPlanetsName } from '../actions/actionFilterPlanetsName';
 import { filterValues } from '../actions/actionFilterPlanetsName';
 import { setValueOptions } from '../actions/actionFilterPlanetsName';
 
+const columns = [
+  'Coluna',
+  'population',
+  'orbital_period',
+  'diameter',
+  'rotation_period',
+  'surface_water',
+];
+
 class FiltrosDaPagina extends React.Component {
   constructor(props) {
     super(props);
@@ -44,16 +53,32 @@ class FiltrosDaPagina extends React.Component {
     );
   }
 
+  /*
+  O primeiro map da função renderColumns faz a filtragem do state de
+  filters(column: action.column, comparison: action.comparison, value: action.value),
+  retirando somente column. O segundo filter retira de columns(array que foi declarado acima)
+  a opção que incluso em currentFilterColumns e
+  o terceiro map cria options para cada coluna restante
+  */
+  renderColumns(filters) {
+    console.log('cu', filters);
+    const currentFilterColumns = filters.map((filter) => filter.column)
+    console.log('cu', currentFilterColumns);
+    return columns
+    .filter((option) => !currentFilterColumns.includes(option))
+    .map((option) => <option value={option}>{option}</option>)
+  }
+
   renderFiltrosValoresNum() {
-    const { dispatchFilterValues, options } = this.props;
-    console.log('gggg', options);
+    const { dispatchFilterValues, filters } = this.props;
+    console.log('gggg', filters);
     return (
       <div>
         <select
           data-testid="column-filter"
           onChange={this.handleColumnChange}
         >
-          {options.map((option) => <option value={option}>{option}</option>)}
+          {this.renderColumns(filters)}
         </select>
         <select data-testid="comparison-filter" onChange={this.handleComparisonChange}>
           <option disabled selected>Comparação</option>
@@ -89,7 +114,7 @@ const mapStateToProps = (state) => {
   console.log('filterByNumericValues', state);
   return {
     data: state.planetsReducer.data,
-    options: state.ReducerFilter.columns,
+    filters: state.filters.filterByNumericValues,
   };
 };
 

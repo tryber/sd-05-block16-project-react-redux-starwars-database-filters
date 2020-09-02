@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
 import planetsReducer from './planetsReducer';
-import ReducerFilter from './reducerFilter';
+import filters from './reducerFilter';
 
 const rootReducer = combineReducers({
   planetsReducer,
-  ReducerFilter,
+  filters,
 });
 
 export default rootReducer;

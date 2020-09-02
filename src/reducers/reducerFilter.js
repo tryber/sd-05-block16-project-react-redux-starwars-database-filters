@@ -5,16 +5,9 @@ const STATE_INICIAL = {
     name: '',
   },
   filterByNumericValues: [],
-  columns: [
-      'population',
-      'orbital_period',
-      'diameter',
-      'rotation_period',
-      'surface_water',
-  ],
 };
 
-const ReducerFilter = (state = STATE_INICIAL, action) => {
+const filters = (state = STATE_INICIAL, action) => {
   console.log('action reducer', action);
   switch (action.type) {
     case FILTER_NAME_PLANET:
@@ -31,11 +24,10 @@ const ReducerFilter = (state = STATE_INICIAL, action) => {
           ...state.filterByNumericValues,
           { column: action.column, comparison: action.comparison, value: action.value },
         ],
-        columns: state.columns.filter((column) => column !== action.column)
       };
     default:
       return state;
   }
 };
 
-export default ReducerFilter;
+export default filters;
