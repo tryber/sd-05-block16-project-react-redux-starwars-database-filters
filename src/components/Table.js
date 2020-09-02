@@ -12,16 +12,9 @@ class Table extends React.Component {
   */
   componentDidMount() {
     const { StarWarsPlanetsAPI } = this.props;
-    console.log('api', StarWarsPlanetsAPI);
+    // console.log('api', StarWarsPlanetsAPI);
     StarWarsPlanetsAPI();
   }
-
-  // componentDidUpdate() {
-  //   const { filterByNumericValues } = this.props;
-  //   console.log('filterByNumericValues componentDidUpdate', filterByNumericValues);
-  //   const result = filterByNumericValues[0];
-  //   console.log('result.column', result);
-  // }
 
   renderTable() {
     const { data } = this.props;
@@ -46,7 +39,7 @@ class Table extends React.Component {
 
   render() {
     const { fazendoRequisicao } = this.props;
-    console.log('table', this.props);
+    // console.log('table', this.props);
     return (
       <div>
         <div>

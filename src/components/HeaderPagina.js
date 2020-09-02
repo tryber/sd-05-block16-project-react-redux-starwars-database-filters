@@ -3,6 +3,11 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { filtrarPlanetsName } from '../actions/actionFilterPlanetsName';
 import { filterValues } from '../actions/actionFilterPlanetsName';
+import { removerFiltroDaTela } from '../actions/actionFilterPlanetsName';
+
+/*
+columns representa a lista com todas as opções possíveis de coluna
+*/
 
 const columns = [
   'Coluna',
@@ -52,17 +57,21 @@ class FiltrosDaPagina extends React.Component {
     );
   }
 
-  /*
-  O primeiro map da função renderColumns faz a filtragem do state de
-  filters(column: action.column, comparison: action.comparison, value: action.value),
-  retirando somente column. O segundo filter retira de columns(array que foi declarado acima)
-  a opção que incluso em currentFilterColumns e
-  o terceiro map cria options para cada coluna restante
-  */
+  showFilters(filters) {
+    const { dispatchRemoverFiltroDaTela } = this.props;
+    console.log('showFilters', filters)
+    const teste = filters.map((element) =>
+      <div>
+        <button onClick={() => dispatchRemoverFiltroDaTela(element.column)}>X</button>
+        <p data-testid='filter'>{element.column} {element.comparison} {element.value}</p>
+      </div>
+    )
+    return teste;
+  }
 
   renderFiltrosValoresNum() {
     const { dispatchFilterValues, filters } = this.props;
-
+    // console.log('filters', filters);
     return (
       <div>
         <select
@@ -72,6 +81,13 @@ class FiltrosDaPagina extends React.Component {
           {columns
             .filter((option) => !filters.map((filter) => filter.column).includes(option))
             .map((option) => <option value={option}>{option}</option>)}
+          {/*
+            O primeiro map da função renderColumns faz a filtragem do state de
+            filters(column: action.column, comparison: action.comparison, value: action.value),
+            retirando somente column. O segundo filter retira de columns(array que foi declarado acima)
+            a opção que incluso em currentFilterColumns e
+            o terceiro map cria options para cada coluna restante
+          */}
         </select>
         <select data-testid="comparison-filter" onChange={this.handleComparisonChange}>
           <option disabled selected>Comparação</option>
@@ -94,10 +110,14 @@ class FiltrosDaPagina extends React.Component {
   }
 
   render() {
+    const { filters } = this.props;
     return (
       <div>
         {this.renderProcurar()}
         {this.renderFiltrosValoresNum()}
+        <div>
+          <p>Filtrar {this.showFilters(filters)}</p>
+        </div>
       </div>
     );
   }
@@ -108,6 +128,7 @@ const mapStateToProps = (state) => {
   return {
     data: state.planetsReducer.data,
     filters: state.filters.filterByNumericValues,
+    removerElementoDaTela: state.filters.removerElementoDaTela
   };
 };
 
@@ -118,6 +139,7 @@ const mapDispatchToProps = (dispatch) => ({
     comparison,
     value,
   ) => dispatch(filterValues(column, comparison, value)),
+  dispatchRemoverFiltroDaTela: (column) => dispatch(removerFiltroDaTela(column)),
 });
 
 FiltrosDaPagina.propTypes = {
