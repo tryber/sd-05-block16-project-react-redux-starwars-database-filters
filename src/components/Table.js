@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import uuid from 'react-uuid';
-import { fetchActionPlanets } from '../redux/actions';
+import { fetchActionPlanets } from '../actions';
 
 class Table extends Component {
 
