@@ -15,8 +15,8 @@ class Table extends React.Component {
   }
 
   render() {
-    const { isFetching } = this.props;
-    if (isFetching) return <h4>Loading...</h4>;
+    // const { isFetching } = this.props;
+    // if (isFetching) return <h4>Loading...</h4>;
     return (
       <div>
         <h1> StarWars Database Filters </h1>
@@ -30,7 +30,7 @@ class Table extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  isFetching: state.planetReducer.isFetching,
+  // isFetching: state.planetReducer.isFetching,
   data: state.planetReducer.data,
 });
 
@@ -41,6 +41,6 @@ const mapDispatchToProps = (dispatch) => ({
 export default connect(mapStateToProps, mapDispatchToProps)(Table);
 
 Table.propTypes = {
-  isFetching: propTypes.bool.isRequired,
+  // isFetching: propTypes.bool.isRequired,
   fetchPlanets: propTypes.func.isRequired,
 };

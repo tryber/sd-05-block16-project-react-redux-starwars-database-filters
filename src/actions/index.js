@@ -6,6 +6,7 @@ export const RECEIVE_PLANETS_FAILURE = 'RECEIVE_PLANETS_FAILURE';
 export const RECEIVE_PLANETS_SUCCESS = 'RECEIVE_PLANETS_SUCCESS';
 export const REQUEST_PLANETS = 'REQUEST_PLANETS';
 export const INPUT_TEXT = 'INPUT_TEXT';
+export const INPUT_NUMBER = 'INPUT_NUMBER';
 
 const requestPlanets = () => ({
   type: REQUEST_PLANETS,
@@ -57,5 +58,14 @@ export function filterByName(inputText) {
   return {
     type: INPUT_TEXT,
     inputText,
+  };
+}
+
+export function filterByNumber({ column, comparison, value }) {
+  return {
+    type: INPUT_NUMBER,
+    column,
+    comparison,
+    value,
   };
 }

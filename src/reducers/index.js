@@ -5,6 +5,7 @@ import {
   RECEIVE_PLANETS_SUCCESS,
   REQUEST_PLANETS,
   INPUT_TEXT,
+  INPUT_NUMBER,
 } from '../actions';
 
 const INITIAL_PLANET = {
@@ -29,8 +30,8 @@ const planetReducer = (state = INITIAL_PLANET, action) => {
     case RECEIVE_PLANETS_FAILURE:
       return {
         ...state,
-        error: action.error,
         isFetching: false,
+        error: action.error,
       };
 
     default:
@@ -42,6 +43,7 @@ const INITIAL_FILTER = {
   filterByName: {
     name: '',
   },
+  filterByNumericValues: [],
 };
 
 function filters(state = INITIAL_FILTER, action) {
@@ -51,6 +53,14 @@ function filters(state = INITIAL_FILTER, action) {
         ...state,
         filterByName: { name: action.inputText },
       };
+    case INPUT_NUMBER:
+    return {
+      ...state,
+      filterByNumericValues: [
+        ...state.filterByNumericValues,
+        { column: action.column, comparison: action.comparison, value: action.value },
+      ],
+    };
     default:
       return state;
   }
