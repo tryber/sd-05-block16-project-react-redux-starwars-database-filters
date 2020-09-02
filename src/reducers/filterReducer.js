@@ -1,4 +1,4 @@
-import { FILTER_NAME, FILTER_VALUES } from '../actions';
+import { FILTER_NAME, FILTER_VALUES, REMOVE_FILTER } from '../actions';
 
 const INITIAL_STATE = {
   filterByName: {
@@ -6,6 +6,13 @@ const INITIAL_STATE = {
   },
   filterByNumericValues: [],
 };
+
+/* const handleClick = (state, action) => {
+  const index = [state].findIndex((filter) => filter.column === action);
+  const newState = [...state];
+  newState.splice(index, 1);
+  return { [state]: newState };
+}; */
 
 function filters(state = INITIAL_STATE, action) {
   switch (action.type) {
@@ -25,6 +32,13 @@ function filters(state = INITIAL_STATE, action) {
             value: action.value,
           },
         ],
+      };
+      // lógica de remoção consultada no repositório do Lucas Allan
+    case REMOVE_FILTER:
+      return {
+        ...state,
+        filterByNumericValues: state.filterByNumericValues
+          .filter((filter) => filter.column !== action.column),
       };
 
     default:

@@ -5,6 +5,7 @@ export const RECEIVE_API_DATA_SUCCESS = 'RECEIVE_API_DATA_SUCCESS';
 export const RECEIVE_API_DATA_FAILURE = 'RECEIVE_API_DATA_FAILURE';
 export const FILTER_NAME = 'FILTER_NAME';
 export const FILTER_VALUES = 'FILTER_VALUES';
+export const REMOVE_FILTER = 'REMOVE_FILTER';
 
 const requestAPIdata = () => ({
   type: REQUEST_API_DATA,
@@ -30,6 +31,11 @@ export const filterValues = ({ column, comparison, value }) => ({
   column,
   comparison,
   value,
+});
+
+export const removeFilter = (column) => ({
+  type: REMOVE_FILTER,
+  column,
 });
 
 export function fetchPlanets() {
