@@ -1,5 +1,4 @@
 import {
-  PLANETS_REQUEST_FAILURE,
   PLANETS_REQUEST_SUCCESS,
   PLANETS_REQUEST,
 } from '../actions';
@@ -7,10 +6,11 @@ import {
 const INITIAL_STATE = {
   isFetching: false,
   data: [],
+  cabecalho: [],
 };
 
 const reducerPlanets = (state = INITIAL_STATE, action) => {
-  console.log('received action:', action);
+  let header;
 
   switch (action.type) {
     case PLANETS_REQUEST:
@@ -19,15 +19,11 @@ const reducerPlanets = (state = INITIAL_STATE, action) => {
         isFetching: true,
       };
     case PLANETS_REQUEST_SUCCESS:
+      header = Object.keys(action.payload[0]);
       return {
         ...state,
+        cabecalho: header.filter((titulo) => (titulo !== 'residents')),
         data: action.payload,
-        isFetching: false,
-      };
-    case PLANETS_REQUEST_FAILURE:
-      return {
-        ...state,
-        error: action.error,
         isFetching: false,
       };
     default:

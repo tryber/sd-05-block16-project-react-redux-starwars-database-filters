@@ -1,45 +1,35 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import uuid from 'react-uuid';
 import { fetchActionPlanets } from '../actions';
+import TableBody from './TableBody';
+import uuid from 'react-uuid';
 
 class Table extends Component {
-
   componentDidMount() {
     const { getPlanets } = this.props;
-    this.timer = setTimeout(getPlanets, 1000);
-  }
-
-  componentWillUnmount() {
-    clearInterval(this.timer);
+    getPlanets();
   }
 
   render() {
-    const { loading, planets } = this.props;
-
+    const { loading, planets, cabecalho } = this.props;
     if (loading) return <h1>Carregando</h1>;
-    let planetas = [];
-    // GODOY
-    if (planets.length > 0) planetas = Object.keys(planets[0]);
 
     return (
       <table>
         <thead>
           <tr>
-            {planetas.map((header) => (
-              <th key={header}>{header}</th>
+            {cabecalho.map((titulo) => (
+              <th key={uuid()}>{titulo}</th>
             ))}
           </tr>
         </thead>
         <tbody>
-          {planets.map((orbit) => (
-            <tr key={uuid()}>
-              {planetas.map((data) => (
-                <td key={uuid()}>{orbit[data]}</td>
-              ))}
-            </tr>
-          ))}
+          {loading === false
+            ? planets.map((infoPlaneta) => (
+                <TableBody key={uuid()} cabecalho={cabecalho} data={infoPlaneta} />
+              ))
+            : null}
         </tbody>
       </table>
     );
@@ -48,16 +38,17 @@ class Table extends Component {
 
 const mapStateToProps = (state) => ({
   loading: state.planetReducer.isFetching,
+  cabecalho: state.planetReducer.cabecalho,
   planets: state.planetReducer.data,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  getPlanets: (e) => dispatch(fetchActionPlanets(e)),
+  getPlanets: () => dispatch(fetchActionPlanets()),
 });
-
 
 Table.propTypes = {
   planets: PropTypes.arrayOf(PropTypes.object).isRequired,
+  cabecalho: PropTypes.arrayOf(PropTypes.object).isRequired,
   getPlanets: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
 };
