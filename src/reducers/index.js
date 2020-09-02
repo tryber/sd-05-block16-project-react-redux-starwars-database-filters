@@ -13,7 +13,7 @@ const INITIAL_PLANET = {
   error: '',
 };
 
-const reducer = (state = INITIAL_PLANET, action) => {
+const planetReducer = (state = INITIAL_PLANET, action) => {
   switch (action.type) {
     case REQUEST_PLANETS:
       return {
@@ -40,7 +40,7 @@ const reducer = (state = INITIAL_PLANET, action) => {
 
 const INITIAL_FILTER = {
   filterByName: {
-    inpuTtext: '',
+    name: '',
   },
 };
 
@@ -57,7 +57,7 @@ function filters(state = INITIAL_FILTER, action) {
 }
 
 const rootReducer = combineReducers({
-  reducer,
+  planetReducer,
   filters,
 });
 

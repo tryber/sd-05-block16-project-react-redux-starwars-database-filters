@@ -9,15 +9,18 @@ export const INPUT_TEXT = 'INPUT_TEXT';
 
 const requestPlanets = () => ({
   type: REQUEST_PLANETS,
+  isFetching: true,
 });
 
 const receivePlanetsFailure = (error) => ({
   type: RECEIVE_PLANETS_FAILURE,
+  isFetching: false,
   error,
 });
 
 const receivePlanetsSuccess = (data) => ({
   type: RECEIVE_PLANETS_SUCCESS,
+  isFetching: false,
   data: data.results,
 });
 
@@ -44,7 +47,7 @@ export function fetchPlanets() {
     return getPlanets()
       .then(
         (results) => dispatch(receivePlanetsSuccess(results)),
-        (error) => dispatch(receivePlanetsFailure(error.message)),
+        (error) => dispatch(receivePlanetsFailure(error)),
       );
   };
 }
