@@ -9,7 +9,7 @@ function App() {
     <div>
       <FilterByName />
       <FilterByNumber />
-      <Table />      
+      <Table />
     </div>
   );
 }

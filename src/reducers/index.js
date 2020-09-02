@@ -54,13 +54,13 @@ function filters(state = INITIAL_FILTER, action) {
         filterByName: { name: action.inputText },
       };
     case INPUT_NUMBER:
-    return {
-      ...state,
-      filterByNumericValues: [
-        ...state.filterByNumericValues,
-        { column: action.column, comparison: action.comparison, value: action.value },
-      ],
-    };
+      return {
+        ...state,
+        filterByNumericValues: [
+          ...state.filterByNumericValues,
+          { column: action.column, comparison: action.comparison, value: action.value },
+        ],
+      };
     default:
       return state;
   }

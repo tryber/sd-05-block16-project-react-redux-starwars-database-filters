@@ -4,11 +4,11 @@ import { connect } from 'react-redux';
 
 function filterByNumber(planets, filterComp) {
   if (filterComp.comparison === 'maior que') {
-    return planets.filter((planet) => Number(planet[filterComp.column]) > Number(filterComp.value));
+    return planets.filter((item) => Number(item[filterComp.column]) > Number(filterComp.value));
   } else if (filterComp.comparison === 'menor que') {
-    return planets.filter((planet) => Number(planet[filterComp.column]) < Number(filterComp.value));
+    return planets.filter((item) => Number(item[filterComp.column]) < Number(filterComp.value));
   } else if (filterComp.comparison === 'igual a') {
-    return planets.filter((planet) => Number(planet[filterComp.column]) === Number(filterComp.value));
+    return planets.filter((item) => Number(item[filterComp.column]) === Number(filterComp.value));
   }
   return planets;
 }
@@ -16,22 +16,20 @@ function filterByNumber(planets, filterComp) {
 class TableBody extends React.Component {
   render() {
     const { data, filterText, filterNumber } = this.props;
-    console.log(this.props);
+    // console.log(this.props);
 
     // let planets =  data;
     // console.log(planets);
 
     let planets = data;
 
-    filterNumber.forEach((filter) => {
-      planets = filterByNumber(planets, filter);
-    });
+    filterNumber.forEach((filter) => {(planets) = filterByNumber(planets, filter)});
 
     if (filterText.name !== '') {
       planets = planets.filter((planet) =>
       planet.name.toLowerCase().includes(filterText.name));
     }
-    console.log(filterText);
+    // console.log(filterText);
 
     return (
       <tbody>
