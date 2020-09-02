@@ -27,13 +27,6 @@ class SelectOption extends React.Component {
   }
 }
 
-SelectOption.propTypes = {
-  option: PropTypes.shape({
-    value: PropTypes.string.isRequired,
-    text: PropTypes.string.isRequired,
-  }).isRequired,
-};
-
 const mapStateToProps = ({ temporaryFilter: { filtersOptions } }) => ({
   numeric: filtersOptions.numeric,
   comparison: filtersOptions.comparison,

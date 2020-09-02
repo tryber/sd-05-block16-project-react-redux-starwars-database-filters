@@ -1,29 +1,43 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
-const ColumnName = (props) => {
-  const { name, index } = props;
-  return (<th className="column-name" key={`column-name-${index.toString}`}>{name}</th>);
-};
+import { connect } from 'react-redux';
+import TableHeaderCell from './TableHeaderCell';
+import { getStarWarsPlanets } from '../Actions';
 
 class TableReader extends Component {
+  componentDidMount() {
+    const { gettingPlanets } = this.props;
+    gettingPlanets();
+  }
+
   render() {
+    const { isFetching, planetsColumns } = this.props;
     return (
-      <tr className="header-row">
-        <ColumnName />
-      </tr>
+      <thead className="table-header">
+        <tr className="header-row">
+          {!isFetching
+            && planetsColumns.map((colName, index) => (
+              <TableHeaderCell name={colName} index={index} key={`coll-${index.toString}`} />
+            ))}
+        </tr>
+      </thead>
     );
   }
 }
 
-export default TableReader;
+const mapStateToProps = ({ planetsReducer }) => ({
+  isFetching: planetsReducer.isFetching,
+  planets: planetsReducer.planets,
+  planetsColumns: planetsReducer.planetsColumns,
+});
 
-ColumnName.propTypes = {
-  name: PropTypes.string,
-  index: PropTypes.number,
-};
+const mapDispatchToProps = (dispatch) => ({
+  gettingPlanets: () => dispatch(getStarWarsPlanets()),
+});
 
-ColumnName.defaultProps = {
-  index: 0,
-  name: 'test',
+export default connect(mapStateToProps, mapDispatchToProps)(TableReader);
+
+TableReader.propTypes = {
+  planetsColumns: PropTypes.arrayOf(PropTypes.string).isRequired,
+  isFetching: PropTypes.bool.isRequired,
 };

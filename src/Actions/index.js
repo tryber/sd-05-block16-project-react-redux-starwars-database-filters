@@ -15,3 +15,13 @@ export {
   addFilter,
   resetFilterToSend,
 } from './TempFilterActions';
+
+export {
+  FETCH_PLANETS,
+  REQUEST_PLANETS,
+  REQUEST_ERROR,
+  fetchPlanets,
+  requestPlanets,
+  planetRequestError,
+  getStarWarsPlanets,
+} from './PlanetsAction';

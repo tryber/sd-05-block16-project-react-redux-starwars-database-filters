@@ -8,7 +8,6 @@ const INITIAL_STATE = {
   },
   filtersOptions: {
     numeric: [
-      { value: '', text: 'Coluna' },
       { value: 'population', text: 'População' },
       { value: 'orbital_period', text: 'Período Orbital' },
       { value: 'diameter', text: 'Diâmetro' },
@@ -16,10 +15,9 @@ const INITIAL_STATE = {
       { value: 'surface_water', text: "Superfície d'Água" },
     ],
     comparison: [
-      { value: '', text: 'Comparação' },
-      { value: 'bigger_than', text: '>' },
-      { value: 'less_than', text: '<' },
-      { value: 'equal_to', text: '=' },
+      { value: 'maior que', text: '>' },
+      { value: 'menor que', text: '<' },
+      { value: 'igual a', text: '=' },
     ],
   },
 };
