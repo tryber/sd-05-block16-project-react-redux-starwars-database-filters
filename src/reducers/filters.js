@@ -1,4 +1,4 @@
-import { NAME, COLUMN } from '../actions/index';
+import { NAME, COLUMN, REMOVE } from '../actions/index';
 
 const INITIAL_STATE = {
   filterByName: {
@@ -28,6 +28,13 @@ const filters = (state = INITIAL_STATE, action) => {
           },
         ],
       };
+    case REMOVE:
+      return {
+        ...state,
+        filterByNumericValues: [
+          state.filterByNumericValues.slice(action.index),
+        ]
+      }
     default:
       return state;
   }

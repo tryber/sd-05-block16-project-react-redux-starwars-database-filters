@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { filterName, filterValues } from '../actions';
+import FilterWindow from '../components/FilterWindow';
 
 const comparacao = ['', 'maior que', 'menor que', 'igual a'];
 const colunas = ['', 'population', 'orbital_period', 'diameter',
@@ -27,7 +28,8 @@ class SearchBar extends Component {
   render() {
     const { filterV, f_Name } = this.props;
     const { column, comparison, value } = this.state;
-    return (<div> Procurar:
+    return (
+    <div> <FilterWindow /> Procurar:
         <input
           data-testid="name-filter"
           onChange={(e) => f_Name(e.target.value)} type="text"
@@ -49,7 +51,8 @@ class SearchBar extends Component {
         onChange={(e) => {
           this.setState({ value: e.target.value });
         }}
-      /> <button
+      />
+       <button
         onClick={() => {
           filterV(column, comparison, value);
           removeC(column);

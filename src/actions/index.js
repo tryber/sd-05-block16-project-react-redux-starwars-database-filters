@@ -6,6 +6,7 @@ export const REQUEST_PLANETS = 'REQUEST_PLANETS';
 export const NAME = 'NAME';
 export const COLUMN = 'COLUMN';
 export const COMPARISON = 'COMP';
+export const REMOVE = 'REMOVE';
 
 export const rqPlanets = () => ({
   type: REQUEST_PLANETS,
@@ -46,3 +47,8 @@ export const filterValues = (column, comparison, value) => ({
   comparison,
   value,
 });
+
+export const removeFilters = (index) => ({
+  type: REMOVE,
+  index,
+})
