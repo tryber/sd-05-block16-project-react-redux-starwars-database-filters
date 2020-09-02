@@ -35,7 +35,8 @@ class NumericFilters extends React.Component {
     filterNValues(this.state);
   }
 
-  // Toda a lógica de filtrar as opções de acordo com o estado das colunas no store foi consultada no repositório da Juliette
+  // Toda a lógica de filtrar as opções de acordo com o estado das colunas no store foi
+  // consultada no repositório da Juliette
   render() {
     const options = ['population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water'];
     const options2 = ['menor que', 'maior que', 'igual a'];
