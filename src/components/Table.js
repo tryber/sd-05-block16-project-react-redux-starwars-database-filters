@@ -11,7 +11,6 @@ class Table extends React.Component {
   }
 
   render() {
-   /*  console.log(this.props); */
     const { data, cabecalho, isLoading, nomeProcurado } = this.props;
     if (isLoading) return <h1>loading...</h1>;
     const planetas = data.filter((planeta) =>

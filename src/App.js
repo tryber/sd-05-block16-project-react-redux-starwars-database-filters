@@ -1,20 +1,24 @@
 import React from 'react';
 /* import "./App.css"; */
-import { Provider } from 'react-redux';
-import store from './store';
 import Table from './components/Table';
 import Procurar from './components/Procurar';
+import Seletores from './components/Seletores';
+import SelecionarFaixaValor from './components/SelecionarFaixaValor';
+import FiltrarNumeros from './components/FiltrarNumeros';
+import BotaoFiltrar from './components/BotaoFiltrar';
 
 function App() {
   return (
-    <Provider store={store}>
-      <div className="App">
-        <header className="App-header">
-          <Procurar />
-        </header>
-        <Table />
-      </div>
-    </Provider>
+    <div className="App">
+      <header className="App-header">
+        <Procurar />
+        <Seletores />
+        <SelecionarFaixaValor />
+        <FiltrarNumeros />
+        <BotaoFiltrar />
+      </header>
+      <Table />
+    </div>
   );
 }
 

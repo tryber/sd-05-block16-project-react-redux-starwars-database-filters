@@ -5,13 +5,14 @@ import procurarPlaneta from '../actions/procurarPlaneta';
 
 class Procurar extends React.Component {
   render() {
+    const { buscaPlaneta } = this.props;
     return (
       <div>
         <span>Procurar: </span>
         <input
           type="text"
           data-testid="name-filter"
-          onChange={(e) => this.props.buscaPlaneta(e.target.value)}
+          onChange={(e) => buscaPlaneta(e.target.value)}
         />
       </div>
     );
@@ -31,6 +32,5 @@ const mapDispatchToProps = (dispatch) => ({
 Procurar.propTypes = {
   buscaPlaneta: Proptypes.func.isRequired,
 };
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(Procurar);
