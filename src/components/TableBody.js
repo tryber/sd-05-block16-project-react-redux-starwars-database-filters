@@ -1,23 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import uuid from 'react-uuid';
 
 class TableBody extends React.Component {
   render() {
+    const { data } = this.props;
     return (
-      <tr key={this.props.key}>
-        {<td>{this.props.data.name}</td>}
-        {<td>{this.props.data.rotation_period}</td>}
-        {<td>{this.props.data.orbital_period}</td>}
-        {<td>{this.props.data.diameter}</td>}
-        {<td>{this.props.data.climate}</td>}
-        {<td>{this.props.data.gravity}</td>}
-        {<td>{this.props.data.terrain}</td>}
-        {<td>{this.props.data.surface_water}</td>}
-        {<td>{this.props.data.population}</td>}
-        {<td>{this.props.data.films}</td>}
-        {<td>{this.props.data.created}</td>}
-        {<td>{this.props.data.edited}</td>}
-        {<td>{this.props.data.url}</td>}
+      <tr key={uuid()}>
+        {<td>{data.name}</td>}
+        {<td>{data.rotation_period}</td>}
+        {<td>{data.orbital_period}</td>}
+        {<td>{data.diameter}</td>}
+        {<td>{data.climate}</td>}
+        {<td>{data.gravity}</td>}
+        {<td>{data.terrain}</td>}
+        {<td>{data.surface_water}</td>}
+        {<td>{data.population}</td>}
+        {<td>{data.films}</td>}
+        {<td>{data.created}</td>}
+        {<td>{data.edited}</td>}
+        {<td>{data.url}</td>}
       </tr>
     );
   }
@@ -25,7 +27,6 @@ class TableBody extends React.Component {
 
 TableBody.propTypes = {
   data: PropTypes.shape({
-    key: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     rotation_period: PropTypes.string.isRequired,
     orbital_period: PropTypes.string.isRequired,

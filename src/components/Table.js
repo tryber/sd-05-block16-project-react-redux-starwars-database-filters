@@ -27,11 +27,7 @@ class Table extends Component {
         <tbody>
           {loading === false
             ? planets.map((infoPlaneta) => (
-              <TableBody
-                key={uuid()}
-                cabecalho={cabecalho}
-                data={infoPlaneta}
-              />
+              <TableBody data={infoPlaneta} />
               ))
             : null}
         </tbody>
