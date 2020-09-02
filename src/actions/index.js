@@ -1,4 +1,5 @@
 import VerificaFetch from '../services/planets';
+
 const PLANET_API = 'https://swapi-trybe.herokuapp.com/api/planets/';
 
 export const PLANETS_REQUEST_SUCCESS = 'PLANETS_REQUEST_SUCCESS';

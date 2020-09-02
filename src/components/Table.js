@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import uuid from 'react-uuid';
 import { fetchActionPlanets } from '../actions';
 import TableBody from './TableBody';
-import uuid from 'react-uuid';
 
 class Table extends Component {
   componentDidMount() {
@@ -27,7 +27,11 @@ class Table extends Component {
         <tbody>
           {loading === false
             ? planets.map((infoPlaneta) => (
-                <TableBody key={uuid()} cabecalho={cabecalho} data={infoPlaneta} />
+              <TableBody
+                key={uuid()}
+                cabecalho={cabecalho}
+                data={infoPlaneta}
+              />
               ))
             : null}
         </tbody>

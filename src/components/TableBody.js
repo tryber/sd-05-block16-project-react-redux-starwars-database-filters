@@ -3,37 +3,21 @@ import PropTypes from 'prop-types';
 
 class TableBody extends React.Component {
   render() {
-    const {
-      name,
-      rotation_period,
-      orbital_period,
-      diameter,
-      climate,
-      gravity,
-      terrain,
-      surface_water,
-      population,
-      films,
-      created,
-      edited,
-      url,
-    } = this.props.data;
-
     return (
       <tr key={this.props.key}>
-        {<td>{name}</td>}
-        {<td>{rotation_period}</td>}
-        {<td>{orbital_period}</td>}
-        {<td>{diameter}</td>}
-        {<td>{climate}</td>}
-        {<td>{gravity}</td>}
-        {<td>{terrain}</td>}
-        {<td>{surface_water}</td>}
-        {<td>{population}</td>}
-        {<td>{films}</td>}
-        {<td>{created}</td>}
-        {<td>{edited}</td>}
-        {<td>{url}</td>}
+        {<td>{this.props.data.name}</td>}
+        {<td>{this.props.data.rotation_period}</td>}
+        {<td>{this.props.data.orbital_period}</td>}
+        {<td>{this.props.data.diameter}</td>}
+        {<td>{this.props.data.climate}</td>}
+        {<td>{this.props.data.gravity}</td>}
+        {<td>{this.props.data.terrain}</td>}
+        {<td>{this.props.data.surface_water}</td>}
+        {<td>{this.props.data.population}</td>}
+        {<td>{this.props.data.films}</td>}
+        {<td>{this.props.data.created}</td>}
+        {<td>{this.props.data.edited}</td>}
+        {<td>{this.props.data.url}</td>}
       </tr>
     );
   }
@@ -41,6 +25,7 @@ class TableBody extends React.Component {
 
 TableBody.propTypes = {
   data: PropTypes.shape({
+    key: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     rotation_period: PropTypes.string.isRequired,
     orbital_period: PropTypes.string.isRequired,
