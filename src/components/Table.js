@@ -6,14 +6,14 @@ import Headers from './HeaderTabela';
 import FiltrosDaPagina from './HeaderPagina';
 
 class Table extends React.Component {
+  /*
+    componentDidMount,quando montado, toda vez que o
+    componente é renderizado é feita umaChamada na API.
+  */
   componentDidMount() {
     const { StarWarsPlanetsAPI } = this.props;
     console.log('api', StarWarsPlanetsAPI);
     StarWarsPlanetsAPI();
-    /*
-    componentDidMount,quando montado, toda vez que o
-    componente é renderizado é feita umaChamada na API.
-    */
   }
 
   // componentDidUpdate() {

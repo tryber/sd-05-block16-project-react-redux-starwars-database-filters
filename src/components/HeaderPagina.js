@@ -24,7 +24,6 @@ class FiltrosDaPagina extends React.Component {
     this.handleColumnChange = this.handleColumnChange.bind(this);
     this.handleComparisonChange = this.handleComparisonChange.bind(this);
     this.handleValueChange = this.handleValueChange.bind(this);
-    this.renderColumns = this.renderColumns.bind(this);
   }
 
   handleColumnChange(event) {
@@ -60,22 +59,19 @@ class FiltrosDaPagina extends React.Component {
   a opção que incluso em currentFilterColumns e
   o terceiro map cria options para cada coluna restante
   */
-  renderColumns(filters) {
-    const currentFilterColumns = filters.map((filter) => filter.column);
-    return columns
-    .filter((option) => !currentFilterColumns.includes(option))
-    .map((option) => <option value={option}>{option}</option>);
-  }
 
   renderFiltrosValoresNum() {
     const { dispatchFilterValues, filters } = this.props;
+
     return (
       <div>
         <select
           data-testid="column-filter"
           onChange={this.handleColumnChange}
         >
-          {this.renderColumns(filters)}
+          {columns
+            .filter((option) => !filters.map((filter) => filter.column).includes(option))
+            .map((option) => <option value={option}>{option}</option>)}
         </select>
         <select data-testid="comparison-filter" onChange={this.handleComparisonChange}>
           <option disabled selected>Comparação</option>
