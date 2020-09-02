@@ -21,7 +21,9 @@ class TableBody extends React.Component {
     // console.log(planets);
     let planets = data;
 
-    filterNumber.forEach((filter) => (planets) = filterByNumber(planets, filter));
+    filterNumber.forEach((filter) => {
+      planets = filterByNumber(planets, filter);
+    });
 
     if (filterText.name !== '') {
       planets = planets.filter((planet) =>

@@ -27,26 +27,26 @@ class FilterByNumber extends React.Component {
 
     return (
       <div>
-          <select
-            data-testid="column-filter"
-            onChange={(e) => this.setState({ column: e.target.value })}
-          >
-            {columnsAvailable.map((options) => (<option>{options}</option>))}
-          </select>
-          <select
-            data-testid="comparison-filter"
-            onChange={(e) => this.setState({ comparison: e.target.value })}
-          >
-            {comparisonSel.map((options) => (<option>{options}</option>))}
-          </select>
-          <input
-            type="number"
-            data-testid="value-filter"
-            onChange={(e) => this.setState({ value: e.target.value })}
-          />
-          <button data-testid="button-filter" onClick={() => changeNumber(this.state)}>
-            Filtrar
-          </button>
+        <select
+          data-testid="column-filter"
+          onChange={(e) => this.setState({ column: e.target.value })}
+        >
+          {columnsAvailable.map((options) => (<option>{options}</option>))}
+        </select>
+        <select
+          data-testid="comparison-filter"
+          onChange={(e) => this.setState({ comparison: e.target.value })}
+        >
+          {comparisonSel.map((options) => (<option>{options}</option>))}
+        </select>
+        <input
+          type="number"
+          data-testid="value-filter"
+          onChange={(e) => this.setState({ value: e.target.value })}
+        />
+        <button data-testid="button-filter" onClick={() => changeNumber(this.state)}>
+          Filtrar
+        </button>
       </div>
     );
   }
