@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { filtrarPlanetsName } from '../actions/actionFilterPlanetsName';
 import { filterValues } from '../actions/actionFilterPlanetsName';
-import { setValueOptions } from '../actions/actionFilterPlanetsName';
 
 const columns = [
   'Coluna',
@@ -25,6 +24,7 @@ class FiltrosDaPagina extends React.Component {
     this.handleColumnChange = this.handleColumnChange.bind(this);
     this.handleComparisonChange = this.handleComparisonChange.bind(this);
     this.handleValueChange = this.handleValueChange.bind(this);
+    this.renderColumns = this.renderColumns.bind(this);
   }
 
   handleColumnChange(event) {
@@ -61,17 +61,14 @@ class FiltrosDaPagina extends React.Component {
   o terceiro map cria options para cada coluna restante
   */
   renderColumns(filters) {
-    console.log('cu', filters);
-    const currentFilterColumns = filters.map((filter) => filter.column)
-    console.log('cu', currentFilterColumns);
+    const currentFilterColumns = filters.map((filter) => filter.column);
     return columns
     .filter((option) => !currentFilterColumns.includes(option))
-    .map((option) => <option value={option}>{option}</option>)
+    .map((option) => <option value={option}>{option}</option>);
   }
 
   renderFiltrosValoresNum() {
     const { dispatchFilterValues, filters } = this.props;
-    console.log('gggg', filters);
     return (
       <div>
         <select
@@ -130,8 +127,7 @@ const mapDispatchToProps = (dispatch) => ({
 FiltrosDaPagina.propTypes = {
   dispatchSearch: PropTypes.func.isRequired,
   dispatchFilterValues: PropTypes.func.isRequired,
-  dispatchSetValueOptions: PropTypes.func.isRequired,
-  options: PropTypes.func.isRequired,
+  filters: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(FiltrosDaPagina);

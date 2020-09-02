@@ -1,4 +1,4 @@
-import { FILTER_NAME_PLANET, FILTER_VALUES, SET_VALUE_OPTIONS } from '../actions/actionFilterPlanetsName';
+import { FILTER_NAME_PLANET, FILTER_VALUES } from '../actions/actionFilterPlanetsName';
 
 const STATE_INICIAL = {
   filterByName: {
