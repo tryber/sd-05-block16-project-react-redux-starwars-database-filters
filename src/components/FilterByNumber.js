@@ -9,14 +9,14 @@ const dropdownSel = [
   'orbital_period',
   'diameter',
   'rotation_period',
-  'surface_water'
+  'surface_water',
 ];
 
 const comparisonSel = [
   'selecione',
   'maior que',
   'menor que',
-  'igual a'
+  'igual a',
 ];
 
 class FilterByNumber extends React.Component {
