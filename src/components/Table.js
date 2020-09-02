@@ -1,5 +1,15 @@
-import React from 'react';
+import React, { Component } from 'react';
+import Cabecalho from './Cabecalho';
+import Body from './Body'
 
-const Table = () => <div>StarWars Datatable with Filters</div>;
+export default class Table extends Component {
 
-export default Table;
+  render() {
+    return (
+      <table>
+        <Cabecalho />
+        <Body />
+      </table>
+    );
+  }
+}
