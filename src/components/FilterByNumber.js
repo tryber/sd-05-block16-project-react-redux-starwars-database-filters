@@ -21,14 +21,12 @@ const comparisonSel = [
 
 class FilterByNumber extends React.Component {
   render() {
-    const { changeNumber, filterNumber, isFetching } = this.props;
+    const { changeNumber, filterNumber } = this.props;
     const columnsFiltered = filterNumber.map((e) => e.column);
     const columnsAvailable = dropdownSel.filter((e) => columnsFiltered.indexOf(e) === -1);
 
     return (
       <div>
-        {!isFetching && (
-        <div>
           <select
             data-testid="column-filter"
             onChange={(e) => this.setState({ column: e.target.value })}
@@ -49,15 +47,13 @@ class FilterByNumber extends React.Component {
           <button data-testid="button-filter" onClick={() => changeNumber(this.state)}>
             Filtrar
           </button>
-        </div>
-        )}
       </div>
     );
   }
 }
 
 const mapStateToProps = (state) => ({
-  isFetching: state.planetReducer.isFetching,
+  // isFetching: state.planetReducer.isFetching,
   filterNumber: state.filters.filterByNumericValues,
 });
 
@@ -68,7 +64,7 @@ const mapDispatchToProps = {
 export default connect(mapStateToProps, mapDispatchToProps)(FilterByNumber);
 
 FilterByNumber.propTypes = {
-  isFetching: propTypes.bool.isRequired,
+  // isFetching: propTypes.bool.isRequired,
   changeNumber: propTypes.func.isRequired,
   filterNumber: propTypes.arrayOf(propTypes.object).isRequired,
 };
