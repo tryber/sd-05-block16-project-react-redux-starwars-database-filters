@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/no-unused-state */
 /* eslint-disable react/no-unused-prop-types */
 import React, { Component } from 'react';
@@ -5,10 +6,10 @@ import propTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { filterNumber } from '../actions/index';
 
-const col = ['population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water'];
-const comparison = [[], 'maior que', 'igual a', 'menor que'];
-
 const selectFunction = (array) => (array.map((opt) => <option key={opt}>{opt}</option>));
+
+const comparison = [[], 'maior que', 'igual a', 'menor que'];
+const col = ['population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water'];
 
 class filterByNumeric extends Component {
   constructor(props) {
@@ -26,12 +27,14 @@ class filterByNumeric extends Component {
   }
 
   render() {
-    const { handleClick } = this.props;
+    const { handleClick, filterColumn } = this.props;
+    const filterRedux = filterColumn.map((opt) => opt.column);
+    const filterActive = col.filter((filt) => !filterRedux.includes(filt));
     return (
       <div>
         <select id="column" data-testid="column-filter" onChange={this.handleChange}>
           <option>Coluna</option>
-          {selectFunction(col)}
+          {selectFunction(filterActive)}
         </select>
         <select
           id="comparison"
@@ -56,14 +59,23 @@ class filterByNumeric extends Component {
   }
 }
 
+const mapStateToProps = (state) => ({
+  filterColumn: state.filters.filterByNumericValues,
+});
+
 const mapDispatchToProps = (dispatch) => ({
   handleClick: (e) => dispatch(filterNumber(e)),
 });
 
-export default connect(null, mapDispatchToProps)(filterByNumeric);
+export default connect(mapStateToProps, mapDispatchToProps)(filterByNumeric);
 
 filterByNumeric.propTypes = {
   handleClick: propTypes.shape({
+    column: propTypes.string.isRequired,
+    comparison: propTypes.string.isRequired,
+    values: propTypes.number.isRequired,
+  }).isRequired,
+  filterColumn: propTypes.arrayOf({
     column: propTypes.string.isRequired,
     comparison: propTypes.string.isRequired,
     values: propTypes.number.isRequired,

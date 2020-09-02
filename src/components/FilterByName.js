@@ -14,8 +14,6 @@ function FilterByName({ searchFilter }) {
   );
 }
 
-// const mapDispatchToProps = { name: filterByName };
-
 const mapDispatchToProps = (dispatch) => ({
   searchFilter: (value) => dispatch(filterByName(value)),
 });
