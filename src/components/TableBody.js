@@ -8,8 +8,8 @@ class TableBody extends React.Component {
     console.log(this.props);
 
     // let planets =  data;
-    // console.log(planets);    
-    
+    // console.log(planets);
+
     let planets = data;
     if (filterText.name !== '') {
       planets = planets.filter((planet) =>
@@ -33,9 +33,9 @@ class TableBody extends React.Component {
           <td key={planet.url}>{planet.url}</td>
           <td key={planet.created}>{planet.created}</td>
           <td key={planet.edited}>{planet.edited}</td>
-        </tr>        
+        </tr>
       </tbody>
-      ))
+      ));
   }
 }
 
