@@ -33,6 +33,11 @@ class NumericFilters extends React.Component {
   hClick() {
     const { filterNValues } = this.props;
     filterNValues(this.state);
+    this.setState({
+      column: '',
+      comparison: '',
+      value: '',
+    });
   }
 
   // Toda a lógica de filtrar as opções de acordo com o estado das colunas no store foi
@@ -41,20 +46,21 @@ class NumericFilters extends React.Component {
     const options = ['population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water'];
     const options2 = ['menor que', 'maior que', 'igual a'];
     const { filterOption } = this.props;
+    const { column, comparison, value } = this.state;
     // eslint-disable-next-line react/prop-types
     const columns = filterOption.map((filter) => filter.column);
     const filterColumns = options.filter((option) => !columns.includes(option));
     return (
       <div>
-        <select data-testid="column-filter" placeholder="Selecione" onChange={this.colChange}>
-          <option value="" defaultValue>Selecione</option>
+        <select data-testid="column-filter" value={column} onChange={this.colChange}>
+          <option defaultValue>Selecione</option>
           {filterColumns.map((opcao) => (<option>{opcao}</option>))}
         </select>
-        <select data-testid="comparison-filter" onChange={this.compChange}>
-          <option value="" defaultValue>Selecione</option>
+        <select data-testid="comparison-filter" value={comparison} onChange={this.compChange}>
+          <option defaultValue>Selecione</option>
           {options2.map((opcao) => (<option>{opcao}</option>))}
         </select>
-        <input data-testid="value-filter" type="number" onChange={this.valueChange} />
+        <input data-testid="value-filter" type="number" value={value} onChange={this.valueChange} />
         <button type="button" data-testid="button-filter" onClick={this.hClick}>Filtrar</button>
       </div>
     );
