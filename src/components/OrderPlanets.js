@@ -27,7 +27,9 @@ class OrderPlanets extends Component {
     const { ordFilt } = this.props;
     return (
       <div>
-        <select data-testid="column-sort" onChange={(e) => this.setState({ column: e.target.value })}>
+        <select data-testid="column-sort" onChange={(e) =>
+           this.setState({ column: e.target.value })}
+        >
           {dropdownSel.map((option) => <option value={option} key={option}>{option}</option>)}
         </select>
         <label htmlFor="ASC">ASC</label>
@@ -44,7 +46,7 @@ class OrderPlanets extends Component {
           value="DESC"
           type="radio"
           data-testid="column-sort-input"
-          onChange={(e) => this.setState( {sort: e.target.value} )}
+          onChange={(e) => this.setState({ sort: e.target.value })}
         />
         <button type="button" data-testid="column-sort-button" onClick={() => ordFilt(this.state)}>
           Filtrar
@@ -59,5 +61,5 @@ const mapDispatchToProps = { ordFilt: sortFilter };
 export default connect(null, mapDispatchToProps)(OrderPlanets);
 
 OrderPlanets.propTypes = {
-  orderFilter: proptypes.func.isRequired,
+  ordFilt: proptypes.func.isRequired,
 };

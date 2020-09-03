@@ -51,14 +51,14 @@ class FilterByNumber extends React.Component {
   }
 
   handleClick(e) {
-    const { filterNumber, deleteFilter } = this.props;
+    const { filterNumber, removeFilter } = this.props;
     const cleanedFilter = [];
     for (let i = 0; i < filterNumber.length; i += 1) {
       if (filterNumber[i].column !== e.target.name) {
         cleanedFilter.push(filterNumber[i]);
       }
     }
-    deleteFilter(cleanedFilter);
+    removeFilter(cleanedFilter);
   }
 
   render() {
@@ -103,7 +103,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   changeNumber: (e) => dispatch(filterByNumber(e)),
-  deleteFilter: (e) => dispatch(deleteFilter(e)),
+  removeFilter: (e) => dispatch(deleteFilter(e)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(FilterByNumber);

@@ -42,8 +42,8 @@ class TableBody extends React.Component {
     });
 
     // if (filterText.name !== '') {
-      planets = planets.filter((planet) =>
-      planet.name.toLowerCase().includes(filterText.name.toLowerCase()));
+    planets = planets.filter((planet) =>
+    planet.name.toLowerCase().includes(filterText.name.toLowerCase()));
     // }
     // console.log(filterText);
 
