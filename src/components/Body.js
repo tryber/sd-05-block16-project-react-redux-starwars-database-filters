@@ -32,3 +32,12 @@ construção de props arr */
 /* Body.propTypes = {
   data: PropTypes.arrayOf(PropTypes.object),
 }; */
+
+// consultado stack overflow para regularizar proptype
+
+/* https://stackoverflow.com/questions/59038307/
+reactjs-proptypes-validation-for-array-of-objects */
+
+/* Body: PropTypes.arrayOf(PropTypes.shape({
+  data:PropTypes.object,
+  })) */
