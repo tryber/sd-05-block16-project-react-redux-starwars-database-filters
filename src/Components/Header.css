@@ -1,0 +1,7 @@
+.header-container {
+  border: 1px black solid;
+  display: flex;
+  flex-direction: row;
+  height: 200px;
+  width: 100%;
+}

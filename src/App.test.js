@@ -274,7 +274,7 @@ describe('3 - Sua página deve ter um filtro para valores numéricos', () => {
         filterByNumericValues:
         [
           { column: 'surface_water', comparison: 'menor que', value: '40' },
-          { column: 'diameter', comparison: 'maior que', value: '8900' }
+          { column: 'diameter', comparison: 'maior que', value: '8900' },
         ],
       },
     };

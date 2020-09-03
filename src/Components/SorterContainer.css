@@ -1,0 +1,7 @@
+.sorter-container {
+  border: 1px black solid;
+  display: flex;
+  flex-direction: column;
+  padding: 05px 5px;
+  width: 400px;
+}

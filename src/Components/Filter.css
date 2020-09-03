@@ -1,0 +1,13 @@
+.filter-container {
+  border: 1px black solid;
+  display: flex;
+  flex-direction: column;
+}
+
+.filter-label {
+  padding: 5px;
+}
+
+.filter-label-text {
+  padding-right: 5px;
+}

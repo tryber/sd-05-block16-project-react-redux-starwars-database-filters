@@ -1,0 +1,36 @@
+.table-planets {
+  border: 3px blue solid;
+  border-collapse: collapse;
+}
+
+.table-header {
+  display: table-header-group;
+}
+
+.table-body {
+  border-color: inherit;
+  display: table-row-group;
+  vertical-align: middle;
+}
+
+.table-planets {
+  overflow: auto;
+  table-layout: fixed;
+
+}
+.table-row:nth-child(even) {
+  background-color: rgb(202, 210, 231);
+}
+
+.table-row {
+  background-color: rgb(152, 158, 173);
+  max-width: 5px;
+}
+
+.cell {
+  border: 1px black solid;
+  display: table-cell;
+  height: 10px ;
+  text-align: left;
+  word-wrap: normal;
+}
