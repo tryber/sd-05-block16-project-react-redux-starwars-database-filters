@@ -11,7 +11,7 @@ function FilterPlanet(props) {
       onChange={(e) => props.seekPlanet(e.target.value)}
     />
   );
-};
+}
 
 const mapDispatchToProps = (dispatch) => ({
   seekPlanet(filter) {
