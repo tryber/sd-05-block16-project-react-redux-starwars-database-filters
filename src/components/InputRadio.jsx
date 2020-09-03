@@ -1,6 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-export default function InputRadio(id, value, onClick) {
+export default function InputRadio({ id, value, onClick }) {
   return (
     <input
       data-testid="column-sort-input"
@@ -12,3 +13,9 @@ export default function InputRadio(id, value, onClick) {
     />
   );
 }
+
+InputRadio.propTypes = {
+  id: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
+};

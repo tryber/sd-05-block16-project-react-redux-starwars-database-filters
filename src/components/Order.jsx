@@ -43,6 +43,7 @@ class Order extends React.Component {
   orderClick() {
     const { order } = this.props;
     order(this.state);
+    console.log(this.state);
   }
 
   render() {
