@@ -48,7 +48,7 @@ assistir plantão com Hamaji (30/08 - 14:00h) e concluir dessa forma */
 construção de props arr */
 
 Table.propTypes = {
-  isLoading: PropTypes.bool.isRequired,
+ // isLoading: PropTypes.bool.isRequired,
   getFetch: PropTypes.func.isRequired,
-  data: PropTypes.arrayOf(PropTypes.object).isRequired,
+  // data: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
