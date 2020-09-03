@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import propTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { removeFilter } from '../actions/index';
 
 function Filterlist({ filtersRedux, dispatchRemoveFilter }) {
   return (
-    <>
+    <Fragment>
       {filtersRedux.map((e) => (
         <div data-testid="filter">
           <button type="button" onClick={() => dispatchRemoveFilter(e.column)}>X</button>
@@ -16,7 +16,7 @@ function Filterlist({ filtersRedux, dispatchRemoveFilter }) {
           </p>
         </div>
       ))}
-    </>
+    </Fragment>
   );
 }
 
