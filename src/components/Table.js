@@ -9,7 +9,7 @@ export class Table extends Component {
   componentDidMount() {
     const { getFetch } = this.props;
     getFetch();
-    }
+  }
 
   render() {
     const { planetas } = this.props;
@@ -21,7 +21,7 @@ export class Table extends Component {
             <Head />
           </thead>
           <tbody>
-          {
+            {
             planetas.map((planeta) => <Body data={planeta} />)
           }
           </tbody>

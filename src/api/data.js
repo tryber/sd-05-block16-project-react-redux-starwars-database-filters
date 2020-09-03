@@ -9,5 +9,4 @@ const requisicaoAPI = () =>
   .then((resposta) => resposta.results)
   .catch((erro) => console.log(`a api apresentou o seguinte erro: ${erro}`));
 
-  export default requisicaoAPI;
-  
+export default requisicaoAPI;
