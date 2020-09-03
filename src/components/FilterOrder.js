@@ -38,16 +38,15 @@ class FilterOrder extends Component {
     const { dispatchFilter } = this.props;
     return (
       <Fragment>
-        <select data-testid="column-sort" onChange={this.stateSelect}>
-          {renderOption(col)}
-        </select>
+        <select data-testid="column-sort" onChange={this.stateSelect}>{renderOption(col)}</select>
         <label htmlFor="ASC">ASC</label>
         <input
           name="filter"
           value="ASC"
           type="radio"
           data-testid="column-sort-input"
-          onChange={this.handleChange} />
+          onChange={this.handleChange}
+        />
         <label htmlFor="DESC">DESC</label>
         <input
           name="filter"
