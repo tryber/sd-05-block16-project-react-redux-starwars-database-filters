@@ -12,13 +12,19 @@ export class Table extends Component {
   }
 
   render() {
-    // const { data, isLoading } = this.props;
+    const { planetas } = this.props;
     return (
       <div>
         StarWars Datatable with Filters
         <table>
-          <Head />
-          <Body />
+          <thead>
+            <Head />
+          </thead>
+          <tbody>
+          {
+            planetas.map((planeta) => <Body data={planeta}/>)
+          }
+          </tbody>
         </table>
       </div>
     );
@@ -26,7 +32,7 @@ export class Table extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  data: state.reduceApi.data,
+  planetas: state.reduceApi.data,
   isLoading: state.reduceApi.isLoading,
 });
 

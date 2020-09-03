@@ -1,8 +1,8 @@
-import { REQUEST_API, RECEIVE_API } from '../actions';
+import ACTIONS from '../actions';
 
 const INITIALSTATE = {
   data: [],
-  isLoading: false,
+  isLoading: true,
 };
 
 /* CONSULTEI REPO DO COLEGA DE TURMA - FELIPE VIEIRA PARA TENTAR ENXERGAR
@@ -10,19 +10,17 @@ MELHOR LÓGICA DESSE REDUCER */
 
 // tenho ainda que implementar o isLoading
 
-// tenho que importar dados da API para receber "results"
-
 const reduceApi = (state = INITIALSTATE, action) => {
   switch (action.type) {
-    case REQUEST_API:
+    case ACTIONS.REQUEST_API:
       return {
         ...state,
         isLoading: true,
       };
-    case RECEIVE_API:
+    case ACTIONS.RECEIVE_API:
       return {
         ...state,
-        data: action.payload.results,
+        data: action.payload,
         isLoading: false,
       };
     default:

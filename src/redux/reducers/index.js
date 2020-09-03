@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import reducerApi from './reduceApi';
+import reduceApi from './reduceApi';
 
 const rootReducer = combineReducers({
-  reducerApi,
+  reduceApi,
 });
 
 export default rootReducer;

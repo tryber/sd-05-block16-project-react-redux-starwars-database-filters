@@ -1,7 +1,12 @@
-import RequisitionApi from '../../api/data';
+import { requisicaoAPI } from '../../api/data';
 
 export const REQUEST_API = 'REQUEST_API';
 export const RECEIVE_API = 'RECEIVE_API';
+const ACTIONS = {
+  REQUEST_API, RECEIVE_API,
+}
+
+export default ACTIONS;
 
 /* consultado
 https://blog.coderockr.com/posts/2016/requisicoes-assincronas-em-redux/
@@ -9,18 +14,17 @@ https://blog.coderockr.com/posts/2016/requisicoes-assincronas-em-redux/
 
 export const requestApi = () => ({
   type: REQUEST_API,
-  payload: true,
 });
 
 export const receiveApi = (planetas) => ({
   type: RECEIVE_API,
-  payload: planetas.results,
+  payload: planetas,
 });
 
 export function fetchAllPlanets() {
   return (dispatch) => {
     dispatch(requestApi());
-    return RequisitionApi()
-      .then((getAPi) => dispatch(receiveApi(getAPi)));
+    return requisicaoAPI()
+      .then((dados) => dispatch(receiveApi(dados)));
   };
 }
