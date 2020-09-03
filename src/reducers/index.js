@@ -1,5 +1,7 @@
-function emptyReducer() {
-  return {};
-}
+import { combineReducers } from 'redux';
 
-export default emptyReducer;
+import planetsReducer from './planetsReducer';
+
+const reducers = combineReducers({ planetsReducer });
+
+export default reducers;
