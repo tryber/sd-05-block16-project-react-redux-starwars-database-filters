@@ -1,4 +1,6 @@
-export const filterPlanetsByName = (planets, planetName) => planets.filter(({ name }) => name.toLowerCase().includes(planetName.toLowerCase()));
+export const filterPlanetsByName = (planets, planetName) => planets
+  .filter(({ name }) => name.toLowerCase()
+    .includes(planetName.toLowerCase()));
 
 export const filterPlanetsNumeric = (planets = [], numericFilter) => planets.filter((planeta) => {
   const { comparison, value, column } = numericFilter;
