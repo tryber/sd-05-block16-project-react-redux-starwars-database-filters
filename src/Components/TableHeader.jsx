@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import TableHeaderCell from './TableHeaderCell';
-import { getStarWarsPlanets } from '../Actions';
 
 class TableReader extends Component {
   render() {

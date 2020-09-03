@@ -8,7 +8,13 @@ class SelectOptions extends React.Component {
     const { testId, name, handleChange } = this.props;
     return (
       <div>
-        <select data-testid={testId} name={name} value={this.value} className="select-options" onChange={handleChange}>
+        <select
+          data-testid={testId}
+          name={name}
+          value={this.value}
+          className="select-options"
+          onChange={handleChange}
+        >
           <SelectOption testId={testId} handleChange={handleChange} name={name} />
         </select>
       </div>
