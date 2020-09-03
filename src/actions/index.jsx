@@ -19,11 +19,12 @@ export const fetchPlanets = () => (dispatch) => {
   dispatch(fetchingPlanets());
   return fetchPlanetsAPI().then(
     (planetsData) => dispatch(fetched(planetsData.results)),
-    (error) => dispatch(failed(error))
+    (error) => dispatch(failed(error)),
   );
 };
 
 /* thunk plantão Inácio: Function that calls a function. Since reducers are supposed to be “pure” 
-(as in, they don’t change anything outside their scope) we can’t do any API calls or dispatch actions
-from inside a reducer. Thunk is just basically a function that turns actions into functions(?)
-*/
+(as in, they don’t change anything outside their scope) we can’t do any API calls or 
+dispatch actions from inside a reducer. Thunk is just basically a function that 
+turns actions into functions(?)
+ */

@@ -15,6 +15,4 @@ function App() {
 
 export default App;
 
-/*
-TRANSPARENCIA: Projeto feito em dupla com Sidnei e ajuda de Paulo Zambelli 
-*/
+// TRANSPARENCIA: Projeto feito em dupla com Sidnei e ajuda de Paulo Zambelli 

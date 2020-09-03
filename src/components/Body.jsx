@@ -10,7 +10,7 @@ class Body extends Component {
 
   render() {
     const { planetsData, fetching } = this.props;
-    if(fetching) return <h2>Loading...</h2>
+    if ( fetching ) return <h2>Loading...</h2>;
     return (
       <tbody>
         {planetsData.map((planet) => (
@@ -48,5 +48,6 @@ export default connect(mapStateToProps, mapDispatchToProps)(Body);
 
 Body.propTypes = {
   fetchPlanets: PropTypes.func.isRequired,
-  planets: PropTypes.arrayOf(PropTypes.object).isRequired,
+  planetsData: PropTypes.arrayOf(PropTypes.object).isRequired,
+  fetching: PropTypes.bool.isRequired,
 };

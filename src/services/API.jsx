@@ -4,7 +4,7 @@ const fetchPlanetsAPI = () =>
   fetch(API)
     .then((planets) => planets.json()
     .then((planetsData) =>
-      planets.ok ? Promise.resolve(planetsData) : Promise.reject(planetsData))
+      planets.ok ? Promise.resolve(planetsData) : Promise.reject(planetsData)),
     );
 
 export default fetchPlanetsAPI;
