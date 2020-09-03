@@ -10,18 +10,6 @@ const INITIAL_STATE = {
   error: false,
 };
 
-function removingColumn(column, data) {
-  const newData = [...data];
-  function removeColum(item) {
-    delete item.residents;
-  }
-
-  newData.forEach((item) => {
-    removeColum(item);
-  });
-  return newData;
-}
-
 const fetchPlanets = (state, action) => {
   const newState = {
     ...state,
