@@ -44,7 +44,8 @@ class Table extends React.Component {
       <div>
         <table>
           <TableHead />
-          {planets.map((planet) => ({/* lógica do filter consultada no repo da Juliette */}
+          {{/* lógica do filter consultada no repo da Juliette */}}
+          {planets.map((planet) => (
             <tbody>
               <tr key={planet.name}>
                 <td key={planet.name}>{planet.name}</td>
