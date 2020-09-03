@@ -34,8 +34,13 @@ const mapDispatchToProps = (dispatch) => ({
   getFetch: () => dispatch(fetchAllPlanets()),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Table);
+Table.propTypes = {
+  // isLoading: PropTypes.bool.isRequired,
+  getFetch: PropTypes.func.isRequired,
+  // data: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
 
+export default connect(mapStateToProps, mapDispatchToProps)(Table);
 
 /* optei em não construir componentes para todas as funcionalidades após
 assistir plantão com Hamaji (30/08 - 14:00h) e concluir dessa forma */
@@ -46,9 +51,3 @@ assistir plantão com Hamaji (30/08 - 14:00h) e concluir dessa forma */
 
 /* consultado https://reactjs.org/docs/typechecking-with-proptypes.html para
 construção de props arr */
-
-Table.propTypes = {
- // isLoading: PropTypes.bool.isRequired,
-  getFetch: PropTypes.func.isRequired,
-  data: PropTypes.arrayOf(PropTypes.object).isRequired,
-};
