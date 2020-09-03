@@ -10,7 +10,7 @@ class Body extends Component {
 
   render() {
     const { planetsData, fetching } = this.props;
-    if ( fetching ) return <h2>Loading...</h2>;
+    if (fetching) return <h2>Loading...</h2>;
     return (
       <tbody>
         {planetsData.map((planet) => (
