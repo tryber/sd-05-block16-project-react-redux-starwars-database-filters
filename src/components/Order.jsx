@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { filterSort } from '../actions';
+import InputRadio from './InputRadio';
 
 const columns = [
   'Name',
@@ -50,19 +51,18 @@ class Order extends React.Component {
       <div>
         <h3>Ordem</h3>
         <select data-testid="column-sort" value={column} onChange={this.columnClick}>
-          <option defaultValue>Selecione</option>
           {columns.map((element) => <option>{element}</option>)}
         </select>
         <label htmlFor="ASC">ASC</label>
-        <input data-testid="column-sort-input" type="radio" name="order" id="ASC" value="ASC" onClick={this.radioClick} />
+        <InputRadio id="ASC" value="ASC" onClick={this.radioClick} />
         <label htmlFor="DSC">DSC</label>
-        <input data-testid="column-sort-input" type="radio" name="order" id="DSC" value="DSC" onClick={this.radioClick} />
+        <InputRadio id="DSC" value="DSC" onClick={this.radioClick} />
         <button
           data-testid="column-sort-button"
           type="button"
           onClick={this.orderClick}
         >
-        Ordenar
+          Ordenar
         </button>
       </div>
     );

@@ -22,14 +22,12 @@ function filters(state = INITIAL_STATE, action) {
   switch (action.type) {
     case FILTER_NAME:
       return {
-        ...state,
-        filterByName: { name: action.name },
+        ...state, filterByName: { name: action.name },
       };
     case FILTER_VALUES:
       return {
         ...state,
-        filterByNumericValues: [
-          ...state.filterByNumericValues,
+        filterByNumericValues: [...state.filterByNumericValues,
           {
             column: action.column,
             comparison: action.comparison,
@@ -47,14 +45,9 @@ function filters(state = INITIAL_STATE, action) {
     case FILTER_SORT:
       return {
         ...state,
-        order: {
-          column: action.column,
-          sort: action.sort,
-        },
+        order: { column: action.column, sort: action.sort },
       };
-
-    default:
-      return state;
+    default: return state;
   }
 }
 

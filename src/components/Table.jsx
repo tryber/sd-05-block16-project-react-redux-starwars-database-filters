@@ -38,15 +38,13 @@ class Table extends React.Component {
     let planets = data;
     planets = planets.sort((a, b) => a.name.localeCompare(b.name));
     sortPlanets(planets, order);
-    // eslint-disable-next-line react/prop-types
     numericFilter.forEach((filter) => { planets = allFilters(planets, filter); });
     planets = planets.filter((planet) => planet.name.includes(nameFilter));
     return (
       <div>
         <table>
           <TableHead />
-          {/* lógica do filter consultada no repo da Juliette */}
-          {planets.map((planet) => (
+          {planets.map((planet) => ({/* lógica do filter consultada no repo da Juliette */}
             <tbody>
               <tr key={planet.name}>
                 <td key={planet.name}>{planet.name}</td>
