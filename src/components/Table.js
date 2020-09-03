@@ -12,7 +12,7 @@ export class Table extends Component {
   }
 
   render() {
-    const { data, isLoading } = this.props;
+    // const { data, isLoading } = this.props;
     return (
       <div>
         StarWars Datatable with Filters

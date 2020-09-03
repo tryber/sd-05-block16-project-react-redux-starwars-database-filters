@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 function Body(props) {
   const { data } = props;
@@ -29,6 +29,6 @@ export default Body;
 /* consultado https://reactjs.org/docs/typechecking-with-proptypes.html para
 construção de props arr */
 
-Body.propTypes = {
+/* Body.propTypes = {
   data: PropTypes.arrayOf(PropTypes.object),
-};
+}; */
