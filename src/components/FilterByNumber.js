@@ -3,6 +3,8 @@ import propTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { filterByNumber, deleteFilter } from '../actions/index';
 
+// Referência: ajuda Anderson Godoy requisitos 5 e 6.
+
 const comparisonSel = [
   'selecione',
   'maior que',
@@ -61,7 +63,7 @@ class FilterByNumber extends React.Component {
 
   render() {
     const { dropdownSel } = this.state;
-    const { changeNumber, filterNumber } = this.props;
+    const { filterNumber } = this.props;
     // const columnsFiltered = filterNumber.map((e) => e.column);
     const columnsFiltered = [...dropdownSel];
     if (filterNumber.length > 0) {
@@ -70,8 +72,6 @@ class FilterByNumber extends React.Component {
     }
 
     // const columnsAvailable = dropdownSel.filter((e) => columnsFiltered.indexOf(e) === -1);
-    console.log(columnsFiltered);
-
     return (
       <div>
         <select
@@ -130,4 +130,3 @@ FilterByNumber.propTypes = {
   changeNumber: propTypes.func.isRequired,
   filterNumber: propTypes.arrayOf(propTypes.object).isRequired,
 };
-

@@ -1,3 +1,5 @@
+// Referência: ajuda Anderson Godoy e Felipe Vieira
+
 import React from 'react';
 import propTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -13,13 +15,27 @@ function filterByNumber(planets, filterComp) {
   return planets;
 }
 
+const sortPlanets = (planets, sort, column) => {
+  if (sort === 'DESC') {
+    return planets.sort((a, b) => Number(b[column]) - Number(a[column]));
+  }
+  if (sort === 'ASC') {
+    return planets.sort((a, b) => Number(a[column]) - Number(b[column]));
+  }
+  return false;
+}
+
+// Referência no sort: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/localeCompare
+
 class TableBody extends React.Component {
   render() {
-    const { data, filterText, filterNumber } = this.props;
+    const { data, filterText, filterNumber, column, sort } = this.props;
     // console.log(this.props);
     // let planets =  data;
     // console.log(planets);
     let planets = data;
+    planets = planets.sort((a, b) => a.name.localeCompare(b.name));
+    sortPlanets(planets, sort, column)
 
     filterNumber.forEach((filter) => {
       planets = filterByNumber(planets, filter);
@@ -59,6 +75,8 @@ const mapStateToProps = (state) => ({
   data: state.planetReducer.data,
   filterText: state.filters.filterByName,
   filterNumber: state.filters.filterByNumericValues,
+  column: state.filters.order.column,
+  sort: state.filters.order.sort,
 });
 
 export default connect(mapStateToProps)(TableBody);

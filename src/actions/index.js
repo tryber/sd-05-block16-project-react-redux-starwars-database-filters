@@ -8,6 +8,7 @@ export const REQUEST_PLANETS = 'REQUEST_PLANETS';
 export const INPUT_TEXT = 'INPUT_TEXT';
 export const INPUT_NUMBER = 'INPUT_NUMBER';
 export const DELETE_FILTERS = 'DELETE_FILTERS';
+export const SORT_PLANETS = 'SORT_PLANETS';
 
 const requestPlanets = () => ({
   type: REQUEST_PLANETS,
@@ -76,4 +77,13 @@ export function deleteFilter(cleanedFilter) {
     type: DELETE_FILTERS,
     cleanedFilter,
   };
+}
+
+export function sortFilter({column, sort}) {
+  console.log(column, sort);
+  return {
+    type: SORT_PLANETS,
+    column,
+    sort,
+  }
 }

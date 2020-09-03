@@ -7,6 +7,7 @@ import {
   INPUT_TEXT,
   INPUT_NUMBER,
   DELETE_FILTERS,
+  SORT_PLANETS,
 } from '../actions';
 
 const INITIAL_PLANET = {
@@ -45,6 +46,10 @@ const INITIAL_FILTER = {
     name: '',
   },
   filterByNumericValues: [],
+  order: { 
+    column: 'Name',
+    sort: 'ASC'
+  }
 };
 
 function filters(state = INITIAL_FILTER, action) {
@@ -67,6 +72,11 @@ function filters(state = INITIAL_FILTER, action) {
         ...state,
         filterByNumericValues: [...action.cleanedFilter],
       };
+    case SORT_PLANETS:
+      return {
+        ...state,
+        order: { column: action.column, sort: action.sort },
+      };
     default:
       return state;
   }
@@ -78,9 +88,3 @@ const rootReducer = combineReducers({
 });
 
 export default rootReducer;
-
-// function emptyReducer() {
-//   return {};
-// }
-
-// export default emptyReducer;
