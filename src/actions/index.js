@@ -7,6 +7,7 @@ export const RECEIVE_PLANETS_SUCCESS = 'RECEIVE_PLANETS_SUCCESS';
 export const REQUEST_PLANETS = 'REQUEST_PLANETS';
 export const INPUT_TEXT = 'INPUT_TEXT';
 export const INPUT_NUMBER = 'INPUT_NUMBER';
+export const DELETE_FILTERS = 'DELETE_FILTERS';
 
 const requestPlanets = () => ({
   type: REQUEST_PLANETS,
@@ -67,5 +68,12 @@ export function filterByNumber({ column, comparison, value }) {
     column,
     comparison,
     value,
+  };
+}
+
+export function deleteFilter(cleanedFilter) {
+  return {
+    type: DELETE_FILTERS,
+    cleanedFilter,
   };
 }

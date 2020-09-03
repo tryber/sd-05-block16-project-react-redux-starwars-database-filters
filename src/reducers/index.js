@@ -6,6 +6,7 @@ import {
   REQUEST_PLANETS,
   INPUT_TEXT,
   INPUT_NUMBER,
+  DELETE_FILTERS,
 } from '../actions';
 
 const INITIAL_PLANET = {
@@ -60,6 +61,11 @@ function filters(state = INITIAL_FILTER, action) {
           ...state.filterByNumericValues,
           { column: action.column, comparison: action.comparison, value: action.value },
         ],
+      };
+    case DELETE_FILTERS:
+      return {
+        ...state,
+        filterByNumericValues: [...action.cleanedFilter],
       };
     default:
       return state;
