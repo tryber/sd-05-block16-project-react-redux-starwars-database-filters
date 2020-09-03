@@ -55,8 +55,8 @@ class Order extends React.Component {
         </select>
         <label htmlFor="ASC">ASC</label>
         <InputRadio id="ASC" value="ASC" onClick={this.radioClick} />
-        <label htmlFor="DSC">DSC</label>
-        <InputRadio id="DSC" value="DSC" onClick={this.radioClick} />
+        <label htmlFor="DESC">DESC</label>
+        <InputRadio id="DESC" value="DESC" onClick={this.radioClick} />
         <button
           data-testid="column-sort-button"
           type="button"
