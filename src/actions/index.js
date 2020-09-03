@@ -9,6 +9,7 @@ export const FILTER_COLUMN = 'FILTER_COLUMN';
 export const FILTER_COMPARISON = 'FILTER_COMPARISON';
 export const FILTER_VALUE = 'FILTER_VALUE';
 export const FILTER_NUMBER = 'FILTER_NUMBER';
+export const REMOVE_FILTER = 'REMOVE_FILTER';
 
 export const requestPlanets = () => ({ type: REQUEST_PLANETS });
 
@@ -32,6 +33,11 @@ export const filterNumber = ({ column, comparison, value }) => ({
   column,
   comparison,
   value,
+});
+
+export const removeFilter = (column) => ({
+  type: REMOVE_FILTER,
+  column,
 });
 
 export function fetchSWAPI() {

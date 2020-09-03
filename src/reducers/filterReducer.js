@@ -1,6 +1,7 @@
 import {
   FILTER_BY_NAME,
   FILTER_NUMBER,
+  REMOVE_FILTER,
 } from '../actions/index';
 
 const INITIAL_STATE = {
@@ -24,6 +25,14 @@ function filters(state = INITIAL_STATE, action) {
             comparison: action.comparison,
             value: action.value,
           },
+        ],
+      };
+    case REMOVE_FILTER: // based in: https://github.com/tryber/sd-05-block16-project-react-redux-starwars-database-filters/blob/Marylange-react-redux-starwars-datatable-filters/src/reducers/reducerFilter.js
+      return {
+        ...state,
+        filterByNumericValues: [
+          ...state.filterByNumericValues
+            .filter((filtro) => filtro.column !== action.column),
         ],
       };
     default:
