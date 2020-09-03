@@ -43,7 +43,7 @@ class Table extends React.Component {
     return (
       <table>
         <TableHead />
-        {{/* lógica do filter consultada no repo da Juliette */}}
+        {/* lógica retirada do reposiorio da Juliette */}
         {planets.map((planet) => (
           <tbody>
             <tr key={planet.name}>
@@ -63,7 +63,7 @@ class Table extends React.Component {
             </tr>
           </tbody>
         ))}
-      </table>
+        </table>
     );
   }
 }
