@@ -1,10 +1,14 @@
-import { FILTER_NAME, FILTER_VALUES, REMOVE_FILTER } from '../actions';
+import { FILTER_NAME, FILTER_VALUES, REMOVE_FILTER, FILTER_SORT } from '../actions';
 
 const INITIAL_STATE = {
   filterByName: {
     name: '',
   },
   filterByNumericValues: [],
+  order: {
+    column: 'Name',
+    sort: 'ASC',
+  },
 };
 
 /* const handleClick = (state, action) => {
@@ -39,6 +43,14 @@ function filters(state = INITIAL_STATE, action) {
         ...state,
         filterByNumericValues: state.filterByNumericValues
           .filter((filter) => filter.column !== action.column),
+      };
+    case FILTER_SORT:
+      return {
+        ...state,
+        order: {
+          column: action.column,
+          sort: action.sort,
+        },
       };
 
     default:

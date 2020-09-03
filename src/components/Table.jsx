@@ -19,6 +19,14 @@ function allFilters(data, filter) {
   return data;
 }
 
+// feito com a ajuda do Felipe Vieira e da Marina Barcelos
+function sortPlanets(data, { sort, column }) {
+  if (sort === 'ASC') {
+    return data.sort((a, b) => Number(a[column.toLowerCase()]) - Number(b[column.toLowerCase()]));
+  }
+  return data.sort((a, b) => Number(b[column.toLowerCase()]) - Number(a[column.toLowerCase()]));
+}
+
 class Table extends React.Component {
   componentDidMount() {
     const { getPlanets } = this.props;
@@ -26,8 +34,10 @@ class Table extends React.Component {
   }
 
   render() {
-    const { data, nameFilter, numericFilter } = this.props;
+    const { data, nameFilter, numericFilter, order } = this.props;
     let planets = data;
+    planets = planets.sort((a, b) => a.name.localeCompare(b.name));
+    sortPlanets(planets, order);
     // eslint-disable-next-line react/prop-types
     numericFilter.forEach((filter) => { planets = allFilters(planets, filter); });
     planets = planets.filter((planet) => planet.name.includes(nameFilter));
@@ -35,7 +45,7 @@ class Table extends React.Component {
       <div>
         <table>
           <TableHead />
-          {/* // lógica do filter consultada no repo da Juliette */}
+          {/* lógica do filter consultada no repo da Juliette */}
           {planets.map((planet) => (
             <tbody>
               <tr key={planet.name}>
@@ -63,9 +73,9 @@ class Table extends React.Component {
 
 const mapStateToProps = (state) => ({
   data: state.planetsReducer.data,
-  isFetching: state.planetsReducer.isFetching,
   nameFilter: state.filters.filterByName.name,
   numericFilter: state.filters.filterByNumericValues,
+  order: state.filters.order,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -76,7 +86,6 @@ export default connect(mapStateToProps, mapDispatchToProps)(Table);
 
 Table.propTypes = {
   data: PropTypes.arrayOf(PropTypes.object).isRequired, // trecho baseado no repo de varios colegas
-  /* isFetching: PropTypes.bool.isRequired, */
   getPlanets: PropTypes.func.isRequired,
   nameFilter: PropTypes.shape({
     filters: { filterByName: PropTypes.object },
@@ -84,4 +93,5 @@ Table.propTypes = {
   numericFilter: PropTypes.shape({
     filters: { filterByNumericValues: PropTypes.arrayOf(PropTypes.object) },
   }).isRequired,
+  order: PropTypes.objectOf(PropTypes.object).isRequired,
 };

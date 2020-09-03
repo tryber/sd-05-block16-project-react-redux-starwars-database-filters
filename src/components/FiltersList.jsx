@@ -8,6 +8,7 @@ class FiltersList extends React.Component {
     const { filters, rmvFilter } = this.props;
     return (
       <div>
+        <h3>Filtros:</h3>
         {filters.map((filter) => (
           <div key={filter.column} data-testid="filter">
             {filter.column}

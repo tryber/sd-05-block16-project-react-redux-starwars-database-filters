@@ -3,6 +3,7 @@ import Table from './components/Table';
 import SearchBar from './components/SearchBar';
 import NumericFilters from './components/NumericFilters';
 import FiltersList from './components/FiltersList';
+import Order from './components/Order';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         <SearchBar />
         <NumericFilters />
         <FiltersList />
+        <Order />
         <Table />
       </header>
     </div>
