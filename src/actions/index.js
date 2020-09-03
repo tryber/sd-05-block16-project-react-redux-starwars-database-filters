@@ -1,4 +1,4 @@
-import requisicaoAPI from '../../api/data';
+import requisicaoAPI from '../api/data';
 
 export const REQUEST_API = 'REQUEST_API';
 export const RECEIVE_API = 'RECEIVE_API';
