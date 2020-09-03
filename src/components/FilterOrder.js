@@ -6,6 +6,11 @@ import { filterByOrder } from '../actions';
 
 const col = ['population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water'];
 
+function renderOption(event) {
+  event.map((e) => <option key={e} value={e}>{e}</option>);
+}
+
+
 class FilterOrder extends Component {
   constructor(props) {
     super(props);
@@ -15,7 +20,6 @@ class FilterOrder extends Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.stateSelect = this.stateSelect.bind(this);
-    this.renderOption = this.renderOption.bind(this);
   }
 
   handleChange(event) {
@@ -30,38 +34,35 @@ class FilterOrder extends Component {
     });
   }
 
-  renderOption(event) {
-    event.map((e) => <option key={e} value={e}>{e}</option>)
-  }
-
   render() {
     const { dispatchFilter } = this.props;
     return (
       <Fragment>
         <select data-testid="column-sort" onChange={this.stateSelect}>
-          {this.renderOption(col)}
+          {renderOption(col)}
         </select>
-        <label htmlFor="">ASC</label>
+        <label htmlFor="ASC">ASC</label>
         <input
           name="filter"
           value="ASC"
           type="radio"
           data-testid="column-sort-input"
           onChange={this.handleChange} />
-        <label>DESC</label>
+        <label htmlFor="DESC">DESC</label>
         <input
           name="filter"
           value="DESC"
           type="radio"
           data-testid="column-sort-input"
-          onChange={this.handleChange} />
+          onChange={this.handleChange}
+        />
         <button
           type="button"
           data-testid="column-sort-button"
           onClick={() => dispatchFilter(this.state)}
         >
           Filtrar
-          </button>
+        </button>
       </Fragment>
     );
   }
@@ -70,7 +71,7 @@ class FilterOrder extends Component {
 const mapDispatchToProps = { dispatchFilter: filterByOrder };
 
 FilterOrder.propTypes = {
-  dispatchFilter: propTypes.objectOf(propTypes.string),
+  dispatchFilter: propTypes.objectOf(propTypes.string).isRequired,
 };
 
 export default connect(null, mapDispatchToProps)(FilterOrder);
