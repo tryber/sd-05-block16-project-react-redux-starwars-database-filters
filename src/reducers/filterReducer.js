@@ -2,6 +2,7 @@ import {
   FILTER_BY_NAME,
   FILTER_NUMBER,
   REMOVE_FILTER,
+  FILTER_BY_ORDER,
 } from '../actions/index';
 
 const INITIAL_STATE = {
@@ -9,6 +10,10 @@ const INITIAL_STATE = {
     name: '',
   },
   filterByNumericValues: [],
+  order: {
+    column: 'Name',
+    sort: 'ASC',
+  },
 };
 
 function filters(state = INITIAL_STATE, action) {
@@ -34,6 +39,14 @@ function filters(state = INITIAL_STATE, action) {
           ...state.filterByNumericValues
             .filter((filtro) => filtro.column !== action.column),
         ],
+      };
+    case FILTER_BY_ORDER:
+      return {
+        ...state,
+        order: {
+          column: action.column,
+          sort: action.sort,
+        },
       };
     default:
       return state;

@@ -10,6 +10,7 @@ export const FILTER_COMPARISON = 'FILTER_COMPARISON';
 export const FILTER_VALUE = 'FILTER_VALUE';
 export const FILTER_NUMBER = 'FILTER_NUMBER';
 export const REMOVE_FILTER = 'REMOVE_FILTER';
+export const FILTER_BY_ORDER = 'FILTER_BY_ORDER';
 
 export const requestPlanets = () => ({ type: REQUEST_PLANETS });
 
@@ -38,6 +39,12 @@ export const filterNumber = ({ column, comparison, value }) => ({
 export const removeFilter = (column) => ({
   type: REMOVE_FILTER,
   column,
+});
+
+export const filterByOrder = ({ column, sort }) => ({
+  type: FILTER_BY_ORDER,
+  column,
+  sort,
 });
 
 export function fetchSWAPI() {

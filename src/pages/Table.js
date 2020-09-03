@@ -7,6 +7,7 @@ import TableHeader from '../components/TableHeader';
 import FilterByName from '../components/FilterByName';
 import FilterByNumber from '../components/FilterByNumber';
 import FilterList from '../components/FiltersList';
+import FilterOrder from '../components/FilterOrder';
 
 class Table extends Component {
   componentDidMount() {
@@ -21,6 +22,7 @@ class Table extends Component {
       <section>
         <FilterByName />
         <FilterByNumber />
+        <FilterOrder />
         <FilterList />
         <table>
           <TableHeader />

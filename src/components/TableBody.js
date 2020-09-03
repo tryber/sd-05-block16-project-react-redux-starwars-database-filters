@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import propTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-// [HA] - based in --
+// [HA] - based in -- 
 
 function filterNumber(allPlanets, filter) {
   switch (filter.comparison) {
@@ -19,10 +19,18 @@ function filterNumber(allPlanets, filter) {
 
 const filterInput = (planets, filterByName) => planets.filter((e) => e.name.includes(filterByName));
 
+const filterByOrder = (planets, { column, sort }) => {
+  if (sort === 'ASC') return planets.sort((a, b) => Number(a[column]) - Number(b[column]));
+  if (sort === 'DESC') return planets.sort((a, b) => Number(b[column]) - Number(a[column]));
+  return planets;
+};
+
 class TableBody extends Component {
   render() {
-    const { planets, filterByName, filterByNumericValues } = this.props;
+    const { planets, filterByName, filterByNumericValues, order } = this.props;
     let allPlanets = planets;
+    allPlanets.sort((a, b) => a.name.localeCompare(b.name));
+    filterByOrder(allPlanets, order);
     filterByNumericValues.forEach((filter) => { allPlanets = filterNumber(allPlanets, filter); });
     allPlanets = filterInput(allPlanets, filterByName);
     return (
@@ -52,6 +60,7 @@ const mapStateToprops = (state) => ({
   planets: state.reducer.data,
   filterByName: state.filters.filterByName.name,
   filterByNumericValues: state.filters.filterByNumericValues,
+  order: state.filters.order,
 });
 
 TableBody.propTypes = {
@@ -62,6 +71,7 @@ TableBody.propTypes = {
     comparison: propTypes.string.isRequired,
     values: propTypes.number.isRequired,
   }).isRequired,
+  order: propTypes.string.isRequired,
 };
 
 
