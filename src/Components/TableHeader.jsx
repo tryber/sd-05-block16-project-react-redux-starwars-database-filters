@@ -10,7 +10,7 @@ class TableReader extends Component {
       <thead className="table-header">
         <tr className="header-row">
           {!isFetching
-            && planetsColumns.map((colName, index) => (
+            && planetsColumns.map((colName, index) => (colName !== 'residents') && (
               <TableHeaderCell name={colName} key={`coll-${index.toString()}`} />
             ))}
         </tr>

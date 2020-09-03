@@ -25,7 +25,8 @@ function removingColumn(column, data) {
 const fetchPlanets = (state, action) => {
   const newState = {
     ...state,
-    planets: [...removingColumn('residents', action.payload.results)],
+    // planets: [...removingColumn('residents', action.payload.results)],
+    planets: [...action.payload.results],
     planetsColumns: [...Object.keys(action.payload.results[0])],
     nextPage: action.payload.next,
     previousPage: action.payload.previous,

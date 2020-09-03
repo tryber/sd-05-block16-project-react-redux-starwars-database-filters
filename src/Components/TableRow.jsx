@@ -6,7 +6,7 @@ const TableRow = (props) => {
   const { rowItems, rowId } = props;
   return (
     <tr className={`table-row row-number-${rowId.toString()}`}>
-      {rowItems.map(([collName, itemValue], cellId) => (
+      {rowItems.map(([collName, itemValue], cellId) => (collName !== 'residents') && (
         <TableItem
           collName={collName}
           itemValue={itemValue}
