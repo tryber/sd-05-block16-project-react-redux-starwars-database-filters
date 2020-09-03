@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Proptypes from 'prop-types';
 import { filterByName } from '../../actions';
 
-const FilterPlanet = (props) => {
+function FilterPlanet(props) {
   return (
     <input
       data-testid="name-filter"
