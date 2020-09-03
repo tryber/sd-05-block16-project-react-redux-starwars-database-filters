@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import propTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-// [HA] - based in -- 
-
 function filterNumber(allPlanets, filter) {
   switch (filter.comparison) {
     case 'maior que':

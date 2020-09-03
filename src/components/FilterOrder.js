@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-fragments */
 import React, { Component, Fragment } from 'react';
+import propTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { filterByOrder } from '../actions';
 
@@ -13,6 +14,8 @@ class FilterOrder extends Component {
       sort: 'ASC',
     };
     this.handleChange = this.handleChange.bind(this);
+    this.stateSelect = this.stateSelect.bind(this);
+    this.renderOption = this.renderOption.bind(this);
   }
 
   handleChange(event) {
@@ -21,24 +24,44 @@ class FilterOrder extends Component {
     });
   }
 
+  stateSelect(event) {
+    this.state({
+      column: event.target.value,
+    });
+  }
+
+  renderOption(event) {
+    event.map((e) => <option key={e} value={e}>{e}</option>)
+  }
+
   render() {
     const { dispatchFilter } = this.props;
     return (
       <Fragment>
-        <select data-testid="column-sort"
-          onChange={(e) => this.setState({
-            column: e.target.value,
-          })}
-        >
-          {col.map((opt) => (
-            <option key={opt} value={opt}>{opt}</option>
-          ))}
+        <select data-testid="column-sort" onChange={this.stateSelect}>
+          {this.renderOption(col)}
         </select>
-        <label>ASC</label>
-        <input name="filter" value="ASC" type="radio" data-testid="column-sort-input" onChange={this.handleChange} />
+        <label htmlFor="">ASC</label>
+        <input
+          name="filter"
+          value="ASC"
+          type="radio"
+          data-testid="column-sort-input"
+          onChange={this.handleChange} />
         <label>DESC</label>
-        <input name="filter" value="DESC" type="radio" data-testid="column-sort-input" onChange={this.handleChange} />
-        <button type="button" data-testid="column-sort-button" onClick={() => dispatchFilter(this.state)}>Filtrar</button>
+        <input
+          name="filter"
+          value="DESC"
+          type="radio"
+          data-testid="column-sort-input"
+          onChange={this.handleChange} />
+        <button
+          type="button"
+          data-testid="column-sort-button"
+          onClick={() => dispatchFilter(this.state)}
+        >
+          Filtrar
+          </button>
       </Fragment>
     );
   }
@@ -46,5 +69,8 @@ class FilterOrder extends Component {
 
 const mapDispatchToProps = { dispatchFilter: filterByOrder };
 
+FilterOrder.propTypes = {
+  dispatchFilter: propTypes.objectOf(propTypes.string),
+};
 
 export default connect(null, mapDispatchToProps)(FilterOrder);
