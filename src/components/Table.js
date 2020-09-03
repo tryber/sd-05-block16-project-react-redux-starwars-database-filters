@@ -50,5 +50,5 @@ construção de props arr */
 Table.propTypes = {
  // isLoading: PropTypes.bool.isRequired,
   getFetch: PropTypes.func.isRequired,
-  // data: PropTypes.arrayOf(PropTypes.object).isRequired,
+  data: PropTypes.arrayOf(PropTypes.object).isRequired,
 };

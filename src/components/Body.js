@@ -1,5 +1,5 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 function Body(props) {
   const { data } = props;
@@ -24,20 +24,16 @@ function Body(props) {
   );
 }
 
+Body.propTypes = {
+  data: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
+
 export default Body;
 
 /* consultado https://reactjs.org/docs/typechecking-with-proptypes.html para
 construção de props arr */
 
-/* Body.propTypes = {
-  data: PropTypes.arrayOf(PropTypes.object),
-}; */
-
 // consultado stack overflow para regularizar proptype
 
 /* https://stackoverflow.com/questions/59038307/
 reactjs-proptypes-validation-for-array-of-objects */
-
-/* Body: PropTypes.arrayOf(PropTypes.shape({
-  data:PropTypes.object,
-  })) */
