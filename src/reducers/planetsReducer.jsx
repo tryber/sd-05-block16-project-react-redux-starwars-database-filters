@@ -31,8 +31,7 @@ const planetsReducer = (state = INITIAL_STATE, action) => {
 
 export default planetsReducer;
 
-/* Transparência: Plantão Inacio: spread operators used to copy the data already 
-in the state and objects and add 
-the new information with the reducers. 
+/* Transparência: Plantão Inacio: spread operators used to copy the data already
+in the state and objects and add the new information with the reducers.
 project done with Sidnei and helped by Zambelli
 */
