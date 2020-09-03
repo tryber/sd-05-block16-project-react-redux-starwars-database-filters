@@ -22,4 +22,9 @@ export function fetchActionPlanets() { // action creator retorna uma função
   };
 }
 
+export const filterByName = (planet) => ({
+  type: 'FILTER_NAME',
+  payload: planet,
+});
+
 export default fetchActionPlanets;

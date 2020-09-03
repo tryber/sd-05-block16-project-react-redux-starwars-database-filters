@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+// Hugo Costa
 class TableBody extends React.Component {
   render() {
     const { data } = this.props;

@@ -85,51 +85,51 @@ describe('1 - Fazer uma requisição para o endpoint /planets da API de Star War
   });
 });
 
-// describe('2 - Sua página deve ter um campo de texto que filtra a tabela para somente exibir planetas cujos nomes incluam o texto digitado', () => {
-//   beforeAll(mockFetch);
-//   beforeEach(cleanup);
+describe('2 - Sua página deve ter um campo de texto que filtra a tabela para somente exibir planetas cujos nomes incluam o texto digitado', () => {
+  beforeAll(mockFetch);
+  beforeEach(cleanup);
 
-//   test('should have a input field for name filters', async () => {
-//     const { findByTestId } = renderApp();
-//     const filterField = await findByTestId('name-filter');
-//     expect(filterField).toBeInTheDocument();
-//   });
+  test('should have a input field for name filters', async () => {
+    const { findByTestId } = renderApp();
+    const filterField = await findByTestId('name-filter');
+    expect(filterField).toBeInTheDocument();
+  });
 
-//   test('input filter should change results', async () => {
-//     const { findAllByRole, findByTestId, findByText } = renderApp();
-//     const filterField = await findByTestId('name-filter');
+  test('input filter should change results', async () => {
+    const { findAllByRole, findByTestId, findByText } = renderApp();
+    const filterField = await findByTestId('name-filter');
 
-//     fireEvent.change(filterField, { target: { value: 'o' } });
-//     let tableRows = await findAllByRole('row');
-//     expect(tableRows).toHaveLength(8);
-//     expect(await findByText('Coruscant')).toBeInTheDocument();
-//     expect(await findByText('Dagobah')).toBeInTheDocument();
-//     expect(await findByText('Endor')).toBeInTheDocument();
-//     expect(await findByText('Hoth')).toBeInTheDocument();
-//     expect(await findByText('Kamino')).toBeInTheDocument();
-//     expect(await findByText('Naboo')).toBeInTheDocument();
-//     expect(await findByText('Tatooine')).toBeInTheDocument();
+    fireEvent.change(filterField, { target: { value: 'o' } });
+    let tableRows = await findAllByRole('row');
+    expect(tableRows).toHaveLength(8);
+    expect(await findByText('Coruscant')).toBeInTheDocument();
+    expect(await findByText('Dagobah')).toBeInTheDocument();
+    expect(await findByText('Endor')).toBeInTheDocument();
+    expect(await findByText('Hoth')).toBeInTheDocument();
+    expect(await findByText('Kamino')).toBeInTheDocument();
+    expect(await findByText('Naboo')).toBeInTheDocument();
+    expect(await findByText('Tatooine')).toBeInTheDocument();
 
-//     fireEvent.change(filterField, { target: { value: 'oo' } });
-//     tableRows = await findAllByRole('row');
-//     expect(tableRows).toHaveLength(3);
-//     expect(await findByText('Naboo')).toBeInTheDocument();
-//     expect(await findByText('Tatooine')).toBeInTheDocument();
+    fireEvent.change(filterField, { target: { value: 'oo' } });
+    tableRows = await findAllByRole('row');
+    expect(tableRows).toHaveLength(3);
+    expect(await findByText('Naboo')).toBeInTheDocument();
+    expect(await findByText('Tatooine')).toBeInTheDocument();
 
-//     fireEvent.change(filterField, { target: { value: '' } });
-//   });
+    fireEvent.change(filterField, { target: { value: '' } });
+  });
 
-//   test('should change store filter values', async () => {
-//     const { findByTestId, store } = renderApp();
-//     const filterField = await findByTestId('name-filter');
-//     fireEvent.change(filterField, { target: { value: 'o' } });
-//     expect(store.getState().filters.filterByName.name).toEqual('o');
-//     fireEvent.change(filterField, { target: { value: 'oo' } });
-//     expect(store.getState().filters.filterByName.name).toEqual('oo');
-//     fireEvent.change(filterField, { target: { value: '' } });
-//     expect(store.getState().filters.filterByName.name).toEqual('');
-//   });
-// });
+  test('should change store filter values', async () => {
+    const { findByTestId, store } = renderApp();
+    const filterField = await findByTestId('name-filter');
+    fireEvent.change(filterField, { target: { value: 'o' } });
+    expect(store.getState().filters.filterByName.name).toEqual('o');
+    fireEvent.change(filterField, { target: { value: 'oo' } });
+    expect(store.getState().filters.filterByName.name).toEqual('oo');
+    fireEvent.change(filterField, { target: { value: '' } });
+    expect(store.getState().filters.filterByName.name).toEqual('');
+  });
+});
 
 // describe('3 - Sua página deve ter um filtro para valores numéricos', () => {
 //   beforeAll(mockFetch);
