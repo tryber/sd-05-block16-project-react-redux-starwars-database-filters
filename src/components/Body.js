@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { AcionaApi } from '../actions';
 import PropTypes from 'prop-types';
+import { AcionaApi } from '../actions';
 
 class Body extends Component {
   componentDidMount() {

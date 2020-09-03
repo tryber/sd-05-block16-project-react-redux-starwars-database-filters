@@ -9,9 +9,7 @@ const callApi = () => ({ type: CALL_API });
 
 const receivedApi = (data) => ({ type: RECEIVED_API, planets: data.results });
 
-export const AcionaApi = () => {
-  return (dispatch) => {
-    dispatch(callApi());
-    return Api().then((response) => dispatch(receivedApi(response)));
-  };
+export const AcionaApi = () => (dispatch) => {
+  dispatch(callApi());
+  return Api().then((response) => dispatch(receivedApi(response)));
 };
