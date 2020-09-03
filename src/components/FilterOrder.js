@@ -29,7 +29,7 @@ class FilterOrder extends Component {
   }
 
   stateSelect(event) {
-    this.state({
+    this.setState({
       column: event.target.value,
     });
   }
