@@ -7,24 +7,17 @@ class FilterListItems extends Component {
   render() {
     const { filterByNumericValues } = this.props;
     return filterByNumericValues.map((item, index) => (
-      <Item item={item} index={index} />
+      <Item item={item} index={index} key={index.toString()} />
     ));
   }
 }
 
-const mapStateToProps = ({ filterReducer: { filters } }) => {
-  const { filterByNumericValues } = filters;
-  return {
-    filterByNumericValues,
-  };
-};
+const mapStateToProps = ({ filters: { filterByNumericValues } }) => ({
+  filterByNumericValues,
+});
 
 export default connect(mapStateToProps)(FilterListItems);
 
 FilterListItems.propTypes = {
-  filterByNumericValues: PropTypes.shape({
-    column: PropTypes.string.isRequired,
-    comparison: PropTypes.string.isRequired,
-    value: PropTypes.string.isRequired,
-  }).isRequired,
+  filterByNumericValues: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
 };

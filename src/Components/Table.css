@@ -8,9 +8,9 @@
 }
 
 .table-body {
+  border-color: inherit;
   display: table-row-group;
   vertical-align: middle;
-  border-color: inherit;
 }
 
 .table-planets {

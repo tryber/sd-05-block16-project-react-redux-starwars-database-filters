@@ -15,7 +15,7 @@ class Item extends Component {
     const columText = numericValues.find((item) => item.value === column);
     return (
       <li className="filter-item-container" data-testid="filter" key={index}>
-        <RemoveFilterButton filterIndex={index} />
+        <RemoveFilterButton filterIndex={index} column={columText.value} />
         <span className="filter-item-column">{columText.text}</span>
         <span className="filter-item-comparison">{comparisonText.text}</span>
         <span className="filter-item-value">{value}</span>
@@ -35,15 +35,9 @@ Item.propTypes = {
   item: PropTypes.shape({
     column: PropTypes.string.isRequired,
     comparison: PropTypes.string.isRequired,
-    value: PropTypes.number.isRequired,
+    value: PropTypes.string.isRequired,
   }).isRequired,
   index: PropTypes.number.isRequired,
-  columnValues: PropTypes.shape({
-    value: PropTypes.string,
-    text: PropTypes.string,
-  }).isRequired,
-  numericValues: PropTypes.shape({
-    value: PropTypes.string,
-    text: PropTypes.string,
-  }).isRequired,
+  columnValues: PropTypes.arrayOf(PropTypes.object).isRequired,
+  numericValues: PropTypes.arrayOf(PropTypes.object).isRequired,
 };

@@ -16,25 +16,29 @@ class SelectOption extends React.Component {
   }
 
   render() {
-    const { testId } = this.props;
-    return this.selectFilter(testId).map(
-      ({ value, text }, index) => (
-        <option value={value} key={`option-item-${index.toString}`}>
-          {text}
-        </option>
-      ),
-    );
+    const { numericFilters } = this.props;
+    return this.selectFilter().map(({ value, text }, index) => {
+      if (
+        !numericFilters.some(({ column }) => column === value)) {
+        return (
+          <option value={value} key={`option-item-${index.toString()}`}>
+            {text}
+          </option>
+        );
+      }
+    });
   }
 }
 
-const mapStateToProps = ({ temporaryFilter: { filtersOptions } }) => ({
+const mapStateToProps = ({ temporaryFilter: { filtersOptions }, filters: { filterByNumericValues } }) => ({
   numeric: filtersOptions.numeric,
   comparison: filtersOptions.comparison,
+  numericFilters: filterByNumericValues,
 });
 
 SelectOption.propTypes = {
-  numeric: PropTypes.arrayOf(PropTypes.string).isRequired,
-  comparison: PropTypes.arrayOf(PropTypes.string).isRequired,
+  numeric: PropTypes.arrayOf(PropTypes.object).isRequired,
+  comparison: PropTypes.arrayOf(PropTypes.object).isRequired,
   testId: PropTypes.string.isRequired,
 };
 

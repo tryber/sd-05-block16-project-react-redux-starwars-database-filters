@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import './InputNumber.css';
 
 class InputNumber extends Component {
@@ -7,7 +8,13 @@ class InputNumber extends Component {
     return (
       <div>
         <label htmlFor="value">
-          <input onChange={handleChange} className="input-number-filter" data-testid="value-filter" type="number" name="value" />
+          <input
+            onChange={handleChange}
+            className="input-number-filter"
+            data-testid="value-filter"
+            type="number"
+            name="value"
+          />
         </label>
       </div>
     );
@@ -15,3 +22,7 @@ class InputNumber extends Component {
 }
 
 export default InputNumber;
+
+InputNumber.propTypes = {
+  handleChange: PropTypes.func.isRequired,
+};

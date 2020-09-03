@@ -1,10 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import SelectOptions from './SelectOptions';
 import InputNumber from './InputNumber';
-import './NumericFilter.css';
 import ButtonFilter from './ButtonFilter';
 import { addFilter } from '../Actions';
+import './NumericFilter.css';
 
 const DATA_TESTID = {
   COLUMN_FILTER: 'column-filter',
@@ -60,5 +61,6 @@ const mapDispatchToProps = (dispatch) => ({
   addingFilter: (payload) => dispatch(addFilter(payload)),
 });
 
-
 export default connect(null, mapDispatchToProps)(NumericFilters);
+
+NumericFilters.propTypes = { addingFilter: PropTypes.func.isRequired };

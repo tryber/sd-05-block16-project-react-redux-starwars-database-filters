@@ -12,8 +12,10 @@ export {
 export {
   ADD_FILTER,
   RESET_FILTER_TO_SEND,
+  TOGGLE_RENDER,
   addFilter,
   resetFilterToSend,
+  toggleRender,
 } from './TempFilterActions';
 
 export {

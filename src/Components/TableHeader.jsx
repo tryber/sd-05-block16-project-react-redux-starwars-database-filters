@@ -5,11 +5,6 @@ import TableHeaderCell from './TableHeaderCell';
 import { getStarWarsPlanets } from '../Actions';
 
 class TableReader extends Component {
-  componentDidMount() {
-    const { gettingPlanets } = this.props;
-    gettingPlanets();
-  }
-
   render() {
     const { isFetching, planetsColumns } = this.props;
     return (
@@ -17,7 +12,7 @@ class TableReader extends Component {
         <tr className="header-row">
           {!isFetching
             && planetsColumns.map((colName, index) => (
-              <TableHeaderCell name={colName} index={index} key={`coll-${index.toString}`} />
+              <TableHeaderCell name={colName} key={`coll-${index.toString()}`} />
             ))}
         </tr>
       </thead>
@@ -25,19 +20,16 @@ class TableReader extends Component {
   }
 }
 
-const mapStateToProps = ({ planetsReducer }) => ({
-  isFetching: planetsReducer.isFetching,
-  planets: planetsReducer.planets,
-  planetsColumns: planetsReducer.planetsColumns,
+const mapStateToProps = ({ data }) => ({
+  isFetching: data.isFetching,
+  planets: data.planets,
+  planetsColumns: data.planetsColumns,
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  gettingPlanets: () => dispatch(getStarWarsPlanets()),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(TableReader);
+export default connect(mapStateToProps)(TableReader);
 
 TableReader.propTypes = {
   planetsColumns: PropTypes.arrayOf(PropTypes.string).isRequired,
   isFetching: PropTypes.bool.isRequired,
+
 };
