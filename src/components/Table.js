@@ -9,7 +9,7 @@ export class Table extends Component {
   componentDidMount() {
     const { getFetch } = this.props;
     getFetch();
-  }
+    }
 
   render() {
     const { planetas } = this.props;
@@ -22,7 +22,7 @@ export class Table extends Component {
           </thead>
           <tbody>
           {
-            planetas.map((planeta) => <Body data={planeta}/>)
+            planetas.map((planeta) => <Body data={planeta} />)
           }
           </tbody>
         </table>
@@ -43,7 +43,7 @@ const mapDispatchToProps = (dispatch) => ({
 Table.propTypes = {
   // isLoading: PropTypes.bool.isRequired,
   getFetch: PropTypes.func.isRequired,
-  // data: PropTypes.arrayOf(PropTypes.object).isRequired,
+  planetas: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Table);

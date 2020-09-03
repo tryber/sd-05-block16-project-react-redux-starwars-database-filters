@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 
 function Body(props) {
   const { data } = props;
-  console.log(data)
-  if(data.length===0) return <h1>Carregando</h1>
+  // console.log(data)
+  if (data.length === 0) return <h1>Carregando</h1>;
   return (
     <tr>
       <td>{data.name}</td>
