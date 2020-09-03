@@ -5,19 +5,19 @@ import { filterSort } from '../actions';
 import InputRadio from './InputRadio';
 
 const columns = [
-  'Name',
-  'Orbital Period',
-  'Rotation Period',
-  'Diameter',
-  'Climate',
-  'Gravity',
-  'Terrain',
-  'Surface Water',
-  'Population',
-  'Films',
-  'Created',
-  'Edited',
-  'URL',
+  'name',
+  'orbital Period',
+  'rotation Period',
+  'diameter',
+  'climate',
+  'gravity',
+  'terrain',
+  'surface_water',
+  'population',
+  'films',
+  'created',
+  'edited',
+  'url',
 ];
 
 class Order extends React.Component {
@@ -43,7 +43,6 @@ class Order extends React.Component {
   orderClick() {
     const { order } = this.props;
     order(this.state);
-    console.log(this.state);
   }
 
   render() {
