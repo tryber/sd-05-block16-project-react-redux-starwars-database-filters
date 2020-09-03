@@ -27,8 +27,9 @@ class OrderPlanets extends Component {
     const { ordFilt } = this.props;
     return (
       <div>
-        <select data-testid="column-sort" onChange={(e) =>
-           this.setState({ column: e.target.value })}
+        <select 
+          data-testid="column-sort"
+          onChange={(e) => this.setState({ column: e.target.value })}
         >
           {dropdownSel.map((option) => <option value={option} key={option}>{option}</option>)}
         </select>

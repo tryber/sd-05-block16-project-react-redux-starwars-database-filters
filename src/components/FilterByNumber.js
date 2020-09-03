@@ -112,5 +112,5 @@ FilterByNumber.propTypes = {
   // isFetching: propTypes.bool.isRequired,
   changeNumber: propTypes.func.isRequired,
   filterNumber: propTypes.arrayOf(propTypes.object).isRequired,
-  deleteFilter: propTypes.func.isRequired,
+  removeFilter: propTypes.func.isRequired,
 };
