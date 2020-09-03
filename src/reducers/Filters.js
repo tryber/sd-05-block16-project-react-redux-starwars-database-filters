@@ -1,5 +1,9 @@
 import {
-  FILTER_BY_NAME, RESET_FILTER_BY_NAME, SEND_FILTER, REMOVE_FILTER,
+  FILTER_BY_NAME,
+  RESET_FILTER_BY_NAME,
+  SEND_FILTER,
+  REMOVE_FILTER,
+  SET_SORT,
 } from '../Actions';
 
 const INITIAL_STATE = {
@@ -7,6 +11,10 @@ const INITIAL_STATE = {
     name: '',
   },
   filterByNumericValues: [],
+  order: {
+    column: 'Name',
+    sort: 'ASC',
+  },
 };
 
 const filterByName = (state, action) => ({
@@ -32,6 +40,17 @@ const removeFilter = (state, action) => ({
   ],
 });
 
+const setSort = (state, payload) => {
+  const newState = {
+    ...state,
+    order: {
+      ...state.order,
+      ...payload,
+    },
+  };
+  return newState;
+};
+
 const filters = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case FILTER_BY_NAME:
@@ -42,6 +61,9 @@ const filters = (state = INITIAL_STATE, action) => {
       return sendFilter(state, action);
     case REMOVE_FILTER:
       return removeFilter(state, action);
+    case SET_SORT:
+      return setSort(state, action.payload);
+
     default:
       return state;
   }

@@ -1,4 +1,6 @@
-import { REQUEST_PLANETS, FETCH_PLANETS, REQUEST_ERROR } from '../Actions';
+import {
+  REQUEST_PLANETS, FETCH_PLANETS, REQUEST_ERROR,
+} from '../Actions';
 
 const INITIAL_STATE = {
   planets: [],
@@ -13,9 +15,10 @@ const INITIAL_STATE = {
 const fetchPlanets = (state, action) => {
   const newState = {
     ...state,
-    // planets: [...removingColumn('residents', action.payload.results)],
     planets: [...action.payload.results],
-    planetsColumns: [...Object.keys(action.payload.results[0])],
+    planetsColumns: [...Object.keys(action.payload.results[0])].filter(
+      (item) => item !== 'residents',
+    ),
     nextPage: action.payload.next,
     previousPage: action.payload.previous,
     count: action.payload.count,

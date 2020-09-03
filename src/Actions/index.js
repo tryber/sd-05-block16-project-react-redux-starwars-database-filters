@@ -3,10 +3,12 @@ export {
   SEND_FILTER,
   RESET_FILTER_BY_NAME,
   REMOVE_FILTER,
+  SET_SORT,
   filterByName,
   sendFilter,
   resetFilterByName,
   removeFilter,
+  setSort,
 } from './FilterActions';
 
 export {

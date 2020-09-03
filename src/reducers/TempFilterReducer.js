@@ -21,7 +21,10 @@ const INITIAL_STATE = {
       { value: 'igual a', text: 'igual a' },
     ],
   },
-  numericRemoved: [],
+  sorterParam: {
+    column: '',
+    sort: '',
+  },
 };
 
 function toggleRender(optionArray, value) {

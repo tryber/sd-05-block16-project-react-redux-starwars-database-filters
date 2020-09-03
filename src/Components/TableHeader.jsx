@@ -10,7 +10,7 @@ class TableReader extends Component {
       <thead className="table-header">
         <tr className="header-row">
           {!isFetching
-            && planetsColumns.map((colName, index) => (colName !== 'residents') && (
+            && planetsColumns.map((colName, index) => (
               <TableHeaderCell name={colName} key={`coll-${index.toString()}`} />
             ))}
         </tr>
@@ -30,5 +30,4 @@ export default connect(mapStateToProps)(TableReader);
 TableReader.propTypes = {
   planetsColumns: PropTypes.arrayOf(PropTypes.string).isRequired,
   isFetching: PropTypes.bool.isRequired,
-
 };
