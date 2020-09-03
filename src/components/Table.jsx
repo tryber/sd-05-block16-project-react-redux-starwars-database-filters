@@ -37,10 +37,7 @@ class Table extends React.Component {
     const { data, nameFilter, numericFilter, order } = this.props;
     let planets = data;
     planets = planets.sort((a, b) => a.name.localeCompare(b.name));
-    if (order.column !== 'Name') {
-      planets = sortPlanets(planets, order);
-    }
-    console.log(planets, order);
+    planets = sortPlanets(planets, order);
     numericFilter.forEach((filter) => { planets = allFilters(planets, filter); });
     planets = planets.filter((planet) => planet.name.includes(nameFilter));
     return (
