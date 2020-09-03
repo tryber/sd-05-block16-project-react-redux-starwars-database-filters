@@ -5,8 +5,7 @@ import Table from './components/Table';
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-      </header>
+      <header className="App-header" />
       <Table />
     </div>
   );

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { AcionaApi } from '../actions';
 import { connect } from 'react-redux';
+import { AcionaApi } from '../actions';
+import PropTypes from 'prop-types';
 
 class Body extends Component {
   componentDidMount() {
@@ -42,3 +43,8 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Body);
+
+Body.propTypes = {
+  AcionaApi: PropTypes.func.isRequired,
+  planets: PropTypes.arrayOf(PropTypes.object).isRequired,
+};

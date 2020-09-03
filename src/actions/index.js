@@ -5,13 +5,9 @@ import Api from '../services/Api';
 export const CALL_API = 'CALL_API';
 export const RECEIVED_API = 'RECEIVED_API';
 
-const callApi = () => {
-  return { type: CALL_API };
-};
+const callApi = () => ({ type: CALL_API });
 
-function receivedApi(data) {
-  return { type: RECEIVED_API, planets: data.results };
-}
+const receivedApi = (data) => ({ type: RECEIVED_API, planets: data.results });
 
 export const AcionaApi = () => {
   return (dispatch) => {
