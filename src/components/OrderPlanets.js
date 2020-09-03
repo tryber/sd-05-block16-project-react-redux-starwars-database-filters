@@ -27,7 +27,7 @@ class OrderPlanets extends Component {
     const { ordFilt } = this.props;
     return (
       <div>
-        <select 
+        <select
           data-testid="column-sort"
           onChange={(e) => this.setState({ column: e.target.value })}
         >
