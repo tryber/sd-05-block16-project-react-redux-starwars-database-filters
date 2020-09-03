@@ -79,11 +79,11 @@ export function deleteFilter(cleanedFilter) {
   };
 }
 
-export function sortFilter({column, sort}) {
+export function sortFilter({ column, sort }) {
   console.log(column, sort);
   return {
     type: SORT_PLANETS,
     column,
     sort,
-  }
+  };
 }

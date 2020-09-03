@@ -46,10 +46,10 @@ const INITIAL_FILTER = {
     name: '',
   },
   filterByNumericValues: [],
-  order: { 
+  order: {
     column: 'Name',
-    sort: 'ASC'
-  }
+    sort: 'ASC',
+  },
 };
 
 function filters(state = INITIAL_FILTER, action) {

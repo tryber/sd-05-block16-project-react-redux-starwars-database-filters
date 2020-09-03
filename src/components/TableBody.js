@@ -23,7 +23,7 @@ const sortPlanets = (planets, sort, column) => {
     return planets.sort((a, b) => Number(a[column]) - Number(b[column]));
   }
   return false;
-}
+};
 
 // Referência no sort: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/localeCompare
 
@@ -35,16 +35,16 @@ class TableBody extends React.Component {
     // console.log(planets);
     let planets = data;
     planets = planets.sort((a, b) => a.name.localeCompare(b.name));
-    sortPlanets(planets, sort, column)
+    sortPlanets(planets, sort, column);
 
     filterNumber.forEach((filter) => {
       planets = filterByNumber(planets, filter);
     });
 
-    if (filterText.name !== '') {
+    // if (filterText.name !== '') {
       planets = planets.filter((planet) =>
-      planet.name.toLowerCase().includes(filterText.name));
-    }
+      planet.name.toLowerCase().includes(filterText.name.toLowerCase()));
+    // }
     // console.log(filterText);
 
     return (
@@ -87,4 +87,6 @@ TableBody.propTypes = {
     filterByName: propTypes.object,
   }).isRequired,
   filterNumber: propTypes.arrayOf(propTypes.object).isRequired,
+  column: propTypes.string.isRequired,
+  sort: propTypes.string.isRequired,
 };
