@@ -1,5 +1,4 @@
 import React from 'react';
-import { BrowserRouter } from 'react';
 import ReactDOM from 'react-dom';
 import Store from './redux/store/index';
 import { Provider } from 'react-redux';
@@ -9,9 +8,7 @@ import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <Provider store={Store}>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <App />
   </Provider>,
   document.getElementById('root'));
 

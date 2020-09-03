@@ -1,3 +1,5 @@
+import RequisitionApi from '../../api/data';
+
 export const REQUEST_API = 'REQUEST_API';
 export const RECEIVE_API = 'RECEIVE_API';
 
@@ -10,7 +12,15 @@ export const requestApi = () => ({
   payload: true,
 });
 
-export const receiveApi = () => ({
+export const receiveApi = (planetas) => ({
   type: RECEIVE_API,
   payload: planetas.results,
 });
+
+export function fetchAllPlanets() {
+  return (dispatch) => {
+    dispatch(requestApi());
+    return RequisitionApi()
+      .then((getAPi) => dispatch(receiveApi(getAPi)));
+  };
+}

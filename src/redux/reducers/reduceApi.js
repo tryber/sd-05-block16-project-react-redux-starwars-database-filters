@@ -12,7 +12,7 @@ MELHOR LÓGICA DESSE REDUCER */
 
 // tenho que importar dados da API para receber "results"
 
-export const reduceApi = (state = INITIALSTATE, action) => {
+const reduceApi = (state = INITIALSTATE, action) => {
   switch (action.type) {
     case REQUEST_API:
       return {
@@ -29,3 +29,5 @@ export const reduceApi = (state = INITIALSTATE, action) => {
       return state;
   }
 };
+
+export default reduceApi;
