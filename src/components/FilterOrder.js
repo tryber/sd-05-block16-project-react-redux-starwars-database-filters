@@ -7,9 +7,8 @@ import { filterByOrder } from '../actions';
 const col = ['population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water'];
 
 function renderOption(event) {
-  event.map((e) => <option key={e} value={e}>{e}</option>);
+  return event.map((e) => <option key={e} value={e}>{e}</option>);
 }
-
 
 class FilterOrder extends Component {
   constructor(props) {
