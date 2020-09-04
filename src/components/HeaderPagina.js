@@ -78,20 +78,6 @@ class FiltrosDaPagina extends React.Component {
     return teste;
   }
 
-  renderProcurar() {
-    const { dispatchSearch } = this.props;
-    return (
-      <div>
-        <label htmlFor="search">Procurar: </label>
-        <input
-          type="text"
-          data-testid="name-filter"
-          onChange={(event) => dispatchSearch(event.target.value)}
-        />
-      </div>
-    );
-  }
-
   /*
   {columns
     .filter((option) => !filters.map((filter) => filter.column).includes(option))
@@ -125,6 +111,20 @@ class FiltrosDaPagina extends React.Component {
             .filter((option) => !filters.map((filter) => filter.column).includes(option))
             .map((option) => <option value={option}>{option}</option>)}
         </select>
+      </div>
+    );
+  }
+
+  renderProcurar() {
+    const { dispatchSearch } = this.props;
+    return (
+      <div>
+        <label htmlFor="search">Procurar: </label>
+        <input
+          type="text"
+          data-testid="name-filter"
+          onChange={(event) => dispatchSearch(event.target.value)}
+        />
       </div>
     );
   }
