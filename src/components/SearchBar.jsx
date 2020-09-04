@@ -17,7 +17,7 @@ const mapDispatchToProps = (dispatch) => ({
 export default connect(null, mapDispatchToProps)(SearchBar);
 
 SearchBar.propTypes = {
-  filterByName: PropTypes.func.isRequired,
+  nameFilter: PropTypes.func.isRequired,
 };
 
 /* Transparencia: Felipe me auxiliou a corrigir um erro de CC do parâmetro de
