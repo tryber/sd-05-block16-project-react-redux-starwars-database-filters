@@ -120,8 +120,7 @@ class FiltrosDaPagina extends React.Component {
         <select
           data-testid="comparison-filter"
           value={this.state.comparison}
-          onChange={this.handleComparisonChange}
-        > {/* Gera as options de comparação */}
+          onChange={this.handleComparisonChange}> 
           {options
             .filter((option) => !filters.map((filter) => filter.column).includes(option))
             .map((option) => <option value={option}>{option}</option>)}
