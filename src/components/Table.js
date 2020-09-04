@@ -24,7 +24,7 @@ function filterNumber(allPlanets, filter) {
  // https://github.com/tryber/sd-05-block16-project-react-redux-starwars-database-filters/blob/marina-barcelos-react-redux-starwars/src/components/TableBody.js
  // A função filterNumber ela filtra de acordo com o case que recebe do parâmetro filter;
 
-function sortPlanets (planets, sort, column) {
+function sortPlanets(planets, sort, column) {
   if (sort === 'DESC') {
     return planets.sort((a, b) => Number(b[column]) - Number(a[column]));
   }
@@ -32,7 +32,7 @@ function sortPlanets (planets, sort, column) {
     return planets.sort((a, b) => Number(a[column]) - Number(b[column]));
   }
   return planets;
-};
+}
 
 // Sort é uma função que organiza um array de acordo com a lógina passada como parâmetro.
 // fonte: https://github.com/tryber/sd-05-block16-project-react-redux-starwars-database-filters/pull/27
@@ -87,7 +87,7 @@ class Table extends Component {
     const { planets, search, filter } = this.props;
     const { sort, coluna } = this.props;
     if (this.props.fetching) return <Loading />;
-    const ordPlanets =  planets.sort((a, b) => a.name.localeCompare(b.name));
+    const ordPlanets = planets.sort((a, b) => a.name.localeCompare(b.name));
     // localeCompare: https://pt.stackoverflow.com/questions/445795/como-funciona-o-m%C3%A9todo-localecompare
     const sortedPlanets = sortPlanets(ordPlanets, sort, coluna);
     const filteredPlanets = filterNumber(sortedPlanets, filter[filter.length - 1]);
@@ -128,6 +128,8 @@ Table.propTypes = {
   planets: PropTypes.arrayOf(PropTypes.object).isRequired,
   search: PropTypes.string.isRequired,
   filter: PropTypes.func.isRequired,
+  sort: PropTypes.string.isRequired,
+  coluna: PropTypes.string.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Table);
