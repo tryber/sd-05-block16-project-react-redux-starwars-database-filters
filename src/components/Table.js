@@ -5,7 +5,7 @@ import { fetchAllPlanets } from '../actions';
 import Body from './Body';
 import Head from './Head';
 
-export class Table extends Component {
+class Table extends Component {
   componentDidMount() {
     const { getFetch } = this.props;
     getFetch();

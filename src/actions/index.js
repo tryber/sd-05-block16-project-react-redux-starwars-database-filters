@@ -2,8 +2,10 @@ import requisicaoAPI from '../api/data';
 
 export const REQUEST_API = 'REQUEST_API';
 export const RECEIVE_API = 'RECEIVE_API';
+export const FILTER_NAME = 'FILTER_NAME';
+
 const ACTIONS = {
-  REQUEST_API, RECEIVE_API,
+  REQUEST_API, RECEIVE_API, FILTER_NAME
 };
 
 export default ACTIONS;
@@ -19,6 +21,11 @@ export const requestApi = () => ({
 export const receiveApi = (planetas) => ({
   type: RECEIVE_API,
   payload: planetas,
+});
+
+export const filter = (nome) => ({
+  type: FILTER_NAME,
+  payload: nome,
 });
 
 export function fetchAllPlanets() {
