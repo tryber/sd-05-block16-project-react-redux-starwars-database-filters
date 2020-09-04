@@ -34,6 +34,13 @@ const AllColumns = [
   'url',
 ];
 
+const options = [
+  'Comparação',
+  'maior que',
+  'menor que',
+  'igual a',
+];
+
 class FiltrosDaPagina extends React.Component {
   constructor(props) {
     super(props);
@@ -99,7 +106,6 @@ class FiltrosDaPagina extends React.Component {
 
   renderFiltrosValoresNum() {
     const { dispatchFilterValues, filters } = this.props;
-    // console.log('filters', filters);
     return (
       <div>
         <select
@@ -116,10 +122,10 @@ class FiltrosDaPagina extends React.Component {
           value={this.state.comparison}
           onChange={this.handleComparisonChange}
         > {/* Gera as options de comparação */}
-          <option defaultValue>Comparação</option>
-          <option>maior que</option>
-          <option>menor que</option>
-          <option>igual a</option>
+          {options
+            .filter((option) => !filters.map((filter) => filter.column).includes(option))
+            .map((option) => <option value={option}>{option}</option>)}
+
         </select>
         {/* Gera o input com o value de comparação */}
         <input type="number" data-testid="value-filter" onChange={this.handleValueChange} />
@@ -137,7 +143,6 @@ class FiltrosDaPagina extends React.Component {
   }
 
   renderFiltersOrder() {
-    {/* Gera o input com o value de comparação */ }
     const { filters } = this.props;
     return (
       <div className="order">
