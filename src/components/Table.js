@@ -19,9 +19,23 @@ function filterNumber(allPlanets, filter) {
       return allPlanets;
   }
 }
- // solução retirada do repositório:
+
+// solução retirada do repositório:
  // https://github.com/tryber/sd-05-block16-project-react-redux-starwars-database-filters/blob/marina-barcelos-react-redux-starwars/src/components/TableBody.js
  // A função filterNumber ela filtra de acordo com o case que recebe do parâmetro filter;
+
+function sortPlanets (planets, sort, column) {
+  if (sort === 'DESC') {
+    return planets.sort((a, b) => Number(b[column]) - Number(a[column]));
+  }
+  if (sort === 'ASC') {
+    return planets.sort((a, b) => Number(a[column]) - Number(b[column]));
+  }
+  return planets;
+};
+
+// Sort é uma função que organiza um array de acordo com a lógina passada como parâmetro.
+// fonte: https://github.com/tryber/sd-05-block16-project-react-redux-starwars-database-filters/pull/27
 
 function filArray(array, text) {
   return array.filter((arr) => arr.name.includes(text));
@@ -70,11 +84,13 @@ class Table extends Component {
       'population', 'residents', 'films', 'created',
       'edited,',
     ];
-    const { planets } = this.props;
-    const { search } = this.props;
-    const { filter } = this.props;
+    const { planets, search, filter } = this.props;
+    const { sort, coluna } = this.props;
     if (this.props.fetching) return <Loading />;
-    const filteredPlanets = filterNumber(planets, filter[filter.length - 1]);
+    const ordPlanets =  planets.sort((a, b) => a.name.localeCompare(b.name));
+    // localeCompare: https://pt.stackoverflow.com/questions/445795/como-funciona-o-m%C3%A9todo-localecompare
+    const sortedPlanets = sortPlanets(ordPlanets, sort, coluna);
+    const filteredPlanets = filterNumber(sortedPlanets, filter[filter.length - 1]);
     return (
       <table>
         <thead>
@@ -97,6 +113,8 @@ const mapStateToProps = (state) => ({
   fetching: state.emptyReducer.fetching,
   search: state.filters.filterByName.name,
   filter: state.filters.filterByNumericValues,
+  sort: state.filters.order.sort,
+  coluna: state.filters.order.column,
 });
 
 const mapDispatchToProps = (dispatch) => ({

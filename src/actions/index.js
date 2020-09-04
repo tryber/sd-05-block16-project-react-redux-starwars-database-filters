@@ -7,6 +7,7 @@ export const NAME = 'NAME';
 export const COLUMN = 'COLUMN';
 export const COMPARISON = 'COMP';
 export const REMOVE = 'REMOVE';
+export const ORDER = 'ORDER';
 
 export const rqPlanets = () => ({
   type: REQUEST_PLANETS,
@@ -51,4 +52,10 @@ export const filterValues = (column, comparison, value) => ({
 export const removeFilters = (index) => ({
   type: REMOVE,
   index,
-})
+});
+
+export const ordenar = (order, column) => ({
+  type: ORDER,
+  column,
+  order,
+});

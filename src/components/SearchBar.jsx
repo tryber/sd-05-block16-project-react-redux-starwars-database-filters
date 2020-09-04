@@ -28,8 +28,7 @@ class SearchBar extends Component {
   render() {
     const { filterV, f_Name } = this.props;
     const { column, comparison, value } = this.state;
-    return (
-    <div> <FilterWindow /> Procurar:
+    return (<div> <FilterWindow /> Procurar:
         <input
           data-testid="name-filter"
           onChange={(e) => f_Name(e.target.value)} type="text"
@@ -38,8 +37,7 @@ class SearchBar extends Component {
         data-testid="column-filter" onChange={(e) => {
           this.setState({ column: e.target.value });
         }}
-      > {colunas.map((i) => (<option>{i}</option>))}
-      </select>
+      > {colunas.map((i) => (<option>{i}</option>))} </select>
       <select
         onChange={(e) => {
           this.setState({ comparison: e.target.value });
@@ -52,7 +50,7 @@ class SearchBar extends Component {
           this.setState({ value: e.target.value });
         }}
       />
-       <button
+      <button
         onClick={() => {
           filterV(column, comparison, value);
           removeC(column);

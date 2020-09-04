@@ -1,10 +1,9 @@
-import { NAME, COLUMN, REMOVE } from '../actions/index';
+import { NAME, COLUMN, REMOVE, ORDER } from '../actions/index';
 
 const INITIAL_STATE = {
-  filterByName: {
-    name: '',
-  },
+  filterByName: { name: '' },
   filterByNumericValues: [],
+  order: { column: 'Name', sort: 'ASC' },
 };
 
 const filters = (state = INITIAL_STATE, action) => {
@@ -12,9 +11,7 @@ const filters = (state = INITIAL_STATE, action) => {
     case NAME:
       return {
         ...state,
-        filterByName: {
-          name: action.filters.filterByName.name,
-        },
+        filterByName: { name: action.filters.filterByName.name },
       };
     case COLUMN:
       return {
@@ -32,9 +29,11 @@ const filters = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         filterByNumericValues: [
-          state.filterByNumericValues.slice(action.index),
-        ]
-      }
+          ...state.filterByNumericValues.filter((item, index) => index !== action.index),
+        ],
+      };
+    case ORDER:
+      return { ...state, order: { column: action.column, sort: action.order } };
     default:
       return state;
   }

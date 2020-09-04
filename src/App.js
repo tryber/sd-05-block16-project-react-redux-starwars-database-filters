@@ -3,6 +3,7 @@ import './App.css';
 import Table from './components/Table';
 import SearchBar from './components/SearchBar';
 import './App.css';
+import Order from './components/Order';
 
 class App extends Component {
 
@@ -11,6 +12,7 @@ class App extends Component {
       <div>
         <header >
           <SearchBar />
+          <Order />
         </header>
         <body>
           <Table />

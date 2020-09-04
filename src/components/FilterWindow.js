@@ -1,36 +1,38 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { filterValues, removeFilters } from '../actions';
 
 class FilterWindow extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
-    this.state = {}
+    this.state = {};
     this.filtW = this.filtW.bind(this);
   }
 
-  filtW(array, index) {
-    if(array === undefined || array.comparison === '') {
-      return '';
-    }
+  filtW() {
     return (
-       <div>
-         <div data-testid="filter">
-         {array.column} {array.comparison} {array.value}
-         <button onClick={() => this.props.removeF(index)}>X</button>
-         </div>
-       </div>
-    )
+      <div>
+        {this.props.filter.map((item, index) => {
+          if (item.comparison !== undefined) {
+            return (
+              <div data-testid="filter">
+                {item.column}
+                {item.comparison}
+                {item.value}
+                <button onClick={() => this.props.removeF(index)}>X</button>
+              </div>
+            );
+          }
+          return (null);
+        })}
+      </div>
+    );
   }
 
   render() {
     const { filter } = this.props;
-    return(
-      <div data-testid="filter"> 
-        <div>{this.filtW(filter[filter.length - 2], filter.length - 2)}</div>
-        <div>{this.filtW(filter[filter.length - 1], filter.length - 1)}</div>
-      </div>
-    )
+    return <div>{filter.length > 0 ? this.filtW() : null}</div>;
   }
 }
 
@@ -41,6 +43,11 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   filterV: (name1, name2, name3) => dispatch(filterValues(name1, name2, name3)),
   removeF: (index) => dispatch(removeFilters(index)),
-})
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(FilterWindow);
+
+FilterWindow.propTypes = {
+  filter: PropTypes.arrayOf(Object).isRequired,
+  removeF: PropTypes.func.isRequired,
+};
