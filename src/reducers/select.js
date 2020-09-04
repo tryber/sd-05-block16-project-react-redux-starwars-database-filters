@@ -1,6 +1,7 @@
-const INITIAL_STATE = {
-  filterByName: { name: '' },
-  filterByNumericValues: [],
+const INITIAL_STATE = {  
+  column: '',
+  comparison: '',
+  value: '',
 };
 
 const select = (state = INITIAL_STATE, action) => {
@@ -10,18 +11,25 @@ const select = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         filterByName: { name: action.payload },
-        filterByNumericValues:
-          [{ column: action.payload, comparison: action.payload, value: action.payload }],
-      };
+      }
     case 'SELECIONAR_TITULO':
       return {
         ...state,
-
-      };
+        column: action.coluna,
+      }
+    case 'SELECIONAR_COMPARACAO':
+      return {
+        ...state,
+        comparison: action.comparacao,
+      }
+    case 'FILTRO_POR_NUMERO':
+      return {
+        ...state,
+        value: action.valor,
+      }   
     default:
       return state;
   }
 };
 
 export default select;
-

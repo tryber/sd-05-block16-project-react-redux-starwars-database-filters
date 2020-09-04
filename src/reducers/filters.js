@@ -1,5 +1,6 @@
 const INITIAL_STATE = {
   filterByName: { name: '' },
+  filterByNumericValues: [],
 };
 
 const filters = (state = INITIAL_STATE, action) => {
@@ -10,6 +11,12 @@ const filters = (state = INITIAL_STATE, action) => {
         ...state,
         filterByName: { name: action.payload },
       };
+    case 'FILTRO_COMPLETO':
+      console.log(action.obj)
+      return {
+        ...state,
+        filterByNumericValues: [ ...state.filterByNumericValues, action.obj ],
+      }
     default:
       return state;
   }

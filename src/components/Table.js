@@ -5,16 +5,39 @@ import Planeta from './Planeta';
 import { dataSet } from '../actions/index';
 // import data from "../section/data";
 
+function filtrar(arr, arrfiltros) {
+  let resultadoFinal = arr;
+  arrfiltros.forEach((filtro) => {
+    const { column, comparison, value } = filtro;
+    if(comparison === 'maior que') {
+      resultadoFinal = resultadoFinal.filter((planet) => +planet[column] > +value)
+    } else if (comparison === 'igual a'){
+      resultadoFinal = resultadoFinal.filter((planet) => +planet[column] === +value)
+    } else {
+      resultadoFinal = resultadoFinal.filter((planet) => +planet[column] < +value)
+    }
+  })
+  return resultadoFinal;
+}
+
 class Table extends React.Component {
   componentDidMount() {
     this.props.startAPI();
   }
 
   render() {
-    const { data, cabecalho, isLoading, nomeProcurado } = this.props;
+    const { data, cabecalho, isLoading, nomeProcurado, filtros } = this.props;
+    console.log(filtros);
     if (isLoading) return <h1>loading...</h1>;
     const planetas = data.filter((planeta) =>
       planeta.name.toLowerCase().indexOf(nomeProcurado.toLowerCase()) >= 0);
+    let resultado;
+      if (filtros.length > 0){
+      resultado = filtrar(planetas, filtros)
+    } else {
+      resultado = planetas;
+    }
+
     return (
       <div>
         <div>StarWars Datatable with Filters</div>
@@ -27,7 +50,7 @@ class Table extends React.Component {
             </tr>
           </thead>
           <tbody>
-            { isLoading === false ? planetas.map((inforPlaneta) => (
+            { isLoading === false ? resultado.map((inforPlaneta) => (
               <Planeta cabec={cabecalho} data={inforPlaneta} />
             )) : null
             }
@@ -46,6 +69,7 @@ const mapStateToProps = (state) => ({
   cabecalho: state.reducerBasico.cabecalho,
   isLoading: state.reducerBasico.isLoading,
   nomeProcurado: state.filters.filterByName.name,
+  filtros: state.filters.filterByNumericValues,
 });
 
 // todas as actions que for utilizar tem que estar dentro do mapDispatch
