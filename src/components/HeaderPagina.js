@@ -104,8 +104,8 @@ class FiltrosDaPagina extends React.Component {
   o terceiro map cria options para cada coluna restante
   */
 
-  renderFiltrosValoresNum() {
-    const { dispatchFilterValues, filters } = this.props;
+  rederSelects() {
+    const { filters } = this.props;
     return (
       <div>
         <select
@@ -124,9 +124,16 @@ class FiltrosDaPagina extends React.Component {
           {options
             .filter((option) => !filters.map((filter) => filter.column).includes(option))
             .map((option) => <option value={option}>{option}</option>)}
-
         </select>
-        {/* Gera o input com o value de comparação */}
+      </div>
+    );
+  }
+
+  renderFiltrosValoresNum() {
+    const { dispatchFilterValues } = this.props;
+    return (
+      <div>
+        {this.rederSelects()}
         <input type="number" data-testid="value-filter" onChange={this.handleValueChange} />
         <button
           data-testid="button-filter"
@@ -140,8 +147,6 @@ class FiltrosDaPagina extends React.Component {
       </div>
     );
   }
-
-
 
   renderFiltersOrder() {
     const { filters } = this.props;
