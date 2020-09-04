@@ -38,7 +38,7 @@ Ele deve atualizar a tabela com os planetas que se encaixam no filtro à medida 
     filterByName: {
       name: 'Tatoo'
     }
-  }
+  }git@github.com:tryber/sd-05-block16-project-react-redux-starwars-database-filters.git
 }
 ```
 
