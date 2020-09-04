@@ -2,15 +2,20 @@ import resolveApi from '../service/swAPI';
 
 const CARREGANDO_API = 'CARREGANDO_API';
 const SUCESSO_API = 'SUCESSO_API';
-const FALHA_API = 'FALHA_API';
+const FILTRAR_NOMES = 'FILTRAR_NOMES';
 
 const ACTIONS = {
   CARREGANDO_API,
   SUCESSO_API,
-  FALHA_API,
+  FILTRAR_NOMES,
 };
 
 export default ACTIONS;
+
+export const filtraNomesAction = (name) => ({
+  type: FILTRAR_NOMES,
+  name,
+});
 
 const carregandoApiAction = () => ({
   type: CARREGANDO_API,

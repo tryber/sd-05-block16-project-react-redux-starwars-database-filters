@@ -3,11 +3,14 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 class TBody extends Component {
+
   render() {
-    const { planetas } = this.props;
+    const { planetas, names } = this.props;
     return (
       <tbody>
-        {planetas.map((planeta) => (
+        {planetas
+        .filter((planeta) => planeta.name.includes(names))
+        .map((planeta) => (
           <tr>
             <td>{planeta.name}</td>
             <td>{planeta.rotation_period}</td>
@@ -32,10 +35,12 @@ class TBody extends Component {
 
 const mapStateToProps = (state) => ({
   planetas: state.apiReducer.data.results,
+  names: state.apiReducer.filters.filterByName.name,
 });
 
 export default connect(mapStateToProps)(TBody);
 
 TBody.propTypes = {
   planetas: PropTypes.func.isRequired,
+  names: PropTypes.func.isRequired,
 };

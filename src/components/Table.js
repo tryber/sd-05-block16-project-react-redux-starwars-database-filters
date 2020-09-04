@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { fetchApi } from '../action';
 import THead from './THead';
 import TBody from './TBody';
+import SearchBar from './SearchBar';
 
 class Table extends Component {
 
@@ -16,12 +17,15 @@ class Table extends Component {
     const { isFetching } = this.props;
     if (isFetching) return <h1>LOADING</h1>;
     return (
-      <table>
-        <thead>
-          <THead />
-        </thead>
-        <TBody />
-      </table>
+      <div>
+        <SearchBar />
+        <table>
+          <thead>
+            <THead />
+          </thead>
+          <TBody />
+        </table>
+      </div>
     );
   }
 }
