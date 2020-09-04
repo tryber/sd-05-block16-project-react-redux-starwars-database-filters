@@ -34,13 +34,7 @@ class Table extends Component {
   }
 
   render() {
-    const {
-      loading,
-      planets,
-      cabecalho,
-      filterByName,
-      filterByNumericValues,
-    } = this.props;
+    const { loading, planets, cabecalho, filterByName, filterByNumericValues } = this.props;
     let allPlanets;
     if (loading) return <h1>Carregando</h1>;
 

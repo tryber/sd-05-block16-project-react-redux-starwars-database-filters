@@ -61,7 +61,7 @@ const mapStateToProps = (state) => ({
   column: state.filters.column,
   comparison: state.filters.comparison,
   value: state.filters.value,
-})
+});
 
 FilterNumber.propTypes = {
   handleClick: PropTypes.func.isRequired,
