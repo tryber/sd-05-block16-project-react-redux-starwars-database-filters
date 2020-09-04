@@ -27,6 +27,23 @@ function filterNumber(allPlanets, filter) {
   }
 }
 
+function filter(planets, filterByName,filterByNumericValues) {
+  let allPlanets;
+
+  if (filterByName !== '') {
+    allPlanets = planets.filter(
+      (el) =>
+        el.name.toLowerCase().indexOf(filterByName.name.toLowerCase()) >= 0,
+    );
+  }
+
+  filterByNumericValues.forEach((filter) => {
+    allPlanets = filterNumber(allPlanets, filter);
+  });
+
+  return allPlanets;
+}
+
 class Table extends Component {
   componentDidMount() {
     const { getPlanets } = this.props;
@@ -38,16 +55,7 @@ class Table extends Component {
     let allPlanets;
     if (loading) return <h1>Carregando</h1>;
 
-    if (filterByName !== '') {
-      allPlanets = planets.filter(
-        (el) =>
-          el.name.toLowerCase().indexOf(filterByName.name.toLowerCase()) >= 0,
-      );
-    }
-
-    filterByNumericValues.forEach((filter) => {
-      allPlanets = filterNumber(allPlanets, filter);
-    });
+    allPlanets = filter(planets, filterByName,filterByNumericValues)
 
     return (
       <div>

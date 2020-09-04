@@ -25,14 +25,12 @@ function FilterNumber(props) {
       </select>
       <label htmlFor="value">
         <input
-          data-testid="value-filter"
-          type="number"
+          data-testid="value-filter" type="number"
           onChange={(e) => props.changeValue(e.target.value)}
         />
       </label>
       <button
-        type="button"
-        data-testid="button-filter"
+        type="button" data-testid="button-filter"
         onClick={() => props.handleClick(column, comparison, value)}
       >
         Filtrar
