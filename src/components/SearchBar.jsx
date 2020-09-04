@@ -3,15 +3,15 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { filterByName } from '../actions';
 
-const SearchBar = ({ filterByName }) => (
+const SearchBar = ({ nameFilter }) => (
   <input
     data-testid="name-filter"
-    onChange={(event) => filterByName(event.target.value)}
+    onChange={(event) => nameFilter(event.target.value)}
   />
 );
 
 const mapDispatchToProps = (dispatch) => ({
-  filterByName: (value) => dispatch(filterByName(value)),
+  nameFilter: (value) => dispatch(filterByName(value)),
 });
 
 export default connect(null, mapDispatchToProps)(SearchBar);
@@ -19,3 +19,7 @@ export default connect(null, mapDispatchToProps)(SearchBar);
 SearchBar.propTypes = {
   filterByName: PropTypes.func.isRequired,
 };
+
+/* Transparencia: Felipe me auxiliou a corrigir um erro de CC do parâmetro de
+SearchBar que estava reclamando de Redundância.. alterei o filterByName para
+nameFilter para evitar essa redundância. */

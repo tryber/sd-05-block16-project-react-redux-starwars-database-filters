@@ -6,7 +6,7 @@ import Body from './Body';
 const Table = () => (
   <div>
     <h1>StarWars Datatable with Filters</h1>
-      <SearchBar />
+    <SearchBar />
     <table>
       <Header />
       <Body />

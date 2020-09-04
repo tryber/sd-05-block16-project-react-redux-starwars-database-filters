@@ -22,7 +22,7 @@ export const fetchPlanets = () => (dispatch) => {
   dispatch(fetchingPlanets());
   return fetchPlanetsAPI().then(
     (planetsData) => dispatch(fetched(planetsData.results)),
-    (error) => dispatch(failed(error))
+    (error) => dispatch(failed(error)),
   );
 };
 
