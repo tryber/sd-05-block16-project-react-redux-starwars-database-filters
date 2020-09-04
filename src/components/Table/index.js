@@ -12,15 +12,15 @@ function filterNumber(allPlanets, filter) {
   switch (filter.comparison) {
     case 'maior que':
       return allPlanets.filter(
-        (planet) => Number(planet[filter.column]) > Number(filter.value)
+        (planet) => Number(planet[filter.column]) > Number(filter.value),
       );
     case 'menor que':
       return allPlanets.filter(
-        (planet) => Number(planet[filter.column]) < Number(filter.value)
+        (planet) => Number(planet[filter.column]) < Number(filter.value),
       );
     case 'igual a':
       return allPlanets.filter(
-        (planet) => Number(planet[filter.column]) === Number(filter.value)
+        (planet) => Number(planet[filter.column]) === Number(filter.value),
       );
     default:
       return allPlanets;
@@ -44,11 +44,10 @@ class Table extends Component {
     let allPlanets;
     if (loading) return <h1>Carregando</h1>;
 
-    //allPlanets = filterInput(allPlanets, filterByName);
     if (filterByName !== '') {
       allPlanets = planets.filter(
         (el) =>
-          el.name.toLowerCase().indexOf(filterByName.name.toLowerCase()) >= 0
+          el.name.toLowerCase().indexOf(filterByName.name.toLowerCase()) >= 0,
       );
     }
 
@@ -71,7 +70,7 @@ class Table extends Component {
           <tbody>
             {loading === false
               ? allPlanets.map((infoPlaneta) => (
-                  <TableBody data={infoPlaneta} />
+                <TableBody data={infoPlaneta} />
                 ))
               : null}
           </tbody>
@@ -95,6 +94,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 Table.propTypes = {
   planets: PropTypes.arrayOf(PropTypes.object).isRequired,
+  filterByNumericValues: PropTypes.arrayOf(PropTypes.object).isRequired,
   filterByName: PropTypes.arrayOf(PropTypes.object).isRequired,
   cabecalho: PropTypes.arrayOf(PropTypes.object).isRequired,
   getPlanets: PropTypes.func.isRequired,
