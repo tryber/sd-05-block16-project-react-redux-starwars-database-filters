@@ -1,21 +1,21 @@
 import React from 'react';
 import { connect } from 'react-redux';
+// import Proptypes from 'prop-types';
 import filtroCompleto from '../actions/filtroCompleto';
 
-class botaoFiltrar extends React.Component {
-  
+class BotaoFiltrar extends React.Component {
+
   handleClick = () => {
-    console.log(this.props)
+    /* console.log(this.props) */
     const { coluna, comparacao, valor, filter } = this.props;
-    filter({ column: coluna, comparison: comparacao, value: valor })
+    filter({ column: coluna, comparison: comparacao, value: valor });
   }
-  
   render() {
     return (
       <div>
         <button
           data-testid="button-filter"
-          onClick={ this.handleClick }
+          onClick={this.handleClick}
         >
           Filtrar
         </button>
@@ -36,4 +36,11 @@ const mapDispatchToProps = (dispatch) => ({
   filter: (objetao) => dispatch(filtroCompleto(objetao)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(botaoFiltrar);
+/* BotaoFiltrar.propTypes = {
+  filter: Proptypes.func.isRequired,
+  valor: Proptypes.arrayOf(Proptypes.object).isRequired,
+  comparacao: Proptypes.arrayOf(Proptypes.object).isRequired,
+  coluna: Proptypes.arrayOf(Proptypes.object).isRequired,
+}; */
+
+export default connect(mapStateToProps, mapDispatchToProps)(BotaoFiltrar);

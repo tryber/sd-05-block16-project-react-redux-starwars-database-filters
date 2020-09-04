@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import Proptypes from 'prop-types';
 import numeroDigitado from '../actions/numeroDigitado';
 
-class filtrarNumeros extends React.Component {
+class FiltrarNumeros extends React.Component {
   render() {
     return (
       <div>
@@ -22,4 +23,8 @@ const mapDispatchToProps = (dispatch) => ({
   valorNumero: (valorDigitado) => dispatch(numeroDigitado(valorDigitado)),
 });
 
-export default connect(null, mapDispatchToProps)(filtrarNumeros);
+FiltrarNumeros.propTypes = {
+  valorNumero: Proptypes.func.isRequired,
+};
+
+export default connect(null, mapDispatchToProps)(FiltrarNumeros);

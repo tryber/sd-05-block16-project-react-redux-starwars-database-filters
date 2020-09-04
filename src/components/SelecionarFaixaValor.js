@@ -5,7 +5,7 @@ import selectComparacao from '../actions/selectComparacao';
 
 const arrayValores = ['maior que', 'igual a', 'menor que'];
 
-class SelecionarFaixaValor extends React.Component {  
+class SelecionarFaixaValor extends React.Component {
   render() {
     return (
       <div>

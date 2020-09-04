@@ -12,11 +12,11 @@ const filters = (state = INITIAL_STATE, action) => {
         filterByName: { name: action.payload },
       };
     case 'FILTRO_COMPLETO':
-      console.log(action.obj)
+      /* console.log(action.obj) */
       return {
         ...state,
-        filterByNumericValues: [ ...state.filterByNumericValues, action.obj ],
-      }
+        filterByNumericValues: [...state.filterByNumericValues, action.obj],
+      };
     default:
       return state;
   }

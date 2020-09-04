@@ -5,18 +5,20 @@ import Planeta from './Planeta';
 import { dataSet } from '../actions/index';
 // import data from "../section/data";
 
+// coloco o arr em outra variável para não modificar
+// o array recebido e retornar um novo array modificado
 function filtrar(arr, arrfiltros) {
-  let resultadoFinal = arr;
+  let resultadoFinal = [...arr];
   arrfiltros.forEach((filtro) => {
     const { column, comparison, value } = filtro;
-    if(comparison === 'maior que') {
-      resultadoFinal = resultadoFinal.filter((planet) => +planet[column] > +value)
-    } else if (comparison === 'igual a'){
-      resultadoFinal = resultadoFinal.filter((planet) => +planet[column] === +value)
+    if (comparison === 'maior que') {
+      resultadoFinal = resultadoFinal.filter((planet) => +planet[column] > +value);
+    } else if (comparison === 'igual a') {
+      resultadoFinal = resultadoFinal.filter((planet) => +planet[column] === +value);
     } else {
-      resultadoFinal = resultadoFinal.filter((planet) => +planet[column] < +value)
+      resultadoFinal = resultadoFinal.filter((planet) => +planet[column] < +value);
     }
-  })
+  });
   return resultadoFinal;
 }
 
@@ -27,16 +29,13 @@ class Table extends React.Component {
 
   render() {
     const { data, cabecalho, isLoading, nomeProcurado, filtros } = this.props;
-    console.log(filtros);
     if (isLoading) return <h1>loading...</h1>;
     const planetas = data.filter((planeta) =>
       planeta.name.toLowerCase().indexOf(nomeProcurado.toLowerCase()) >= 0);
     let resultado;
-      if (filtros.length > 0){
-      resultado = filtrar(planetas, filtros)
-    } else {
-      resultado = planetas;
-    }
+    if (filtros.length > 0) {
+      resultado = filtrar(planetas, filtros);
+    } else resultado = planetas;
 
     return (
       <div>
@@ -84,6 +83,7 @@ Table.propTypes = {
   isLoading: Proptypes.bool.isRequired,
   startAPI: Proptypes.func.isRequired,
   nomeProcurado: Proptypes.string.isRequired,
+  filtros: Proptypes.arrayOf(Proptypes.object).isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Table);
