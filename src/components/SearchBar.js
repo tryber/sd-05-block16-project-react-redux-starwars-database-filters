@@ -29,6 +29,6 @@ const mapDispatchToProps = (dispatch) => ({
 
 export default connect(null, mapDispatchToProps)(SearchBar);
 
-SearchBar.protoTypes = {
+SearchBar.propTypes = {
   filtrarNomes: PropTypes.func.isRequired,
 };
