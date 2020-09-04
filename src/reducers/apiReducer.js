@@ -17,7 +17,7 @@ function apiReducer(state = INITIAL_STATE, action) {
     case ACTIONS.SUCESSO_API:
       return { ...state, isFetching: action.isFetching, data: action.data };
     case ACTIONS.FILTRAR_NOMES:
-      return { ...state, filters: {filterByName: { name: action.name } } };
+      return { ...state, filters: { filterByName: { name: action.name } } };
     default:
       return state;
   }

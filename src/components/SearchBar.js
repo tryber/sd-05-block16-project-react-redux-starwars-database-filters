@@ -17,7 +17,7 @@ class SearchBar extends Component {
   render() {
     return (
       <div>
-        <input data-testid='name-filter' onChange={this.handleChange} />
+        <input data-testid="name-filter" onChange={this.handleChange} />
       </div>
     );
   }
@@ -30,5 +30,5 @@ const mapDispatchToProps = (dispatch) => ({
 export default connect(null, mapDispatchToProps)(SearchBar);
 
 SearchBar.protoTypes = {
-  filtrarNomes: PropTypes.instanceOf(Object).isRequired,
-}
+  filtrarNomes: PropTypes.func.isRequired,
+};
