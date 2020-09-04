@@ -40,7 +40,7 @@ class Body extends React.Component {
 const mapStateToProps = (state) => ({
   planetsData: state.planetsReducer.planetsData,
   fetching: state.planetsReducer.fetching,
-  filters: state.filterReducer.filterByName.name,
+  filters: state.filters.filterByName.name,
 });
 
 const mapDispatchToProps = (dispatch) => ({
