@@ -27,7 +27,7 @@ function filterNumber(allPlanets, filter) {
   }
 }
 
-function filter(planets, filterByName,filterByNumericValues) {
+function filterFunc(planets, filterByName, filterByNumericValues) {
   let allPlanets;
 
   if (filterByName !== '') {
@@ -52,10 +52,8 @@ class Table extends Component {
 
   render() {
     const { loading, planets, cabecalho, filterByName, filterByNumericValues } = this.props;
-    let allPlanets;
+    const allPlanets = filterFunc(planets, filterByName, filterByNumericValues);
     if (loading) return <h1>Carregando</h1>;
-
-    allPlanets = filter(planets, filterByName,filterByNumericValues)
 
     return (
       <div>
