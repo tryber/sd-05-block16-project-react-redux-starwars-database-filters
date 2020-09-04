@@ -27,4 +27,26 @@ export const filterByName = (planet) => ({
   payload: planet,
 });
 
+export const filterNumber = ( column, comparison, value ) => ({
+  type: 'FILTER_NUMERIC',
+  column,
+  comparison,
+  value,
+});
+
+export const onChangeColumn = (column) => ({
+  type: 'COLUMN_FILTER',
+  payload: column,
+})
+
+export const onChangeComparison = (comparison) => ({
+  type: 'COMPARISON_FILTER',
+  payload: comparison,
+})
+
+export const onChangeValue = (value) => ({
+  type: 'VALUE_FILTER',
+  payload: value,
+})
+
 export default fetchActionPlanets;
