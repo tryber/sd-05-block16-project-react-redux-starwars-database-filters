@@ -112,15 +112,15 @@ class FiltrosDaPagina extends React.Component {
           data-testid="column-filter"
           value={this.state.column}
           onChange={this.handleColumnChange}
-        > {/* Gera as options da coluna */}
+        >
           {columns
             .filter((option) => !filters.map((filter) => filter.column).includes(option))
             .map((option) => <option value={option}>{option}</option>)}
         </select>
         <select
           data-testid="comparison-filter"
-          value={this.state.comparison}
-          onChange={this.handleComparisonChange}> 
+          onChange={this.handleComparisonChange}
+        >
           {options
             .filter((option) => !filters.map((filter) => filter.column).includes(option))
             .map((option) => <option value={option}>{option}</option>)}
@@ -140,6 +140,8 @@ class FiltrosDaPagina extends React.Component {
       </div>
     );
   }
+
+
 
   renderFiltersOrder() {
     const { filters } = this.props;
