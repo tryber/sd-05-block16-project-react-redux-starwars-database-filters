@@ -1,4 +1,4 @@
-import { FILTER_NAME_PLANET, FILTER_VALUES, REMOVE_FILTRO } from '../actions/actionFilterPlanetsName';
+import { FILTER_NAME_PLANET, FILTER_VALUES, REMOVE_FILTRO, ORDENAR_COLUMNS } from '../actions/actionFilterPlanetsName';
 
 const STATE_INICIAL = {
   filterByName: {
@@ -35,6 +35,14 @@ const filters = (state = STATE_INICIAL, action) => {
         filterByNumericValues: [
           ...state.filterByNumericValues
             .filter((filtro) => filtro.column !== action.column),
+        ],
+      };
+    case ORDENAR_COLUMNS:
+      return {
+        ...state,
+        filterByNumericValues: [
+          ...state.filterByNumericValues,
+          { column: action.column, sort: action.sort },
         ],
       };
     default:

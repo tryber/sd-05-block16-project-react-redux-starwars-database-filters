@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { filtrarPlanetsName } from '../actions/actionFilterPlanetsName';
 import { filterValues } from '../actions/actionFilterPlanetsName';
 import { removerFiltroDaTela } from '../actions/actionFilterPlanetsName';
-
+import { ordenarColumns } from '../actions/actionFilterPlanetsName';
 /*
 columns representa a lista com todas as opções possíveis de coluna
 */
@@ -149,7 +149,7 @@ class FiltrosDaPagina extends React.Component {
   }
 
   renderFiltersOrder() {
-    const { filters } = this.props;
+    const { filters, dispatchOrdenarColumns } = this.props;
     return (
       <div className="order">
         <p>Ordem</p>
@@ -174,7 +174,9 @@ class FiltrosDaPagina extends React.Component {
             data-testid="column-sort-input"
           />DSC
           </label>
-        <button data-testid="column-sort-button">Filtrar</button>
+        <button
+          data-testid="column-sort-button"
+          onClick={() => dispatchOrdenarColumns()}>Filtrar</button>
       </div>
     );
   }
@@ -211,6 +213,7 @@ const mapDispatchToProps = (dispatch) => ({
     value,
   ) => dispatch(filterValues(column, comparison, value)),
   dispatchRemoverFiltroDaTela: (column) => dispatch(removerFiltroDaTela(column)),
+  dispatchOrdenarColumns: (column, sort) => dispatch(ordenarColumns(column, sort)),
 });
 
 FiltrosDaPagina.propTypes = {
@@ -218,6 +221,7 @@ FiltrosDaPagina.propTypes = {
   dispatchFilterValues: PropTypes.func.isRequired,
   filters: PropTypes.func.isRequired,
   dispatchRemoverFiltroDaTela: PropTypes.func.isRequired,
+  dispatchOrdenarColumns: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(FiltrosDaPagina);
