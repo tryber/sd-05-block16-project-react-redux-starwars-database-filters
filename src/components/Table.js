@@ -67,7 +67,6 @@ class Table extends React.Component {
   e no react faz papel no render
 */
 
-/* os states que vou usar mapStateToProps vem do reducer initial_state*/
 /*
   O valor do state do verificandoRequisicaoAPI
   vai ser três infos(o state, o reducer que
@@ -114,6 +113,7 @@ const filtraPlanetas = (planetas, filtroDeTexto, filterByNumericValues) => {
   return planetasExibidos;
 };
 
+/* os states que vou usar mapStateToProps vem do initial_state do reducer*/
 const mapStateToProps = (state) => ({
   fazendoRequisicao: state.planetsReducer.fazendoRequisicao,
   data: filtraPlanetas(

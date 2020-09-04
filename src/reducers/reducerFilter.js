@@ -5,6 +5,10 @@ const STATE_INICIAL = {
     name: '',
   },
   filterByNumericValues: [],
+  order: {
+    column: '',
+    sort: '',
+  },
 };
 
 const filters = (state = STATE_INICIAL, action) => {

@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { filtrarPlanetsName } from '../actions/actionFilterPlanetsName';
 import { filterValues } from '../actions/actionFilterPlanetsName';
 import { removerFiltroDaTela } from '../actions/actionFilterPlanetsName';
+import './style.css';
 
 /*
 columns representa a lista com todas as opções possíveis de coluna
@@ -16,6 +17,22 @@ const columns = [
   'diameter',
   'rotation_period',
   'surface_water',
+];
+
+const AllColumns = [
+  'name',
+  'rotation_period',
+  'orbital_period',
+  'diameter',
+  'climate',
+  'gravity',
+  'terrain',
+  'surface_water',
+  'population',
+  'films',
+  'created',
+  'edited',
+  'url',
 ];
 
 class FiltrosDaPagina extends React.Component {
@@ -88,18 +105,24 @@ class FiltrosDaPagina extends React.Component {
       <div>
         <select
           data-testid="column-filter"
+          value={this.state.column}
           onChange={this.handleColumnChange}
-        >
+        > {/* Gera as options da coluna */}
           {columns
             .filter((option) => !filters.map((filter) => filter.column).includes(option))
             .map((option) => <option value={option}>{option}</option>)}
         </select>
-        <select data-testid="comparison-filter" onChange={this.handleComparisonChange}>
-          <option disabled selected>Comparação</option>
+        <select
+          data-testid="comparison-filter"
+          value={this.state.comparison}
+          onChange={this.handleComparisonChange}
+        > {/* Gera as options de comparação */}
+          <option defaultValue>Comparação</option>
           <option>maior que</option>
           <option>menor que</option>
           <option>igual a</option>
         </select>
+        {/* Gera o input com o value de comparação */}
         <input type="number" data-testid="value-filter" onChange={this.handleValueChange} />
         <button
           data-testid="button-filter"
@@ -110,6 +133,17 @@ class FiltrosDaPagina extends React.Component {
               this.state.value,
             )}
         >Filtrar</button>
+        <div className="order">
+          <p>Ordem</p>
+          <select data-testid='column-sort'>
+            {AllColumns
+              .filter((option) => !filters.map((filter) => filter.column).includes(option))
+              .map((option) => <option value={option}>{option}</option>)}
+          </select>
+          <label htmlFor="ASC"><input type="radio" value="ASC" data-testid='column-sort-input' />ASC</label>
+          <label htmlFor="DSC"><input type="radio" value="DESC" data-testid='column-sort-input' />DSC</label>
+          <button data-testid='column-sort-button'>Filtrar</button>
+        </div>
       </div>
     );
   }
