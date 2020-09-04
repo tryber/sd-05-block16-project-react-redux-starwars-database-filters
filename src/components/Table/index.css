@@ -1,0 +1,14 @@
+.form {
+  align-content: space-between;
+  display: flex;
+  font-size: 14px;
+  justify-content: center;
+  margin: 10px;
+}
+
+input {
+  font-size: 10px;
+  height: 20px;
+  margin: 10px;
+  width: 100px;
+}

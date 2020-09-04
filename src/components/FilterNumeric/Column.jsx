@@ -5,21 +5,14 @@ import { connect } from 'react-redux';
 import { onChangeColumn } from '../../actions';
 
 function Column(props) {
-  const optionColumn = [
-    'Coluna',
-    'population',
-    'orbital_period',
-    'diameter',
-    'rotation_period',
-    'surface_water',
-  ];
+  const { columnOption } = props;
 
   return (
     <select
       data-testid="column-filter"
       onChange={(e) => props.changeColumn(e.target.value)}
     >
-      {optionColumn.map((opt) => (
+      {columnOption.map((opt) => (
         <option key={opt}>{opt}</option>
       ))}
     </select>
@@ -33,8 +26,12 @@ const mapDispatchToProps = (dispatch) => ({
   },
 });
 
+const mapStateToProps = (state) => ({
+  columnOption: state.filters.columnOption,
+});
+
 Column.propTypes = {
   changeColumn: PropTypes.func.isRequired,
 };
 
-export default connect(null, mapDispatchToProps)(Column);
+export default connect(mapStateToProps, mapDispatchToProps)(Column);

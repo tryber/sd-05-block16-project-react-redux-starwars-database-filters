@@ -8,6 +8,7 @@ function Column(props) {
   return (
     <label htmlFor="value">
       <input
+        className="input-value"
         data-testid="value-filter"
         type="number"
         onChange={(e) => props.changeValue(e.target.value)}

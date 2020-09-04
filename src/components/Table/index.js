@@ -2,25 +2,28 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { fetchActionPlanets } from '../../actions';
-import TableBody from '../TableBody';
 import FilterPlanet from '../FilterPlanet';
+import FilterCombo from '../FilterCombo';
 import FilterNumeric from '../FilterNumeric';
+import TBody from './TBody';
+import Cabecalho from './Cabecalho';
+import './index.css';
 
-// Lucas Staroscky
+// Lucas Staroscky filterNumber
 
 function filterNumber(allPlanets, filter) {
   switch (filter.comparison) {
     case 'maior que':
       return allPlanets.filter(
-        (planet) => Number(planet[filter.column]) > Number(filter.value),
+        (planet) => Number(planet[filter.column]) > Number(filter.value)
       );
     case 'menor que':
       return allPlanets.filter(
-        (planet) => Number(planet[filter.column]) < Number(filter.value),
+        (planet) => Number(planet[filter.column]) < Number(filter.value)
       );
     case 'igual a':
       return allPlanets.filter(
-        (planet) => Number(planet[filter.column]) === Number(filter.value),
+        (planet) => Number(planet[filter.column]) === Number(filter.value)
       );
     default:
       return allPlanets;
@@ -33,7 +36,7 @@ function filterFunc(planets, filterByName, filterByNumericValues) {
   if (filterByName !== '') {
     allPlanets = planets.filter(
       (el) =>
-        el.name.toLowerCase().indexOf(filterByName.name.toLowerCase()) >= 0,
+        el.name.toLowerCase().indexOf(filterByName.name.toLowerCase()) >= 0
     );
   }
 
@@ -51,29 +54,25 @@ class Table extends Component {
   }
 
   render() {
-    const { loading, planets, cabecalho, filterByName, filterByNumericValues } = this.props;
+    const {
+      loading,
+      planets,
+      filterByName,
+      filterByNumericValues,
+    } = this.props;
     const allPlanets = filterFunc(planets, filterByName, filterByNumericValues);
     if (loading) return <h1>Carregando</h1>;
 
     return (
       <div>
-        <FilterPlanet />
-        <FilterNumeric />
+        <div className="form">
+          <FilterPlanet />
+          <FilterNumeric />
+          <FilterCombo />
+        </div>
         <table>
-          <thead>
-            <tr>
-              {cabecalho.map((titulo) => (
-                <th key={Math.floor(Math.random() * 0x100000)}>{titulo}</th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {loading === false
-              ? allPlanets.map((infoPlaneta) => (
-                <TableBody data={infoPlaneta} />
-                ))
-              : null}
-          </tbody>
+          <Cabecalho />
+          <TBody allPlanets={allPlanets} />
         </table>
       </div>
     );
@@ -82,7 +81,6 @@ class Table extends Component {
 
 const mapStateToProps = (state) => ({
   loading: state.planetR.isFetching,
-  cabecalho: state.planetR.cabecalho,
   planets: state.planetR.data,
   filterByName: state.filters.filterByName,
   filterByNumericValues: state.filters.filterByNumericValues,
@@ -95,8 +93,7 @@ const mapDispatchToProps = (dispatch) => ({
 Table.propTypes = {
   planets: PropTypes.arrayOf(PropTypes.object).isRequired,
   filterByNumericValues: PropTypes.arrayOf(PropTypes.object).isRequired,
-  filterByName: PropTypes.arrayOf(PropTypes.object).isRequired,
-  cabecalho: PropTypes.arrayOf(PropTypes.object).isRequired,
+  filterByName: PropTypes.object.isRequired,
   getPlanets: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
 };
