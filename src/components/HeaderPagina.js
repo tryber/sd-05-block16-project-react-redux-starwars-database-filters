@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import { filtrarPlanetsName } from '../actions/actionFilterPlanetsName';
 import { filterValues } from '../actions/actionFilterPlanetsName';
 import { removerFiltroDaTela } from '../actions/actionFilterPlanetsName';
-import './style.css';
 
 /*
 columns representa a lista com todas as opções possíveis de coluna
@@ -133,17 +132,38 @@ class FiltrosDaPagina extends React.Component {
               this.state.value,
             )}
         >Filtrar</button>
-        <div className="order">
-          <p>Ordem</p>
-          <select data-testid='column-sort'>
-            {AllColumns
-              .filter((option) => !filters.map((filter) => filter.column).includes(option))
-              .map((option) => <option value={option}>{option}</option>)}
-          </select>
-          <label htmlFor="ASC"><input type="radio" value="ASC" data-testid='column-sort-input' />ASC</label>
-          <label htmlFor="DSC"><input type="radio" value="DESC" data-testid='column-sort-input' />DSC</label>
-          <button data-testid='column-sort-button'>Filtrar</button>
-        </div>
+      </div>
+    );
+  }
+
+  renderFiltersOrder() {
+    {/* Gera o input com o value de comparação */ }
+    const { filters } = this.props;
+    return (
+      <div className="order">
+        <p>Ordem</p>
+        <select data-testid="column-sort">
+          {AllColumns
+            .filter((option) => !filters.map((filter) => filter.column).includes(option))
+            .map((option) => <option value={option}>{option}</option>)}
+        </select>
+        <label htmlFor="ASC">
+          <input
+            type="radio"
+            id="ASC"
+            value="ASC"
+            data-testid="column-sort-input"
+          />ASC
+          </label>
+        <label htmlFor="DESC">
+          <input
+            type="radio"
+            id="DESC"
+            value="DESC"
+            data-testid="column-sort-input"
+          />DSC
+          </label>
+        <button data-testid="column-sort-button">Filtrar</button>
       </div>
     );
   }
@@ -154,6 +174,7 @@ class FiltrosDaPagina extends React.Component {
       <div>
         {this.renderProcurar()}
         {this.renderFiltrosValoresNum()}
+        {this.renderFiltersOrder()}
         <div>
           <p>Filtros {this.showFilters(filters)}</p>
         </div>
