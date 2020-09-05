@@ -9,10 +9,10 @@ function TBody(props) {
     <tbody>
       {loading === false
         ? allPlanets.map((infoPlaneta) => (
-            <TableBody
-              key={Math.floor(Math.random() * 0x100000)}
-              data={infoPlaneta}
-            />
+          <TableBody
+            key={Math.floor(Math.random() * 0x100000)}
+            data={infoPlaneta}
+          />
           ))
         : null}
     </tbody>
@@ -25,6 +25,7 @@ const mapStateToProps = (state) => ({
 
 TBody.propTypes = {
   loading: PropTypes.bool.isRequired,
+  allPlanets: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default connect(mapStateToProps)(TBody);

@@ -1,10 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { removeFilter, retornaColumn } from '../../actions';
+import PropTypes from 'prop-types';
 import './index.css';
 
 const FilterCombo = (props) => {
   const { filterNumeric, remove, retorna } = props;
+
   function MyFunction({ column }) {
     remove(column);
     retorna(column);
@@ -41,5 +43,11 @@ const mapDispatchToprops = (dispatch) => ({
   remove: (rf) => dispatch(removeFilter(rf)),
   retorna: (rC) => dispatch(retornaColumn(rC)),
 });
+
+FilterCombo.propTypes = {
+  remove: PropTypes.func.isRequired,
+  retorna: PropTypes.func.isRequired,
+  filterNumeric: PropTypes.func.isRequired,
+};
 
 export default connect(mapStateToProps, mapDispatchToprops)(FilterCombo);

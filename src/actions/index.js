@@ -20,7 +20,7 @@ export function fetchActionPlanets() {
     // declaração do thunk. Thunk é o retorno de uma função.
     dispatch(requestPlanets());
     return VerificaFetch(PLANET_API).then((dados) =>
-      dispatch(requestPlanetsSuccess(dados))
+      dispatch(requestPlanetsSuccess(dados)),
     );
   };
 }

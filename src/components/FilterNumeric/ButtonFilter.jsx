@@ -35,6 +35,7 @@ const mapStateToProps = (state) => ({
 
 ButtonFilter.propTypes = {
   handleClick: PropTypes.func.isRequired,
+  handleColumn: PropTypes.func.isRequired,
   column: PropTypes.string.isRequired,
   comparison: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,

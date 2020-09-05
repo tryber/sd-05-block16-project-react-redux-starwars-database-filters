@@ -15,15 +15,15 @@ function filterNumber(allPlanets, filter) {
   switch (filter.comparison) {
     case 'maior que':
       return allPlanets.filter(
-        (planet) => Number(planet[filter.column]) > Number(filter.value)
+        (planet) => Number(planet[filter.column]) > Number(filter.value),
       );
     case 'menor que':
       return allPlanets.filter(
-        (planet) => Number(planet[filter.column]) < Number(filter.value)
+        (planet) => Number(planet[filter.column]) < Number(filter.value),
       );
     case 'igual a':
       return allPlanets.filter(
-        (planet) => Number(planet[filter.column]) === Number(filter.value)
+        (planet) => Number(planet[filter.column]) === Number(filter.value),
       );
     default:
       return allPlanets;
@@ -93,7 +93,7 @@ const mapDispatchToProps = (dispatch) => ({
 Table.propTypes = {
   planets: PropTypes.arrayOf(PropTypes.object).isRequired,
   filterByNumericValues: PropTypes.arrayOf(PropTypes.object).isRequired,
-  filterByName: PropTypes.object.isRequired,
+  filterByName: PropTypes.arrayOf(PropTypes.object).isRequired,
   getPlanets: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
 };

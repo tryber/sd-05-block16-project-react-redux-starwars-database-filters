@@ -1,18 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-
+import PropTypes from 'prop-types';
 import { onChangeColumn } from '../../actions';
 
 function Column(props) {
   const { columnOption, filterByNumericValues } = props;
-  let columnOptionFiltered = columnOption;
+  const columnOptionFiltered = columnOption;
   let newArray = [];
-  let novoFilter = [];
+  const novoFilter = [];
   filterByNumericValues.map(a => novoFilter.push(a.column));
 
   if (novoFilter.length > 0) {
-    newArray = columnOptionFiltered.filter(function(element) {
+    newArray = columnOptionFiltered.filter(function (element) {
       return novoFilter.indexOf(element) === -1;
     });
   } else {
@@ -44,7 +44,8 @@ const mapStateToProps = (state) => ({
 });
 
 Column.propTypes = {
-  changeColumn: PropTypes.func.isRequired,
+  columnOption: PropTypes.arrayOf(PropTypes.object).isRequired,
+  filterByNumericValues: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Column);
