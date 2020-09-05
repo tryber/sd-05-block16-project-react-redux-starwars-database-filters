@@ -8,40 +8,38 @@ const INITIAL_STATE = {
   value: 1000,
 };
 
-const filtro = (filter, action) => filter.column !== action.payload;
-
-function filterNumeric(state = INITIAL_STATE, action) {
-  if (action.type === 'FILTER_NUMERIC') {
+function filterNumeric(state = INITIAL_STATE, {type, payload, column, comparison, value}) {
+  if (type === 'FILTER_NUMERIC') {
     return {
       ...state,
       filterByNumericValues: [
         ...state.filterByNumericValues,
         {
-          column: action.column,
-          comparison: action.comparison,
-          value: action.value,
+          column: column,
+          comparison: comparison,
+          value: value,
         },
       ],
     };
   }
-  if (action.type === 'FILTER_NAME')
-    return { ...state, filterByName: { name: action.payload }};
-  if (action.type === 'COLUMN_FILTER')
-    return { ...state, column: action.payload };
-  if (action.type === 'COMPARISON_FILTER')
-    return { ...state, comparison: action.payload };
-  if (action.type === 'VALUE_FILTER')
-    return { ...state, value: action.payload };
-  if (action.type === 'REMOVE_FILTER') {
+  if (type === 'FILTER_NAME') {
+    return { ...state, filterByName: { name: payload } };
+  } else if (type === 'COLUMN_FILTER') {
+    return { ...state, column: payload };
+  } else if (type === 'COMPARISON_FILTER') {
+    return { ...state, comparison: payload };
+  } else if (type === 'VALUE_FILTER') {
+    return { ...state, value: payload };
+  } else if (type === 'REMOVE_FILTER') {
     return {
       ...state,
       filterByNumericValues: [
-        ...state.filterByNumericValues.filter((f) => filtro(f, action)),
+        ...state.filterByNumericValues.filter((f) => f.column !== payload),
       ],
     };
+  } else {
+    return state;
   }
-  return state;
-
 }
 
 export default filterNumeric;
