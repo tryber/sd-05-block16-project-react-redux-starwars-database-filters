@@ -35,12 +35,12 @@ class TBody extends Component {
 
 const mapStateToProps = (state) => ({
   planetas: state.apiReducer.data.results,
-  names: state.apiReducer.filters.filterByName.name,
+  names: state.filters.filterByName.name,
 });
 
 export default connect(mapStateToProps)(TBody);
 
 TBody.propTypes = {
-  planetas: PropTypes.func.isRequired,
-  names: PropTypes.func.isRequired,
+  planetas: PropTypes.instanceOf(Array).isRequired,
+  names: PropTypes.string.isRequired,
 };

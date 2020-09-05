@@ -19,5 +19,5 @@ const mapStateToProps = (state) => ({
 export default connect(mapStateToProps)(THead);
 
 THead.propTypes = {
-  header: PropTypes.func.isRequired,
+  header: PropTypes.arrayOf(PropTypes.instanceOf(Object)).isRequired,
 };
