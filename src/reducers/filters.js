@@ -1,17 +1,12 @@
 const INITIAL_STATE = {
-  filterByName: {
-    name: '',
-  },
   filterByNumericValues: [],
   column: 'population',
   comparison: 'maior que',
   value: 1000,
 };
 
-function filterByName(state = INITIAL_STATE, action) {
+function filterNumeric(state = INITIAL_STATE, action) {
   switch (action.type) {
-    case 'FILTER_NAME':
-      return { ...state, filterByName: { name: action.payload } };
     case 'FILTER_NUMERIC':
       return {
         ...state,
@@ -35,7 +30,7 @@ function filterByName(state = INITIAL_STATE, action) {
         ...state,
         filterByNumericValues: [
           ...state.filterByNumericValues.filter(
-            (filtro) => filtro.column !== action.payload,
+            (filtro) => filtro.column !== action.payload
           ),
         ],
       };
@@ -44,4 +39,4 @@ function filterByName(state = INITIAL_STATE, action) {
   }
 }
 
-export default filterByName;
+export default filterNumeric;

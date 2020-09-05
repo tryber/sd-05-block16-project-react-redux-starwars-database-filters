@@ -82,7 +82,7 @@ class Table extends Component {
 const mapStateToProps = (state) => ({
   loading: state.planetR.isFetching,
   planets: state.planetR.data,
-  filterByName: state.filters.filterByName,
+  filterByName: state.filterByName.filterByName,
   filterByNumericValues: state.filters.filterByNumericValues,
 });
 
