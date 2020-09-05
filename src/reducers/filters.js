@@ -8,30 +8,40 @@ const INITIAL_STATE = {
   value: 1000,
 };
 
-function filterNumeric(state = INITIAL_STATE, { type, payload, column, comparison, value }) {
-  if (type === 'FILTER_NUMERIC') {
-    return {
-      ...state,
-      filterByNumericValues: [
-        ...state.filterByNumericValues, { column, comparison, value },
-      ],
-    };
-  }
+function filterNumeric(
+  state = INITIAL_STATE,
+  { type, payload, column, comparison, value }
+) {
+  const FILTER_NAME = { ...state, filterByName: { name: payload } };
+  const COLUMN_FILTER = { ...state, column: payload };
+  const COMPARISON_FILTER = { ...state, comparison: payload };
+  const VALUE_FILTER = { ...state, value: payload };
+  const REMOVE_FILTER = {
+    ...state,
+    filterByNumericValues: [
+      ...state.filterByNumericValues.filter((f) => f.column !== payload),
+    ],
+  };
+  const FILTER_NUMERIC = {
+    ...state,
+    filterByNumericValues: [
+      ...state.filterByNumericValues,
+      { column, comparison, value },
+    ],
+  };
+
   if (type === 'FILTER_NAME') {
-    return { ...state, filterByName: { name: payload } };
+    return FILTER_NAME;
   } else if (type === 'COLUMN_FILTER') {
-    return { ...state, column: payload };
+    return COLUMN_FILTER;
+  } else if (type === 'FILTER_NUMERIC') {
+    return FILTER_NUMERIC;
   } else if (type === 'COMPARISON_FILTER') {
-    return { ...state, comparison: payload };
+    return COMPARISON_FILTER;
   } else if (type === 'VALUE_FILTER') {
-    return { ...state, value: payload };
+    return VALUE_FILTER;
   } else if (type === 'REMOVE_FILTER') {
-    return {
-      ...state,
-      filterByNumericValues: [
-        ...state.filterByNumericValues.filter((f) => f.column !== payload),
-      ],
-    };
+    return REMOVE_FILTER;
   }
   return state;
 }
