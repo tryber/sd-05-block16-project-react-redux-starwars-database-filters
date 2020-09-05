@@ -8,10 +8,7 @@ const INITIAL_STATE = {
   value: 1000,
 };
 
-function filterNumeric(
-  state = INITIAL_STATE,
-  { type, payload, column, comparison, value }
-) {
+function filterNumeric(state = INITIAL_STATE, { type, payload, column, comparison, value }) {
   const FILTER_NAME = { ...state, filterByName: { name: payload } };
   const COLUMN_FILTER = { ...state, column: payload };
   const COMPARISON_FILTER = { ...state, comparison: payload };
@@ -30,20 +27,22 @@ function filterNumeric(
     ],
   };
 
-  if (type === 'FILTER_NAME') {
-    return FILTER_NAME;
-  } else if (type === 'COLUMN_FILTER') {
-    return COLUMN_FILTER;
-  } else if (type === 'FILTER_NUMERIC') {
-    return FILTER_NUMERIC;
-  } else if (type === 'COMPARISON_FILTER') {
-    return COMPARISON_FILTER;
-  } else if (type === 'VALUE_FILTER') {
-    return VALUE_FILTER;
-  } else if (type === 'REMOVE_FILTER') {
-    return REMOVE_FILTER;
+  switch (type) {
+    case 'FILTER_NAME':
+      return FILTER_NAME;
+    case 'COLUMN_FILTER':
+      return COLUMN_FILTER;
+    case 'FILTER_NUMERIC':
+      return FILTER_NUMERIC;
+    case 'COMPARISON_FILTER':
+      return COMPARISON_FILTER;
+    case 'VALUE_FILTER':
+      return VALUE_FILTER;
+    case 'REMOVE_FILTER':
+      return REMOVE_FILTER;
+    default:
+      return state;
   }
-  return state;
 }
 
 export default filterNumeric;
