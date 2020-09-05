@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { removeFilter, retornaColumn } from '../../actions';
 import PropTypes from 'prop-types';
+import { removeFilter, retornaColumn } from '../../actions';
 import './index.css';
 
 const FilterCombo = (props) => {

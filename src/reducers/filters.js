@@ -35,7 +35,7 @@ function filterByName(state = INITIAL_STATE, action) {
         ...state,
         filterByNumericValues: [
           ...state.filterByNumericValues.filter(
-            (filtro) => filtro.column !== action.payload
+            (filtro) => filtro.column !== action.payload,
           ),
         ],
       };
