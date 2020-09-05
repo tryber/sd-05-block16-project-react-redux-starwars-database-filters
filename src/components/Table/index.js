@@ -36,7 +36,7 @@ function filterFunc(planets, filterByName, filterByNumericValues) {
   if (filterByName !== '') {
     allPlanets = planets.filter(
       (el) =>
-        el.name.toLowerCase().indexOf(filterByName.name.toLowerCase()) >= 0
+        el.name.toLowerCase().indexOf(filterByName.name.toLowerCase()) >= 0,
     );
   }
 

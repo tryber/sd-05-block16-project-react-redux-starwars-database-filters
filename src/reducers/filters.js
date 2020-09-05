@@ -16,8 +16,13 @@ function filterByName(state = INITIAL_STATE, action) {
       return {
         ...state,
         filterByNumericValues: [
-          ...state.filterByNumericValues, { column: action.column, comparison: action.comparison,
-            value: action.value }],
+          ...state.filterByNumericValues,
+          {
+            column: action.column,
+            comparison: action.comparison,
+            value: action.value,
+          },
+        ],
       };
     case 'COLUMN_FILTER':
       return { ...state, column: action.payload };
@@ -30,7 +35,7 @@ function filterByName(state = INITIAL_STATE, action) {
         ...state,
         filterByNumericValues: [
           ...state.filterByNumericValues.filter(
-            (filtro) => filtro.column !== action.payload,
+            (filtro) => filtro.column !== action.payload
           ),
         ],
       };
