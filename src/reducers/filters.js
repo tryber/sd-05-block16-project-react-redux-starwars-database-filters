@@ -8,17 +8,12 @@ const INITIAL_STATE = {
   value: 1000,
 };
 
-function filterNumeric(state = INITIAL_STATE, {type, payload, column, comparison, value}) {
+function filterNumeric(state = INITIAL_STATE, { type, payload, column, comparison, value }) {
   if (type === 'FILTER_NUMERIC') {
     return {
       ...state,
       filterByNumericValues: [
-        ...state.filterByNumericValues,
-        {
-          column: column,
-          comparison: comparison,
-          value: value,
-        },
+        ...state.filterByNumericValues, { column, comparison, value },
       ],
     };
   }
@@ -37,9 +32,8 @@ function filterNumeric(state = INITIAL_STATE, {type, payload, column, comparison
         ...state.filterByNumericValues.filter((f) => f.column !== payload),
       ],
     };
-  } else {
-    return state;
   }
+  return state;
 }
 
 export default filterNumeric;
