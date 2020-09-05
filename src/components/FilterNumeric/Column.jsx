@@ -39,7 +39,7 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const mapStateToProps = (state) => ({
-  columnOption: state.filters.columnOption,
+  columnOption: state.filtersRemoveReturn.columnOption,
   filterByNumericValues: state.filters.filterByNumericValues,
 });
 

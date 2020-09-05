@@ -6,14 +6,6 @@ const INITIAL_STATE = {
   column: 'population',
   comparison: 'maior que',
   value: 1000,
-  columnOption: [
-    'coluna',
-    'population',
-    'orbital_period',
-    'diameter',
-    'rotation_period',
-    'surface_water',
-  ],
 };
 
 function filterByName(state = INITIAL_STATE, action) {
@@ -25,7 +17,7 @@ function filterByName(state = INITIAL_STATE, action) {
         ...state,
         filterByNumericValues: [
           ...state.filterByNumericValues, { column: action.column, comparison: action.comparison,
-            value: action.value, },],
+            value: action.value }],
       };
     case 'COLUMN_FILTER':
       return { ...state, column: action.payload };
@@ -41,18 +33,6 @@ function filterByName(state = INITIAL_STATE, action) {
             (filtro) => filtro.column !== action.payload,
           ),
         ],
-      };
-    case 'FILTER_COLUMN':
-      return {
-        ...state,
-        columnOption: [
-          ...state.columnOption.filter((filtro) => filtro !== action.payload),
-        ],
-      };
-    case 'RETORNA_COLUMN':
-      return {
-        ...state,
-        columnOption: [...state.columnOption, action.payload],
       };
     default:
       return state;
