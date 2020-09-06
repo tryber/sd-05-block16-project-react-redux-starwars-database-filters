@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+import propTypes from 'prop-types';
 import { fetchApi } from '../actions';
 import Head from './cabecalho';
 import Body from './body';
