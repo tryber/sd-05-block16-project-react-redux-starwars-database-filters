@@ -30,8 +30,7 @@ const INITIAL_STATE_FILTER = {
     filterByName: {
       name: '',
     },
-  },
-;
+  }
 
 const filterReducer = (state = INITIAL_STATE_FILTER, action) => {
   switch (action.type) {
