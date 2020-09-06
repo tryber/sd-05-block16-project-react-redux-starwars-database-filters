@@ -1,3 +1,4 @@
+// Transparência: Paulo Zambelli foi de grande ajuda nessa parte do projeto explicando todo o processo de Redux
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -8,34 +9,39 @@ class Body extends Component {
     this.props.AcionaApi();
   }
 
+  //ANCHOR render
   render() {
-    const { planets } = this.props;
+    const { planets, nameFilter } = this.props;
     return (
       <tbody>
-        {planets.map((planeta) => (
-          <tr>
-            <td>{planeta.name}</td>
-            <td>{planeta.rotation_period}</td>
-            <td>{planeta.orbital_period}</td>
-            <td>{planeta.diameter}</td>
-            <td>{planeta.climate}</td>
-            <td>{planeta.gravity}</td>
-            <td>{planeta.terrain}</td>
-            <td>{planeta.surface_water}</td>
-            <td>{planeta.population}</td>
-            <td>{planeta.films}</td>
-            <td>{planeta.created}</td>
-            <td>{planeta.edited}</td>
-            <td>{planeta.url}</td>
-          </tr>
-        ))}
+        {planets
+          .filter((planeta) => planeta.name.includes(nameFilter))
+          .map((planeta) => (
+            <tr key={planeta.name}>
+              <td>{planeta.name}</td>
+              <td>{planeta.rotation_period}</td>
+              <td>{planeta.orbital_period}</td>
+              <td>{planeta.diameter}</td>
+              <td>{planeta.climate}</td>
+              <td>{planeta.gravity}</td>
+              <td>{planeta.terrain}</td>
+              <td>{planeta.surface_water}</td>
+              <td>{planeta.population}</td>
+              <td>{planeta.films}</td>
+              <td>{planeta.created}</td>
+              <td>{planeta.edited}</td>
+              <td>{planeta.url}</td>
+            </tr>
+          ))}
       </tbody>
     );
   }
 }
 
+//ANCHOR mapToProps
 const mapStateToProps = (state) => ({
   planets: state.planetsReducer.planets,
+  nameFilter: state.filterReducer.filters.filterByName.name,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -44,6 +50,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 export default connect(mapStateToProps, mapDispatchToProps)(Body);
 
+//ANCHOR PropTypes
 Body.propTypes = {
   AcionaApi: PropTypes.func.isRequired,
   planets: PropTypes.arrayOf(PropTypes.object).isRequired,

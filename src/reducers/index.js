@@ -1,12 +1,13 @@
 import { combineReducers } from 'redux';
-import { CALL_API, RECEIVED_API } from '../actions';
+import { CALL_API, RECEIVED_API, FILTER_PLANET } from '../actions';
 
-const INITIAL_STATE = {
+//ANCHOR planetsReducer
+const INITIAL_STATE_PLANET = {
   isFetching: false,
   planets: [],
 };
 
-const planetsReducer = (state = INITIAL_STATE, action) => {
+const planetsReducer = (state = INITIAL_STATE_PLANET, action) => {
   switch (action.type) {
     case CALL_API:
       return {
@@ -24,8 +25,31 @@ const planetsReducer = (state = INITIAL_STATE, action) => {
   }
 };
 
+//ANCHOR filterReducer
+const INITIAL_STATE_FILTER = {
+  filters: {
+    filterByName: {
+      name: '',
+    },
+  },
+};
+
+const filterReducer = (state = INITIAL_STATE_FILTER, action) => {
+  switch (action.type) {
+    case FILTER_PLANET:
+      return {
+        ...state,
+        filters: {filterByName: { name: action.name }},
+      };
+    default:
+      return state;
+  }
+};
+
+//ANCHOR rootReducer
 const rootReducer = combineReducers({
   planetsReducer,
+  filterReducer,
 });
 
 export default rootReducer;
