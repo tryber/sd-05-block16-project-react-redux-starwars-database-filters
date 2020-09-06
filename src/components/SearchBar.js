@@ -12,7 +12,8 @@ class SearchBar extends Component {
   render() {
     return (
       <div>
-        <input data-testid="name-filter"
+        <input
+          data-testid="name-filter"
           onChange={(event) => this.props.filterByName(event.target.value)}
         />
       </div>
