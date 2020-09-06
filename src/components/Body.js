@@ -1,5 +1,5 @@
 // Transparência: Paulo Zambelli foi de grande ajuda nessa
-//parte do projeto explicando todo o processo de Redux
+// parte do projeto explicando todo o processo de Redux
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
