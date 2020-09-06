@@ -1,9 +1,10 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { connect, batch } from 'react-redux';
 import PropTypes from 'prop-types';
 import fetchAPIStarWarsPlanets from '../actions/action';
 import Headers from './HeaderTabela';
 import FiltrosDaPagina from './HeaderPagina';
+import { bindActionCreators } from 'redux';
 
 class Table extends React.Component {
   /*
@@ -18,6 +19,8 @@ class Table extends React.Component {
 
   renderTable() {
     const { data } = this.props;
+    console.log("foi", data);
+
     return data.map((planet) => (
       <tr>
         <td>{planet.name}</td>
@@ -95,10 +98,7 @@ function filterByNumber(arrayPlanets, filterByNumericValues) {
 /* A function filterByNumber foi retirado do código
 da minha colega de turma Nat Macedo e adpatado para o meu código*/
 
-const filtraPlanetas = (planetas, filtroDeTexto, filterByNumericValues) => {
-  // console.log('', planetas);
-  // console.log('planetas', filtroDeTexto);
-  // console.log('column', filterByNumericValues);
+const filtraPlanetas = (planetas, filtroDeTexto, filterByNumericValues, order) => {
 
   let planetasExibidos = planetas;
   filterByNumericValues.forEach((filter) => {
@@ -110,7 +110,23 @@ const filtraPlanetas = (planetas, filtroDeTexto, filterByNumericValues) => {
       .toLowerCase().includes(filtroDeTexto.toLowerCase()));
   }
 
-  return planetasExibidos;
+  planetasExibidos = planetasExibidos.sort((a, b) => {
+    if (isNaN(a[order.column])) {
+      if (order.sort === "ASC") {
+        return a[order.column.toLowerCase()] < b[order.column.toLowerCase()] ? -1 : 1;
+      } else if (order.sort === "DESC") {
+        return a[order.column.toLowerCase()] > b[order.column.toLowerCase()] ? -1 : 1;
+      }
+    } else {
+      if (order.sort === "ASC") {
+        return parseInt(a[order.column]) - parseInt(b[order.column]);
+      } else if (order.sort === "DESC") {
+        return parseInt(b[order.column]) - parseInt(a[order.column]);
+      }
+    }
+  });
+
+  return [...planetasExibidos];
 };
 
 /* os states que vou usar mapStateToProps vem do initial_state do reducer*/
@@ -119,7 +135,8 @@ const mapStateToProps = (state) => ({
   data: filtraPlanetas(
     state.planetsReducer.data,
     state.filters.filterByName.name,
-    state.filters.filterByNumericValues),
+    state.filters.filterByNumericValues,
+    state.filters.order),
   filterByNumericValues: state.filters.filterByNumericValues,
 });
 

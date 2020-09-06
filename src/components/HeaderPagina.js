@@ -52,6 +52,8 @@ class FiltrosDaPagina extends React.Component {
     this.handleColumnChange = this.handleColumnChange.bind(this);
     this.handleComparisonChange = this.handleComparisonChange.bind(this);
     this.handleValueChange = this.handleValueChange.bind(this);
+    this.handleSelectOrderColumn = this.handleSelectOrderColumn.bind(this);
+    this.handleSortChange = this.handleSortChange.bind(this);
   }
 
   handleColumnChange(event) {
@@ -78,6 +80,18 @@ class FiltrosDaPagina extends React.Component {
     return teste;
   }
 
+  renderColumnOption(column) {
+    return <option value={column}>{column}</option>;
+  }
+
+  columnOptions(filtrosAtivosDeComparacaoColunasEValor) {
+    console.log("coisa", filtrosAtivosDeComparacaoColunasEValor);
+    const colunasAtivosDeComparacaoColunasEValor = filtrosAtivosDeComparacaoColunasEValor.map((filter) => filter.column);
+    const colunasASeremExibidas = columns.filter((column) => !colunasAtivosDeComparacaoColunasEValor.includes(column));
+
+    return colunasASeremExibidas.map((column) => this.renderColumnOption(column))
+  }
+
   /*
   {columns
     .filter((option) => !filters.map((filter) => filter.column).includes(option))
@@ -99,9 +113,7 @@ class FiltrosDaPagina extends React.Component {
           value={this.state.column}
           onChange={this.handleColumnChange}
         >
-          {columns
-            .filter((option) => !filters.map((filter) => filter.column).includes(option))
-            .map((option) => <option value={option}>{option}</option>)}
+          {this.columnOptions(filters)}
         </select>
         <select
           data-testid="comparison-filter"
@@ -148,35 +160,52 @@ class FiltrosDaPagina extends React.Component {
     );
   }
 
+  handleSelectOrderColumn(event) {
+    this.setState({ sortColumn: event.target.value }, () => {console.log("state", this.state);});
+  }
+
+  handleSortChange(event) {
+    this.setState({ order: event.target.value }, () => {console.log("state", this.state);});
+  }
+
   renderFiltersOrder() {
-    const { filters, dispatchOrdenarColumns } = this.props;
+    const { dispatchOrdenarColumns, stateToPropsSort } = this.props;
+    console.log('stateToPropsSort',stateToPropsSort)
     return (
       <div className="order">
         <p>Ordem</p>
-        <select data-testid="column-sort">
-          {AllColumns
-            .filter((option) => !filters.map((filter) => filter.column).includes(option))
-            .map((option) => <option value={option}>{option}</option>)}
+        <select data-testid="column-sort" onChange={this.handleSelectOrderColumn}>
+          {AllColumns.map((option) => <option value={option}>{option}</option>)}
         </select>
+
         <label htmlFor="ASC">
           <input
             type="radio"
             id="ASC"
             value="ASC"
             data-testid="column-sort-input"
+            checked={this.state.order === "ASC"}
+            onChange={this.handleSortChange}
           />ASC
           </label>
+          
         <label htmlFor="DESC">
           <input
             type="radio"
             id="DESC"
             value="DESC"
             data-testid="column-sort-input"
-          />DSC
+            checked={this.state.order === "DESC"}
+            onChange={this.handleSortChange}
+          />DESC
           </label>
         <button
           data-testid="column-sort-button"
-          onClick={() => dispatchOrdenarColumns()}>Filtrar</button>
+          onClick={() => dispatchOrdenarColumns(
+            this.state.sortColumn,
+            this.state.order,
+          )}
+        >Filtrar</button>
       </div>
     );
   }
@@ -201,7 +230,7 @@ const mapStateToProps = (state) => {
   return {
     data: state.planetsReducer.data,
     filters: state.filters.filterByNumericValues,
-    removerElementoDaTela: state.filters.removerElementoDaTela,
+    stateToPropsSort: state.filters.sort,
   };
 };
 

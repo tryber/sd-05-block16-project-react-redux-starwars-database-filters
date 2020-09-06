@@ -6,13 +6,13 @@ const STATE_INICIAL = {
   },
   filterByNumericValues: [],
   order: {
-    column: '',
-    sort: '',
+    column: 'Name',
+    sort: 'ASC',
   },
 };
 
 const filters = (state = STATE_INICIAL, action) => {
-  // console.log('action reducer', action);
+  console.log('action reducer', action);
   switch (action.type) {
     case FILTER_NAME_PLANET:
       return {
@@ -40,10 +40,9 @@ const filters = (state = STATE_INICIAL, action) => {
     case ORDENAR_COLUMNS:
       return {
         ...state,
-        filterByNumericValues: [
-          ...state.filterByNumericValues,
-          { column: action.column, sort: action.sort },
-        ],
+        order: {
+          column: action.column, sort: action.sort,
+        },
       };
     default:
       return state;
