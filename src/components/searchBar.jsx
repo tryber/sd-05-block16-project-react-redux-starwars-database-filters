@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
-import { pegandoNomeAction } from '../actions';
 import { connect } from 'react-redux';
+import { pegandoNomeAction } from '../actions';
 
 class SearchBar extends Component {
   render() {
-    return <input type="type" data-testid="name-filter" onChange={(event) => this.props.pegarNome(event.target.value)} />;
+    return (
+      <input
+        type="type"
+        data-testid="name-filter"
+        onChange={(event) => this.props.pegarNome(event.target.value)}
+      />
+    );
   }
 }
 

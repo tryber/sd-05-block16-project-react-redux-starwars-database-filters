@@ -1,9 +1,10 @@
-import React from "react";
-import { fetchApi } from "../actions";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import Head from "./cabecalho";
-import Body from "./body";
+import React from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { fetchApi } from '../actions';
+import Head from './cabecalho';
+import Body from './body';
+
 class Table extends React.Component {
   /* componendDidMount é uma função executada uma vez só. 
 impedindo o fetchApi de ser executado mais de uma vez. */
