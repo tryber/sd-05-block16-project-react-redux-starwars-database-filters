@@ -1,5 +1,5 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
+import propTypes, { instanceOf } from 'prop-types';
 import { connect } from 'react-redux';
 
 class Body extends React.Component {
@@ -9,8 +9,8 @@ class Body extends React.Component {
       <tbody>
         {planetas
           .filter((planeta) => planeta.name.includes(this.props.nome))
-          .map((planeta, index) => (
-            <tr key={index}>
+          .map((planeta) => (
+            <tr key={planeta.name}>
               <td>{planeta.name}</td>
               <td>{planeta.rotation_period}</td>
               <td>{planeta.orbital_period}</td>
@@ -37,3 +37,8 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps)(Body);
+
+Body.propTypes = {
+  planetas: propTypes.arrayOf(instanceOf(Object)).isRequired,
+  nome: propTypes.string.isRequired,
+};

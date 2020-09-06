@@ -19,3 +19,7 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export default connect(null, mapDispatchToProps)(SearchBar);
+
+SearchBar.propTypes = {
+  pegarNome: propTypes.func.isRequired,
+};

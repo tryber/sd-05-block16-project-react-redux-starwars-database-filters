@@ -24,12 +24,16 @@ dentro do render por causa do cc */
   }
 }
 
-const mapStateToProps = (state) => ({
+/* const mapStateToProps = (state) => ({
   planetas: state.reducerApi.data,
-});
+}); */
 
 const mapDispatchToProps = (dispatch) => ({
   fetchApi: () => dispatch(fetchApi()),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Table);
+export default connect(/* mapStateToProps */null, mapDispatchToProps)(Table);
+
+Table.propTypes = {
+  fetchApi: propTypes.func.isRequired,
+};
