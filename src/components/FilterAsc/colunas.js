@@ -1,5 +1,5 @@
 function Colunas() {
-  COLUNAS = [
+  const COLUNAS = [
     'name',
     'rotation_period',
     'orbital_period',
