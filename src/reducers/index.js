@@ -25,14 +25,14 @@ const planetsReducer = (state = INITIAL_STATE_PLANET, action) => {
   }
 };
 
-// ANCHOR filterReducer
+// ANCHOR filters
 const INITIAL_STATE_FILTER = {
   filterByName: {
     name: '',
   },
 };
 
-const filterReducer = (state = INITIAL_STATE_FILTER, action) => {
+const filters = (state = INITIAL_STATE_FILTER, action) => {
   switch (action.type) {
     case FILTER_PLANET:
       return {
@@ -47,7 +47,7 @@ const filterReducer = (state = INITIAL_STATE_FILTER, action) => {
 // ANCHOR rootReducer
 const rootReducer = combineReducers({
   planetsReducer,
-  filterReducer,
+  filters,
 });
 
 export default rootReducer;
