@@ -6,7 +6,7 @@ import Head from './cabecalho';
 import Body from './body';
 
 class Table extends React.Component {
-  /* componendDidMount é uma função executada uma vez só. 
+  /* componendDidMount é uma função executada uma vez só.
 impedindo o fetchApi de ser executado mais de uma vez. */
   componentDidMount() {
     this.props.fetchApi();

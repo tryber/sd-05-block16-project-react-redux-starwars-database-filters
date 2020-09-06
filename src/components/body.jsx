@@ -9,8 +9,8 @@ class Body extends React.Component {
       <tbody>
         {planetas
           .filter((planeta) => planeta.name.includes(this.props.nome))
-          .map((planeta, key) => (
-            <tr key={key}>
+          .map((planeta, index) => (
+            <tr key={index}>
               <td>{planeta.name}</td>
               <td>{planeta.rotation_period}</td>
               <td>{planeta.orbital_period}</td>
