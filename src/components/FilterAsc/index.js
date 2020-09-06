@@ -1,66 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { sortChangeASC, nameChangeASC, sortAction } from '../../actions';
+import PropTypes from 'prop-types';
+import Select from './Select';
+import ASCDESC from './ASCDESC';
+import { sortAction } from '../../actions';
 
 class FilterAsc extends Component {
   render() {
-    const {
-      sortFilter,
-      selectedName,
-      selectedRadio,
-      sortASC,
-      columnASC,
-    } = this.props;
-    const COLUNAS = [
-      'name',
-      'rotation_period',
-      'orbital_period',
-      'diameter',
-      'climate',
-      'gravity',
-      'terrain',
-      'surface_water',
-      'population',
-      'films',
-      'created',
-      'edited',
-      'url',
-    ];
+    const { sortFilter, sortASC, columnASC } = this.props;
 
     return (
       <div className="order">
-        <p>Ordem</p>
-        <select
-          name="columnValue"
-          onChange={(e) => selectedName(e.target.value)}
-          id="order"
-          data-testid="column-sort"
-        >
-          {COLUNAS.map((item) => (
-            <option key={item}>{item}</option>
-          ))}
-          ;
-        </select>
-        <label htmlFor="ASC">
-          <input
-            type="radio"
-            id="ASC"
-            value="ASC"
-            data-testid="column-sort-input"
-            onClick={(e) => selectedRadio(e.target.value)}
-          />
-          ASC
-        </label>
-        <label htmlFor="DESC">
-          <input
-            type="radio"
-            id="DESC"
-            value="DESC"
-            data-testid="column-sort-input"
-            onClick={(e) => selectedRadio(e.target.value)}
-          />
-          DSC
-        </label>
+        <Select />
+        <ASCDESC />
         <button
           data-testid="column-sort-button"
           onClick={() => sortFilter(sortASC, columnASC)}
@@ -78,9 +30,13 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  selectedRadio: (sort) => dispatch(sortChangeASC(sort)),
-  selectedName: (name) => dispatch(nameChangeASC(name)),
   sortFilter: (sort, column) => dispatch(sortAction(sort, column)),
 });
+
+FilterAsc.propTypes = {
+  columnASC: PropTypes.string.isRequired,
+  sortASC: PropTypes.string.isRequired,
+  sortFilter: PropTypes.func.isRequired,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(FilterAsc);

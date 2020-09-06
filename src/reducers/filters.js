@@ -14,7 +14,7 @@ const INITIAL_STATE = {
 
 function filterNumeric(
   state = INITIAL_STATE,
-  { type, payload, column, comparison, value, col, sort }
+  { type, payload, column, comparison, value, col, sort },
 ) {
   const FILTER_NAME = { ...state, filterByName: { name: payload } };
   const COLUMN_FILTER = { ...state, column: payload };
@@ -49,7 +49,7 @@ function filterNumeric(
     case 'REMOVE_FILTER':
       return REMOVE_FILTER;
     case 'SORT_SELECTED':
-      return SORT_SELECTED
+      return SORT_SELECTED;
     default:
       return state;
   }

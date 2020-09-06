@@ -7,7 +7,7 @@ import filterSort from '../../services/FilterSort';
 
 function TBody(props) {
   const { allPlanets, loading, order, sort } = props;
-  let planetsFiltered = filterSort(allPlanets, order, sort);
+  const planetsFiltered = filterSort(allPlanets, order, sort);
 
   return (
     <tbody>
@@ -31,6 +31,8 @@ const mapStateToProps = (state) => ({
 
 TBody.propTypes = {
   loading: PropTypes.bool.isRequired,
+  sort: PropTypes.string.isRequired,
+  order: PropTypes.string.isRequired,
   allPlanets: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
