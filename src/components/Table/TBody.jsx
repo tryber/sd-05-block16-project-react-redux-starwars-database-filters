@@ -2,13 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import TableBody from '../TableBody';
+// anderson godoy
+import filterSort from '../../services/FilterSort';
 
 function TBody(props) {
-  const { allPlanets, loading } = props;
+  const { allPlanets, loading, order, sort } = props;
+  let planetsFiltered = filterSort(allPlanets, order, sort);
+
   return (
     <tbody>
       {loading === false
-        ? allPlanets.map((infoPlaneta) => (
+        ? planetsFiltered.map((infoPlaneta) => (
           <TableBody
             key={Math.floor(Math.random() * 0x100000)}
             data={infoPlaneta}
@@ -21,6 +25,8 @@ function TBody(props) {
 
 const mapStateToProps = (state) => ({
   loading: state.planetR.isFetching,
+  order: state.filters.order.column,
+  sort: state.filters.order.sort,
 });
 
 TBody.propTypes = {

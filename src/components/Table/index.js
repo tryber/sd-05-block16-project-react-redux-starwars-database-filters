@@ -5,6 +5,7 @@ import { fetchActionPlanets } from '../../actions';
 import FilterPlanet from '../FilterPlanet';
 import FilterCombo from '../FilterCombo';
 import FilterNumeric from '../FilterNumeric';
+import FilterAsc from '../FilterAsc';
 import TBody from './TBody';
 import Cabecalho from './Cabecalho';
 import './index.css';
@@ -67,6 +68,7 @@ class Table extends Component {
       <div>
         <div className="form">
           <FilterPlanet />
+          <FilterAsc />
           <FilterNumeric />
           <FilterCombo />
         </div>

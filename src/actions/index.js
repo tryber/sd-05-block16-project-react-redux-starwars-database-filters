@@ -67,4 +67,20 @@ export const retornaColumn = (retorna) => ({
   payload: retorna,
 });
 
+export const sortAction = (sort, col) => ({
+  type: 'SORT_SELECTED',
+  col,
+  sort,
+});
+
+export const sortChangeASC = (asc) => ({
+  type: 'ASC_SORT_CHANGE',
+  payload: asc,
+});
+
+export const nameChangeASC = (name) => ({
+  type: 'ASC_NAME_CHANGE',
+  payload: name,
+});
+
 export default fetchActionPlanets;

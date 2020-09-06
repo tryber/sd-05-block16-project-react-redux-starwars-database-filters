@@ -3,12 +3,19 @@ const INITIAL_STATE = {
     name: '',
   },
   filterByNumericValues: [],
+  order: {
+    column: 'Name',
+    sort: 'ASC',
+  },
   column: 'population',
   comparison: 'maior que',
   value: 1000,
 };
 
-function filterNumeric(state = INITIAL_STATE, { type, payload, column, comparison, value }) {
+function filterNumeric(
+  state = INITIAL_STATE,
+  { type, payload, column, comparison, value, col, sort }
+) {
   const FILTER_NAME = { ...state, filterByName: { name: payload } };
   const COLUMN_FILTER = { ...state, column: payload };
   const COMPARISON_FILTER = { ...state, comparison: payload };
@@ -26,6 +33,7 @@ function filterNumeric(state = INITIAL_STATE, { type, payload, column, compariso
       { column, comparison, value },
     ],
   };
+  const SORT_SELECTED = { ...state, order: { column: col, sort } };
 
   switch (type) {
     case 'FILTER_NAME':
@@ -40,6 +48,8 @@ function filterNumeric(state = INITIAL_STATE, { type, payload, column, compariso
       return VALUE_FILTER;
     case 'REMOVE_FILTER':
       return REMOVE_FILTER;
+    case 'SORT_SELECTED':
+      return SORT_SELECTED
     default:
       return state;
   }
