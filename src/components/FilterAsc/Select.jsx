@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { nameChangeASC } from '../../actions';
@@ -25,7 +25,7 @@ class Select extends Component {
     ];
 
     return (
-      <>
+      <Fragment>
         <p>Ordem</p>
         <select
           name="columnValue"
@@ -38,7 +38,7 @@ class Select extends Component {
           ))}
           ;
         </select>
-      </>
+      </Fragment>
     );
   }
 }
@@ -47,7 +47,7 @@ const mapDispatchToProps = (dispatch) => ({
   selectedName: (name) => dispatch(nameChangeASC(name)),
 });
 
-FilterAsc.propTypes = {
+Select.propTypes = {
   selectedName: PropTypes.func.isRequired,
 };
 

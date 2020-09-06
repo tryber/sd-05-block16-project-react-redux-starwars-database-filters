@@ -1,54 +1,42 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { nameChangeASC } from '../../actions';
+import { sortChangeASC } from '../../actions';
 
 class ASCDESC extends Component {
   render() {
-    const {
-      selectedName,
-    } = this.props;
-    const COLUNAS = [
-      'name',
-      'rotation_period',
-      'orbital_period',
-      'diameter',
-      'climate',
-      'gravity',
-      'terrain',
-      'surface_water',
-      'population',
-      'films',
-      'created',
-      'edited',
-      'url',
-    ];
-
+    const { selectedRadio } = this.props;
     return (
-      <>
-        <p>Ordem</p>
-        <select
-          name="columnValue"
-          onChange={(e) => selectedName(e.target.value)}
-          id="order"
-          data-testid="column-sort"
-        >
-          {COLUNAS.map((item) => (
-            <option key={item}>{item}</option>
-          ))}
-          ;
-        </select>
-      </>
+      <Fragment>
+        <label htmlFor="ASC">
+          <input
+            type="radio"
+            id="ASC"
+            data-testid="column-sort-input"
+            onClick={(e) => selectedRadio(e.target.id)}
+          />
+          ASC
+        </label>
+        <label htmlFor="DESC">
+          <input
+            type="radio"
+            id="DESC"
+            data-testid="column-sort-input"
+            onClick={(e) => selectedRadio(e.target.id)}
+          />
+          DSC
+        </label>
+      </Fragment>
     );
   }
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  selectedName: (name) => dispatch(nameChangeASC(name)),
+  selectedRadio: (sort) => dispatch(sortChangeASC(sort)),
 });
 
-FilterAsc.propTypes = {
-  selectedName: PropTypes.func.isRequired,
+ASCDESC.propTypes = {
+  selectedRadio: PropTypes.func.isRequired,
 };
 
 export default connect(null, mapDispatchToProps)(ASCDESC);
