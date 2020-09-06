@@ -1,4 +1,5 @@
-// Transparência: Paulo Zambelli foi de grande ajuda nessa parte do projeto explicando todo o processo de Redux
+// Transparência: Paulo Zambelli foi de grande ajuda nessa
+//parte do projeto explicando todo o processo de Redux
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -9,7 +10,7 @@ class Body extends Component {
     this.props.AcionaApi();
   }
 
-  //ANCHOR render
+  // ANCHOR render
   render() {
     const { planets, nameFilter } = this.props;
     return (
@@ -38,7 +39,7 @@ class Body extends Component {
   }
 }
 
-//ANCHOR mapToProps
+// ANCHOR mapToProps
 const mapStateToProps = (state) => ({
   planets: state.planetsReducer.planets,
   nameFilter: state.filterReducer.filters.filterByName.name,
@@ -50,8 +51,9 @@ const mapDispatchToProps = (dispatch) => ({
 
 export default connect(mapStateToProps, mapDispatchToProps)(Body);
 
-//ANCHOR PropTypes
+// ANCHOR PropTypes
 Body.propTypes = {
   AcionaApi: PropTypes.func.isRequired,
   planets: PropTypes.arrayOf(PropTypes.object).isRequired,
+  nameFilter: PropTypes.string.isRequired,
 };
