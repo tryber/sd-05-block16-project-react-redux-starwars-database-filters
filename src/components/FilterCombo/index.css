@@ -1,0 +1,27 @@
+.container {
+  border: 1px solid rgba(0, 0, 0, 0.616);
+  display: flex;
+  flex: 1;
+  flex-wrap: wrap;
+  margin: 10px;
+}
+
+.row {
+  align-items: center;
+  border: 1px solid black;
+  display: flex;
+  flex: 1;
+  margin: 5px;
+}
+
+.row-button {
+  align-items: center;
+  height: 25px;
+  justify-content: space-around;
+  width: 25px;
+}
+
+.row-combo {
+  font-size: 12px;
+  margin: 4px;
+}
