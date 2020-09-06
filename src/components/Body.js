@@ -12,11 +12,11 @@ class Body extends Component {
 
   // ANCHOR render
   render() {
-    const { planets, nameFilter } = this.props;
+    const { planets, filters } = this.props;
     return (
       <tbody>
         {planets
-          .filter((planeta) => planeta.name.includes(nameFilter))
+          .filter((planeta) => planeta.name.includes(filters))
           .map((planeta) => (
             <tr key={planeta.name}>
               <td>{planeta.name}</td>
@@ -42,7 +42,7 @@ class Body extends Component {
 // ANCHOR mapToProps
 const mapStateToProps = (state) => ({
   planets: state.planetsReducer.planets,
-  nameFilter: state.filterReducer.filters.filterByName.name,
+  filters: state.filterReducer.filters.filterByName.name,
 });
 
 const mapDispatchToProps = (dispatch) => ({
