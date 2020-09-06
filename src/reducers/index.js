@@ -27,19 +27,18 @@ const planetsReducer = (state = INITIAL_STATE_PLANET, action) => {
 
 // ANCHOR filterReducer
 const INITIAL_STATE_FILTER = {
-  filters: {
     filterByName: {
       name: '',
     },
   },
-};
+;
 
 const filterReducer = (state = INITIAL_STATE_FILTER, action) => {
   switch (action.type) {
     case FILTER_PLANET:
       return {
         ...state,
-        filters: { filterByName: { name: action.name } },
+        filterByName: { name: action.name },
       };
     default:
       return state;

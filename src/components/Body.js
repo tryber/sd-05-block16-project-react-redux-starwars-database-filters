@@ -42,7 +42,7 @@ class Body extends Component {
 // ANCHOR mapToProps
 const mapStateToProps = (state) => ({
   planets: state.planetsReducer.planets,
-  filters: state.filterReducer.filters.filterByName.name,
+  filters: state.filterReducer.filterByName.name,
 });
 
 const mapDispatchToProps = (dispatch) => ({
