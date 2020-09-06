@@ -7,7 +7,7 @@ import COLUNAS from './colunas';
 class Select extends Component {
   render() {
     const { selectedName } = this.props;
-
+    const rCol = COLUNAS();
     return (
       <Fragment>
         <p>Ordem</p>
@@ -17,7 +17,7 @@ class Select extends Component {
           id="order"
           data-testid="column-sort"
         >
-          {COLUNAS.map((item) => (
+          {rCol.map((item) => (
             <option key={item}>{item}</option>
           ))}
           ;

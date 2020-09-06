@@ -12,8 +12,9 @@ class ASCDESC extends Component {
           <input
             type="radio"
             id="ASC"
+            value="ASC"
             data-testid="column-sort-input"
-            onClick={(e) => selectedRadio(e.target.id)}
+            onClick={(e) => selectedRadio(e.target.value)}
           />
           ASC
         </label>
@@ -21,8 +22,9 @@ class ASCDESC extends Component {
           <input
             type="radio"
             id="DESC"
+            value="DESC"
             data-testid="column-sort-input"
-            onClick={(e) => selectedRadio(e.target.id)}
+            onClick={(e) => selectedRadio(e.target.value)}
           />
           DSC
         </label>
