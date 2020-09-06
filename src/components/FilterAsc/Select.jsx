@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { nameChangeASC } from '../../actions';
 import COLUNAS from './colunas';
+
 class Select extends Component {
   render() {
     const { selectedName } = this.props;
