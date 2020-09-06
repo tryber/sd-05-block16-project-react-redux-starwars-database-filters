@@ -55,5 +55,5 @@ export default connect(mapStateToProps, mapDispatchToProps)(Body);
 Body.propTypes = {
   AcionaApi: PropTypes.func.isRequired,
   planets: PropTypes.arrayOf(PropTypes.object).isRequired,
-  nameFilter: PropTypes.string.isRequired,
+  filters: PropTypes.string.isRequired,
 };
