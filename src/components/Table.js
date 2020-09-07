@@ -15,11 +15,12 @@ class Table extends React.Component {
 
   render() {
     // results e isFetching estão vindo do mapStateToProps
-    const { results, isFetching, nombreProcurado, numericFilter } = this.props;
-    console.log(numericFilter)
+    const { results, isFetching, nombreProcurado } = this.props;
+    // console.log(numericFilter)
     const allInfos = results.filter((planeta) =>
       planeta.name.toLowerCase().indexOf(nombreProcurado.toLowerCase()) >= 0);
-
+    // numericFilter.forEach(filter =>{
+    // })
     return (
       <div>StarWars Datatable with Filters
         <table>
