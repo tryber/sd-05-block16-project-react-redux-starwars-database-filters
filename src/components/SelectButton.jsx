@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes, { instanceOf } from 'prop-types';
+import PropTypes from 'prop-types';
 
 const SelectButton = (props) => {
   const { onChange, selected, datatestid, options } = props;

@@ -18,7 +18,7 @@ class Inicial extends React.Component {
     const removeUnknown = (arrOriginal, column) => {
       // Função encontrada no stack Overflow e refatorada com o conteúdo que estamos usando no
       // momento.
-      // link: 
+      // link:
       // https://stackoverflow.com/questions/5767325/how-can-i-remove-a-specific-item-from-an-array
       const array = [...arrOriginal];
       let index = 0;
@@ -42,13 +42,13 @@ class Inicial extends React.Component {
         if (comparison === 'maior que') {
           planetasFiltrados = removeUnknown(planetasFiltrados, column);
           planetasFiltrados = planetasFiltrados.filter((planeta) =>
-            (parseInt(planeta[column], 10) > parseInt(value, 10))
+            (parseInt(planeta[column], 10) > parseInt(value, 10)),
           );
         }
         if (comparison === 'menor que') {
           planetasFiltrados = removeUnknown(planetasFiltrados, column);
           planetasFiltrados = planetasFiltrados.filter((planeta) =>
-            (parseInt(planeta[column], 10) < parseInt(value, 10))
+            (parseInt(planeta[column], 10) < parseInt(value, 10)),
           );
         }
         if (comparison === 'igual a') {
@@ -98,8 +98,10 @@ Inicial.propTypes = {
   erro: PropTypes.string.isRequired,
   filter: PropTypes.shape({ name: PropTypes.string }).isRequired,
   filtrar: PropTypes.shape({
-
-  })
+    value: PropTypes.string,
+    comparison: PropTypes.string,
+    column: PropTypes.string,
+  }).isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Inicial);
