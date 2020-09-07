@@ -23,7 +23,6 @@ const INICIAL_STATE = {
 };
 
 const AgradoAoCC = (state) => {
-  console.log(state)
   const { comparison, column, value, filterByNumericValues } = state;
   if (filterByNumericValues.length === 0) {
     return ({
@@ -33,7 +32,7 @@ const AgradoAoCC = (state) => {
   return {
     ...state, filterByNumericValues: [...filterByNumericValues, { comparison, value, column }],
   };
-}
+};
 
 const dataReducer = (state = INICIAL_STATE, action) => {
   switch (action.type) {

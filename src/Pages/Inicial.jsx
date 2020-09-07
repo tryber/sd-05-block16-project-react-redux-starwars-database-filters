@@ -52,7 +52,7 @@ const allFilters = (planetas, name, isFetching, filtrar) => {
     );
   }
   return planetasFiltrados;
-}
+};
 
 class Inicial extends React.Component {
   componentDidMount() {
@@ -98,11 +98,7 @@ Inicial.propTypes = {
   isFetching: PropTypes.bool.isRequired,
   erro: PropTypes.string.isRequired,
   filter: PropTypes.shape({ name: PropTypes.string }).isRequired,
-  filtrar: PropTypes.shape({
-    value: PropTypes.string,
-    comparison: PropTypes.string,
-    column: PropTypes.string,
-  }).isRequired,
+  filtrar: PropTypes.instanceOf(Array).isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Inicial);
