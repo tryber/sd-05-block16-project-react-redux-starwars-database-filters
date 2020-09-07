@@ -15,11 +15,11 @@ class Table extends Component {
     return (
       <div>
         StarWars Datatable with Filters
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
         <table>
           {
             planetas.map((planeta) => <Body data={planeta} />)
@@ -40,7 +40,6 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 Table.propTypes = {
-  isLoading: PropTypes.bool.isRequired,
   getFetch: PropTypes.func.isRequired,
   planetas: PropTypes.arrayOf(PropTypes.object).isRequired,
 };

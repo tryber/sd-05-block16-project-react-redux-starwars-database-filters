@@ -10,8 +10,8 @@ function App() {
     <div className="App">
       <header className="App-header">
         <Filter />
-        <br/>
-        <br/>
+        <br />
+        <br />
         <Table />
         <Head />
       </header>

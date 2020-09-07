@@ -13,11 +13,11 @@ class Filter extends Component {
         <label htmlFor="name-filter">
           <span>Filtre Aqui: </span>
           <input
-          placeholder="DIGITE AQUI"
-          type="text"
-          data-testid="name-filter"
-          onChange={(e) => filtro(e.target.value)}
-        />
+            placeholder="DIGITE AQUI"
+            type="text"
+            data-testid="name-filter"
+            onChange={(e) => filtro(e.target.value)}
+          />
         </label>
       </div>
     );
