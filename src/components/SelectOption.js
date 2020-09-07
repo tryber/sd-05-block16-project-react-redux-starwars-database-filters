@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { filterGeneral } from '../actions';
 
 class SelectOption extends Component {
@@ -12,18 +13,14 @@ class SelectOption extends Component {
     };
   }
   render() {
+    const colunas = [ "", "rotation_period", "orbital_period", "diameter", "surface_water", "population" ]
     return (
       <div>
         <select
           onChange={(event) => this.setState({ column: event.target.value })}
           data-testid="column-filter"
         >
-          <option value="" />
-          <option value="rotation_period">rotation_period</option>
-          <option value="orbital_period">orbital_period</option>
-          <option value="diameter">diameter</option>
-          <option value="surface_water">surface_water</option>
-          <option value="population">population</option>
+          {colunas.map((value) => <option value={value}>{value}</option>)}
         </select>
         <select
           onChange={(event) =>
