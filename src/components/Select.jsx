@@ -10,14 +10,18 @@ class Select extends React.Component {
       column: '',
       comparison: '',
       value: '',
+      columnFilter: [
+        '',
+        'rotation_period',
+        'orbital_period',
+        'diameter',
+        'surface_water',
+        'population',
+      ],
     };
-    this.ColumnFilter = this.ColumnFilter.bind(this);
+    this.HandleClick = this.HandleClick.bind(this);
     this.ComparisonFilter = this.ComparisonFilter.bind(this);
     this.ValueFilter = this.ValueFilter.bind(this);
-  }
-
-  ColumnFilter(event) {
-    this.setState({ column: event.target.value });
   }
 
   ComparisonFilter(event) {
@@ -28,17 +32,28 @@ class Select extends React.Component {
     this.setState({ value: event.target.value });
   }
 
-  render() {
+  HandleClick() {
     const { filters } = this.props;
+    const { column, comparison, value } = this.state;
+    filters({ column, comparison, value });
+  }
+
+  render() {
+    const { filtered } = this.props;
+    const { columnFilter } = this.state;
+    const columns = [...columnFilter];
+    if (filtered.length > 0) {
+      filtered.forEach((filter) => {
+        columns.splice(columns.indexOf(filter.column), 1);
+      });
+    }
     return (
       <div>
-        <select data-testid="column-filter" onChange={this.ColumnFilter}>
-          <option value="column">column</option>
-          <option value="population">population</option>
-          <option value="orbital_period">orbital_period</option>
-          <option value="diameter">diameter</option>
-          <option value="rotation_period">rotation_period</option>
-          <option value="surface_water">surface_water</option>
+        <select
+          data-testid="column-filter"
+          onChange={(event) => this.setState({ column: event.target.value })}
+        >
+          {columns.map((value) => (<option key={value} value={value}>{value}</option>))}
         </select>
         <select data-testid="comparison-filter" onChange={this.ComparisonFilter} >
           <option value="comparison">comparison</option>
@@ -46,25 +61,24 @@ class Select extends React.Component {
           <option value="menor que">menor que</option>
           <option value="igual a">igual a</option>
         </select>
-        <input
-          data-testid="value-filter"
-          type="number"
-          onChange={this.ValueFilter}
-        />
-        <button data-testid="button-filter" onClick={() => filters(this.state)}>
-          Filter
-        </button>
+        <input data-testid="value-filter" type="number" onChange={this.ValueFilter} />
+        <button data-testid="button-filter" onClick={this.HandleClick}>Filter</button>
       </div>
     );
   }
 }
 
-const mapDispatchToProps = {
-  filters: filterByNumbers,
-};
+const mapStateToProps = (state) => ({
+  filtered: state.filters.filterByNumericValues,
+});
 
-export default connect(null, mapDispatchToProps)(Select);
+const mapDispatchToProps = (dispatch) => ({
+  filters: (filter) => dispatch(filterByNumbers(filter)),
+}); // alterado pois método anterior não passava requisito 4
+
+export default connect(mapStateToProps, mapDispatchToProps)(Select);
 
 Select.propTypes = {
   filters: PropTypes.func.isRequired,
+  filtered: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
