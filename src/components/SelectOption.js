@@ -24,8 +24,8 @@ class SelectOption extends Component {
 
   hC() {
     const { filter } = this.props;
-    const { column, comparison, value } = this.state
-    filter({column, comparison, value});
+    const { column, comparison, value } = this.state;
+    filter({ column, comparison, value });
   }
 
   render() {
@@ -34,8 +34,8 @@ class SelectOption extends Component {
     const colunas = [...col];
     if (filtros.length > 0) {
       filtros.forEach((filt) => {
-         colunas.splice(colunas.indexOf(filt.column), 1)
-        });
+        colunas.splice(colunas.indexOf(filt.column), 1);
+      });
     }
     return (
       <div>
@@ -43,15 +43,12 @@ class SelectOption extends Component {
           onChange={(event) => this.setState({ column: event.target.value })}
           data-testid="column-filter"
         >
-          {colunas.map((value) => (
-            <option value={value}>{value}</option>
-          ))}
+          {colunas.map((value) => (<option value={value}>{value}</option>))}
         </select>
         <select
           onChange={(event) =>
             this.setState({ comparison: event.target.value })
-          }
-          data-testid="comparison-filter"
+          } data-testid="comparison-filter"
         >
           <option value="" />
           <option value="maior que">maior que</option>
@@ -59,13 +56,10 @@ class SelectOption extends Component {
           <option value="igual a">igual a</option>
         </select>
         <input
-          data-testid="value-filter"
-          type="number"
+          data-testid="value-filter" type="number"
           onChange={(event) => this.setState({ value: event.target.value })}
         />
-        <button data-testid="button-filter" onClick={this.hC}>
-          CLIQUE AQUI
-        </button>
+        <button data-testid="button-filter" onClick={this.hC}>CLIQUE AQUI</button>
       </div>
     );
   }
@@ -84,4 +78,5 @@ export default connect(mapStateToProps, mapDispatchToProps)(SelectOption);
 
 SelectOption.propTypes = {
   filter: PropTypes.func.isRequired,
+  filtros: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
