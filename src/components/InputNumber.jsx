@@ -43,7 +43,7 @@ class InputNumber extends React.Component {
           {options.map((element) => <option value={element} key={element}>{element}</option>)}
         </select>
         <select
-          data-testid="comparasion-filter"
+          data-testid="comparison-filter"
           onChange={(event) => (this.selectComparison(event))}
         >
           <option value="" disabled selected>Compare</option>
