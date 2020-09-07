@@ -39,14 +39,8 @@ class Select extends React.Component {
           <option value="diameter">diameter</option>
           <option value="rotation_period">rotation_period</option>
           <option value="surface_water">surface_water</option>
-          {/*     <option value="climate">climate</option>
-    <option value="gravity">gravity</option>
-  <option value="terrain">terrain</option> */}
         </select>
-        <select
-          data-testid="comparison-filter"
-          onChange={this.ComparisonFilter}
-        >
+        <select data-testid="comparison-filter" onChange={this.ComparisonFilter} >
           <option value="comparison">comparison</option>
           <option value="maior que">maior que</option>
           <option value="menor que">menor que</option>

@@ -16,7 +16,7 @@ const failed = (error) => ({ type: FAILED_TO_FETCH, error });
 
 export const filterByName = (name) => ({ type: FILTER_BY_NAME, name });
 
-export const filterByNumbers = ({column, comparison, value}) => ({
+export const filterByNumbers = ({ column, comparison, value }) => ({
   type: FILTER_BY_NUMBERS,
   column,
   comparison,
@@ -30,7 +30,7 @@ export const fetchPlanets = () => (dispatch) => {
   dispatch(fetchingPlanets());
   return fetchPlanetsAPI().then(
     (planetsData) => dispatch(fetched(planetsData.results)),
-    (error) => dispatch(failed(error))
+    (error) => dispatch(failed(error)),
   );
 };
 

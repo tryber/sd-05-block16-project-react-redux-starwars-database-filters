@@ -34,15 +34,10 @@ class Body extends React.Component {
   render() {
     const { fetching, filters } = this.props;
     const filterAll = this.FilterPlanets();
-    if (fetching)
-      return (
-        <tbody>
-          <tr>
-            <td>Loading...</td>
-          </tr>
-        </tbody>
-      );
-    // Alterado de Div para td pra evitar erro chato
+    if (fetching) {
+      return (<tbody><tr><td>Loading...</td></tr></tbody>);
+      // Alterado de Div para td pra evitar erro chato
+    }
     return (
       <tbody>
         {filterAll
