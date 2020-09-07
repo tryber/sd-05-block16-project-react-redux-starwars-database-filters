@@ -4,18 +4,6 @@ import propTypes from 'prop-types';
 import { filterByNumber } from '../actions/actionFilter';
 // import { fetchPlanets } from '../actions/actionApi';
 
-function filterComparison(planets, search) {
-  if (search.comparison === 'maior que') {
-    return planets.filter((event) => Number(event[search.column]) > Number(search.value));
-  }
-  if (search.comparison === 'menor que') {
-    return planets.filter((event) => Number(event[search.column]) < Number(search.value));
-  }
-  if (search.comparison === 'igual a') {
-    return planets.filter((event) => Number(event[search.column]) === Number(search.value));
-  }
-  return planets;
-}
 class InputNumber extends React.Component {
   constructor(props) {
     super(props);
@@ -48,10 +36,7 @@ class InputNumber extends React.Component {
   }
 
   render() {
-    const { filterByNumericValues, results } = this.props;
     const options = ['', 'population', 'surface_water', 'diameter', 'orbital_period', 'rotation_period'];
-    let planets = results;
-    filterByNumericValues.forEach((filter) => { planets = filterComparison(planets, filter); });
     return (
       <div>
         <select data-testid="column-filter" onChange={(event) => (this.selectColumn(event))}>
@@ -79,20 +64,13 @@ class InputNumber extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  filterByNumericValues: state.filters.filterByNumericValues,
-  results: state.apiPlanetReducer.batatinhaResults,
-});
-
 const mapDispatchToProps = (dispatch) => ({
   filterByNumber: (column, comparison, value) =>
     dispatch(filterByNumber(column, comparison, value)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(InputNumber);
+export default connect(null, mapDispatchToProps)(InputNumber);
 
 InputNumber.propTypes = {
-  results: propTypes.arrayOf(propTypes.instanceOf(Object)).isRequired,
-  filterByNumericValues: propTypes.func.isRequired,
   filterByNumber: propTypes.func.isRequired,
 };
