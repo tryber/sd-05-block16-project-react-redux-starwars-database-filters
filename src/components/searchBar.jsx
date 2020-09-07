@@ -7,7 +7,7 @@ class SearchBar extends Component {
   render() {
     return (
       <input
-        type="type"
+        type="text"
         data-testid="name-filter"
         onChange={(event) => this.props.pegarNome(event.target.value)}
       />

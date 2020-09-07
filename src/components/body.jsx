@@ -1,31 +1,40 @@
 import React from 'react';
-import propTypes, { instanceOf } from 'prop-types';
 import { connect } from 'react-redux';
+import propTypes, { instanceOf, number } from 'prop-types';
+import Planeta from './planeta';
+import numericFilters from './numericFilters';
+
+const applyComparison = (planeta, filtro) => {
+  const { column, comparison, value } = filtro;
+
+  if (comparison === 'menor que') {
+    // [column] generaliza, para nao ter que usar .population, .diameter, etc...
+    return Number(planeta[column]) < value; // true ou false
+  } else if (comparison === 'maior que') {
+    // planeta -> objeto, pode ser dot notation -> obj.chave, ou obj[chave]
+    return Number(planeta[column]) > value; // true ou false
+  } else if (comparison === 'igual a') {
+    return Number(planeta[column]) === Number(value); // true ou false
+  }
+};
 
 class Body extends React.Component {
   render() {
-    const { planetas } = this.props;
+    const { planetas, filterByNumericValues, nome, isFetching } = this.props;
+    let planets = planetas;
+
+    planets = planets.filter(
+      (planeta) => planeta.name.toLowerCase().indexOf(nome.toLowerCase()) >= 0
+    );
+
+    filterByNumericValues.forEach((filtro) => {
+      planets = planets.filter((planeta) => applyComparison(planeta, filtro));
+    });
     return (
       <tbody>
-        {planetas
-          .filter((planeta) => planeta.name.includes(this.props.nome))
-          .map((planeta) => (
-            <tr key={planeta.name}>
-              <td>{planeta.name}</td>
-              <td>{planeta.rotation_period}</td>
-              <td>{planeta.orbital_period}</td>
-              <td>{planeta.diameter}</td>
-              <td>{planeta.climate}</td>
-              <td>{planeta.gravity}</td>
-              <td>{planeta.terrain}</td>
-              <td>{planeta.surface_water}</td>
-              <td>{planeta.population}</td>
-              <td>{planeta.films}</td>
-              <td>{planeta.created}</td>
-              <td>{planeta.edited}</td>
-              <td>{planeta.url}</td>
-            </tr>
-          ))}
+        {planets.map((planeta) => (
+          <Planeta key={planeta.name} planeta={planeta} />
+        ))}
       </tbody>
     );
   }
@@ -34,6 +43,7 @@ class Body extends React.Component {
 const mapStateToProps = (state) => ({
   planetas: state.reducerApi.data,
   nome: state.filters.filterByName.name,
+  filterByNumericValues: state.filters.filterByNumericValues,
 });
 
 export default connect(mapStateToProps)(Body);
