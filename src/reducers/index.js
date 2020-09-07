@@ -4,6 +4,7 @@ import {
   RECEIVED_API,
   FILTER_PLANET,
   FILTER_GENERAL,
+  REMOVE_FILTER,
 } from '../actions';
 
 // ANCHOR planetsReducer
@@ -56,6 +57,11 @@ const filters = (state = INITIAL_STATE_FILTER, action) => {
             value: action.value,
           },
         ],
+      };
+    case REMOVE_FILTER:
+      return {
+        ...state,
+        filterByNumericValues: action.arr,
       };
     default:
       return state;
