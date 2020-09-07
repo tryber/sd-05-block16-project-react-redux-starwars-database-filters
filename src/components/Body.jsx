@@ -4,16 +4,48 @@ import PropTypes from 'prop-types';
 import { fetchPlanets } from '../actions';
 
 class Body extends React.Component {
+  constructor(props) {
+    super(props);
+    this.FilterPlanets = this.FilterPlanets.bind(this);
+  }
   componentDidMount() {
     this.props.fetchPlanets();
   }
 
+  FilterPlanets() {
+    const { planetsData, filterNum } = this.props;
+    let filtered = [...planetsData];
+    if (filterNum.length > 0) {
+      filterNum.forEach((filter) => {
+        const { column, comparison, value } = filter;
+        if (comparison === 'maior que') {
+          filtered = filtered.filter((planet) => +planet[column] > +value); // + vira number
+        } else if (comparison === 'menor que') {
+          filtered = filtered.filter((planet) => +planet[column] < +value);
+        } else {
+          filtered = filtered.filter((planet) => +planet[column] === +value);
+        }
+      });
+    }
+
+    return filtered;
+  }
+
   render() {
-    const { planetsData, fetching, filters } = this.props;
-    if (fetching) return <h2>Loading...</h2>;
+    const { fetching, filters } = this.props;
+    const filterAll = this.FilterPlanets();
+    if (fetching)
+      return (
+        <tbody>
+          <tr>
+            <td>Loading...</td>
+          </tr>
+        </tbody>
+      );
+    // Alterado de Div para td pra evitar erro chato
     return (
       <tbody>
-        {planetsData
+        {filterAll
           .filter((planet) => planet.name.includes(filters))
           .map((planet) => (
             <tr key={planet.name}>
@@ -41,6 +73,7 @@ const mapStateToProps = (state) => ({
   planetsData: state.planetsReducer.planetsData,
   fetching: state.planetsReducer.fetching,
   filters: state.filters.filterByName.name,
+  filterNum: state.filters.filterByNumericValues,
 });
 
 const mapDispatchToProps = (dispatch) => ({
