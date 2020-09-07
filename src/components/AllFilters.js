@@ -4,10 +4,6 @@ import PropTypes from 'prop-types';
 import { removeFilter } from '../actions';
 
 class AllFilters extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   hC(e) {
     const { remove, filtros } = this.props;
     const filtrosCopia = [...filtros];
@@ -15,7 +11,7 @@ class AllFilters extends Component {
     filtrosCopia.splice(filtrosFinal.indexOf(e.target.id), 1);
     remove(filtrosCopia);
   }
-
+// prettier-ignore
   render() {
     const { filtros } = this.props;
     return (
@@ -45,4 +41,5 @@ export default connect(mapStateToProps, mapDispatchToProps)(AllFilters);
 
 AllFilters.propTypes = {
   filtros: PropTypes.arrayOf(PropTypes.object).isRequired,
+  remove: PropTypes.func.isRequired,
 };
