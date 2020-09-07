@@ -6,7 +6,9 @@ export const filterPlanet = (nome) => ({
   results: nome,
 });
 
-export const filterByNumber = (filtro) => ({
+export const filterByNumber = (column, comparison, value) => ({
   type: FILTER_BY_NUMERIC_VALUES,
-  results: filtro,
+  column: column,
+  comparison: comparison,
+  value: value,
 });

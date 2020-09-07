@@ -16,9 +16,10 @@ class Table extends React.Component {
   render() {
     // results e isFetching estão vindo do mapStateToProps
     const { results, isFetching, nombreProcurado } = this.props;
-    // console.log(this.props)
+    // console.log(numericFilter)
     const allInfos = results.filter((planeta) =>
       planeta.name.toLowerCase().indexOf(nombreProcurado.toLowerCase()) >= 0);
+
     return (
       <div>StarWars Datatable with Filters
         <table>
@@ -42,6 +43,7 @@ const mapStateToProps = (state) => ({ // é executada toda vez que a store é al
   isFetching: state.apiPlanetReducer.isFetching,
   results: state.apiPlanetReducer.batatinhaResults,
   nombreProcurado: state.filters.filterByName.name, // filterByname.
+  //numericFilter: state.filters.filterByNumericValues,
 }); // o Objeto retornado é uma props acessível no componente Table
 
 const mapDispatchToProps = (dispatch) => ({

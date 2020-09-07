@@ -5,7 +5,7 @@ const INITIAL_FILTER = {
   filterByNumericValues: [],
 };
 
-const filterByName = (state = INITIAL_FILTER, action) => {
+const filters = (state = INITIAL_FILTER, action) => {
   switch (action.type) {
     case FILTER_BY_NAME:
       return {
@@ -15,25 +15,18 @@ const filterByName = (state = INITIAL_FILTER, action) => {
     case FILTER_BY_NUMERIC_VALUES:
       return {
         ...state,
-        filterByNumericValues: [action.results],
+        filterByNumericValues: [
+          ...state.filterByNumericValues,
+          {
+            column: action.column,
+            comparison: action.comparison,
+            value: action.value,
+          }
+        ],
       };
     default:
       return state;
   }
 };
 
-// const filterByNumericValues = (state = INITIAL_FILTER, action) => {
-//   switch (action.type) {
-//     case FILTER_BY_NUMERIC_VALUES:
-//       return {
-//         ...state,
-//         filterByNumericValues: [{
-//           column,
-//           comparison,
-//           value: action.results,
-//         }]
-//       }
-//   }
-// }
-
-export default filterByName;
+export default filters;
