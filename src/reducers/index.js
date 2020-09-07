@@ -1,5 +1,10 @@
 import { combineReducers } from 'redux';
-import { CALL_API, RECEIVED_API, FILTER_PLANET } from '../actions';
+import {
+  CALL_API,
+  RECEIVED_API,
+  FILTER_PLANET,
+  FILTER_GENERAL,
+} from '../actions';
 
 // ANCHOR planetsReducer
 const INITIAL_STATE_PLANET = {
@@ -30,6 +35,7 @@ const INITIAL_STATE_FILTER = {
   filterByName: {
     name: '',
   },
+  filterByNumericValues: [],
 };
 
 const filters = (state = INITIAL_STATE_FILTER, action) => {
@@ -38,6 +44,18 @@ const filters = (state = INITIAL_STATE_FILTER, action) => {
       return {
         ...state,
         filterByName: { name: action.name },
+      };
+    case FILTER_GENERAL:
+      return {
+        ...state,
+        filterByNumericValues: [
+          ...state.filterByNumericValues,
+          {
+            column: action.column,
+            comparison: action.comparison,
+            value: action.value,
+          },
+        ],
       };
     default:
       return state;

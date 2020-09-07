@@ -5,12 +5,20 @@ import Api from '../services/Api';
 export const CALL_API = 'CALL_API';
 export const RECEIVED_API = 'RECEIVED_API';
 export const FILTER_PLANET = 'FILTER_PLANET';
+export const FILTER_GENERAL = 'FILTER_GENERAL';
 
 const callApi = () => ({ type: CALL_API });
 
 const receivedApi = (data) => ({ type: RECEIVED_API, planets: data.results });
 
 export const filterPlanet = (name) => ({ type: FILTER_PLANET, name });
+
+export const filterGeneral = ({column, comparison, value}) => ({
+  type: FILTER_GENERAL,
+  column,
+  comparison,
+  value,
+});
 
 export const AcionaApi = () => (dispatch) => {
   dispatch(callApi());

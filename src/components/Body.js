@@ -6,16 +6,39 @@ import PropTypes from 'prop-types';
 import { AcionaApi } from '../actions';
 
 class Body extends Component {
+  constructor(props) {
+    super(props);
+    this.filtrando = this.filtrando.bind(this);
+  }
+
   componentDidMount() {
     this.props.AcionaApi();
   }
 
+  filtrando() {
+    const { byNumeric, planets } = this.props;
+    let finalPlanets = [...planets]
+    if (byNumeric.length > 0) {
+      byNumeric.forEach((filtro) => {
+      const { column, comparison, value } = filtro;
+      if (comparison === 'maior que') {
+        finalPlanets = finalPlanets.filter((planeta) => +planeta[column] > +value);
+      } else if (comparison === 'menor que') {
+        finalPlanets = finalPlanets.filter((planeta) => +planeta[column] < +value);
+      } else {
+        finalPlanets = finalPlanets.filter((planeta) => +planeta[column] === +value);
+      }})
+    }
+    return finalPlanets;
+  }
+
   // ANCHOR render
   render() {
-    const { planets, filters } = this.props;
+    const { filters } = this.props;
+    const filterPlanets = this.filtrando();
     return (
       <tbody>
-        {planets
+        {filterPlanets
           .filter((planeta) => planeta.name.includes(filters))
           .map((planeta) => (
             <tr key={planeta.name}>
@@ -43,6 +66,7 @@ class Body extends Component {
 const mapStateToProps = (state) => ({
   planets: state.planetsReducer.planets,
   filters: state.filters.filterByName.name,
+  byNumeric: state.filters.filterByNumericValues,
 });
 
 const mapDispatchToProps = (dispatch) => ({
