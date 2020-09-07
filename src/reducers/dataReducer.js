@@ -22,29 +22,31 @@ const INICIAL_STATE = {
   value: 0,
 };
 
+const AgradoAoCC = (state) => {
+  console.log(state)
+  const { comparison, column, value, filterByNumericValues } = state;
+  if (filterByNumericValues.length === 0) {
+    return ({
+      ...state, filterByNumericValues: [{ comparison, value, column }],
+    });
+  }
+  return {
+    ...state, filterByNumericValues: [...filterByNumericValues, { comparison, value, column }],
+  };
+}
+
 const dataReducer = (state = INICIAL_STATE, action) => {
   switch (action.type) {
     case SUCESSO:
       return { ...state, planetas: action.data, isFetching: false };
     case CARREGANDO:
-      return { ...state, };
+      return { ...state };
     case FALHA:
       return { ...state, erro: action.erro };
     case NEW_FILTER:
       return { ...state, filterByName: { name: action.value } };
     case FILTRAR:
-      {
-        const { comparison, column, value, filterByNumericValues } = state;
-        if (filterByNumericValues.length === 0) {
-          return ({
-            ...state, filterByNumericValues: [{ comparison, value, column }],
-          });
-        }
-        return {
-          ...state,
-          filterByNumericValues: [...filterByNumericValues, { comparison, value, column }],
-        };
-      }
+      return AgradoAoCC(state);
     case SELECTED_COLUMN:
       return { ...state, column: action.value };
     case SELECTED_COMPARISON:
