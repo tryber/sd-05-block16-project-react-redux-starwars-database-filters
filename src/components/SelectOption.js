@@ -13,7 +13,7 @@ class SelectOption extends Component {
     };
   }
   render() {
-    const colunas = [ "", "rotation_period", "orbital_period", "diameter", "surface_water", "population" ]
+    const colunas = ['', 'rotation_period', 'orbital_period', 'diameter', 'surface_water', 'population'];
     return (
       <div>
         <select
