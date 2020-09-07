@@ -9,11 +9,11 @@ import Infos from './Infos';
 const aplicaComparacao = (planet, filter) => {
   const { column, comparison, value } = filter;
   if (comparison === 'maior que') {
-    return planet[column] > value;
+    return Number(planet[column]) > Number(value);
   } else if (comparison === 'menor que') {
-    return planet[column] < value;
+    return Number(planet[column]) < Number(value);
   } else if (comparison === 'igual a') {
-    return planet[column] === value;
+    return Number(planet[column]) === Number(value);
   } return planet;
 };
 

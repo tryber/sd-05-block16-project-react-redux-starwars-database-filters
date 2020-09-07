@@ -56,7 +56,7 @@ class InputNumber extends React.Component {
           data-testid="value-filter"
           onChange={(event) => (this.selectValue(event))}
         />
-        <button data-testis="button-filter" onClick={this.handleClick}>
+        <button data-testid="button-filter" onClick={this.handleClick}>
           Adicionar Filtro
         </button>
       </div>
