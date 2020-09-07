@@ -8,7 +8,7 @@ export const filterPlanet = (nome) => ({
 
 export const filterByNumber = (column, comparison, value) => ({
   type: FILTER_BY_NUMERIC_VALUES,
-  column: column,
-  comparison: comparison,
-  value: value,
+  column,
+  comparison,
+  value,
 });
