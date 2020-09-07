@@ -17,17 +17,24 @@ class Body extends Component {
 
   filtrando() {
     const { byNumeric, planets } = this.props;
-    let finalPlanets = [...planets]
+    let finalPlanets = [...planets];
     if (byNumeric.length > 0) {
       byNumeric.forEach((filtro) => {
-      const { column, comparison, value } = filtro;
-      if (comparison === 'maior que') {
-        finalPlanets = finalPlanets.filter((planeta) => +planeta[column] > +value);
-      } else if (comparison === 'menor que') {
-        finalPlanets = finalPlanets.filter((planeta) => +planeta[column] < +value);
-      } else {
-        finalPlanets = finalPlanets.filter((planeta) => +planeta[column] === +value);
-      }})
+        const { column, comparison, value } = filtro;
+        if (comparison === 'maior que') {
+          finalPlanets = finalPlanets.filter(
+            (planeta) => +planeta[column] > +value,
+          );
+        } else if (comparison === 'menor que') {
+          finalPlanets = finalPlanets.filter(
+            (planeta) => +planeta[column] < +value,
+          );
+        } else {
+          finalPlanets = finalPlanets.filter(
+            (planeta) => +planeta[column] === +value,
+          );
+        }
+      });
     }
     return finalPlanets;
   }
@@ -80,4 +87,5 @@ Body.propTypes = {
   AcionaApi: PropTypes.func.isRequired,
   planets: PropTypes.arrayOf(PropTypes.object).isRequired,
   filters: PropTypes.string.isRequired,
+  byNumeric: PropTypes.arrayOf(PropTypes.object).isRequired,
 };

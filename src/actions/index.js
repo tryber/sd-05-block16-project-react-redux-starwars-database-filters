@@ -13,7 +13,7 @@ const receivedApi = (data) => ({ type: RECEIVED_API, planets: data.results });
 
 export const filterPlanet = (name) => ({ type: FILTER_PLANET, name });
 
-export const filterGeneral = ({column, comparison, value}) => ({
+export const filterGeneral = ({ column, comparison, value }) => ({
   type: FILTER_GENERAL,
   column,
   comparison,

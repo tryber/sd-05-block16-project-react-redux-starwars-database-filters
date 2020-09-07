@@ -7,7 +7,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { filterPlanet } from '../actions';
-import SelectOption from './SelectOption'
+import SelectOption from './SelectOption';
 
 class SearchBar extends Component {
   render() {
