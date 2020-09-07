@@ -82,4 +82,5 @@ Body.propTypes = {
   planetsData: PropTypes.arrayOf(PropTypes.object).isRequired,
   fetching: PropTypes.bool.isRequired,
   filters: PropTypes.string.isRequired,
+  filterNum: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
