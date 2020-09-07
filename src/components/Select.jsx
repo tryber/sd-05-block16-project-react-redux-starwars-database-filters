@@ -82,3 +82,9 @@ Select.propTypes = {
   filters: PropTypes.func.isRequired,
   filtered: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
+
+/* Refatoração do código para caber nas 30 linhas no Render. criado novo state com array
+com as propriedades para alterar na coluna. criado columns com spread para retornar o valor
+do state array. criado if que remove o option especificado no requisito se > 0
+e feito map para refatorar o column-filter.
+*/
