@@ -2,8 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Tabela from '../components/Tabela';
-import { fetcherThunk, filter } from '../actions/dataAction';
-import Loading from '../components/Loading';
+import { fetcherThunk } from '../actions/dataAction';
 import InputFilter from '../components/InputFilter';
 import NumericFilters from '../components/NumericFilters';
 
@@ -17,8 +16,10 @@ class Inicial extends React.Component {
     let planetasFiltrados = [...planetas];
 
     const removeUnknown = (arrOriginal, column) => {
-      //Função encontrada no stack Overflow e refatorada com o conteúdo que estamos usando no momento.
-      // link: https://stackoverflow.com/questions/5767325/how-can-i-remove-a-specific-item-from-an-array
+      // Função encontrada no stack Overflow e refatorada com o conteúdo que estamos usando no
+      // momento.
+      // link: 
+      // https://stackoverflow.com/questions/5767325/how-can-i-remove-a-specific-item-from-an-array
       const array = [...arrOriginal];
       let index = 0;
       while (index < array.length) {
@@ -30,34 +31,32 @@ class Inicial extends React.Component {
         }
       }
       return array;
-    }
+    };
 
     if (name !== '' && !isFetching) {
       planetasFiltrados = planetasFiltrados.filter((planeta) => (planeta.name.includes(name)));
-    };
+    }
 
     if (filtrar.length > 0 && !isFetching) {
       filtrar.forEach(({ value, comparison, column }) => {
         if (comparison === 'maior que') {
           planetasFiltrados = removeUnknown(planetasFiltrados, column);
-          planetasFiltrados = planetasFiltrados.filter((planeta) => {
-            return (parseInt(planeta[column]) > parseInt(value));
-          });
+          planetasFiltrados = planetasFiltrados.filter((planeta) =>
+            (parseInt(planeta[column], 10) > parseInt(value, 10))
+          );
         }
         if (comparison === 'menor que') {
           planetasFiltrados = removeUnknown(planetasFiltrados, column);
-          planetasFiltrados = planetasFiltrados.filter((planeta) => {
-            return (parseInt(planeta[column]) < parseInt(value));
-          });
+          planetasFiltrados = planetasFiltrados.filter((planeta) =>
+            (parseInt(planeta[column], 10) < parseInt(value, 10))
+          );
         }
         if (comparison === 'igual a') {
           planetasFiltrados = removeUnknown(planetasFiltrados, column);
-          planetasFiltrados = planetasFiltrados.filter((planeta) => {
-            return (planeta[column] === value);
-          });
+          planetasFiltrados = planetasFiltrados.filter((planeta) => (planeta[column] === value));
         }
-      }
-      )
+      },
+      );
     }
 
     if (erro !== '') {
@@ -82,14 +81,15 @@ const mapDispatchToProps = (dispatch) => ({
   onLoad: () => dispatch(fetcherThunk()),
 });
 
-const mapStateToProps = (state) => {
-  return {
-  planetas: state.filters.planetas,
-  isFetching: state.filters.isFetching,
-  erro: state.filters.erro,
-  filter: state.filters.filterByName,
-  filtrar: state.filters.filterByNumericValues,
-}};
+const mapStateToProps = (state) => (
+  {
+    planetas: state.filters.planetas,
+    isFetching: state.filters.isFetching,
+    erro: state.filters.erro,
+    filter: state.filters.filterByName,
+    filtrar: state.filters.filterByNumericValues,
+  }
+);
 
 Inicial.propTypes = {
   onLoad: PropTypes.func.isRequired,
@@ -97,6 +97,9 @@ Inicial.propTypes = {
   isFetching: PropTypes.bool.isRequired,
   erro: PropTypes.string.isRequired,
   filter: PropTypes.shape({ name: PropTypes.string }).isRequired,
+  filtrar: PropTypes.shape({
+
+  })
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Inicial);

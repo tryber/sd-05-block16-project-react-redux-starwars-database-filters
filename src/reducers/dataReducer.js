@@ -44,17 +44,17 @@ const dataReducer = (state = INICIAL_STATE, action) => {
         ...state,
         filterByName: { name: action.value },
       };
-    case FILTRAR:
+    case 'FILTRAR':
       const { comparison, column, value, filterByNumericValues } = state;
       if (filterByNumericValues.length === 0) {
         return ({
           ...state,
-          filterByNumericValues: [ { comparison, value, column } ],
+          filterByNumericValues: [{ comparison, value, column }],
         });
-      };
+      }
       return {
         ...state,
-        filterByNumericValues: [ ...filterByNumericValues , { comparison, value, column} ],
+        filterByNumericValues: [...filterByNumericValues, { comparison, value, column }],
       };
     case SELECTED_COLUMN:
       return {
@@ -72,7 +72,7 @@ const dataReducer = (state = INICIAL_STATE, action) => {
         value: action.value,
       };
     default:
-    return state;
+      return state;
   }
 };
 

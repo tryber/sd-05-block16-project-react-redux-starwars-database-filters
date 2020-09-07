@@ -1,4 +1,4 @@
-export const compare = [
+const compare = [
   {
     name: 'Maior Que',
     value: 'maior que',
@@ -12,3 +12,5 @@ export const compare = [
     value: 'igual a',
   },
 ];
+
+export default compare;

@@ -25,8 +25,8 @@ function newFilter({ target: { value } }) {
 export function filter() {
   return ({
     type: FILTRAR,
-  })
-};
+  });
+}
 
 export function fetcherThunk() {
   return (dispatch) => {

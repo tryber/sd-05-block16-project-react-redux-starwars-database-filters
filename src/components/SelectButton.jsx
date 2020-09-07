@@ -11,10 +11,13 @@ const SelectButton = (props) => {
       ))}
     </select>
   );
-}
+};
 
 SelectButton.propTypes = {
-  options: instanceOf(Array).isRequired,
-}
+  onChange: PropTypes.func.isRequired,
+  selected: PropTypes.string.isRequired,
+  datatestid: PropTypes.string.isRequired,
+  options: PropTypes.instanceOf(Array).isRequired,
+};
 
 export default SelectButton;

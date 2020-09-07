@@ -1,4 +1,4 @@
-export const colunas = [
+const colunas = [
   {
     name: 'População',
     value: 'population',
@@ -20,3 +20,5 @@ export const colunas = [
     value: 'surface_water',
   },
 ];
+
+export default colunas;
