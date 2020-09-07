@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { fetchAllPlanets } from '../actions';
 import Body from './Body';
-import Head from './Head';
 
 class Table extends Component {
   componentDidMount() {
@@ -16,15 +15,15 @@ class Table extends Component {
     return (
       <div>
         StarWars Datatable with Filters
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
         <table>
-          <thead>
-            <Head />
-          </thead>
-          <tbody>
-            {
+          {
             planetas.map((planeta) => <Body data={planeta} />)
           }
-          </tbody>
         </table>
       </div>
     );
@@ -32,8 +31,8 @@ class Table extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  planetas: state.reduceApi.data,
   isLoading: state.reduceApi.isLoading,
+  planetas: state.reduceApi.data,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -41,7 +40,7 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 Table.propTypes = {
-  // isLoading: PropTypes.bool.isRequired,
+  isLoading: PropTypes.bool.isRequired,
   getFetch: PropTypes.func.isRequired,
   planetas: PropTypes.arrayOf(PropTypes.object).isRequired,
 };

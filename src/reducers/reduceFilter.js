@@ -2,9 +2,9 @@ import ACTIONS from '../actions';
 
 const INITIAL_STATE = {
   filterByName: {
-    name: ''
+    name: '',
   },
-}
+};
 
 // Forma de fazer action by Zambelli 03/09/2020
 

@@ -5,7 +5,7 @@ export const RECEIVE_API = 'RECEIVE_API';
 export const FILTER_NAME = 'FILTER_NAME';
 
 const ACTIONS = {
-  REQUEST_API, RECEIVE_API, FILTER_NAME
+  REQUEST_API, RECEIVE_API, FILTER_NAME,
 };
 
 export default ACTIONS;

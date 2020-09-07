@@ -1,24 +1,26 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Proptypes from 'prop-types';
 import { filter } from '../actions';
 
 // texto digitado deve ser salvo num campo filters: { filterByName: { name } }
 
 class Filter extends Component {
   render() {
-    const { name, filtro } = this.props;
+    const { filtro } = this.props;
     return (
       <div>
-        <input
+        <label htmlFor="name-filter">
+          <span>Filtre Aqui: </span>
+          <input
+          placeholder="DIGITE AQUI"
           type="text"
           data-testid="name-filter"
           onChange={(e) => filtro(e.target.value)}
         />
-        <span>
-          <strong>Filtre Aqui</strong>
-        </span>
+        </label>
       </div>
-    )
+    );
   }
 }
 
@@ -27,7 +29,11 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  filtro: (nome) => dispatch(filter(nome)),
+  filtro: (e) => dispatch(filter(e)),
 });
+
+Filter.propTypes = {
+  filtro: Proptypes.func.isRequired,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Filter);
