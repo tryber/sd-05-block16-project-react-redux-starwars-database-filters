@@ -33,7 +33,7 @@ class SelectOption extends Component {
     const { filtros } = this.props;
     const colunas = [...col];
     if (filtros.length > 0) {
-      filtros.forEach((filt) => {colunas.splice(colunas.indexOf(filt.column), 1);});
+      filtros.forEach((filt) => { colunas.splice(colunas.indexOf(filt.column), 1); });
     }
     return (
       <div>
