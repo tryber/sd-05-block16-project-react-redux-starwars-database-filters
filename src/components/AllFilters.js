@@ -17,7 +17,7 @@ class AllFilters extends Component {
     return (
       <div>
         {filtros.map((filt) => (
-          <div data-testid='filter'>
+          <div data-testid="filter">
             {`${filt.column} ${filt.comparison} ${filt.value}`}
             <button id={filt.column} onClick={(e) => this.hC(e)}>
               X
