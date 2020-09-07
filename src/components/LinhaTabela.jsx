@@ -6,7 +6,6 @@ class LinhaTabela extends React.Component {
   render() {
     const { climate, diameter, gravity, name, population,
     terrain, created, edited, films, url } = this.props.planeta;
-
     return (
       <tr>
         <td>{name}</td>

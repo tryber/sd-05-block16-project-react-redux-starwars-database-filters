@@ -3,13 +3,23 @@ import {
   FALHA,
   CARREGANDO,
   NEW_FILTER,
+  FILTRAR,
 } from '../actions/dataAction';
+import {
+  SELECTED_COLUMN,
+  SELECTED_COMPARISON,
+  SELECTED_NUMBER,
+} from '../actions/selectActions';
 
 const INICIAL_STATE = {
   isFetching: true,
   planetas: [],
   erro: '',
   filterByName: { name: '' },
+  filterByNumericValues: [],
+  column: 'population',
+  comparison: 'maior que',
+  value: 0,
 };
 
 const dataReducer = (state = INICIAL_STATE, action) => {
@@ -34,8 +44,35 @@ const dataReducer = (state = INICIAL_STATE, action) => {
         ...state,
         filterByName: { name: action.value },
       };
+    case FILTRAR:
+      const { comparison, column, value, filterByNumericValues } = state;
+      if (filterByNumericValues.length === 0) {
+        return ({
+          ...state,
+          filterByNumericValues: [ { comparison, value, column } ],
+        });
+      };
+      return {
+        ...state,
+        filterByNumericValues: [ ...filterByNumericValues , { comparison, value, column} ],
+      };
+    case SELECTED_COLUMN:
+      return {
+        ...state,
+        column: action.value,
+      };
+    case SELECTED_COMPARISON:
+      return {
+        ...state,
+        comparison: action.value,
+      };
+    case SELECTED_NUMBER:
+      return {
+        ...state,
+        value: action.value,
+      };
     default:
-      return state;
+    return state;
   }
 };
 

@@ -4,6 +4,7 @@ export const SUCESSO = 'SUCESSO';
 export const CARREGANDO = 'CARREGANDO';
 export const FALHA = 'FALHA';
 export const NEW_FILTER = 'NEW_FILTER';
+export const FILTRAR = 'FILTRAR';
 
 function carregando() {
   return { type: CARREGANDO };
@@ -20,6 +21,12 @@ function falha(erro) {
 function newFilter({ target: { value } }) {
   return { type: NEW_FILTER, value };
 }
+
+export function filter() {
+  return ({
+    type: FILTRAR,
+  })
+};
 
 export function fetcherThunk() {
   return (dispatch) => {
