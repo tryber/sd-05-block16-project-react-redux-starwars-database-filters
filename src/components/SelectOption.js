@@ -10,17 +10,42 @@ class SelectOption extends Component {
       column: '',
       comparison: '',
       value: 0,
+      col: [
+        '',
+        'rotation_period',
+        'orbital_period',
+        'diameter',
+        'surface_water',
+        'population',
+      ],
     };
+    this.hC = this.hC.bind(this);
   }
+
+  hC() {
+    const { filter } = this.props;
+    const { column, comparison, value } = this.state
+    filter({column, comparison, value});
+  }
+
   render() {
-    const colunas = ['', 'rotation_period', 'orbital_period', 'diameter', 'surface_water', 'population'];
+    const { col } = this.state;
+    const { filtros } = this.props;
+    const colunas = [...col];
+    if (filtros.length > 0) {
+      filtros.forEach((filt) => {
+         colunas.splice(colunas.indexOf(filt.column), 1)
+        });
+    }
     return (
       <div>
         <select
           onChange={(event) => this.setState({ column: event.target.value })}
           data-testid="column-filter"
         >
-          {colunas.map((value) => <option value={value}>{value}</option>)}
+          {colunas.map((value) => (
+            <option value={value}>{value}</option>
+          ))}
         </select>
         <select
           onChange={(event) =>
@@ -34,10 +59,11 @@ class SelectOption extends Component {
           <option value="igual a">igual a</option>
         </select>
         <input
-          data-testid="value-filter" type="number"
+          data-testid="value-filter"
+          type="number"
           onChange={(event) => this.setState({ value: event.target.value })}
         />
-        <button data-testid="button-filter" onClick={() => this.props.filter(this.state)}>
+        <button data-testid="button-filter" onClick={this.hC}>
           CLIQUE AQUI
         </button>
       </div>
@@ -45,12 +71,16 @@ class SelectOption extends Component {
   }
 }
 
-// Aprendi com o Felipe a forma de colocar o MapDispatch assim
-const mapDispatchToProps = {
-  filter: filterGeneral,
-};
+const mapStateToProps = (state) => ({
+  filtros: state.filters.filterByNumericValues,
+});
 
-export default connect(null, mapDispatchToProps)(SelectOption);
+// Aprendi com o Felipe a forma de colocar o MapDispatch assim. Depois descobri que deu ruim
+const mapDispatchToProps = (dispatch) => ({
+  filter: (a) => dispatch(filterGeneral(a)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(SelectOption);
 
 SelectOption.propTypes = {
   filter: PropTypes.func.isRequired,

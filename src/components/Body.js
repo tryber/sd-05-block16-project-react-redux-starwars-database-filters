@@ -15,6 +15,7 @@ class Body extends Component {
     this.props.AcionaApi();
   }
 
+  // Grande ajuda do Rodrigo para fazer essa parte.
   filtrando() {
     const { byNumeric, planets } = this.props;
     let finalPlanets = [...planets];
@@ -24,6 +25,7 @@ class Body extends Component {
         if (comparison === 'maior que') {
           finalPlanets = finalPlanets.filter(
             (planeta) => +planeta[column] > +value,
+            // Esse sinal de mais força a transformação de uma string em número
           );
         } else if (comparison === 'menor que') {
           finalPlanets = finalPlanets.filter(
