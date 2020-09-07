@@ -4,7 +4,7 @@ import reduceFilter from './reduceFilter';
 
 const rootReducer = combineReducers({
   reduceApi,
-  filter: reduceFilter,
+  filters: reduceFilter,
 });
 
 export default rootReducer;

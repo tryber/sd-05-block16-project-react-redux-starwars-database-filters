@@ -11,7 +11,15 @@ class Table extends Component {
   }
 
   render() {
-    const { planetas } = this.props;
+    const { planetas, name } = this.props;
+
+/*     consulta filter sem modificar anterior:
+    https://desenvolvimentoparaweb.com/javascript/map-filter-
+    reduce-javascript/#:~:text=%2F%2F%20array.-,filter
+    (%20(%20elem%2C%20index%2C%20arr%20)%20%3D%3E%20arr,
+    elemento%20ser%C3%A1%20mantido%20ou%20descartado. */
+
+    const filtroPorPlaneta = planetas.filter((planeta)=> planeta.name.indexOf( name ) === name);
     return (
       <div>
         StarWars Datatable with Filters
@@ -31,7 +39,8 @@ class Table extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  isLoading: state.reduceApi.isLoading,
+  // isLoading: state.reduceApi.isLoading,
+  name: state.filters.filterByName.name,
   planetas: state.reduceApi.data,
 });
 

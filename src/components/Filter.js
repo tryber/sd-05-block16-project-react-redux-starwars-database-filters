@@ -25,7 +25,7 @@ class Filter extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  name: state.filter.filterByName.name,
+  name: state.filters.filterByName.name,
 });
 
 const mapDispatchToProps = (dispatch) => ({
