@@ -19,8 +19,8 @@ class Table extends Component {
     (%20(%20elem%2C%20index%2C%20arr%20)%20%3D%3E%20arr,
     elemento%20ser%C3%A1%20mantido%20ou%20descartado. */
 
-    const filtroPorPlaneta = planetas.filter((planeta)=> planeta.name.indexOf( name ) >= 0);
-    console.log(filtroPorPlaneta)
+    const filtroPorPlaneta = planetas.filter((planeta) => planeta.name.indexOf(name) >= 0);
+    // console.log(filtroPorPlaneta)
     return (
       <div>
         StarWars Datatable with Filters
@@ -51,6 +51,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 Table.propTypes = {
   getFetch: PropTypes.func.isRequired,
+  name: PropTypes.object.isRequired,
   planetas: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
