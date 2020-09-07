@@ -33,9 +33,7 @@ class SelectOption extends Component {
     const { filtros } = this.props;
     const colunas = [...col];
     if (filtros.length > 0) {
-      filtros.forEach((filt) => {
-        colunas.splice(colunas.indexOf(filt.column), 1);
-      });
+      filtros.forEach((filt) => {colunas.splice(colunas.indexOf(filt.column), 1);});
     }
     return (
       <div>
@@ -46,8 +44,7 @@ class SelectOption extends Component {
           {colunas.map((value) => (<option value={value}>{value}</option>))}
         </select>
         <select
-          onChange={(event) =>
-            this.setState({ comparison: event.target.value })
+          onChange={(event) => this.setState({ comparison: event.target.value })
           } data-testid="comparison-filter"
         >
           <option value="" />
