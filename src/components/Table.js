@@ -6,6 +6,17 @@ import Cabecalho from './Cabecalho';
 import '../App.css';
 import Infos from './Infos';
 
+const aplicaComparacao = (planet, filter) => {
+  const { column, comparison, value } = filter;
+  if (comparison === 'maior que') {
+    return planet[column] > value;
+  } else if (comparison === 'menor que') {
+    return planet[column] < value;
+  } else if (comparison === 'igual a') {
+    return planet[column] === value;
+  } return planet;
+};
+
 class Table extends React.Component {
 
   componentDidMount() {
@@ -15,18 +26,20 @@ class Table extends React.Component {
 
   render() {
     // results e isFetching estão vindo do mapStateToProps
-    const { results, isFetching, nombreProcurado } = this.props;
-    // console.log(numericFilter)
-    const allInfos = results.filter((planeta) =>
+    const { results, isFetching, nombreProcurado, numericFilter } = this.props;
+    let planetas = results;
+    planetas = results.filter((planeta) =>
       planeta.name.toLowerCase().indexOf(nombreProcurado.toLowerCase()) >= 0);
-    // numericFilter.forEach(filter =>{
-    // })
+    numericFilter.forEach((filtro) => {
+      planetas = planetas.filter((planeta) => aplicaComparacao(planeta, filtro));
+    });
+
     return (
       <div>StarWars Datatable with Filters
         <table>
           <Cabecalho />
           {  // if ternário
-            isFetching === false ? allInfos.map((batatinha) => (
+            isFetching === false ? planetas.map((batatinha) => (
               <Infos batatinha={batatinha} />
             )) : null
           }
@@ -60,4 +73,5 @@ Table.propTypes = {
   results: propTypes.arrayOf(propTypes.instanceOf(Object)).isRequired,
   getPlanets: propTypes.func.isRequired,
   nombreProcurado: propTypes.string.isRequired,
+  numericFilter: propTypes.arrayOf(propTypes.instanceOf(Object)).isRequired,
 };

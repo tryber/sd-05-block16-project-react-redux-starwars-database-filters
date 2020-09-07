@@ -47,9 +47,9 @@ class InputNumber extends React.Component {
           onChange={(event) => (this.selectComparison(event))}
         >
           <option value="" disabled selected>Compare</option>
-          <option value="maior">Maior que</option>
-          <option value="menor">Menor que</option>
-          <option value="igual">Igual a</option>
+          <option value="maior que">maior que</option>
+          <option value="menor que">menor que</option>
+          <option value="igual a">igual a</option>
         </select>
         <input
           type="number"
