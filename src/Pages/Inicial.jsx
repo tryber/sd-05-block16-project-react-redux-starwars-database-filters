@@ -6,59 +6,60 @@ import { fetcherThunk } from '../actions/dataAction';
 import InputFilter from '../components/InputFilter';
 import NumericFilters from '../components/NumericFilters';
 
+const removeUnknown = (arrOriginal, column) => {
+  // Função encontrada no stack Overflow e refatorada com o conteúdo que estamos usando no
+  // momento.
+  // link:
+  // https://stackoverflow.com/questions/5767325/how-can-i-remove-a-specific-item-from-an-array
+  const array = [...arrOriginal];
+  let index = 0;
+  while (index < array.length) {
+    const item = array[index];
+    if (item[column] === 'unknown') {
+      array.splice(index, 1);
+    } else {
+      index += 1;
+    }
+  }
+  return array;
+};
+
+const allFilters = (planetas, name, isFetching, filtrar) => {
+  let planetasFiltrados = [...planetas];
+  if (name !== '' && !isFetching) {
+    planetasFiltrados = planetasFiltrados.filter((planeta) => (planeta.name.includes(name)));
+  }
+
+  if (filtrar.length > 0 && !isFetching) {
+    filtrar.forEach(({ value, comparison, column }) => {
+      if (comparison === 'maior que') {
+        planetasFiltrados = removeUnknown(planetasFiltrados, column);
+        planetasFiltrados = planetasFiltrados.filter((planeta) =>
+          (parseInt(planeta[column], 10) > parseInt(value, 10)),
+        );
+      }
+      if (comparison === 'menor que') {
+        planetasFiltrados = removeUnknown(planetasFiltrados, column);
+        planetasFiltrados = planetasFiltrados.filter((planeta) =>
+          (parseInt(planeta[column], 10) < parseInt(value, 10)),
+        );
+      }
+      if (comparison === 'igual a') {
+        planetasFiltrados = removeUnknown(planetasFiltrados, column);
+        planetasFiltrados = planetasFiltrados.filter((planeta) => (planeta[column] === value));
+      }
+    },
+    );
+  }
+  return planetasFiltrados;
+}
+
 class Inicial extends React.Component {
   componentDidMount() {
     this.props.onLoad();
   }
-
   render() {
     const { planetas, filter: { name }, erro, isFetching, filtrar } = this.props;
-    let planetasFiltrados = [...planetas];
-
-    const removeUnknown = (arrOriginal, column) => {
-      // Função encontrada no stack Overflow e refatorada com o conteúdo que estamos usando no
-      // momento.
-      // link:
-      // https://stackoverflow.com/questions/5767325/how-can-i-remove-a-specific-item-from-an-array
-      const array = [...arrOriginal];
-      let index = 0;
-      while (index < array.length) {
-        const item = array[index];
-        if (item[column] === 'unknown') {
-          array.splice(index, 1);
-        } else {
-          index += 1;
-        }
-      }
-      return array;
-    };
-
-    if (name !== '' && !isFetching) {
-      planetasFiltrados = planetasFiltrados.filter((planeta) => (planeta.name.includes(name)));
-    }
-
-    if (filtrar.length > 0 && !isFetching) {
-      filtrar.forEach(({ value, comparison, column }) => {
-        if (comparison === 'maior que') {
-          planetasFiltrados = removeUnknown(planetasFiltrados, column);
-          planetasFiltrados = planetasFiltrados.filter((planeta) =>
-            (parseInt(planeta[column], 10) > parseInt(value, 10)),
-          );
-        }
-        if (comparison === 'menor que') {
-          planetasFiltrados = removeUnknown(planetasFiltrados, column);
-          planetasFiltrados = planetasFiltrados.filter((planeta) =>
-            (parseInt(planeta[column], 10) < parseInt(value, 10)),
-          );
-        }
-        if (comparison === 'igual a') {
-          planetasFiltrados = removeUnknown(planetasFiltrados, column);
-          planetasFiltrados = planetasFiltrados.filter((planeta) => (planeta[column] === value));
-        }
-      },
-      );
-    }
-
     if (erro !== '') {
       return (
         <div>
@@ -71,7 +72,7 @@ class Inicial extends React.Component {
       <div>
         <InputFilter />
         <NumericFilters />
-        <Tabela planetas={planetasFiltrados} />
+        <Tabela planetas={allFilters(planetas, name, isFetching, filtrar)} />
       </div>
     );
   }

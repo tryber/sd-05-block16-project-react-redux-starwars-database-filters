@@ -25,54 +25,32 @@ const INICIAL_STATE = {
 const dataReducer = (state = INICIAL_STATE, action) => {
   switch (action.type) {
     case SUCESSO:
-      return {
-        ...state,
-        planetas: action.data,
-        isFetching: false,
-      };
+      return { ...state, planetas: action.data, isFetching: false };
     case CARREGANDO:
-      return {
-        ...state,
-      };
+      return { ...state, };
     case FALHA:
-      return {
-        ...state,
-        erro: action.erro,
-      };
+      return { ...state, erro: action.erro };
     case NEW_FILTER:
-      return {
-        ...state,
-        filterByName: { name: action.value },
-      };
+      return { ...state, filterByName: { name: action.value } };
     case FILTRAR:
       {
         const { comparison, column, value, filterByNumericValues } = state;
         if (filterByNumericValues.length === 0) {
           return ({
-            ...state,
-            filterByNumericValues: [{ comparison, value, column }],
+            ...state, filterByNumericValues: [{ comparison, value, column }],
           });
         }
         return {
           ...state,
           filterByNumericValues: [...filterByNumericValues, { comparison, value, column }],
         };
-    }
+      }
     case SELECTED_COLUMN:
-      return {
-        ...state,
-        column: action.value,
-      };
+      return { ...state, column: action.value };
     case SELECTED_COMPARISON:
-      return {
-        ...state,
-        comparison: action.value,
-      };
+      return { ...state, comparison: action.value };
     case SELECTED_NUMBER:
-      return {
-        ...state,
-        value: action.value,
-      };
+      return { ...state, value: action.value };
     default:
       return state;
   }
