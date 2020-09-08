@@ -76,5 +76,5 @@ export default connect(mapStateToProps, mapDispatchToProps)(InputNumber);
 
 InputNumber.propTypes = {
   filterByNumber: propTypes.func.isRequired,
-  option: propTypes.array.isRequired,
+  options: propTypes.array.isRequired,
 };
