@@ -112,15 +112,15 @@ const filtraPlanetas = (planetas, filtroDeTexto, filterByNumericValues, order) =
 
   planetasExibidos = planetasExibidos.sort((a, b) => {
     if (isNaN(a[order.column])) {
-      if (order.sort === "ASC") {
+      if (order.sort === 'ASC') {
         return a[order.column.toLowerCase()] < b[order.column.toLowerCase()] ? -1 : 1;
-      } else if (order.sort === "DESC") {
+      } else if (order.sort === 'DESC') {
         return a[order.column.toLowerCase()] > b[order.column.toLowerCase()] ? -1 : 1;
       }
     } else {
-      if (order.sort === "ASC") {
+      if (order.sort === 'ASC') {
         return parseInt(a[order.column]) - parseInt(b[order.column]);
-      } else if (order.sort === "DESC") {
+      } else if (order.sort === 'DESC') {
         return parseInt(b[order.column]) - parseInt(a[order.column]);
       }
     }
