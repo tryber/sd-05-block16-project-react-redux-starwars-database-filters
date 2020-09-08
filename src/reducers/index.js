@@ -1,5 +1,12 @@
 import { combineReducers } from 'redux';
-import { CHAMAR_API, SUCESSO_API, FILTRO_NOME, FILTRO_NUMEROS } from '../actions';
+import {
+  CHAMAR_API,
+  SUCESSO_API,
+  FILTRO_NOME,
+  FILTRO_NUMEROS,
+  INICIA_FILTROS,
+  iniciaFiltros,
+} from '../actions';
 
 // reducer estado inicial
 const initialState = {
@@ -24,12 +31,11 @@ const initialFilters = {
   },
   filterByNumericValues: [],
   selectedOption: [
-    '',
     'population',
-    'rotation_period',
-    'orbital_period',
     'diameter',
     'surface_water',
+    'orbital_period',
+    'rotation_period',
   ],
 };
 
@@ -41,7 +47,12 @@ function filters(state = initialFilters, action) {
       return {
         ...state,
         filterByNumericValues: [...state.filterByNumericValues, action.filtro],
-        selectedOption: state.selectedOption.filter((option) => option !== action.column),
+        selectedOption: state.selectedOption.filter((option) => option !== action.filtro.column),
+      };
+    case INICIA_FILTROS:
+      return {
+        ...state,
+        selectedOption: state.selectedOption.filter((option) => option !== action.filtro),
       };
     default:
       return state;

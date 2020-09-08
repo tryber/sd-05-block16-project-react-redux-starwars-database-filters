@@ -7,6 +7,13 @@ export const FILTRO_COLUNA = 'FILTRO_COLUNA';
 export const FILTRO_COMPARACAO = 'FILTRO_COMPARACAO';
 export const FILTRO_VALOR = 'FILTRO_VALOR';
 export const FILTRO_NUMEROS = 'FILTRO_NUMEROS';
+export const INICIA_FILTROS = 'INICIA_FILTROS';
+
+export const iniciaFiltros = (filtro) => ({
+  type: INICIA_FILTROS,
+  filtro,
+})
+
 // Ação que chama os dados da API
 const chamarApiAction = () => ({
   type: CHAMAR_API,
