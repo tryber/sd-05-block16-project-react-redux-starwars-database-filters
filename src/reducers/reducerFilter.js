@@ -11,16 +11,16 @@ const STATE_INICIAL = {
   },
 };
 
-const filterNamePlanet = (state, action) => {
+function filterNamePlanet(state, action) {
   return {
     ...state,
     filterByName: {
       name: action.name,
     },
-  }
-}
+  };
+};
 
-const filterValues = (state, action) => {
+function filterValues(state, action) {
   return {
     ...state,
     filterByNumericValues: [
@@ -30,7 +30,7 @@ const filterValues = (state, action) => {
   }
 }
 
-const removeFiltro = (state, action) => {
+function removeFiltro(state, action) {
   return {
     ...state,
     filterByNumericValues: [
@@ -47,7 +47,7 @@ function ordenarFiltro(state, action) {
       column: action.column, sort: action.sort,
     },
   };
-};
+}
 
 const filters = (state = STATE_INICIAL, action) => {
   console.log('action reducer', action);
