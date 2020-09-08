@@ -37,17 +37,17 @@ const removeFiltro = (state, action) => {
       ...state.filterByNumericValues
         .filter((filtro) => filtro.column !== action.column),
     ],
-  }
-}
+  };
+};
 
-const ordenarFiltro = (state, action) => {
+function ordenarFiltro(state, action) {
   return {
     ...state,
     order: {
       column: action.column, sort: action.sort,
     },
-  }
-}
+  };
+};
 
 const filters = (state = STATE_INICIAL, action) => {
   console.log('action reducer', action);
