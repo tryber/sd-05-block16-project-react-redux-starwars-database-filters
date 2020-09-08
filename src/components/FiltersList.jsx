@@ -40,3 +40,4 @@ FiltersList.propTypes = {
   filters: PropTypes.string.isRequired,
   remove: PropTypes.func.isRequired,
 };
+// Transparência: Feito com Sid
