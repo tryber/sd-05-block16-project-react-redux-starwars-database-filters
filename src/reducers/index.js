@@ -23,6 +23,14 @@ const initialFilters = {
     name: '',
   },
   filterByNumericValues: [],
+  selectedOption: [
+    '',
+    'population',
+    'rotation_period',
+    'orbital_period',
+    'diameter',
+    'surface_water',
+  ],
 };
 
 function filters(state = initialFilters, action) {
@@ -30,7 +38,11 @@ function filters(state = initialFilters, action) {
     case FILTRO_NOME:
       return { ...state, filterByName: { name: action.name } };
     case FILTRO_NUMEROS:
-      return { ...state, filterByNumericValues: [action.filtro] };
+      return {
+        ...state,
+        filterByNumericValues: [...state.filterByNumericValues, action.filtro],
+        selectedOption: state.selectedOption.filter((option) => option !== action.column),
+      };
     default:
       return state;
   }

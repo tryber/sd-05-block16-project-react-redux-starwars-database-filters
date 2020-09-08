@@ -13,15 +13,18 @@ class NumericFilter extends Component {
     }
   }
   render() {
+    const { options } = this.props;
     return (
       <div>
         <select data-testid="column-filter" onChange={(event) => this.setState({column: event.target.value})}>
-          <option value="">Choose your column</option>
+          {options.map((option) => <option value={()}></option> )}
+          
+          {/* <option value="">Choose your column</option>
           <option value="population">population</option>
           <option value="diameter">diameter</option>
           <option value="orbital_period">orbital_period</option>
           <option value="rotation_period">rotation_period</option>
-          <option value="surface_water">surface_water</option>
+          <option value="surface_water">surface_water</option> */}
         </select>
         <select data-testid="comparison-filter" onChange={(event) => this.setState({comparison: event.target.value})}>
           <option value="">Choose your comparison</option>
@@ -36,12 +39,16 @@ class NumericFilter extends Component {
   }
 }
 
+const mapStateToProps = (state) => ({
+  options: state.filters.selectedOption,
+});
+
 const mapDispatchToProps = (dispatch) => ({
   pegarNumero: (filter) =>
     dispatch(pegandoNumerosAction(filter)),
 });
 
-export default connect(null, mapDispatchToProps)(NumericFilter);
+export default connect(mapStateToProps, mapDispatchToProps)(NumericFilter);
 
 /* NumericFilter.propTypes = {
   pegar: propTypes.func.isRequired,

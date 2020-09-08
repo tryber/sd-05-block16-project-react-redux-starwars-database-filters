@@ -44,6 +44,7 @@ const mapStateToProps = (state) => ({
   planetas: state.reducerApi.data,
   nome: state.filters.filterByName.name,
   filterByNumericValues: state.filters.filterByNumericValues,
+  options: state.filters.selectedOption,
 });
 
 export default connect(mapStateToProps)(Body);
