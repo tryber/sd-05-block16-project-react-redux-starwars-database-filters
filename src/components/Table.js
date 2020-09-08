@@ -1,10 +1,9 @@
 import React from 'react';
-import { connect, batch } from 'react-redux';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import fetchAPIStarWarsPlanets from '../actions/action';
 import Headers from './HeaderTabela';
 import FiltrosDaPagina from './HeaderPagina';
-import { bindActionCreators } from 'redux';
 
 class Table extends React.Component {
   /*

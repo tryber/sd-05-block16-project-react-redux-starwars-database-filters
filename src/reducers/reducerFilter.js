@@ -11,39 +11,55 @@ const STATE_INICIAL = {
   },
 };
 
+const filterNamePlanet = (state, action) => {
+  return {
+    ...state,
+    filterByName: {
+      name: action.name,
+    },
+  }
+}
+
+const filterValues = (state, action) => {
+  return {
+    ...state,
+    filterByNumericValues: [
+      ...state.filterByNumericValues,
+      { column: action.column, comparison: action.comparison, value: action.value },
+    ],
+  }
+}
+
+const removeFiltro = (state, action) => {
+  return {
+    ...state,
+    filterByNumericValues: [
+      ...state.filterByNumericValues
+        .filter((filtro) => filtro.column !== action.column),
+    ],
+  }
+}
+
+const ordenarFiltro = (state, action) => {
+  return {
+    ...state,
+    order: {
+      column: action.column, sort: action.sort,
+    },
+  }
+}
+
 const filters = (state = STATE_INICIAL, action) => {
   console.log('action reducer', action);
   switch (action.type) {
     case FILTER_NAME_PLANET:
-      return {
-        ...state,
-        filterByName: {
-          name: action.name,
-        },
-      };
+      return filterNamePlanet(state, action);
     case FILTER_VALUES:
-      return {
-        ...state,
-        filterByNumericValues: [
-          ...state.filterByNumericValues,
-          { column: action.column, comparison: action.comparison, value: action.value },
-        ],
-      };
+      return filterValues(state, action);
     case REMOVE_FILTRO:
-      return {
-        ...state,
-        filterByNumericValues: [
-          ...state.filterByNumericValues
-            .filter((filtro) => filtro.column !== action.column),
-        ],
-      };
+      return removeFiltro(state, action);
     case ORDENAR_COLUMNS:
-      return {
-        ...state,
-        order: {
-          column: action.column, sort: action.sort,
-        },
-      };
+      return ordenarFiltro(state, action);
     default:
       return state;
   }
