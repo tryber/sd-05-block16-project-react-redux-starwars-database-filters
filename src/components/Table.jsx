@@ -3,6 +3,7 @@ import SearchBar from './SearchBar';
 import Header from './Header';
 import Body from './Body';
 import Select from './Select';
+import FiltersList from './FiltersList';
 
 class Table extends React.Component {
   render() {
@@ -11,6 +12,7 @@ class Table extends React.Component {
         <h1>StarWars Datatable with Filters</h1>
         <SearchBar />
         <Select />
+        <FiltersList />
         <table>
           <Header />
           <Body />
