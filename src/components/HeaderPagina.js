@@ -161,23 +161,16 @@ class FiltrosDaPagina extends React.Component {
   }
 
   handleSelectOrderColumn(event) {
-    this.setState({ sortColumn: event.target.value }, () => {console.log("state", this.state);});
+    this.setState({ sortColumn: event.target.value }, () => { console.log("state", this.state); });
   }
 
   handleSortChange(event) {
-    this.setState({ order: event.target.value }, () => {console.log("state", this.state);});
+    this.setState({ order: event.target.value }, () => { console.log("state", this.state); });
   }
 
-  renderFiltersOrder() {
-    const { dispatchOrdenarColumns, stateToPropsSort } = this.props;
-    console.log('stateToPropsSort',stateToPropsSort)
+  inputsRenderFiltersOrder() {
     return (
-      <div className="order">
-        <p>Ordem</p>
-        <select data-testid="column-sort" onChange={this.handleSelectOrderColumn}>
-          {AllColumns.map((option) => <option value={option}>{option}</option>)}
-        </select>
-
+      <div>
         <label htmlFor="ASC">
           <input
             type="radio"
@@ -187,8 +180,7 @@ class FiltrosDaPagina extends React.Component {
             checked={this.state.order === "ASC"}
             onChange={this.handleSortChange}
           />ASC
-          </label>
-          
+        </label>
         <label htmlFor="DESC">
           <input
             type="radio"
@@ -198,7 +190,20 @@ class FiltrosDaPagina extends React.Component {
             checked={this.state.order === "DESC"}
             onChange={this.handleSortChange}
           />DESC
-          </label>
+        </label>
+      </div>
+    );
+  }
+
+  renderFiltersOrder() {
+    const { dispatchOrdenarColumns } = this.props;
+    return (
+      <div className="order">
+        <p>Ordem</p>
+        <select data-testid="column-sort" onChange={this.handleSelectOrderColumn}>
+          {AllColumns.map((option) => <option value={option}>{option}</option>)}
+        </select>
+        {this.inputsRenderFiltersOrder()}
         <button
           data-testid="column-sort-button"
           onClick={() => dispatchOrdenarColumns(
