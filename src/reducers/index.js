@@ -5,7 +5,7 @@ import {
   FILTRO_NOME,
   FILTRO_NUMEROS,
   INICIA_FILTROS,
-  iniciaFiltros,
+  // iniciaFiltros,
 } from '../actions';
 
 // reducer estado inicial
