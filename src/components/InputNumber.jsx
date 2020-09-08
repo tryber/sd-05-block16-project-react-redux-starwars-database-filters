@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import propTypes from 'prop-types';
 import { filterByNumber } from '../actions/actionFilter';
-// import { fetchPlanets } from '../actions/actionApi';
 
 class InputNumber extends React.Component {
   constructor(props) {
@@ -37,7 +36,6 @@ class InputNumber extends React.Component {
 
   render() {
     const { options } = this.props;
-    // const options = ['', 'population', 'surface_water', 'diameter', 'orbital_period', 'rotation_period'];
     return (
       <div>
         <select data-testid="column-filter" onChange={(event) => (this.selectColumn(event))}>
@@ -67,7 +65,7 @@ class InputNumber extends React.Component {
 
 const mapStateToProps = (state) => ({
   options: state.filters.selectedOption,
-})
+});
 
 const mapDispatchToProps = (dispatch) => ({
   filterByNumber: (column, comparison, value) =>
@@ -78,4 +76,5 @@ export default connect(mapStateToProps, mapDispatchToProps)(InputNumber);
 
 InputNumber.propTypes = {
   filterByNumber: propTypes.func.isRequired,
+  option: propTypes.array.isRequired,
 };
