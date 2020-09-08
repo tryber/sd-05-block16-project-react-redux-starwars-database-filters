@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 function Planeta(props) {
   const { planeta } = props;
@@ -22,7 +23,7 @@ function Planeta(props) {
 }
 
 PizzaCard.propTypes = {
-  planeta: propTypes.object,
+  planeta: PropTypes.object,
 }
 
 export default Planeta;
