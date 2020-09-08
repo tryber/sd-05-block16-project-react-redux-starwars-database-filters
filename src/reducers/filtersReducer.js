@@ -2,8 +2,11 @@ import { FILTER_BY_NAME, FILTER_BY_NUMERIC_VALUES } from '../actions/actionFilte
 
 const INITIAL_FILTER = {
   filterByName: { name: '' },
-  filterByNumericValues: [],
-  selectedOption: ['', 'population', 'rotation_period', 'diameter', 'surface_water', 'orbital_period'],
+  filterByNumericValues: [
+    { column: 'surface_water', comparison: 'menor que', value: '40' },
+    { column: 'diameter', comparison: 'maior que', value: '8900' },
+    { column: 'population', comparison: 'igual a', value: '200000' },
+  ],
 };
 
 const filters = (state = INITIAL_FILTER, action) => {
@@ -24,7 +27,7 @@ const filters = (state = INITIAL_FILTER, action) => {
             value: action.value,
           },
         ],
-        selectedOption: state.selectedOption.filter((option) => option !== action.column),
+        // selectedOption: state.selectedOption.filter((option) => option !== action.column),
       };
     default:
       return state;

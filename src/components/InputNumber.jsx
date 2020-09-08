@@ -17,6 +17,11 @@ class InputNumber extends React.Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
+  // componentDidMount() {
+  //   // procurar na array options se já existe a mesma string que existe no state (filterByNumericValues)
+  //   this.props
+  // }
+
   selectColumn(e) {
     this.setState({ column: e.target.value });
   }
@@ -36,10 +41,12 @@ class InputNumber extends React.Component {
 
   render() {
     const { options } = this.props;
+    let selectedOption = ['', 'population', 'rotation_period', 'diameter', 'surface_water', 'orbital_period'];
+    selectedOption = selectedOption.filter((element ) => !options.includes(element)); 
     return (
       <div>
         <select data-testid="column-filter" onChange={(event) => (this.selectColumn(event))}>
-          {options.map((element) => <option value={element} key={element}>{element}</option>)}
+          {selectedOption.map((element) => <option value={element} key={element}>{element}</option>)}
         </select>
         <select
           data-testid="comparison-filter"
@@ -64,7 +71,8 @@ class InputNumber extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  options: state.filters.selectedOption,
+  options: state.filters.filterByNumericValues.map(element => element.column),
+  filterByNumericValues: state.filters.filterByNumericValues,
 });
 
 const mapDispatchToProps = (dispatch) => ({
