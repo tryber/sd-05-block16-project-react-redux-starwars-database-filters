@@ -12,13 +12,12 @@ class Table extends React.Component {
   */
   componentDidMount() {
     const { StarWarsPlanetsAPI } = this.props;
-    // console.log('api', StarWarsPlanetsAPI);
     StarWarsPlanetsAPI();
   }
 
   renderTable() {
     const { data } = this.props;
-    console.log("foi", data);
+    console.log(data);
 
     return data.map((planet) => (
       <tr>
@@ -98,7 +97,6 @@ function filterByNumber(arrayPlanets, filterByNumericValues) {
 da minha colega de turma Nat Macedo e adpatado para o meu código*/
 
 const filtraPlanetas = (planetas, filtroDeTexto, filterByNumericValues, order) => {
-
   let planetasExibidos = planetas;
   filterByNumericValues.forEach((filter) => {
     planetasExibidos = filterByNumber(planetasExibidos, filter);
@@ -120,7 +118,7 @@ const filtraPlanetas = (planetas, filtroDeTexto, filterByNumericValues, order) =
       return parseInt(a[order.column]) - parseInt(b[order.column]);
     }
     return parseInt(b[order.column]) - parseInt(a[order.column]);
-  })
+  });
   return [...planetasExibidos];
 };
 

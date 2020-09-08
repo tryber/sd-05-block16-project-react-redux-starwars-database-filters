@@ -18,7 +18,7 @@ function filterNamePlanet(state, action) {
       name: action.name,
     },
   };
-};
+}
 
 function filterValues(state, action) {
   return {
@@ -27,7 +27,7 @@ function filterValues(state, action) {
       ...state.filterByNumericValues,
       { column: action.column, comparison: action.comparison, value: action.value },
     ],
-  }
+  };
 }
 
 function removeFiltro(state, action) {
@@ -38,7 +38,7 @@ function removeFiltro(state, action) {
         .filter((filtro) => filtro.column !== action.column),
     ],
   };
-};
+}
 
 function ordenarFiltro(state, action) {
   return {

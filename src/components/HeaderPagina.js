@@ -85,11 +85,11 @@ class FiltrosDaPagina extends React.Component {
   }
 
   columnOptions(filtrosAtivosDeComparacaoColunasEValor) {
-    console.log("coisa", filtrosAtivosDeComparacaoColunasEValor);
-    const colunasAtivosDeComparacaoColunasEValor = filtrosAtivosDeComparacaoColunasEValor.map((filter) => filter.column);
-    const colunasASeremExibidas = columns.filter((column) => !colunasAtivosDeComparacaoColunasEValor.includes(column));
-
-    return colunasASeremExibidas.map((column) => this.renderColumnOption(column))
+    const colunasAtivosDeComparacaoColunasEValor = filtrosAtivosDeComparacaoColunasEValor
+      .map((filter) => filter.column);
+    const colunasASeremExibidas = columns
+      .filter((column) => !colunasAtivosDeComparacaoColunasEValor.includes(column));
+    return colunasASeremExibidas.map((column) => this.renderColumnOption(column));
   }
 
   /*
@@ -161,11 +161,11 @@ class FiltrosDaPagina extends React.Component {
   }
 
   handleSelectOrderColumn(event) {
-    this.setState({ sortColumn: event.target.value }, () => { console.log("state", this.state); });
+    this.setState({ sortColumn: event.target.value }, () => { console.log('state', this.state); });
   }
 
   handleSortChange(event) {
-    this.setState({ order: event.target.value }, () => { console.log("state", this.state); });
+    this.setState({ order: event.target.value }, () => { console.log('state', this.state); });
   }
 
   inputsRenderFiltersOrder() {
@@ -177,7 +177,7 @@ class FiltrosDaPagina extends React.Component {
             id="ASC"
             value="ASC"
             data-testid="column-sort-input"
-            checked={this.state.order === "ASC"}
+            checked={this.state.order === 'ASC'}
             onChange={this.handleSortChange}
           />ASC
         </label>
@@ -187,7 +187,7 @@ class FiltrosDaPagina extends React.Component {
             id="DESC"
             value="DESC"
             data-testid="column-sort-input"
-            checked={this.state.order === "DESC"}
+            checked={this.state.order === 'DESC'}
             onChange={this.handleSortChange}
           />DESC
         </label>
