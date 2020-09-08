@@ -36,7 +36,8 @@ class InputNumber extends React.Component {
   }
 
   render() {
-    const options = ['', 'population', 'surface_water', 'diameter', 'orbital_period', 'rotation_period'];
+    const { options } = this.props;
+    // const options = ['', 'population', 'surface_water', 'diameter', 'orbital_period', 'rotation_period'];
     return (
       <div>
         <select data-testid="column-filter" onChange={(event) => (this.selectColumn(event))}>
@@ -64,12 +65,16 @@ class InputNumber extends React.Component {
   }
 }
 
+const mapStateToProps = (state) => ({
+  options: state.filters.selectedOption,
+})
+
 const mapDispatchToProps = (dispatch) => ({
   filterByNumber: (column, comparison, value) =>
     dispatch(filterByNumber(column, comparison, value)),
 });
 
-export default connect(null, mapDispatchToProps)(InputNumber);
+export default connect(mapStateToProps, mapDispatchToProps)(InputNumber);
 
 InputNumber.propTypes = {
   filterByNumber: propTypes.func.isRequired,

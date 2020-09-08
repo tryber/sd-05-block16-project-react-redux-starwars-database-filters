@@ -1,8 +1,10 @@
 import { FILTER_BY_NAME, FILTER_BY_NUMERIC_VALUES } from '../actions/actionFilter';
+import { element } from 'prop-types';
 
 const INITIAL_FILTER = {
   filterByName: { name: '' },
   filterByNumericValues: [],
+  selectedOption: ['', 'population', 'rotation_period', 'diameter', 'surface_water', 'orbital_period'],
 };
 
 const filters = (state = INITIAL_FILTER, action) => {
@@ -23,6 +25,7 @@ const filters = (state = INITIAL_FILTER, action) => {
             value: action.value,
           },
         ],
+        selectedOption: state.selectedOption.filter((option) => option !== action.column)
       };
     default:
       return state;
