@@ -32,8 +32,9 @@ const filters = (state = INITIAL_FILTER, action) => {
     case REMOVE_FILTER:
       return {
         ...state,
-        filterByNumericValues: state.filterByNumericValues.filter(filtro => filtro.column !== action.column),
-      }
+        filterByNumericValues: state.filterByNumericValues.filter((filtro) =>
+          filtro.column !== action.column),
+      };
     default:
       return state;
   }

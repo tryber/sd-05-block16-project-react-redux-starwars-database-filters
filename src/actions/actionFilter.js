@@ -17,4 +17,4 @@ export const filterByNumber = (column, comparison, value) => ({
 export const removeClick = (column) => ({
   type: REMOVE_FILTER,
   column: column.target.id,
-})
+});
