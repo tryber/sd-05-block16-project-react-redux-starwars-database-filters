@@ -63,9 +63,9 @@ class Body extends Component {
       return planetas.sort((a, b) => (b[Column] > a[Column] ? 1 : -1));
     }
     if (ordem === 'ASC') {
-      return planetas.sort((a, b) => 1 * a[Column] - 1 * b[Column]);
+      return planetas.sort((a, b) => (1 * a[Column]) - (1 * b[Column]));
     }
-    return planetas.sort((a, b) => 1 * b[Column] - 1 * a[Column]);
+    return planetas.sort((a, b) => (1 * b[Column]) - (1 * a[Column]));
   }
 
   // ANCHOR render

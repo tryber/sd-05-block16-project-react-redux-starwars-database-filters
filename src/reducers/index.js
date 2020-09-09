@@ -5,6 +5,7 @@ import {
   FILTER_PLANET,
   FILTER_GENERAL,
   REMOVE_FILTER,
+  IS_ORDEM,
 } from '../actions';
 
 // ANCHOR planetsReducer
@@ -38,10 +39,10 @@ const INITIAL_STATE_FILTER = {
   },
   filterByNumericValues: [],
   order: {
-    column: 'Surface_Water',
+    column: 'Name',
     sort: 'ASC',
   },
-  ordenar: true
+  ordenar: true,
 };
 
 const filters = (state = INITIAL_STATE_FILTER, action) => {
@@ -67,6 +68,12 @@ const filters = (state = INITIAL_STATE_FILTER, action) => {
       return {
         ...state,
         filterByNumericValues: action.arr,
+      };
+    case IS_ORDEM:
+      return {
+        ...state,
+        order: { column: action.column, sort: action.sort },
+        ordenar: action.ordenar,
       };
     default:
       return state;

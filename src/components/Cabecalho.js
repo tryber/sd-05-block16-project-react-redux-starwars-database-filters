@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import OrderButton from './OrderButton';
 
 export default class Cabecalho extends Component {
   render() {

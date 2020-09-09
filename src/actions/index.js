@@ -7,6 +7,7 @@ export const RECEIVED_API = 'RECEIVED_API';
 export const FILTER_PLANET = 'FILTER_PLANET';
 export const FILTER_GENERAL = 'FILTER_GENERAL';
 export const REMOVE_FILTER = 'REMOVE_FILTER';
+export const IS_ORDEM = 'IS_ORDEM';
 
 const callApi = () => ({ type: CALL_API });
 
@@ -22,6 +23,8 @@ export const filterGeneral = ({ column, comparison, value }) => ({
 });
 
 export const removeFilter = (arr) => ({ type: REMOVE_FILTER, arr });
+
+export const isOrdem = (ordenar, sort, column) => ({ type: IS_ORDEM, ordenar, sort, column });
 
 export const AcionaApi = () => (dispatch) => {
   dispatch(callApi());
