@@ -80,16 +80,12 @@ class FiltrosDaPagina extends React.Component {
     return teste;
   }
 
-  renderColumnOption(column) {
-    return <option value={column}>{column}</option>;
-  }
-
   columnOptions(filtrosAtivosDeComparacaoColunasEValor) {
     const colunasAtivosDeComparacaoColunasEValor = filtrosAtivosDeComparacaoColunasEValor
       .map((filter) => filter.column);
     const colunasASeremExibidas = columns
       .filter((column) => !colunasAtivosDeComparacaoColunasEValor.includes(column));
-    return colunasASeremExibidas.map((column) => this.renderColumnOption(column));
+    return colunasASeremExibidas.map((column) => <option value={column}>{column}</option>);
   }
 
   /*
