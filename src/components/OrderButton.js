@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { isOrdem } from '../actions';
 
 class OrderButton extends Component {
@@ -38,8 +39,8 @@ class OrderButton extends Component {
             <option key={value} value={value.toLowerCase()}>{value}</option>
           ))}
         </select>
-        <input id="ASC"
-          data-testid="column-sort-input" type="radio" name="ordem" value="ASC"
+        <input
+          id="ASC" data-testid="column-sort-input" type="radio" name="ordem" value="ASC"
           onChange={(event) => this.setState({ sobeOuDesce: event.target.value })}
         />
         <label htmlFor="ASC">ASC</label>
@@ -60,5 +61,9 @@ class OrderButton extends Component {
 const mapDispatchToProps = (dispatch) => ({
   ordenar: (a, b, c) => dispatch(isOrdem(a, b, c)),
 });
+
+OrderButton.propTypes = {
+  ordenar: PropTypes.func.isRequired,
+};
 
 export default connect(null, mapDispatchToProps)(OrderButton);

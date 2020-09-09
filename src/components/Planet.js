@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-export default class SortFilter extends Component {
+export default class Planet extends Component {
   render() {
     const { planeta } = this.props;
     return (
@@ -25,5 +25,19 @@ export default class SortFilter extends Component {
 }
 
 Planet.propTypes = {
-  planeta: PropTypes.string.isRequired,
+  planeta: PropTypes.shape({
+    name: PropTypes.string,
+    rotation_period: PropTypes.string,
+    orbital_period: PropTypes.string,
+    diameter: PropTypes.string,
+    climate: PropTypes.string,
+    gravity: PropTypes.string,
+    terrain: PropTypes.string,
+    surface_water: PropTypes.string,
+    population: PropTypes.string,
+    films: PropTypes.string,
+    created: PropTypes.string,
+    edited: PropTypes.string,
+    url: PropTypes.string,
+  }).isRequired,
 };
