@@ -115,9 +115,9 @@ const filtraPlanetas = (planetas, filtroDeTexto, filterByNumericValues, order) =
       return a[order.column.toLowerCase()] > b[order.column.toLowerCase()] ? -1 : 1;
     }
     if (order.sort === 'ASC') {
-      return parseInt(a[order.column]) - parseInt(b[order.column]);
+      return parseInt(a[order.column], 10) - parseInt(b[order.column], 10);
     }
-    return parseInt(b[order.column]) - parseInt(a[order.column]);
+    return parseInt(b[order.column], 10) - parseInt(a[order.column], 10);
   });
   return [...planetasExibidos];
 };
