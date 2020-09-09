@@ -54,6 +54,7 @@ class FiltrosDaPagina extends React.Component {
     this.handleValueChange = this.handleValueChange.bind(this);
     this.handleSelectOrderColumn = this.handleSelectOrderColumn.bind(this);
     this.handleSortChange = this.handleSortChange.bind(this);
+    this.columnOptions = this.columnOptions.bind(this);
   }
 
   handleColumnChange(event) {
@@ -80,7 +81,7 @@ class FiltrosDaPagina extends React.Component {
     return teste;
   }
 
-  columnOptions = (filtrosAtivosDeComparacaoColunasEValor) => {
+  columnOptions(filtrosAtivosDeComparacaoColunasEValor) {
     const colunasAtivosDeComparacaoColunasEValor = filtrosAtivosDeComparacaoColunasEValor
       .map((filter) => filter.column);
     const colunasASeremExibidas = columns
