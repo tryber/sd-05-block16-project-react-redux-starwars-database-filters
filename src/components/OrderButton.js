@@ -23,48 +23,35 @@ class OrderButton extends Component {
     };
   }
 
+  // prettier-ignore
   render() {
-    const { chave, ordenar } = this.props;
+    const { ordenar } = this.props;
     const { colunas, selectColumn, sobeOuDesce } = this.state;
     return (
       <div>
-        {chave}
-        <div>
-          <select
-            data-testid="column-sort"
-            onChange={(event) =>
-              this.setState({ selectColumn: event.target.value })
-            }
-          >
-            {colunas.map((value) => (
-              <option key={value} value={value.toLowerCase()}>
-                {value}
-              </option>
-            ))}
-          </select>
-          <input
-            data-testid="column-sort-input"
-            type="radio"
-            name="ordem"
-            value="ASC"
-            onChange={(event) => this.setState({ sobeOuDesce: event.target.value })}
-          />
-          <label>ASC</label>
-          <input
-            data-testid="column-sort-input"
-            type="radio"
-            name="ordem"
-            value="DESC"
-            onChange={(event) => this.setState({ sobeOuDesce: event.target.value })}
-          />
-          <label>DESC</label>
-          <button
-            data-testid="column-sort-button"
-            onClick={() => ordenar(true, sobeOuDesce, selectColumn)}
-          >
-            CLIQUE AQUI
-          </button>
-        </div>
+        <select
+          data-testid="column-sort"
+          onChange={(event) => this.setState({ selectColumn: event.target.value })
+          }
+        >
+          {colunas.map((value) => (
+            <option key={value} value={value.toLowerCase()}>{value}</option>
+          ))}
+        </select>
+        <input id="ASC"
+          data-testid="column-sort-input" type="radio" name="ordem" value="ASC"
+          onChange={(event) => this.setState({ sobeOuDesce: event.target.value })}
+        />
+        <label htmlFor="ASC">ASC</label>
+        <input
+          id="DESC" data-testid="column-sort-input" type="radio" name="ordem" value="DESC"
+          onChange={(event) => this.setState({ sobeOuDesce: event.target.value })}
+        />
+        <label htmlFor="DESC">DESC</label>
+        <button
+          data-testid="column-sort-button"
+          onClick={() => ordenar(true, sobeOuDesce, selectColumn)}
+        >CLIQUE AQUI</button>
       </div>
     );
   }

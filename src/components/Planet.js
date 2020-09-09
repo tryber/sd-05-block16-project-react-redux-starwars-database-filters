@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 export default class SortFilter extends Component {
   render() {
@@ -22,3 +23,7 @@ export default class SortFilter extends Component {
     );
   }
 }
+
+Planet.propTypes = {
+  planeta: PropTypes.string.isRequired,
+};

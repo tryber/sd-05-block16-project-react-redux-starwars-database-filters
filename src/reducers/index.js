@@ -48,10 +48,7 @@ const INITIAL_STATE_FILTER = {
 const filters = (state = INITIAL_STATE_FILTER, action) => {
   switch (action.type) {
     case FILTER_PLANET:
-      return {
-        ...state,
-        filterByName: { name: action.name },
-      };
+      return { ...state, filterByName: { name: action.name } };
     case FILTER_GENERAL:
       return {
         ...state,

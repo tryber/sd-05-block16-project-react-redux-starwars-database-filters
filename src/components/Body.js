@@ -110,4 +110,7 @@ Body.propTypes = {
   planets: PropTypes.arrayOf(PropTypes.object).isRequired,
   filters: PropTypes.string.isRequired,
   byNumeric: PropTypes.arrayOf(PropTypes.object).isRequired,
+  ordem: PropTypes.string.isRequired,
+  column: PropTypes.string.isRequired,
+  ordenar: PropTypes.bool.isRequired,
 };
