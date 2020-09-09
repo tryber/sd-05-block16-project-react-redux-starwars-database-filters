@@ -54,7 +54,6 @@ class FiltrosDaPagina extends React.Component {
     this.handleValueChange = this.handleValueChange.bind(this);
     this.handleSelectOrderColumn = this.handleSelectOrderColumn.bind(this);
     this.handleSortChange = this.handleSortChange.bind(this);
-    this.columnOptions = this.columnOptions.bind(this);
   }
 
   handleColumnChange(event) {
@@ -81,14 +80,6 @@ class FiltrosDaPagina extends React.Component {
     return teste;
   }
 
-  columnOptions(filtrosAtivosDeComparacaoColunasEValor) {
-    const colunasAtivosDeComparacaoColunasEValor = filtrosAtivosDeComparacaoColunasEValor
-      .map((filter) => filter.column);
-    const colunasASeremExibidas = columns
-      .filter((column) => !colunasAtivosDeComparacaoColunasEValor.includes(column));
-    return colunasASeremExibidas.map((column) => <option value={column}>{column}</option>);
-  }
-
   /*
   {columns
     .filter((option) => !filters.map((filter) => filter.column).includes(option))
@@ -110,7 +101,9 @@ class FiltrosDaPagina extends React.Component {
           value={this.state.column}
           onChange={this.handleColumnChange}
         >
-          {this.columnOptions(filters)}
+          {columns
+            .filter((option) => !filters.map((filter) => filter.column).includes(option))
+            .map((option) => <option value={option}>{option}</option>)}
         </select>
         <select
           data-testid="comparison-filter"
@@ -120,25 +113,6 @@ class FiltrosDaPagina extends React.Component {
             .filter((option) => !filters.map((filter) => filter.column).includes(option))
             .map((option) => <option value={option}>{option}</option>)}
         </select>
-      </div>
-    );
-  }
-
-  renderFiltrosValoresNum() {
-    const { dispatchFilterValues } = this.props;
-    return (
-      <div>
-        {this.rederSelects()}
-        <input type="number" data-testid="value-filter" onChange={this.handleValueChange} />
-        <button
-          data-testid="button-filter"
-          onClick={
-            () => dispatchFilterValues(
-              this.state.column,
-              this.state.comparison,
-              this.state.value,
-            )}
-        >Filtrar</button>
       </div>
     );
   }
@@ -174,6 +148,25 @@ class FiltrosDaPagina extends React.Component {
             onChange={this.handleSortChange}
           />DESC
         </label>
+      </div>
+    );
+  }
+
+  renderFiltrosValoresNum() {
+    const { dispatchFilterValues } = this.props;
+    return (
+      <div>
+        {this.rederSelects()}
+        <input type="number" data-testid="value-filter" onChange={this.handleValueChange} />
+        <button
+          data-testid="button-filter"
+          onClick={
+            () => dispatchFilterValues(
+              this.state.column,
+              this.state.comparison,
+              this.state.value,
+            )}
+        >Filtrar</button>
       </div>
     );
   }
