@@ -1,6 +1,6 @@
 export const FILTER_BY_NAME = 'FILTER_BY_NAME';
 export const FILTER_BY_NUMERIC_VALUES = 'FILTER_BY_NUMERIC_VALUES';
-
+export const REMOVE_FILTER = 'REMOVE_FILTER';
 
 export const filterPlanet = (nome) => ({
   type: FILTER_BY_NAME,
@@ -13,3 +13,8 @@ export const filterByNumber = (column, comparison, value) => ({
   comparison,
   value,
 });
+
+export const removeClick = (column) => ({
+  type: REMOVE_FILTER,
+  column: column.target.id,
+})

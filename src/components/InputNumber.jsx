@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import propTypes from 'prop-types';
-import { filterByNumber } from '../actions/actionFilter';
+import propTypes, { instanceOf } from 'prop-types';
+import { filterByNumber, removeClick } from '../actions/actionFilter';
 
 class InputNumber extends React.Component {
   constructor(props) {
@@ -10,11 +10,13 @@ class InputNumber extends React.Component {
       column: '',
       comparison: '',
       value: '',
+      //filtro: [],
     };
     this.selectColumn = this.selectColumn.bind(this);
     this.selectComparison = this.selectComparison.bind(this);
     this.selectValue = this.selectValue.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.seletores = this.seletores.bind(this);
   }
 
   selectColumn(e) {
@@ -34,22 +36,20 @@ class InputNumber extends React.Component {
     this.props.filterByNumber(column, comparison, value);
   }
 
-  render() {
-    const { options } = this.props;
-    let selectedOption = ['', 'population', 'rotation_period', 'diameter', 'surface_water', 'orbital_period'];
-    selectedOption = selectedOption.filter((element) => !options.includes(element));
+  seletores(selectedOption) {
     return (
       <div>
-        <select data-testid="column-filter" onChange={(event) => (this.selectColumn(event))}>
-          {selectedOption.map((element) =>
-            <option value={element} key={element}>{element}</option>,
-          )}
+        <select data-testid="column-filter" onChange={(event) => this.selectColumn(event)}>
+          {selectedOption.map((element) => (
+            <option value={element} key={element}>
+              {element}
+            </option>
+          ))}
         </select>
-        <select
-          data-testid="comparison-filter"
-          onChange={(event) => (this.selectComparison(event))}
-        >
-          <option value="" disabled selected>Compare</option>
+        <select data-testid="comparison-filter" onChange={(event) => this.selectComparison(event)}>
+          <option value="" disabled selected>
+            Compare
+          </option>
           <option value="maior que">maior que</option>
           <option value="menor que">menor que</option>
           <option value="igual a">igual a</option>
@@ -57,11 +57,37 @@ class InputNumber extends React.Component {
         <input
           type="number"
           data-testid="value-filter"
-          onChange={(event) => (this.selectValue(event))}
+          onChange={(event) => this.selectValue(event)}
         />
+      </div>
+    );
+  }
+
+  render() {
+    const { options, filterByNumericValues } = this.props;
+    let selectedOption = [
+      '',
+      'population',
+      'rotation_period',
+      'diameter',
+      'surface_water',
+      'orbital_period',
+    ];
+    selectedOption = selectedOption.filter((element) => !options.includes(element));
+    return (
+      <div>
+        {this.seletores(selectedOption)}
         <button data-testid="button-filter" onClick={this.handleClick}>
           Adicionar Filtro
         </button>
+        {filterByNumericValues.map((filtro) => (
+          <div data-testid="filter">
+            <button onClick={this.props.removeClick} id={filtro.column}>
+              X
+            </button>
+            {filtro.column}
+          </div>
+        ))}
       </div>
     );
   }
@@ -75,6 +101,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   filterByNumber: (column, comparison, value) =>
     dispatch(filterByNumber(column, comparison, value)),
+  removeClick: (column) => dispatch(removeClick(column)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(InputNumber);
@@ -82,4 +109,6 @@ export default connect(mapStateToProps, mapDispatchToProps)(InputNumber);
 InputNumber.propTypes = {
   filterByNumber: propTypes.func.isRequired,
   options: propTypes.arrayOf(propTypes.string).isRequired,
+  removeClick: propTypes.func.isRequired,
+  filterByNumericValues: propTypes.arrayOf(instanceOf(Object)).isRequired,
 };
