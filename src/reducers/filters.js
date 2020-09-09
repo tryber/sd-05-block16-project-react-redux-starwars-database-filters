@@ -17,6 +17,13 @@ const filters = (state = INITIAL_STATE, action) => {
         ...state,
         filterByNumericValues: [...state.filterByNumericValues, action.obj],
       };
+    case 'REMOVE_FILTRO':
+      return {
+        ...state,
+        filterByNumericValues: state.filterByNumericValues.filter(
+          (filtro) => filtro.column !== action.nomeDoFiltroClicado,
+        ),
+      };
     default:
       return state;
   }
