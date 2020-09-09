@@ -37,6 +37,11 @@ const INITIAL_STATE_FILTER = {
     name: '',
   },
   filterByNumericValues: [],
+  order: {
+    column: 'Surface_Water',
+    sort: 'ASC',
+  },
+  ordenar: true
 };
 
 const filters = (state = INITIAL_STATE_FILTER, action) => {

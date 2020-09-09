@@ -6,18 +6,19 @@ import { removeFilter } from '../actions';
 class AllFilters extends Component {
   hC(e) {
     const { remove, filtros } = this.props;
+    // Uma cópia de filtros apenas para não fazer alteração na base
     const filtrosCopia = [...filtros];
     const filtrosFinal = filtros.map((filt) => filt.column);
     filtrosCopia.splice(filtrosFinal.indexOf(e.target.id), 1);
     remove(filtrosCopia);
   }
-// prettier-ignore
+  // prettier-ignore
   render() {
     const { filtros } = this.props;
     return (
       <div>
         {filtros.map((filt) => (
-          <div data-testid="filter">
+          <div key={filt.column} data-testid="filter">
             {`${filt.column} ${filt.comparison} ${filt.value}`}
             <button id={filt.column} onClick={(e) => this.hC(e)}>
               X

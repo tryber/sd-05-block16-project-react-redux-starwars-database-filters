@@ -44,7 +44,7 @@ class SelectOption extends Component {
           onChange={(event) => this.setState({ column: event.target.value })}
           data-testid="column-filter"
         >
-          {colunas.map((value) => (<option value={value}>{value}</option>))}
+          {colunas.map((value) => (<option key={value} value={value}>{value}</option>))}
         </select>
         <select
           onChange={(event) => this.setState({ comparison: event.target.value })}

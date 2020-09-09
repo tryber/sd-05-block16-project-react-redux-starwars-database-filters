@@ -4,11 +4,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { AcionaApi } from '../actions';
+import Planet from './Planet';
 
 class Body extends Component {
   constructor(props) {
     super(props);
     this.filtrando = this.filtrando.bind(this);
+    this.funcaoOrdenar = this.funcaoOrdenar.bind(this);
   }
 
   componentDidMount() {
@@ -41,31 +43,46 @@ class Body extends Component {
     return finalPlanets;
   }
 
+  funcaoOrdenar(planetas) {
+    const { ordem, column } = this.props;
+    const literal = [
+      'name',
+      'climate',
+      'gravity',
+      'terrain',
+      'films',
+      'created',
+      'edited',
+      'url',
+    ];
+    const Column = column.toLowerCase();
+    if (literal.some((coluna) => coluna === Column)) {
+      if (ordem === 'ASC') {
+        return planetas.sort((a, b) => (b[Column] < a[Column] ? 1 : -1));
+      }
+      return planetas.sort((a, b) => (b[Column] > a[Column] ? 1 : -1));
+    }
+    if (ordem === 'ASC') {
+      return planetas.sort((a, b) => 1 * a[Column] - 1 * b[Column]);
+    }
+    return planetas.sort((a, b) => 1 * b[Column] - 1 * a[Column]);
+  }
+
   // ANCHOR render
   render() {
     const { filters } = this.props;
-    const filterPlanets = this.filtrando();
+    let filterPlanets = this.filtrando();
+    filterPlanets = filterPlanets.filter((planeta) =>
+      planeta.name.includes(filters),
+    );
+    if (this.props.ordenar) {
+      filterPlanets = this.funcaoOrdenar(filterPlanets);
+    }
     return (
       <tbody>
-        {filterPlanets
-          .filter((planeta) => planeta.name.includes(filters))
-          .map((planeta) => (
-            <tr key={planeta.name}>
-              <td>{planeta.name}</td>
-              <td>{planeta.rotation_period}</td>
-              <td>{planeta.orbital_period}</td>
-              <td>{planeta.diameter}</td>
-              <td>{planeta.climate}</td>
-              <td>{planeta.gravity}</td>
-              <td>{planeta.terrain}</td>
-              <td>{planeta.surface_water}</td>
-              <td>{planeta.population}</td>
-              <td>{planeta.films}</td>
-              <td>{planeta.created}</td>
-              <td>{planeta.edited}</td>
-              <td>{planeta.url}</td>
-            </tr>
-          ))}
+        {filterPlanets.map((planeta) => (
+          <Planet key={planeta.name} planeta={planeta} />
+        ))}
       </tbody>
     );
   }
@@ -76,6 +93,9 @@ const mapStateToProps = (state) => ({
   planets: state.planetsReducer.planets,
   filters: state.filters.filterByName.name,
   byNumeric: state.filters.filterByNumericValues,
+  column: state.filters.order.column,
+  ordem: state.filters.order.sort,
+  ordenar: state.filters.ordenar,
 });
 
 const mapDispatchToProps = (dispatch) => ({
