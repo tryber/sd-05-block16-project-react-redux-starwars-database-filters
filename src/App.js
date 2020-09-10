@@ -7,6 +7,7 @@ import SelecionarFaixaValor from './components/SelecionarFaixaValor';
 import FiltrarNumeros from './components/FiltrarNumeros';
 import BotaoFiltrar from './components/BotaoFiltrar';
 import IconeX from './components/IconeX';
+import OrdenarTabela from './components/OrdenarTabela';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <FiltrarNumeros />
         <BotaoFiltrar />
         <IconeX />
+        <OrdenarTabela />
       </header>
       <Table />
     </div>

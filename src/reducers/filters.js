@@ -1,6 +1,11 @@
 const INITIAL_STATE = {
   filterByName: { name: '' },
   filterByNumericValues: [],
+  order: {
+    column: 'Name',
+    sort: 'ASC',
+  },
+  ordenacaoAtivada: true,
 };
 
 const filters = (state = INITIAL_STATE, action) => {
@@ -23,6 +28,12 @@ const filters = (state = INITIAL_STATE, action) => {
         filterByNumericValues: state.filterByNumericValues.filter(
           (filtro) => filtro.column !== action.nomeDoFiltroClicado,
         ),
+      };
+    case 'ORDENA_TITULO':
+      return {
+        ...state,
+        order: action.obj,
+        ordenacaoAtivada: true,
       };
     default:
       return state;

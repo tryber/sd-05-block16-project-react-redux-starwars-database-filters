@@ -22,9 +22,26 @@ function filtrar(arr, arrfiltros) {
   return resultadoFinal;
 }
 
+const arrayNumeros = ['rotation_period', 'orbital_period',
+  'diameter', 'surface_water', 'population'];
+
 class Table extends React.Component {
   componentDidMount() {
     this.props.startAPI();
+  }
+
+  ordernacao(planetas) {
+    const { column, sort } = this.props.order;
+    if (arrayNumeros.includes(column)) {
+      if (sort === 'ASC') {
+        return planetas.sort((a, b) => (Number(a[column]) - Number(b[column])));
+      }
+      return planetas.sort((b, a) => (Number(a[column]) - Number(b[column])));
+    }
+    if (sort === 'ASC') {
+      return planetas.sort((a, b) => (a[column.toLowerCase()] > b[column.toLowerCase()] ? 1 : -1));
+    }
+    return planetas.sort((b, a) => (a[column.toLowerCase()] > b[column.toLowerCase()] ? 1 : -1));
   }
 
   render() {
@@ -36,16 +53,16 @@ class Table extends React.Component {
     if (filtros.length > 0) {
       resultado = filtrar(planetas, filtros);
     } else resultado = planetas;
-
+    if (this.props.ordenacaoAtivada) {
+      resultado = this.ordernacao(resultado);
+    }
     return (
       <div>
         <div>StarWars Datatable with Filters</div>
         <table>
           <thead>
             <tr>
-              {cabecalho.map((titulo) => (
-                <th>{titulo}</th>
-              ))}
+              {cabecalho.map((titulo) => (<th>{titulo}</th>))}
             </tr>
           </thead>
           <tbody>
@@ -53,9 +70,6 @@ class Table extends React.Component {
               <Planeta cabec={cabecalho} data={inforPlaneta} />
             )) : null
             }
-            {/* {this.props.data.map((inforPlaneta) => (
-              <Planeta cabec={this.props.cabecalho} data={inforPlaneta} />
-            ))} */}
           </tbody>
         </table>
       </div>
@@ -69,6 +83,8 @@ const mapStateToProps = (state) => ({
   isLoading: state.reducerBasico.isLoading,
   nomeProcurado: state.filters.filterByName.name,
   filtros: state.filters.filterByNumericValues,
+  order: state.filters.order,
+  ordenacaoAtivada: state.filters.ordenacaoAtivada,
 });
 
 // todas as actions que for utilizar tem que estar dentro do mapDispatch
@@ -84,6 +100,10 @@ Table.propTypes = {
   startAPI: Proptypes.func.isRequired,
   nomeProcurado: Proptypes.string.isRequired,
   filtros: Proptypes.arrayOf(Proptypes.object).isRequired,
+  ordenacaoAtivada: Proptypes.arrayOf(Proptypes.object).isRequired,
+  order: Proptypes.arrayOf(Proptypes.object).isRequired,
+  sort: Proptypes.arrayOf(Proptypes.object).isRequired,
+  column: Proptypes.arrayOf(Proptypes.object).isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Table);
