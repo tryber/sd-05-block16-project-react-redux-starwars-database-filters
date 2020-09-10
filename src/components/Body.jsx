@@ -103,6 +103,8 @@ const mapDispatchToProps = (dispatch) => ({
 
 export default connect(mapStateToProps, mapDispatchToProps)(Body);
 
+// Feito refatoração 6x em Body e Bonus.jsx esse foi o modo mais proximo de não quebrar nada
+
 Body.propTypes = {
   fetchPlanets: PropTypes.func.isRequired,
   planetsData: PropTypes.arrayOf(PropTypes.object).isRequired,
