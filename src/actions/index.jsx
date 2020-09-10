@@ -28,7 +28,7 @@ export const filterByNumbers = ({ column, comparison, value }) => ({
 export const removeFiltersFromList = (list) => ({ type: REMOVE_FILTER, list });
 export const orderFiltersFromList = (order) => ({
   type: ORDER_FILTER,
-  order
+  order,
 });
 
 /* Fetched e Failed possuem dados além do type pois fazem parte da Promise.

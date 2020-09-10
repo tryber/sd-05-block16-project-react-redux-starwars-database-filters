@@ -38,7 +38,7 @@ const filterReducer = (state = INTITAL_STATE_FILTER, action) => {
     case ORDER_FILTER:
       return {
         ...state,
-          order: action.order,
+        order: action.order,
       };
     default: return state;
   }
