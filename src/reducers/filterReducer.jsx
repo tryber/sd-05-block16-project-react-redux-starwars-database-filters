@@ -1,4 +1,4 @@
-import { FILTER_BY_NAME, FILTER_BY_NUMBERS, REMOVE_FILTER } from '../actions/';
+import { FILTER_BY_NAME, FILTER_BY_NUMBERS, REMOVE_FILTER, ORDER_FILTER } from '../actions/';
 
 const INTITAL_STATE_FILTER = {
   filterByName: {
@@ -35,8 +35,12 @@ const filterReducer = (state = INTITAL_STATE_FILTER, action) => {
         ...state,
         filterByNumericValues: action.list,
       };
-    default:
-      return state;
+    case ORDER_FILTER:
+      return {
+        ...state,
+          order: action.order,
+      };
+    default: return state;
   }
 };
 

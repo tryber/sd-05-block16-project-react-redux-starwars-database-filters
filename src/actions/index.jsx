@@ -7,6 +7,7 @@ export const FAILED_TO_FETCH = 'FAILED_TO_FETCH';
 export const FILTER_BY_NAME = 'FILTER_BY_NAME';
 export const FILTER_BY_NUMBERS = 'FILTER_BY_NUMBERS';
 export const REMOVE_FILTER = 'REMOVE_FILTER';
+export const ORDER_FILTER = 'ORDER_FILTER';
 // exportando para serem executados pelos reducers que "executam" as actions.
 
 const fetchingPlanets = () => ({ type: FETCHING_PLANETS });
@@ -25,6 +26,10 @@ export const filterByNumbers = ({ column, comparison, value }) => ({
 });
 
 export const removeFiltersFromList = (list) => ({ type: REMOVE_FILTER, list });
+export const orderFiltersFromList = (order) => ({
+  type: ORDER_FILTER,
+  order
+});
 
 /* Fetched e Failed possuem dados além do type pois fazem parte da Promise.
 planetsData e error no caso são as respostas de successo ou falha na chamada da API. */

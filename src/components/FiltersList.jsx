@@ -7,8 +7,8 @@ class FiltersList extends React.Component {
   HandleClick(event) {
     const { remove, filters } = this.props;
     const filterCopy = [...filters];
-    const batata = filters.map((filterList) => filterList.column);
-    filterCopy.splice(batata.indexOf(event.target.id), 1);
+    const removedArray = filters.map((filterList) => filterList.column);
+    filterCopy.splice(removedArray.indexOf(event.target.id), 1);
     remove(filterCopy);
   }
 
@@ -37,7 +37,7 @@ const mapDispatchToProps = (dispatch) => ({
 export default connect(mapStateToProps, mapDispatchToProps)(FiltersList);
 
 FiltersList.propTypes = {
-  filters: PropTypes.string.isRequired,
+  filters: PropTypes.arrayOf(PropTypes.object).isRequired,
   remove: PropTypes.func.isRequired,
 };
 // Transparência: Feito com Sid

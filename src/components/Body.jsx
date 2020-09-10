@@ -3,6 +3,14 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { fetchPlanets } from '../actions';
 
+const columnNumbers = [
+  'rotation_period',
+  'orbital_period',
+  'diameter',
+  'surface_water',
+  'population',
+];
+
 class Body extends React.Component {
   constructor(props) {
     super(props);
@@ -10,6 +18,21 @@ class Body extends React.Component {
   }
   componentDidMount() {
     this.props.fetchPlanets();
+  }
+
+  sortMe(planets) {
+    const { column, sort } = this.props.order;
+    const sorter = planets.sort((a, b) => +(a[column.toLowerCase()]) - +(b[column.toLowerCase()]));
+    if (columnNumbers.includes(column.toLowerCase())) {
+      if (sort === 'ASC') {
+        return sorter;
+      }
+      return sorter.reverse();
+    }
+    if (sort === 'ASC') {
+      return planets.sort((a, b) => (a[column.toLowerCase()] > b[column.toLowerCase()] ? 1 : -1));
+    }
+    return planets.sort((a, b) => (a[column.toLowerCase()] < b[column.toLowerCase()] ? 1 : -1));
   }
 
   FilterPlanets() {
@@ -33,10 +56,12 @@ class Body extends React.Component {
 
   render() {
     const { fetching, filters } = this.props;
-    const filterAll = this.FilterPlanets();
+    let filterAll = this.FilterPlanets();
+    filterAll = this.sortMe(filterAll);
     if (fetching) {
       return (<tbody><tr><td>Loading...</td></tr></tbody>);
-      // Alterado de Div para td pra evitar erro chato
+      /* Alterado de Div para td pra evitar erro chato de DOM que não prejudica funcionamento porém
+      incomoda*/
     }
     return (
       <tbody>
@@ -69,6 +94,7 @@ const mapStateToProps = (state) => ({
   fetching: state.planetsReducer.fetching,
   filters: state.filters.filterByName.name,
   filterNum: state.filters.filterByNumericValues,
+  order: state.filters.order,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -83,4 +109,5 @@ Body.propTypes = {
   fetching: PropTypes.bool.isRequired,
   filters: PropTypes.string.isRequired,
   filterNum: PropTypes.arrayOf(PropTypes.object).isRequired,
+  order: PropTypes.arrayOf(PropTypes.object).isRequired,
 };

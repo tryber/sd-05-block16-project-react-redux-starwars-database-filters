@@ -4,6 +4,7 @@ import Header from './Header';
 import Body from './Body';
 import Select from './Select';
 import FiltersList from './FiltersList';
+import Order from './Bonus';
 
 class Table extends React.Component {
   render() {
@@ -13,6 +14,7 @@ class Table extends React.Component {
         <SearchBar />
         <Select />
         <FiltersList />
+        <Order />
         <table>
           <Header />
           <Body />
