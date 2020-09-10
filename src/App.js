@@ -1,24 +1,27 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+/* import "./App.css"; */
+import Table from './components/Table';
+import Procurar from './components/Procurar';
+import Seletores from './components/Seletores';
+import SelecionarFaixaValor from './components/SelecionarFaixaValor';
+import FiltrarNumeros from './components/FiltrarNumeros';
+import BotaoFiltrar from './components/BotaoFiltrar';
+import IconeX from './components/IconeX';
+import OrdenarTabela from './components/OrdenarTabela';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <Procurar />
+        <Seletores />
+        <SelecionarFaixaValor />
+        <FiltrarNumeros />
+        <BotaoFiltrar />
+        <IconeX />
+        <OrdenarTabela />
       </header>
+      <Table />
     </div>
   );
 }
