@@ -42,8 +42,8 @@ class Table extends React.Component {
     }
     if (sort === 'DESC') {
       return (planetas.sort((a, b) => (a.name < b.name ? -1 : 1)));
-      }
-      return (planetas.sort((b, a) => (b.name < a.name ? -1 : 1)));
+    }
+    return (planetas.sort((b, a) => (b.name < a.name ? -1 : 1)));
   }
 
   render() {
