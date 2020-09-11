@@ -81,5 +81,5 @@ Body.propTypes = {
   order: propTypes.arrayOf(instanceOf(Object)).isRequired,
   filterByNumericValues: propTypes.arrayOf(instanceOf(Object)).isRequired,
   nome: propTypes.arrayOf(instanceOf(String)).isRequired,
-  planetas: propTypes.arrayOf(instanceOf(String)).isRequired
+  planetas: propTypes.arrayOf(instanceOf(String)).isRequired,
 };
