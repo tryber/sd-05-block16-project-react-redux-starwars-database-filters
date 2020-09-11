@@ -64,7 +64,7 @@ function filters(state = initialFilters, action) {
       return {
         ...state,
         order: action.titulo,
-      }
+      };
     default:
       return state;
   }

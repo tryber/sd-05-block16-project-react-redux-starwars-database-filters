@@ -22,6 +22,4 @@ function Planeta(props) {
   );
 }
 
-
-
 export default Planeta;

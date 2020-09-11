@@ -14,7 +14,7 @@ export const ORDENA_FILTRO = 'ORDENA_FILTRO';
 export const iniciaFiltros = (filtro) => ({
   type: INICIA_FILTROS,
   filtro,
-})
+});
 
 // Ação que chama os dados da API
 const chamarApiAction = () => ({

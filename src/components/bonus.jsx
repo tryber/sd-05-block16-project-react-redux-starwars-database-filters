@@ -29,28 +29,22 @@ class Bonus extends React.Component {
   render() {
     return (
       <div>
-        <select
-          data-testid="column-sort"
-          onChange={(e) => this.setState({ column: e.target.value })}
-        >
+        <select data-testid="column-sort"
+          onChange={(e) => this.setState({ column: e.target.value })}>
           {arrayCabecalho.map((titulo) => (
             <option value={titulo}>{titulo}</option>
           ))}
         </select>
         <br />
         <input
-          type="radio"
-          data-testid="column-sort-input"
-          name="sort"
+          type="radio" data-testid="column-sort-input" name="sort" 
           value="ASC"
           onClick={(e) => this.setState({ sort: e.target.value })}
         />{' '}
         ASC
         <br />
         <input
-          type="radio"
-          data-testid="column-sort-input"
-          name="sort"
+          type="radio" data-testid="column-sort-input" name="sort" 
           value="DESC"
           onClick={(e) => this.setState({ sort: e.target.value })}
         />{' '}
@@ -60,13 +54,10 @@ class Bonus extends React.Component {
           Filtrar
         </button>
         <br />
-        <br />
       </div>
     );
   }
 }
-
-const mapStateToProps = (state) => ({});
 
 const mapDispatchToProps = (dispatch) => ({
   ordem: (event) => dispatch(ordenaFiltro(event)),

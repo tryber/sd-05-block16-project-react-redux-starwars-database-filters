@@ -1,12 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import propTypes, { instanceOf, number } from 'prop-types';
+import propTypes, { instanceOf } from 'prop-types';
 import Planeta from './planeta';
-import numericFilters from './numericFilters';
 
 const applyComparison = (planeta, filtro) => {
   const { column, comparison, value } = filtro;
-
   if (comparison === 'menor que') {
     // [column] generaliza, para nao ter que usar .population, .diameter, etc...
     return Number(planeta[column]) < value; // true ou false
@@ -46,11 +44,11 @@ class Body extends React.Component {
     return planetas.sort((a, b) => (a.name > b.name ? -1 : 1));
   }
   render() {
-    const { planetas, filterByNumericValues, nome, isFetching } = this.props;
+    const { planetas, filterByNumericValues, nome } = this.props;
     let planets = planetas;
 
     planets = planets.filter(
-      (planeta) => planeta.name.toLowerCase().indexOf(nome.toLowerCase()) >= 0
+      (planeta) => planeta.name.toLowerCase().indexOf(nome.toLowerCase()) >= 0,
     );
 
     filterByNumericValues.forEach((filtro) => {
