@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import propTypes, { instanceOf } from 'prop-types';
+import propTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { pegandoNumerosAction, iniciaFiltros, removeClick } from '../actions';
 import ComparisonFilter from './comparisonFilter';
@@ -25,8 +25,7 @@ class NumericFilter extends Component {
         >
           <option value="" disabled selected />
           {options
-            .filter((el) => !filtros.includes(el))
-            .map((el) => (
+            .filter((el) => !filtros.includes(el)).map((el) => (
               <option value={el}>{el}</option>
             ))}
         </select>

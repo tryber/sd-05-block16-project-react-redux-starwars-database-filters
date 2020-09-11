@@ -1,5 +1,5 @@
 import React from 'react';
-import propTypes, { instanceOf } from 'prop-types';
+import propTypes from 'prop-types';
 
 function Planeta(props) {
   const { planeta } = props;

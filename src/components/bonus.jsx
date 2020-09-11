@@ -38,29 +38,23 @@ class Bonus extends React.Component {
             <option value={titulo}>{titulo}</option>
           ))}
         </select>
-        <br />
         <input
           type="radio"
           data-testid="column-sort-input"
           name="sort"
           value="ASC"
           onClick={(e) => this.setState({ sort: e.target.value })}
-        />{' '}
-        ASC
-        <br />
+        /> ASC
         <input
           type="radio"
           data-testid="column-sort-input"
           name="sort"
           value="DESC"
           onClick={(e) => this.setState({ sort: e.target.value })}
-        />{' '}
-        DESC
-        <br />
+        /> DESC
         <button data-testid="column-sort-button" onClick={() => this.props.ordem(this.state)}>
           Filtrar
         </button>
-        <br />
       </div>
     );
   }
