@@ -13,7 +13,7 @@ const applyComparison = (planeta, filtro) => {
     return Number(planeta[column]) > value; // true ou false
   } else if (comparison === 'igual a') {
     return Number(planeta[column]) === Number(value); // true ou false
-  }
+  } return planeta;
 };
 // variável para conter valores numéricos
 const TituloNumerico = [
@@ -48,7 +48,7 @@ class Body extends React.Component {
     let planets = planetas;
 
     planets = planets.filter(
-      (planeta) => planeta.name.toLowerCase().indexOf(nome.toLowerCase()) >= 0
+      (planeta) => planeta.name.toLowerCase().indexOf(nome.toLowerCase()) >= 0,
     );
 
     filterByNumericValues.forEach((filtro) => {
@@ -80,4 +80,6 @@ export default connect(mapStateToProps)(Body);
 Body.propTypes = {
   order: propTypes.arrayOf(instanceOf(Object)).isRequired,
   filterByNumericValues: propTypes.arrayOf(instanceOf(Object)).isRequired,
+  nome: propTypes.arrayOf(instanceOf(String)).isRequired,
+  planetas: propTypes.arrayOf(instanceOf(String)).isRequired
 };

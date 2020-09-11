@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import propTypes, { instanceOf } from 'prop-types';
 
 function Planeta(props) {
   const { planeta } = props;
@@ -30,11 +30,4 @@ Planeta.propTypes = {
   removeClick: propTypes.func.isRequired,
   filterByNumericValues: propTypes.arrayOf(instanceOf(Object)).isRequired,
   pegarNumero: propTypes.arrayOf(propTypes.string).isRequired,
-  planeta: InputNumber.propTypes = {
-  filtros: propTypes.arrayOf(propTypes.string).isRequired,
-  options: propTypes.arrayOf(propTypes.string).isRequired,
-  removeClick: propTypes.func.isRequired,
-  filterByNumericValues: propTypes.arrayOf(instanceOf(Object)).isRequired,
-  pegarNumero: propTypes.arrayOf(propTypes.string).isRequired,
-  }
 };

@@ -63,7 +63,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 export default connect(mapStateToProps, mapDispatchToProps)(NumericFilter);
 
-InputNumber.propTypes = {
+NumericFilter.propTypes = {
   filtros: propTypes.arrayOf(propTypes.string).isRequired,
   options: propTypes.arrayOf(propTypes.string).isRequired,
   removeClick: propTypes.func.isRequired,

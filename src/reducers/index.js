@@ -57,7 +57,7 @@ function filters(state = initialFilters, action) {
       return {
         ...state,
         filterByNumericValues: state.filterByNumericValues.filter(
-          (filtro) => filtro.column !== action.column
+          (filtro) => filtro.column !== action.column,
         ),
       };
     case ORDENA_FILTRO:
