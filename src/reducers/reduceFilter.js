@@ -4,9 +4,9 @@ const INITIAL_STATE = {
   filterByName: {
     name: '',
   },
+  filterByNumericValues: [],
+  order: { column: 'Name', sort: 'ASC'}
 };
-
-// Forma de fazer action by Zambelli 03/09/2020
 
 const reduceFilters = (state = INITIAL_STATE, action) => {
   switch (action.type) {
@@ -15,6 +15,17 @@ const reduceFilters = (state = INITIAL_STATE, action) => {
         ...state,
         filterByName: { name: action.payload },
       };
+    case ACTIONS.COMBINA_ACTIONS:
+      return {
+        ...state,
+        filterByNumericValues: [
+          ...state.filterByNumericValues,
+          {
+            column: action.column,
+            comparison: action.comparison,
+            value: action.value,
+        }],
+      }
     default:
       return state;
   }

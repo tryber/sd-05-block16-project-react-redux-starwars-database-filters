@@ -4,6 +4,17 @@ import PropTypes from 'prop-types';
 import { fetchAllPlanets } from '../actions';
 import Body from './Body';
 
+function pegaFiltro(filtroPlanetario, planetas) {
+  const { value, comparison, column } = filtroPlanetario;
+  if (comparison === 'maior que') {
+    return planetas[column] * 1 > value * 1
+  }
+  else if (comparison === 'menor que') {
+    return planetas[column] * 1 < value * 1
+  }
+  return planetas[column] * 1 === value * 1
+  }
+
 class Table extends Component {
   componentDidMount() {
     const { getFetch } = this.props;
@@ -11,7 +22,7 @@ class Table extends Component {
   }
 
   render() {
-    const { planetas, name } = this.props;
+    const { planetas, name, filtragemPlanetas } = this.props;
 
 /*     consulta filter sem modificar anterior:
     https://desenvolvimentoparaweb.com/javascript/map-filter-
@@ -19,8 +30,18 @@ class Table extends Component {
     (%20(%20elem%2C%20index%2C%20arr%20)%20%3D%3E%20arr,
     elemento%20ser%C3%A1%20mantido%20ou%20descartado. */
 
-    const filtroPorPlaneta = planetas.filter((planeta) => planeta.name.indexOf(name) >= 0);
-    // console.log(filtroPorPlaneta)
+
+
+    let filtroPorPlaneta = planetas.filter((planeta) => planeta.name.indexOf(name) >= 0);
+    console.log(filtroPorPlaneta)
+    filtragemPlanetas.forEach(
+      (filtro) => {
+        filtroPorPlaneta = filtroPorPlaneta.filter((planeta) => {
+          return pegaFiltro(filtro, planeta)
+        }
+      )
+    })
+    
     return (
       <div>
         StarWars Datatable with Filters
@@ -43,6 +64,7 @@ const mapStateToProps = (state) => ({
   // isLoading: state.reduceApi.isLoading,
   name: state.filters.filterByName.name,
   planetas: state.reduceApi.data,
+  filtragemPlanetas: state.filters.filterByNumericValues,
 });
 
 const mapDispatchToProps = (dispatch) => ({
