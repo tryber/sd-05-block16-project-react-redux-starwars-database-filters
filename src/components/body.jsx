@@ -48,7 +48,7 @@ class Body extends React.Component {
     let planets = planetas;
 
     planets = planets.filter(
-      (planeta) => planeta.name.toLowerCase().indexOf(nome.toLowerCase()) >= 0,
+      (planeta) => planeta.name.toLowerCase().indexOf(nome.toLowerCase()) >= 0
     );
 
     filterByNumericValues.forEach((filtro) => {
@@ -78,6 +78,6 @@ const mapStateToProps = (state) => ({
 export default connect(mapStateToProps)(Body);
 
 Body.propTypes = {
-  planetas: propTypes.arrayOf(instanceOf(Object)).isRequired,
-  nome: propTypes.string.isRequired,
+  order: propTypes.arrayOf(instanceOf(Object)).isRequired,
+  filterByNumericValues: propTypes.arrayOf(instanceOf(Object)).isRequired,
 };

@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import propTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { pegandoNumerosAction, iniciaFiltros, removeClick } from '../actions';
+import ComparisonFilter from './comparisonFilter';
+import ValueFilter from './valueFilter';
 
 class NumericFilter extends Component {
   constructor(props) {
@@ -23,24 +25,13 @@ class NumericFilter extends Component {
         >
           <option value="" disabled selected />
           {options
-            .filter((el) => !filtros.includes(el)).map((el) => (
+            .filter((el) => !filtros.includes(el))
+            .map((el) => (
               <option value={el}>{el}</option>
             ))}
         </select>
-        <select
-          data-testid="comparison-filter"
-          onChange={(event) => this.setState({ comparison: event.target.value })}
-        >
-          <option value="">Choose your comparison</option>
-          <option value="menor que">menor que</option>
-          <option value="maior que">maior que</option>
-          <option value="igual a">igual a</option>
-        </select>
-        <input
-          type="number"
-          data-testid="value-filter"
-          onChange={(event) => this.setState({ value: event.target.value })}
-        />
+        <ComparisonFilter />
+        <ValueFilter />
         <button data-testid="button-filter" onClick={() => this.props.pegarNumero(this.state)}>
           Acionar
         </button>
@@ -72,6 +63,10 @@ const mapDispatchToProps = (dispatch) => ({
 
 export default connect(mapStateToProps, mapDispatchToProps)(NumericFilter);
 
-/* NumericFilter.propTypes = {
-  pegar: propTypes.func.isRequired,
-}; */
+InputNumber.propTypes = {
+  filtros: propTypes.arrayOf(propTypes.string).isRequired,
+  options: propTypes.arrayOf(propTypes.string).isRequired,
+  removeClick: propTypes.func.isRequired,
+  filterByNumericValues: propTypes.arrayOf(instanceOf(Object)).isRequired,
+  pegarNumero: propTypes.arrayOf(propTypes.string).isRequired,
+};

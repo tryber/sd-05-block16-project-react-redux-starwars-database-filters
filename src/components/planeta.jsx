@@ -23,3 +23,18 @@ function Planeta(props) {
 }
 
 export default Planeta;
+
+Planeta.propTypes = {
+  filtros: propTypes.arrayOf(propTypes.string).isRequired,
+  options: propTypes.arrayOf(propTypes.string).isRequired,
+  removeClick: propTypes.func.isRequired,
+  filterByNumericValues: propTypes.arrayOf(instanceOf(Object)).isRequired,
+  pegarNumero: propTypes.arrayOf(propTypes.string).isRequired,
+  planeta: InputNumber.propTypes = {
+  filtros: propTypes.arrayOf(propTypes.string).isRequired,
+  options: propTypes.arrayOf(propTypes.string).isRequired,
+  removeClick: propTypes.func.isRequired,
+  filterByNumericValues: propTypes.arrayOf(instanceOf(Object)).isRequired,
+  pegarNumero: propTypes.arrayOf(propTypes.string).isRequired,
+  }
+};
