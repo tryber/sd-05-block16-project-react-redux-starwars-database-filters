@@ -7,12 +7,14 @@ import Body from './Body';
 function pegaFiltro(filtroPlanetario, planetas) {
   const { value, comparison, column } = filtroPlanetario;
   if (comparison === 'maior que') {
-    return planetas[column] * 1 > value * 1
+    return planetas[column] * 1 > value * 1;
   }
+
   else if (comparison === 'menor que') {
-    return planetas[column] * 1 < value * 1
+    return planetas[column] * 1 < value * 1;
   }
-  return planetas[column] * 1 === value * 1
+
+  return planetas[column] * 1 === value * 1;
   }
 
 class Table extends Component {
@@ -30,18 +32,14 @@ class Table extends Component {
     (%20(%20elem%2C%20index%2C%20arr%20)%20%3D%3E%20arr,
     elemento%20ser%C3%A1%20mantido%20ou%20descartado. */
 
-
-
     let filtroPorPlaneta = planetas.filter((planeta) => planeta.name.indexOf(name) >= 0);
-    console.log(filtroPorPlaneta)
     filtragemPlanetas.forEach(
       (filtro) => {
         filtroPorPlaneta = filtroPorPlaneta.filter((planeta) => {
-          return pegaFiltro(filtro, planeta)
+          return pegaFiltro(filtro, planeta),
         }
-      )
-    })
-    
+      );
+      });
     return (
       <div>
         StarWars Datatable with Filters
@@ -75,6 +73,7 @@ Table.propTypes = {
   getFetch: PropTypes.func.isRequired,
   name: PropTypes.string.isRequired,
   planetas: PropTypes.arrayOf(PropTypes.object).isRequired,
+  filtragemPlanetas: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Table);

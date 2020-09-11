@@ -5,7 +5,7 @@ const INITIAL_STATE = {
     name: '',
   },
   filterByNumericValues: [],
-  order: { column: 'Name', sort: 'ASC'}
+  order: { column: 'Name', sort: 'ASC' },
 };
 
 const reduceFilters = (state = INITIAL_STATE, action) => {
@@ -24,8 +24,8 @@ const reduceFilters = (state = INITIAL_STATE, action) => {
             column: action.column,
             comparison: action.comparison,
             value: action.value,
-        }],
-      }
+          }],
+      };
     default:
       return state;
   }

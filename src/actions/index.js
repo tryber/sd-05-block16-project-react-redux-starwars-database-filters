@@ -34,7 +34,7 @@ export const filter = (nome) => ({
   payload: nome,
 });
 
-export const combinaActions = ({column, comparison, value}) => ({
+export const combinaActions = ({ column, comparison, value }) => ({
   type: COMBINA_ACTIONS,
   column,
   comparison,
