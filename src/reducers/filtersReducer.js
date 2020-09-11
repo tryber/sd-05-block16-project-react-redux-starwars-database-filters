@@ -36,7 +36,6 @@ const filters = (state = INITIAL_FILTER, action) => {
             value: action.value,
           },
         ],
-        // selectedOption: state.selectedOption.filter((option) => option !== action.column),
       };
     case REMOVE_FILTER:
       return {
@@ -45,10 +44,7 @@ const filters = (state = INITIAL_FILTER, action) => {
           filtro.column !== action.column),
       };
     case FILTER_ORDER:
-      return {
-        ...state,
-        order: action.order,
-      }
+      return { ...state, order: action.order };
     default:
       return state;
   }

@@ -82,7 +82,7 @@ class InputNumber extends React.Component {
         </button>
 
         <FiltroOrdenado />
-        
+
         {filterByNumericValues.map((filtro) => (
           <div data-testid="filter">
             <button onClick={this.props.removeClick} id={filtro.column}>
