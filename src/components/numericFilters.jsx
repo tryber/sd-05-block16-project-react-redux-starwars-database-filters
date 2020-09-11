@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import propTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { pegandoNumerosAction, iniciaFiltros } from '../actions';
+import { pegandoNumerosAction, iniciaFiltros, removeClick } from '../actions';
 
 class NumericFilter extends Component {
   constructor(props) {
@@ -22,9 +22,11 @@ class NumericFilter extends Component {
           onChange={(event) => this.setState({ column: event.target.value })}
         >
           <option value="" disabled selected></option>
-          {options.filter((el) => !filtros.includes(el) ).map((el) => (
-            <option value={el}>{el}</option>
-          ))}
+          {options
+            .filter((el) => !filtros.includes(el))
+            .map((el) => (
+              <option value={el}>{el}</option>
+            ))}
           {/* <option value="">Choose your column</option>
           <option value="population">population</option>
           <option value="diameter">diameter</option>
@@ -49,6 +51,16 @@ class NumericFilter extends Component {
         <button data-testid="button-filter" onClick={() => this.props.pegarNumero(this.state)}>
           Acionar
         </button>
+        <div>
+          {this.props.filtros.map((filtro) => (
+            <div data-testid="filter">
+              <button onClick={this.props.removeClick} id={filtro}>
+                X
+              </button>
+              {filtro}
+            </div>
+          ))}
+        </div>
       </div>
     );
   }
@@ -62,6 +74,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   pegarNumero: (filter) => dispatch(pegandoNumerosAction(filter)),
   excluiOpcao: (opcao) => dispatch(iniciaFiltros(opcao)),
+  removeClick: (column) => dispatch(removeClick(column.target.id)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(NumericFilter);

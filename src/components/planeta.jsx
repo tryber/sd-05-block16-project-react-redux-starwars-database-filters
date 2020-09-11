@@ -22,8 +22,6 @@ function Planeta(props) {
   );
 }
 
-PizzaCard.propTypes = {
-  planeta: PropTypes.object,
-}
+
 
 export default Planeta;

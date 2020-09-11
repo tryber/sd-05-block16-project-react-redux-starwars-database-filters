@@ -17,8 +17,34 @@ const applyComparison = (planeta, filtro) => {
     return Number(planeta[column]) === Number(value); // true ou false
   }
 };
+// variável para conter valores numéricos
+const TituloNumerico = [
+  'rotation_period',
+  'orbital_period',
+  'diameter',
+  'surface_water',
+  'population',
+];
 
 class Body extends React.Component {
+  constructor(props) {
+    super(props);
+    this.OrdemEProgresso = this.OrdemEProgresso.bind(this);
+  }
+  // função para ordenar, recebe um array de planetas
+  OrdemEProgresso(planetas) {
+    const { column, sort } = this.props.order;
+    if (TituloNumerico.includes(this.props.order.column)) {
+      if (sort === 'ASC') {
+        return planetas.sort((a, b) => a[column.toLowerCase()] - b[column.toLowerCase()]);
+      }
+      return planetas.sort((a, b) => b[column.toLowerCase()] - a[column.toLowerCase()]);
+    }
+    if (sort === 'ASC') {
+      return planetas.sort((a, b) => (a.name < b.name ? -1 : 1));
+    }
+    return planetas.sort((a, b) => (a.name > b.name ? -1 : 1));
+  }
   render() {
     const { planetas, filterByNumericValues, nome, isFetching } = this.props;
     let planets = planetas;
@@ -30,6 +56,9 @@ class Body extends React.Component {
     filterByNumericValues.forEach((filtro) => {
       planets = planets.filter((planeta) => applyComparison(planeta, filtro));
     });
+
+    planets = this.OrdemEProgresso(planets);
+
     return (
       <tbody>
         {planets.map((planeta) => (
@@ -45,6 +74,7 @@ const mapStateToProps = (state) => ({
   nome: state.filters.filterByName.name,
   filterByNumericValues: state.filters.filterByNumericValues,
   options: state.filters.selectedOption,
+  order: state.filters.order,
 });
 
 export default connect(mapStateToProps)(Body);

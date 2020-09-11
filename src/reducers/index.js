@@ -5,6 +5,8 @@ import {
   FILTRO_NOME,
   FILTRO_NUMEROS,
   INICIA_FILTROS,
+  REMOVE_FILTRO,
+  ORDENA_FILTRO,
   // iniciaFiltros,
 } from '../actions';
 
@@ -30,15 +32,12 @@ const initialFilters = {
     name: '',
   },
   filterByNumericValues: [],
-  selectedOption: [
-    'population',
-    'diameter',
-    'surface_water',
-    'orbital_period',
-    'rotation_period',
-  ],
+  selectedOption: ['population', 'diameter', 'surface_water', 'orbital_period', 'rotation_period'],
+  order: {
+    column: 'Name',
+    sort: 'ASC',
+  },
 };
-
 function filters(state = initialFilters, action) {
   switch (action.type) {
     case FILTRO_NOME:
@@ -54,6 +53,18 @@ function filters(state = initialFilters, action) {
         ...state,
         selectedOption: state.selectedOption.filter((option) => option !== action.filtro),
       };
+    case REMOVE_FILTRO:
+      return {
+        ...state,
+        filterByNumericValues: state.filterByNumericValues.filter(
+          (filtro) => filtro.column !== action.column
+        ),
+      };
+    case ORDENA_FILTRO:
+      return {
+        ...state,
+        order: action.titulo,
+      }
     default:
       return state;
   }
