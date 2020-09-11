@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import propTypes, { instanceOf } from 'prop-types';
 import { filterByNumber, removeClick } from '../actions/actionFilter';
+import FiltroOrdenado from './FiltroOrdenado';
 
 class InputNumber extends React.Component {
   constructor(props) {
@@ -10,7 +11,6 @@ class InputNumber extends React.Component {
       column: '',
       comparison: '',
       value: '',
-      //filtro: [],
     };
     this.selectColumn = this.selectColumn.bind(this);
     this.selectComparison = this.selectComparison.bind(this);
@@ -80,6 +80,9 @@ class InputNumber extends React.Component {
         <button data-testid="button-filter" onClick={this.handleClick}>
           Adicionar Filtro
         </button>
+
+        <FiltroOrdenado />
+        
         {filterByNumericValues.map((filtro) => (
           <div data-testid="filter">
             <button onClick={this.props.removeClick} id={filtro.column}>

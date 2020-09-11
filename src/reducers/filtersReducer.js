@@ -1,4 +1,9 @@
-import { FILTER_BY_NAME, FILTER_BY_NUMERIC_VALUES, REMOVE_FILTER } from '../actions/actionFilter';
+import {
+  FILTER_BY_NAME,
+  FILTER_BY_NUMERIC_VALUES,
+  REMOVE_FILTER,
+  FILTER_ORDER,
+} from '../actions/actionFilter';
 
 const INITIAL_FILTER = {
   filterByName: { name: '' },
@@ -7,6 +12,10 @@ const INITIAL_FILTER = {
     // { column: 'diameter', comparison: 'maior que', value: '8900' },
     // { column: 'population', comparison: 'igual a', value: '200000' },
   ],
+  order: {
+    column: 'Name',
+    sort: 'ASC',
+  },
 };
 
 const filters = (state = INITIAL_FILTER, action) => {
@@ -35,6 +44,11 @@ const filters = (state = INITIAL_FILTER, action) => {
         filterByNumericValues: state.filterByNumericValues.filter((filtro) =>
           filtro.column !== action.column),
       };
+    case FILTER_ORDER:
+      return {
+        ...state,
+        order: action.order,
+      }
     default:
       return state;
   }

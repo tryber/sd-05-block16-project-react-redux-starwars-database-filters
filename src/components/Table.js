@@ -17,11 +17,32 @@ const aplicaComparacao = (planet, filter) => {
   } return planet;
 };
 
+const numericColumn = [
+  'rotation_period',
+  'orbital_period',
+  'diameter',
+  'surface_water',
+  'population',
+];
+
 class Table extends React.Component {
 
   componentDidMount() {
     const { getPlanets } = this.props;
     getPlanets();
+  }
+
+  ordenaPlaneta(planetas) {
+    const { column, sort } = this.props.ordem;
+    if (numericColumn.includes(column)) {
+      if (sort === 'ASC') {
+        return planetas.sort((a, b) => a[column.toLowerCase()] - b[column.toLowerCase()]);
+      }
+      return (planetas.sort((a, b) => (a.name < b.name ? -1 : 1)));
+    } if (sort === 'DESC') {
+      return planetas.sort((a, b) => b[column.toLowerCase()] - a[column.toLowerCase()]);
+    }
+    return (planetas.sort((a, b) => (a.name > b.name ? -1 : 1)));
   }
 
   render() {
@@ -33,7 +54,7 @@ class Table extends React.Component {
     numericFilter.forEach((filtro) => {
       planetas = planetas.filter((planeta) => aplicaComparacao(planeta, filtro));
     });
-
+    planetas = this.ordenaPlaneta(planetas);
     return (
       <div>StarWars Datatable with Filters
         <table>
@@ -58,6 +79,7 @@ const mapStateToProps = (state) => ({ // é executada toda vez que a store é al
   results: state.apiPlanetReducer.batatinhaResults,
   nombreProcurado: state.filters.filterByName.name, // filterByname.
   numericFilter: state.filters.filterByNumericValues,
+  ordem: state.filters.order,
 }); // o Objeto retornado é uma props acessível no componente Table
 
 const mapDispatchToProps = (dispatch) => ({
@@ -74,4 +96,5 @@ Table.propTypes = {
   getPlanets: propTypes.func.isRequired,
   nombreProcurado: propTypes.string.isRequired,
   numericFilter: propTypes.arrayOf(propTypes.instanceOf(Object)).isRequired,
+  ordem: propTypes.arrayOf(propTypes.instanceOf(Object)).isRequired,
 };
