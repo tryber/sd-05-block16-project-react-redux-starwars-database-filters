@@ -38,11 +38,12 @@ class Table extends React.Component {
       if (sort === 'ASC') {
         return planetas.sort((a, b) => a[column.toLowerCase()] - b[column.toLowerCase()]);
       }
-      return (planetas.sort((a, b) => (a.name < b.name ? -1 : 1)));
-    } if (sort === 'DESC') {
       return planetas.sort((a, b) => b[column.toLowerCase()] - a[column.toLowerCase()]);
     }
-    return (planetas.sort((a, b) => (a.name > b.name ? -1 : 1)));
+    if (sort === 'DESC') {
+      return (planetas.sort((a, b) => (a.name < b.name ? -1 : 1)));
+      }
+      return (planetas.sort((b, a) => (b.name < a.name ? -1 : 1)));
   }
 
   render() {
