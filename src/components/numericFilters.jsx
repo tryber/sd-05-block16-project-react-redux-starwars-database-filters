@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import propTypes from 'prop-types';
+import propTypes, { instanceOf } from 'prop-types';
 import { connect } from 'react-redux';
 import { pegandoNumerosAction, iniciaFiltros, removeClick } from '../actions';
 import ComparisonFilter from './comparisonFilter';
