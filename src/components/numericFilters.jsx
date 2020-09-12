@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import propTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { pegandoNumerosAction, iniciaFiltros, removeClick } from '../actions';
-import ValueFilter from './valueFilter';
+
 
 class NumericFilter extends Component {
   constructor(props) {
@@ -37,7 +37,11 @@ class NumericFilter extends Component {
           <option value="maior que">maior que</option>
           <option value="igual a">igual a</option>
         </select>
-        <ValueFilter />
+        <input
+          type="number"
+          data-testid="value-filter"
+          onChange={(event) => this.setState({ value: event.target.value })}
+        />
         <button data-testid="button-filter" onClick={() => this.props.pegarNumero(this.state)}>
           Acionar
         </button>

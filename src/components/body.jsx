@@ -50,7 +50,7 @@ class Body extends React.Component {
     let planets = planetas;
 
     planets = planets.filter(
-      (planeta) => planeta.name.toLowerCase().indexOf(nome.toLowerCase()) >= 0
+      (planeta) => planeta.name.toLowerCase().indexOf(nome.toLowerCase()) >= 0,
     );
 
     filterByNumericValues.forEach((filtro) => {
