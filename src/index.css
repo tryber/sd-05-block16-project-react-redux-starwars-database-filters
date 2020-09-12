@@ -11,3 +11,22 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+table {
+background-image: url(https://mcdn.wallpapersafari.com/medium/87/42/vt7ujW.jpg);
+background-size: 100% auto;
+color: white;
+font-size: 10px;
+transform: scale(1);
+}
+
+tr {
+border-bottom: 1px whitesmoke;
+height: 53px;
+}
+
+td {
+border:1px solid red;
+font-weight: bold;
+width: 100px;
+}
