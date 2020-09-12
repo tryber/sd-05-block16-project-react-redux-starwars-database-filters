@@ -5,6 +5,7 @@ import Planeta from './planeta';
 
 const applyComparison = (planeta, filtro) => {
   const { column, comparison, value } = filtro;
+
   if (comparison === 'menor que') {
     // [column] generaliza, para nao ter que usar .population, .diameter, etc...
     return Number(planeta[column]) < value; // true ou false
@@ -13,7 +14,8 @@ const applyComparison = (planeta, filtro) => {
     return Number(planeta[column]) > value; // true ou false
   } else if (comparison === 'igual a') {
     return Number(planeta[column]) === Number(value); // true ou false
-  } return planeta;
+  }
+  return planeta;
 };
 // variável para conter valores numéricos
 const TituloNumerico = [
@@ -48,7 +50,7 @@ class Body extends React.Component {
     let planets = planetas;
 
     planets = planets.filter(
-      (planeta) => planeta.name.toLowerCase().indexOf(nome.toLowerCase()) >= 0,
+      (planeta) => planeta.name.toLowerCase().indexOf(nome.toLowerCase()) >= 0
     );
 
     filterByNumericValues.forEach((filtro) => {

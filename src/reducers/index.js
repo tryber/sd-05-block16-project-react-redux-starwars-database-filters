@@ -70,25 +70,11 @@ function filters(state = initialFilters, action) {
   }
 }
 
-/* function filterComparison(allPlanets, filter) {
-  switch (filter.comparison) {
-    case 'maior que':
-      return allPlanets.filter((planet) => Number(planet[filter.column]) > Number(filter.value));
-    case 'menor que':
-      return allPlanets.filter((planet) => Number(planet[filter.column]) < Number(filter.value));
-    case 'igual a':
-      return allPlanets.filter((planet) => Number(planet[filter.column]) === Number(filter.value));
-    default:
-      return allPlanets;
-  }
-} */
-
 // combinação dos reducers a serem passados pra store
 
 const rootReducer = combineReducers({
   reducerApi,
   filters,
-  /* filterComparison, */
 });
 
 export default rootReducer;
