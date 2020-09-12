@@ -80,8 +80,8 @@ const mapStateToProps = (state) => ({
 export default connect(mapStateToProps)(Body);
 
 Body.propTypes = {
-  order: propTypes.arrayOf(instanceOf(Object)).isRequired,
+  order: propTypes.instanceOf(Object).isRequired,
   filterByNumericValues: propTypes.arrayOf(instanceOf(Object)).isRequired,
-  nome: propTypes.arrayOf(instanceOf(String)).isRequired,
-  planetas: propTypes.arrayOf(instanceOf(String)).isRequired,
+  nome: propTypes.string.isRequired,
+  planetas: propTypes.arrayOf(instanceOf(Object)).isRequired,
 };

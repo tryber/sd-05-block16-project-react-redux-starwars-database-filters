@@ -35,7 +35,7 @@ class Bonus extends React.Component {
           onChange={(e) => this.setState({ column: e.target.value })}
         >
           {arrayCabecalho.map((titulo) => (
-            <option value={titulo}>{titulo}</option>
+            <option value={titulo} key={titulo}>{titulo}</option>
           ))}
         </select>
         <input

@@ -11,20 +11,23 @@ class NumericFilter extends Component {
       comparison: '',
       value: '',
     };
+    this.selectButton = this.selectButton.bind(this);
   }
-  render() {
-    const { options, filtros } = this.props;
+
+  selectButton(options, filtros) {
     return (
       <div>
         <select
           data-testid="column-filter"
           onChange={(event) => this.setState({ column: event.target.value })}
         >
-          <option value="" disabled selected />
+          <option value="" disabled={true} defaultValue={true} />
           {options
             .filter((el) => !filtros.includes(el))
             .map((el) => (
-              <option value={el}>{el}</option>
+              <option value={el} key={el}>
+                {el}
+              </option>
             ))}
         </select>
         <select
@@ -41,12 +44,20 @@ class NumericFilter extends Component {
           data-testid="value-filter"
           onChange={(event) => this.setState({ value: event.target.value })}
         />
+      </div>
+    );
+  }
+  render() {
+    const { options, filtros } = this.props;
+    return (
+      <div>
+        {this.selectButton(options, filtros)}
         <button data-testid="button-filter" onClick={() => this.props.pegarNumero(this.state)}>
           Acionar
         </button>
         <div>
           {this.props.filtros.map((filtro) => (
-            <div data-testid="filter">
+            <div data-testid="filter" key={filtro}>
               <button onClick={this.props.removeClick} id={filtro}>
                 X
               </button>
@@ -74,5 +85,6 @@ NumericFilter.propTypes = {
   filtros: propTypes.arrayOf(propTypes.string).isRequired,
   options: propTypes.arrayOf(propTypes.string).isRequired,
   removeClick: propTypes.func.isRequired,
-  pegarNumero: propTypes.arrayOf(propTypes.string).isRequired,
+  pegarNumero: propTypes.func.isRequired,
+  excluiOpcao: propTypes.func.isRequired,
 };

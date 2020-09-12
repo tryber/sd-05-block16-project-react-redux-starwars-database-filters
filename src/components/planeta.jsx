@@ -25,5 +25,5 @@ function Planeta(props) {
 export default Planeta;
 
 Planeta.propTypes = {
-  planeta: propTypes.arrayOf(propTypes.object).isRequired,
+  planeta: propTypes.instanceOf(Object).isRequired,
 };
