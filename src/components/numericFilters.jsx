@@ -3,7 +3,6 @@ import propTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { pegandoNumerosAction, iniciaFiltros, removeClick } from '../actions';
 
-
 class NumericFilter extends Component {
   constructor(props) {
     super(props);
@@ -70,6 +69,7 @@ const mapDispatchToProps = (dispatch) => ({
   removeClick: (column) => dispatch(removeClick(column.target.id)),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(NumericFilter);
+
 NumericFilter.propTypes = {
   filtros: propTypes.arrayOf(propTypes.string).isRequired,
   options: propTypes.arrayOf(propTypes.string).isRequired,
