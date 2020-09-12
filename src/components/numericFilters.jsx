@@ -21,7 +21,7 @@ class NumericFilter extends Component {
           data-testid="column-filter"
           onChange={(event) => this.setState({ column: event.target.value })}
         >
-          <option value="" disabled={true} defaultValue={true} />
+          <option value="" disabled defaultValue />
           {options
             .filter((el) => !filtros.includes(el))
             .map((el) => (
@@ -39,11 +39,6 @@ class NumericFilter extends Component {
           <option value="maior que">maior que</option>
           <option value="igual a">igual a</option>
         </select>
-        <input
-          type="number"
-          data-testid="value-filter"
-          onChange={(event) => this.setState({ value: event.target.value })}
-        />
       </div>
     );
   }
@@ -52,6 +47,11 @@ class NumericFilter extends Component {
     return (
       <div>
         {this.selectButton(options, filtros)}
+        <input
+          type="number"
+          data-testid="value-filter"
+          onChange={(event) => this.setState({ value: event.target.value })}
+        />
         <button data-testid="button-filter" onClick={() => this.props.pegarNumero(this.state)}>
           Acionar
         </button>
@@ -86,5 +86,4 @@ NumericFilter.propTypes = {
   options: propTypes.arrayOf(propTypes.string).isRequired,
   removeClick: propTypes.func.isRequired,
   pegarNumero: propTypes.func.isRequired,
-  excluiOpcao: propTypes.func.isRequired,
 };
