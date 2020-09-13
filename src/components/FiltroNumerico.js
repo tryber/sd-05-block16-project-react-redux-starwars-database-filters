@@ -24,10 +24,11 @@ class FiltroNumerico extends Component {
     return (
       <div>
         <select
-        data-testid="column-filter"
-        name="column"
-        onChange={(event) => this.handleChange(event)} >
-        <option disabled selected value="">Características</option>
+          onChange={(event) => this.handleChange(event)}
+          data-testid="column-filter"
+          name="column"
+        >
+          <option disabled selected value="">Características</option>
           <option value="rotation_period">rotation_period</option>
           <option value="orbital_period">orbital_period</option>
           <option value="diameter">diameter</option>
@@ -35,21 +36,18 @@ class FiltroNumerico extends Component {
           <option value="population">population</option>
         </select>
         <select
-        data-testid="comparison-filter"
-        name="comparison" onChange={(event) => this.handleChange(event)}>
+          onChange={(e) => this.handleChange(e)} data-testid="comparison-filter" name="comparison"
+        >
           <option>Comparison</option>
           <option value="maior que">maior que</option>
           <option value="igual a">igual a</option>
           <option value="menor que">menor que</option>
         </select>
         <input
-        data-testid="value-filter"
-        name="value"
-        onChange={(event) => this.handleChange(event)} placeholder="Filtre Valor">
-        </input>
-        <button data-testid="button-filter" onClick={() => filtraCombineAction(this.state)}>
-          Filtrar
-        </button>
+          onChange={(event) => this.handleChange(event)}
+          data-testid="value-filter" name="value"
+        />
+        <button data-testid="button-filter" onClick={() => filtraCombineAction(this.state)} />
       </div>
     );
   }
@@ -59,8 +57,8 @@ const mapDispatchToProps = (dispatch) => ({
   filtraCombineAction: (e) => dispatch(combinaActions(e)),
 });
 
-FiltroNumerico.protoTypes = {
-  filtraCombineAction: PropTypes.arrayOf(PropTypes.object).isRequired,
+FiltroNumerico.propTypes = {
+  filtraCombineAction: PropTypes.func.isRequired,
 };
 
 export default connect(null, mapDispatchToProps)(FiltroNumerico);

@@ -33,8 +33,8 @@ class Table extends Component {
     filtragemPlanetas.forEach(
       (filtro) => {
         filtroPorPlaneta = filtroPorPlaneta.filter((planeta) =>
-          pegaFiltro(filtro, planeta))
-      }
+          pegaFiltro(filtro, planeta));
+      },
     );
     return (
       <div>
