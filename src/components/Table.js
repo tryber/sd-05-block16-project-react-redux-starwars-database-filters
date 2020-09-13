@@ -32,8 +32,8 @@ class Table extends Component {
     let filtroPorPlaneta = planetas.filter((planeta) => planeta.name.indexOf(name) >= 0);
     filtragemPlanetas.forEach(
       (filtro) => {
-        filtroPorPlaneta = filtroPorPlaneta.filter(planeta => {
-          return pegaFiltro(filtro, planeta);
+        filtroPorPlaneta = filtroPorPlaneta.filter((planeta) => {
+          return (pegaFiltro(filtro, planeta));
         });
       }
     );
