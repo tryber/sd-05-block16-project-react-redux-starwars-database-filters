@@ -14,7 +14,7 @@ class FiltroNumerico extends Component {
       this.handleChange = this.handleChange.bind(this);
     }
 
-  handleChange = (event) => {
+  handleChange = event => {
     const { name, value } = event.target;
     this.setState({ [name]: value });
   }; 

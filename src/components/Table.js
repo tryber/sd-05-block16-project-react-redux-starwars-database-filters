@@ -12,7 +12,7 @@ function pegaFiltro(filtroPlanetario, planetas) {
     return planetas[column] * 1 < value * 1;
   }
   return planetas[column] * 1 === value * 1;
-  }
+}
 
 class Table extends Component {
   componentDidMount() {
@@ -32,10 +32,11 @@ class Table extends Component {
     let filtroPorPlaneta = planetas.filter((planeta) => planeta.name.indexOf(name) >= 0);
     filtragemPlanetas.forEach(
       (filtro) => {
-        filtroPorPlaneta = filtroPorPlaneta.filter((planeta) => {
+        filtroPorPlaneta = filtroPorPlaneta.filter(planeta => {
           return pegaFiltro(filtro, planeta);
         });
-      });
+      }
+    );
     return (
       <div>
         StarWars Datatable with Filters
