@@ -6,44 +6,52 @@ import { combinaActions } from '../actions';
 class FiltroNumerico extends Component {
   constructor(props) {
     super(props);
-      this.state = {
-        column: '',
-        comparison: '',
-        value: '',
-      };
-      this.handleChange = this.handleChange.bind(this);
-    }
+    this.state = {
+      column: '',
+      comparison: '',
+      value: '',
+    };
+    this.handleChange = this.handleChange.bind(this);
+  }
 
   handleChange(event) {
     const { name, value } = event.target;
     this.setState({ [name]: value });
-  }; 
+  }
 
   render() {
     const { filtraCombineAction } = this.props;
     return (
       <div>
-        <select data-testid="column-filter" name="column" onChange={(event) => this.handleChange(event)} >
-        <option disabled selected value=""></option>
+        <select
+        data-testid="column-filter"
+        name="column"
+        onChange={(event) => this.handleChange(event)} >
+        <option disabled selected value="">Características</option>
           <option value="rotation_period">rotation_period</option>
           <option value="orbital_period">orbital_period</option>
           <option value="diameter">diameter</option>
           <option value="surface_water">surface_water</option>
           <option value="population">population</option>
         </select>
-        <select data-testid="comparison-filter" name="comparison" onChange={(event) => this.handleChange(event)}>
+        <select
+        data-testid="comparison-filter"
+        name="comparison" onChange={(event) => this.handleChange(event)}>
           <option>Comparison</option>
           <option value="maior que">maior que</option>
           <option value="igual a">igual a</option>
           <option value="menor que">menor que</option>
         </select>
-        <input data-testid="value-filter" name="value" onChange={(event) => this.handleChange(event)}>
+        <input
+        data-testid="value-filter"
+        name="value"
+        onChange={(event) => this.handleChange(event)} placeholder="Filtre Valor">
         </input>
         <button data-testid="button-filter" onClick={() => filtraCombineAction(this.state)}>
           Filtrar
         </button>
       </div>
-    )
+    );
   }
 }
 
@@ -52,7 +60,7 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 FiltroNumerico.protoTypes = {
-  filtraCombineAction: PropTypes.func.isRequired,
+  filtraCombineAction: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default connect(null, mapDispatchToProps)(FiltroNumerico);
