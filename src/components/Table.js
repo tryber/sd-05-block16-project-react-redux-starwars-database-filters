@@ -8,12 +8,9 @@ function pegaFiltro(filtroPlanetario, planetas) {
   const { value, comparison, column } = filtroPlanetario;
   if (comparison === 'maior que') {
     return planetas[column] * 1 > value * 1;
-  }
-
-  else if (comparison === 'menor que') {
+  } else if (comparison === 'menor que') {
     return planetas[column] * 1 < value * 1;
   }
-
   return planetas[column] * 1 === value * 1;
   }
 
@@ -36,7 +33,7 @@ class Table extends Component {
     filtragemPlanetas.forEach(
       (filtro) => {
         filtroPorPlaneta = filtroPorPlaneta.filter((planeta) => {
-          return pegaFiltro(filtro, planeta)
+          return pegaFiltro(filtro, planeta);
         });
       });
     return (
