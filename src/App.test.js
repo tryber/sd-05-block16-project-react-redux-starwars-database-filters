@@ -310,7 +310,7 @@ describe.only('3 - Sua página deve ter um filtro para valores numéricos', () =
   });
 });
 
-describe('4 -  Sua página deverá ser carregada com somente um filtro de valores numéricos', () => {
+describe.only('4 -  Sua página deverá ser carregada com somente um filtro de valores numéricos', () => {
   test('check avaiable filters', async () => {
     const initialState = getStore().getState();
 

@@ -12,6 +12,7 @@ class FiltroNumerico extends Component {
       value: '',
     };
     this.handleChange = this.handleChange.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   handleChange(event) {
@@ -20,7 +21,13 @@ class FiltroNumerico extends Component {
   }
 
   render() {
-    const { filtraCombineAction } = this.props;
+    const { filtraCombineAction, filterSelected } = this.props;
+    let resultadoSelected = [
+      '', 'population', 'rotation_period', 'diameter', 'surface_water', 'orbital_period',
+    ];
+
+    resultadoSelected = resultadoSelected.filter((s) => !filterSelected.includes(s));
+    
     return (
       <div>
         <select
@@ -28,12 +35,9 @@ class FiltroNumerico extends Component {
           data-testid="column-filter"
           name="column"
         >
-          <option disabled selected value="">Características</option>
-          <option value="rotation_period">rotation_period</option>
-          <option value="orbital_period">orbital_period</option>
-          <option value="diameter">diameter</option>
-          <option value="surface_water">surface_water</option>
-          <option value="population">population</option>
+          { resultadoSelected.map((e) => (
+            <option value={e}>{e}</option>
+          )) }
         </select>
         <select
           onChange={(e) => this.handleChange(e)} data-testid="comparison-filter" name="comparison"
@@ -53,6 +57,12 @@ class FiltroNumerico extends Component {
   }
 }
 
+// live com Carla Nakajuni 14/09/2020
+
+const mapStateToProps = (state) => ({
+  filterSelected: state.filters.filterByNumericValues.map((optFilt) => optFilt.column),
+})
+
 const mapDispatchToProps = (dispatch) => ({
   filtraCombineAction: (e) => dispatch(combinaActions(e)),
 });
@@ -61,4 +71,4 @@ FiltroNumerico.propTypes = {
   filtraCombineAction: PropTypes.func.isRequired,
 };
 
-export default connect(null, mapDispatchToProps)(FiltroNumerico);
+export default connect(mapStateToProps, mapDispatchToProps)(FiltroNumerico);
