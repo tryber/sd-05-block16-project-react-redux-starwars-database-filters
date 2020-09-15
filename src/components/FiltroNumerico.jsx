@@ -12,7 +12,6 @@ class FiltroNumerico extends Component {
       value: '',
     };
     this.handleChange = this.handleChange.bind(this);
-    this.handleClick = this.handleClick.bind(this);
   }
 
   handleChange(event) {
@@ -35,9 +34,7 @@ class FiltroNumerico extends Component {
           data-testid="column-filter"
           name="column"
         >
-          { resultadoSelected.map((e) => (
-            <option value={e}>{e}</option>
-          )) }
+          { resultadoSelected.map((e) => (<option value={e}>{e}</option>)) }
         </select>
         <select
           onChange={(e) => this.handleChange(e)} data-testid="comparison-filter" name="comparison"
@@ -61,7 +58,7 @@ class FiltroNumerico extends Component {
 
 const mapStateToProps = (state) => ({
   filterSelected: state.filters.filterByNumericValues.map((optFilt) => optFilt.column),
-})
+});
 
 const mapDispatchToProps = (dispatch) => ({
   filtraCombineAction: (e) => dispatch(combinaActions(e)),
@@ -69,6 +66,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 FiltroNumerico.propTypes = {
   filtraCombineAction: PropTypes.func.isRequired,
+  filterSelected: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(FiltroNumerico);
