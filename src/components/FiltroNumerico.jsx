@@ -26,7 +26,6 @@ class FiltroNumerico extends Component {
     ];
 
     resultadoSelected = resultadoSelected.filter((s) => !filterSelected.includes(s));
-    
     return (
       <div>
         <select
