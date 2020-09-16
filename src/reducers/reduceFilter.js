@@ -26,11 +26,12 @@ const reduceFilters = (state = INITIAL_STATE, action) => {
             value: action.value,
           }],
       };
-      case ACTIONS.REMOVE_FILTRO:
-        return {
-          ...state,
-          filterByNumericValues: state.filterByNumericValues.filter(x => x.column !== action.column),
-        }
+    case ACTIONS.REMOVE_FILTRO:
+      return {
+        ...state,
+        filterByNumericValues: state.filterByNumericValues
+        .filter((x) => x.column !== action.column),
+      };
     default:
       return state;
   }

@@ -46,7 +46,7 @@ export const combinaActions = ({ column, comparison, value }) => ({
 export const removeFiltro = (coluna) => ({
   type: REMOVE_FILTRO,
   payload: coluna.target.id,
-})
+});
 
 export function fetchAllPlanets() {
   return (dispatch) => {
