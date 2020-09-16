@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { combinaActions } from '../actions';
+import { combinaActions, removeFiltro } from '../actions';
 
 class FiltroNumerico extends Component {
   constructor(props) {
@@ -20,7 +20,7 @@ class FiltroNumerico extends Component {
   }
 
   render() {
-    const { filtraCombineAction, filterSelected } = this.props;
+    const { filtraCombineAction, filterSelected, remove } = this.props;
     let resultadoSelected = [
       '', 'population', 'rotation_period', 'diameter', 'surface_water', 'orbital_period',
     ];
@@ -48,19 +48,27 @@ class FiltroNumerico extends Component {
           data-testid="value-filter" name="value"
         />
         <button data-testid="button-filter" onClick={() => filtraCombineAction(this.state)} />
+        {remove.map((x) => (
+          <div data-testid='filter'>
+            <button onClick={this.props.tiraX} id={x.column}>X</button>
+              {x.column}
+          </div>
+        ))}
       </div>
     );
   }
 }
 
-// live com Carla Nakajuni 14/09/2020
+// live com Carla Nakajuni 14/09/2020 e 15/09/2020
 
 const mapStateToProps = (state) => ({
   filterSelected: state.filters.filterByNumericValues.map((optFilt) => optFilt.column),
+  remove: state.filters.filterByNumericValues,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   filtraCombineAction: (e) => dispatch(combinaActions(e)),
+  tiraX: (x) => dispatch(removeFiltro(x)),
 });
 
 FiltroNumerico.propTypes = {

@@ -4,6 +4,7 @@ export const REQUEST_API = 'REQUEST_API';
 export const RECEIVE_API = 'RECEIVE_API';
 export const FILTER_NAME = 'FILTER_NAME';
 export const COMBINA_ACTIONS = 'COMBINA_ACTIONS';
+export const REMOVE_FILTRO = 'REMOVE_FILTRO';
 
 // Forma de fazer action by Zambelli 03/09/2020
 
@@ -12,6 +13,7 @@ const ACTIONS = {
   RECEIVE_API,
   FILTER_NAME,
   COMBINA_ACTIONS,
+  REMOVE_FILTRO,
 };
 
 export default ACTIONS;
@@ -40,6 +42,11 @@ export const combinaActions = ({ column, comparison, value }) => ({
   comparison,
   value,
 });
+
+export const removeFiltro = (coluna) => ({
+  type: REMOVE_FILTRO,
+  payload: coluna.target.id,
+})
 
 export function fetchAllPlanets() {
   return (dispatch) => {
