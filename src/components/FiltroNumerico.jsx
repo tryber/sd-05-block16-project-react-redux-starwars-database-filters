@@ -25,11 +25,11 @@ class FiltroNumerico extends Component {
     rS = rS.filter((s) => !filterSelected.includes(s));
     return (
       <div>
-        <select
-          onChange={(event) => this.hC(event)}
-          data-testid="column-filter"
-          name="column"
-        >{ rS.map((e) => (<option value={e}>{e}</option>)) }</select>
+        <select onChange={(event) => this.hC(event)} data-testid="column-filter" name="column">
+          {rS.map((e) => (
+            <option value={e}>{e}</option>
+          ))}
+        </select>
         <select onChange={(e) => this.hC(e)} data-testid="comparison-filter" name="comparison">
           <option>Comparison</option>
           <option value="maior que">maior que</option>
@@ -40,7 +40,9 @@ class FiltroNumerico extends Component {
         <button data-testid="button-filter" onClick={() => filtraCombineAction(this.state)} />
         {remove.map((x) => (
           <div data-testid="filter">
-            <button onClick={this.props.tiraX} id={x.column}>X</button>
+            <button onClick={this.props.tiraX} id={x.column}>
+              X
+            </button>
             {x.column}
           </div>
         ))}

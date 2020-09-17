@@ -30,7 +30,7 @@ const reduceFilters = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         filterByNumericValues: state.filterByNumericValues
-        .filter((x) => x.column !== action.column),
+        .filter((x) => x.column !== action.payload),
       };
     default:
       return state;
