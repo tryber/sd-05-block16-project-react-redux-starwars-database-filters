@@ -31,7 +31,12 @@ const reduceFilters = (state = INITIAL_STATE, action) => {
         ...state,
         filterByNumericValues: state.filterByNumericValues
         .filter((x) => x.column !== action.payload),
-      };
+      }; // Live com PR Zambelli
+    case ACTIONS.ASC_DESC:
+      return {
+        ...state,
+        ordena: action.payload,
+      }
     default:
       return state;
   }

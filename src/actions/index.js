@@ -5,6 +5,7 @@ export const RECEIVE_API = 'RECEIVE_API';
 export const FILTER_NAME = 'FILTER_NAME';
 export const COMBINA_ACTIONS = 'COMBINA_ACTIONS';
 export const REMOVE_FILTRO = 'REMOVE_FILTRO';
+export const ASC_DESC = 'ASC_DESC';
 
 // Forma de fazer action by Zambelli 03/09/2020
 
@@ -14,6 +15,7 @@ const ACTIONS = {
   FILTER_NAME,
   COMBINA_ACTIONS,
   REMOVE_FILTRO,
+  ASC_DESC,
 };
 
 export default ACTIONS;
@@ -48,10 +50,14 @@ export const removeFiltro = (evento) => ({
   payload: evento.target.id,
 });
 
+export const ascDesc = () => ({
+  type: ASC_DESC,
+  payload,
+});
+
 export function fetchAllPlanets() {
   return (dispatch) => {
     dispatch(requestApi());
-    return requisicaoAPI()
-      .then((dados) => dispatch(receiveApi(dados)));
+    return requisicaoAPI().then((dados) => dispatch(receiveApi(dados)));
   };
 }

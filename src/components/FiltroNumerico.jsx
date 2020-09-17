@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { combinaActions, removeFiltro } from '../actions';
+import { combinaActions, removeFiltro, ascDesc } from '../actions';
 
 class FiltroNumerico extends Component {
   constructor(props) {
