@@ -12,8 +12,8 @@ function App() {
         <Filter />
         <br />
         <FiltroNumerico />
-        <br/>
-        <br/>
+        <br />
+        <br />
         <AscDesc />
         <br />
         <Table />

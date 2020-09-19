@@ -25,24 +25,23 @@ const colunasNumericas = [
 const ordenaCol = (filtroPorPlaneta, reduxOrder) => {
   if (!colunasNumericas.includes(reduxOrder.column)) {
     if (reduxOrder.sort === 'ASC') {
-      return filtroPorPlaneta.sort((a, b) =>
-        a[reduxOrder.column.toLowerCase()] > b[reduxOrder.column.toLowerCase()] ? 1 : -1
-      );
-    } else {
-      return filtroPorPlaneta.sort((a, b) =>
-        a[reduxOrder.column.toLowerCase()] < b[reduxOrder.column.toLowerCase()] ? 1 : -1
+      return filtroPorPlaneta.sort(
+        (a, b) =>
+        (a[reduxOrder.column.toLowerCase()] > b[reduxOrder.column.toLowerCase()] ? 1 : -1),
       );
     }
+    return filtroPorPlaneta.sort(
+      ((a, b) =>
+      (a[reduxOrder.column.toLowerCase()] < b[reduxOrder.column.toLowerCase()] ? 1 : -1)),
+    );
   }
   if (reduxOrder.sort === 'ASC') {
     return filtroPorPlaneta.sort(
-      (a, b) => a[reduxOrder.column.toLowerCase()] - b[reduxOrder.column.toLowerCase()]
+      (a, b) => a[reduxOrder.column.toLowerCase()] - b[reduxOrder.column.toLowerCase()],
     );
-  } else {
-    return filtroPorPlaneta.sort(
-      (b, a) => a[reduxOrder.column.toLowerCase()] - b[reduxOrder.column.toLowerCase()]
+  } return filtroPorPlaneta.sort(
+      (b, a) => a[reduxOrder.column.toLowerCase()] - b[reduxOrder.column.toLowerCase()],
     );
-  }
 };
 
 class Table extends Component {
@@ -98,13 +97,15 @@ const mapDispatchToProps = (dispatch) => ({
   getFetch: () => dispatch(fetchAllPlanets()),
 });
 
-// criar uma função que recebe o array de planetas por tipo de filtragem (asc ou desc) e a coluna que quero filtrar
+// criar uma função que recebe o array de planetas por tipo de filtragem
+// (asc ou desc) e a coluna que quero filtrar
 
 Table.propTypes = {
   getFetch: PropTypes.func.isRequired,
   name: PropTypes.string.isRequired,
   planetas: PropTypes.arrayOf(PropTypes.object).isRequired,
   filtragemPlanetas: PropTypes.arrayOf(PropTypes.object).isRequired,
+  reduxOrder: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Table);

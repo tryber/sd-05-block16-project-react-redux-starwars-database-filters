@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import propTypes from 'prop-types';
 import { ascDesc } from '../actions';
 
-var colunaInicial = [
+const colunaInicial = [
   'name',
   'rotation_period',
   'orbital_period',
@@ -38,32 +38,21 @@ class AscDesc extends Component {
           data-testid="column-sort"
           onChange={(e) => this.setState({ column: e.target.value })}
         >
-          {colunaInicial.map((e) => (
-            <option value={e} key={e}>
-              {e}
-            </option>
-          ))}
+          {colunaInicial.map((e) => (<option value={e} key={e}>{e}</option>))}
         </select>
         <input
-          name="ordenar"
-          value="ASC"
-          type="radio"
-          data-testid="column-sort-input"
+          name="ordenar" value="ASC" type="radio" data-testid="column-sort-input"
           defaultChecked
           onChange={(e) => this.setState({ sort: e.target.value })}
         />
         ASC
         <input
-          name="ordenar"
-          value="DESC"
-          type="radio"
-          data-testid="column-sort-input"
+          name="ordenar" value="DESC" type="radio" data-testid="column-sort-input"
           onChange={(e) => this.setState({ sort: e.target.value })}
         />
         DESC
         <button
-          type="button"
-          data-testid="column-sort-button"
+          type="button" data-testid="column-sort-button"
           onClick={() => this.props.ordenado(sort, column)}
         >
           Selecionar
@@ -84,7 +73,7 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 AscDesc.propTypes = {
-  ascDec: propTypes.func.isRequired,
+  ordenado: propTypes.func.isRequired,
 };
 
 export default connect(null, mapDispatchToProps)(AscDesc);

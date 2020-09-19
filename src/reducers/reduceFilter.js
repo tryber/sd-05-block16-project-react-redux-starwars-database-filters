@@ -17,11 +17,7 @@ const reduceFilters = (state = INITIAL_STATE, action) => {
         ...state,
         filterByNumericValues: [
           ...state.filterByNumericValues,
-          {
-            column: action.column,
-            comparison: action.comparison,
-            value: action.value,
-          },
+          { column: action.column, comparison: action.comparison, value: action.value },
         ],
       };
     case ACTIONS.REMOVE_FILTRO:
@@ -34,10 +30,7 @@ const reduceFilters = (state = INITIAL_STATE, action) => {
     case ACTIONS.ASC_DESC:
       return {
         ...state,
-        order: {
-          column: action.column,
-          sort: action.sort,
-        },
+        order: { column: action.column, sort: action.sort },
       };
     default:
       return state;
