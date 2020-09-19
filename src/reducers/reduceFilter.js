@@ -24,7 +24,7 @@ const reduceFilters = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         filterByNumericValues: state.filterByNumericValues.filter(
-          (x) => x.column !== action.payload
+          (x) => x.column !== action.payload,
         ),
       }; // Live com PR Zambelli
     case ACTIONS.ASC_DESC:
