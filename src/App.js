@@ -1,10 +1,9 @@
 import React from 'react';
 import './App.css';
 import Table from './components/Table';
-import Head from './components/Head';
 import Filter from './components/Filter';
 import FiltroNumerico from './components/FiltroNumerico';
-
+import AscDesc from './components/AscDesc';
 
 function App() {
   return (
@@ -12,10 +11,12 @@ function App() {
       <header className="App-header">
         <Filter />
         <br />
+        <FiltroNumerico />
+        <br/>
+        <br/>
+        <AscDesc />
         <br />
         <Table />
-        <Head />
-        <FiltroNumerico />
       </header>
     </div>
   );

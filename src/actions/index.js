@@ -50,10 +50,13 @@ export const removeFiltro = (evento) => ({
   payload: evento.target.id,
 });
 
-export const ascDesc = () => ({
-  type: ASC_DESC,
-  payload,
-});
+export function ascDesc(sort, column) {
+  return {
+    type: ASC_DESC,
+    sort,
+    column,
+  };
+}
 
 export function fetchAllPlanets() {
   return (dispatch) => {

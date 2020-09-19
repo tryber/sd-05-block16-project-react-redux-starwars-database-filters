@@ -11,10 +11,7 @@ const INITIAL_STATE = {
 const reduceFilters = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case ACTIONS.FILTER_NAME:
-      return {
-        ...state,
-        filterByName: { name: action.payload },
-      };
+      return { ...state, filterByName: { name: action.payload } };
     case ACTIONS.COMBINA_ACTIONS:
       return {
         ...state,
@@ -24,19 +21,24 @@ const reduceFilters = (state = INITIAL_STATE, action) => {
             column: action.column,
             comparison: action.comparison,
             value: action.value,
-          }],
+          },
+        ],
       };
     case ACTIONS.REMOVE_FILTRO:
       return {
         ...state,
-        filterByNumericValues: state.filterByNumericValues
-        .filter((x) => x.column !== action.payload),
+        filterByNumericValues: state.filterByNumericValues.filter(
+          (x) => x.column !== action.payload
+        ),
       }; // Live com PR Zambelli
     case ACTIONS.ASC_DESC:
       return {
         ...state,
-        ordena: action.payload,
-      }
+        order: {
+          column: action.column,
+          sort: action.sort,
+        },
+      };
     default:
       return state;
   }
