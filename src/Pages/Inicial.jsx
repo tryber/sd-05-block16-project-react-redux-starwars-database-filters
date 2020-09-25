@@ -5,6 +5,7 @@ import Tabela from '../components/Tabela';
 import { fetcherThunk } from '../actions/dataAction';
 import InputFilter from '../components/InputFilter';
 import NumericFilters from '../components/NumericFilters';
+import FiltersDisplay from '../components/FiltersDisplays';
 
 const removeUnknown = (arrOriginal, column) => {
   // Função encontrada no stack Overflow e refatorada com o conteúdo que estamos usando no
@@ -56,8 +57,10 @@ const allFilters = (planetas, name, isFetching, filtrar) => {
 
 class Inicial extends React.Component {
   componentDidMount() {
-    this.props.onLoad();
+    const { onLoad } = this.props;
+    onLoad();
   }
+
   render() {
     const { planetas, filter: { name }, erro, isFetching, filtrar } = this.props;
     if (erro !== '') {
@@ -72,6 +75,10 @@ class Inicial extends React.Component {
       <div>
         <InputFilter />
         <NumericFilters />
+        {filtrar.map((filtro) => (
+          <FiltersDisplay filters={filtro} />
+        ))
+        }
         <Tabela planetas={allFilters(planetas, name, isFetching, filtrar)} />
       </div>
     );

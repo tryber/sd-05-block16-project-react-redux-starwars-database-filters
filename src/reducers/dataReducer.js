@@ -5,6 +5,8 @@ import {
   NEW_FILTER,
   FILTRAR,
 } from '../actions/dataAction';
+
+import { REMOVE_FILTER } from '../actions/filterRemover';
 import {
   SELECTED_COLUMN,
   SELECTED_COMPARISON,
@@ -34,6 +36,10 @@ const AgradoAoCC = (state) => {
   };
 };
 
+const filterRemover = (filters, filtroARemover) => (
+  filters.filter((filter) => (filter !== filtroARemover))
+);
+
 const dataReducer = (state = INICIAL_STATE, action) => {
   switch (action.type) {
     case SUCESSO:
@@ -52,6 +58,8 @@ const dataReducer = (state = INICIAL_STATE, action) => {
       return { ...state, comparison: action.value };
     case SELECTED_NUMBER:
       return { ...state, value: action.value };
+    case REMOVE_FILTER:
+      return { ...state, filterByNumericValues: filterRemover(state.filterByNumericValues, action.remove) }
     default:
       return state;
   }
