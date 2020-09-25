@@ -18,7 +18,7 @@ const FiltersDisplay = ({ filters, onClick }) => {
 FiltersDisplay.propTypes = {
   filters: PropTypes.instanceOf(Object).isRequired,
   onClick: PropTypes.func.isRequired,
-}
+};
 
 const mapDispatchToProps = (dispatch) => ({
   onClick: (filters) => (dispatch(filterRemover(filters))),
