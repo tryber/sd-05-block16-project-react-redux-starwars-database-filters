@@ -9,22 +9,22 @@ import { filter } from '../actions/dataAction';
 
 const NumericFilters = ({ selectedColumn, column, comparison,
   selectedComparison, numberAddedAction, onClick }) => (
-  <div>
-    <SelectButton
-      datatestid="column-filter"
-      options={colunas}
-      onChange={selectedColumn}
-      selected={column}
-    />
-    <SelectButton
-      datatestid="comparison-filter"
-      options={compare}
-      onChange={selectedComparison}
-      selected={comparison}
-    />
-    <input type="number" onChange={numberAddedAction} data-testid="value-filter" />
-    <button data-testid="button-filter" onClick={onClick} >Filtrar</button>
-  </div>
+    <div>
+      <SelectButton
+        datatestid="column-filter"
+        options={colunas}
+        onChange={selectedColumn}
+        selected={column}
+      />
+      <SelectButton
+        datatestid="comparison-filter"
+        options={compare}
+        onChange={selectedComparison}
+        selected={comparison}
+      />
+      <input type="number" onChange={numberAddedAction} data-testid="value-filter" />
+      <button data-testid="button-filter" onClick={onClick} >Filtrar</button>
+    </div>
 );
 
 const mapDispatchToProps = (dispatch) => ({

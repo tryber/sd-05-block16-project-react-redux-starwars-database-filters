@@ -4,4 +4,4 @@ export function filterRemover(filter) {
   return {
     type: REMOVE_FILTER, remove: filter,
   };
-};
+}

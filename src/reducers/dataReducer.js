@@ -59,7 +59,10 @@ const dataReducer = (state = INICIAL_STATE, action) => {
     case SELECTED_NUMBER:
       return { ...state, value: action.value };
     case REMOVE_FILTER:
-      return { ...state, filterByNumericValues: filterRemover(state.filterByNumericValues, action.remove) }
+      return {
+        ...state,
+        filterByNumericValues: filterRemover(state.filterByNumericValues, action.remove),
+      };
     default:
       return state;
   }

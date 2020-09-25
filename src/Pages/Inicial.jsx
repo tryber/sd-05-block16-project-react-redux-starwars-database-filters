@@ -76,7 +76,7 @@ class Inicial extends React.Component {
         <InputFilter />
         <NumericFilters />
         {filtrar.map((filtro) => (
-          <FiltersDisplay filters={filtro} />
+          <FiltersDisplay key={`${filtro.column}${filtro.value}`} filters={filtro} />
         ))
         }
         <Tabela planetas={allFilters(planetas, name, isFetching, filtrar)} />
