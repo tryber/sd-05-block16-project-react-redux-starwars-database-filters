@@ -7,7 +7,7 @@ import SelectButton from './SelectButton';
 import { columnAdded, comparisonAdded, numberAdded } from '../actions/selectActions';
 import { filter } from '../actions/dataAction';
 
-const NumericFilters = ({ selectedColumn, column, comparison, onLoad,
+const NumericFilters = ({ selectedColumn, column, comparison,
   selectedComparison, numberAddedAction, onClick, optionsToRemove }) => {
     /*
     a constante abaixo foi feita baseada num codigo do stack Overflow. Eis o link:
