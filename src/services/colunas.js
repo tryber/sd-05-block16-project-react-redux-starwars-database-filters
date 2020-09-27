@@ -1,24 +1,3 @@
-const colunas = [
-  {
-    name: 'População',
-    value: 'population',
-  },
-  {
-    name: 'Ano',
-    value: 'orbital_period',
-  },
-  {
-    name: 'Diâmetro',
-    value: 'diameter',
-  },
-  {
-    name: 'Dia',
-    value: 'rotation_period',
-  },
-  {
-    name: 'Água na Superfície',
-    value: 'surface_water',
-  },
-];
+const colunas = ['population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water'];
 
 export default colunas;

@@ -1,16 +1,3 @@
-const compare = [
-  {
-    name: 'Maior Que',
-    value: 'maior que',
-  },
-  {
-    name: 'Menor Que',
-    value: 'menor que',
-  },
-  {
-    name: 'Igual a',
-    value: 'igual a',
-  },
-];
+const compare = [ 'maior que', 'menor que', 'igual a'];
 
 export default compare;

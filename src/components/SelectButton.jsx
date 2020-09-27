@@ -1,17 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 const SelectButton = (props) => {
-  const { onChange, selected, datatestid, options } = props;
+  const { onChange, selected, datatestid, options, onLoad } = props;
   return (
     <select onChange={onChange} selected={selected} data-testid={datatestid} >
-      <option disabled>Selecione</option>
-      {options.map(({ name, value }) => (
-        <option value={value} key={name} >{value}</option>
-      ))}
+      <option>Selecione</option>
+      {options.map((option) => (
+        <option value={option}>{option}</option>
+    ))}
     </select>
   );
 };
+
+const mapStateToProps = (state) => ({
+  optionsToRemove: state.filters.filterByNumericValues,
+});
 
 SelectButton.propTypes = {
   onChange: PropTypes.func.isRequired,
@@ -20,4 +25,4 @@ SelectButton.propTypes = {
   options: PropTypes.instanceOf(Array).isRequired,
 };
 
-export default SelectButton;
+export default connect(mapStateToProps)(SelectButton);

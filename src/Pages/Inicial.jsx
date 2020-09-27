@@ -74,7 +74,7 @@ class Inicial extends React.Component {
     return (
       <div>
         <InputFilter />
-        <NumericFilters />
+        <NumericFilters filters={filtrar} />
         {filtrar.map((filtro) => (
           <FiltersDisplay key={`${filtro.column}${filtro.value}`} filters={filtro} />
         ))

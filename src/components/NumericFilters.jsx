@@ -7,12 +7,18 @@ import SelectButton from './SelectButton';
 import { columnAdded, comparisonAdded, numberAdded } from '../actions/selectActions';
 import { filter } from '../actions/dataAction';
 
-const NumericFilters = ({ selectedColumn, column, comparison,
-  selectedComparison, numberAddedAction, onClick }) => (
+const NumericFilters = ({ selectedColumn, column, comparison, onLoad,
+  selectedComparison, numberAddedAction, onClick, optionsToRemove }) => {
+    /*
+    a constante abaixo foi feita baseada num codigo do stack Overflow. Eis o link:
+    https://stackoverflow.com/questions/34901593/how-to-filter-an-array-from-all-elements-of-another-array
+    */
+    const availableOptions = colunas.filter((coluna) => optionsToRemove.indexOf(coluna) < 0);
+  return (
     <div>
       <SelectButton
         datatestid="column-filter"
-        options={colunas}
+        options={availableOptions}
         onChange={selectedColumn}
         selected={column}
       />
@@ -25,10 +31,12 @@ const NumericFilters = ({ selectedColumn, column, comparison,
       <input type="number" onChange={numberAddedAction} data-testid="value-filter" />
       <button data-testid="button-filter" onClick={onClick} >Filtrar</button>
     </div>
-);
+  );
+};
 
 const mapDispatchToProps = (dispatch) => ({
   selectedColumn: ({ target: { value } }) => dispatch(columnAdded(value)),
+  onLoad: (value) => dispatch(columnAdded(value)),
   selectedComparison: ({ target: { value } }) => dispatch(comparisonAdded(value)),
   numberAddedAction: ({ target: { value } }) => dispatch(numberAdded(value)),
   onClick: () => (dispatch(filter())),
@@ -37,6 +45,7 @@ const mapDispatchToProps = (dispatch) => ({
 const mapStateToProps = (state) => ({
   column: state.filters.column,
   comparison: state.filters.comparison,
+  optionsToRemove: state.filters.filterByNumericValues.map((filtro) => (filtro.column)),
 });
 
 NumericFilters.propTypes = {
