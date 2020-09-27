@@ -1,0 +1,71 @@
+@import url(https://allfont.net/allfont.css?fonts=star-jedi);
+/* .table {
+  background-color: white;
+  border: 1px solid black;
+  color: black;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: small;
+} */
+
+.header {
+  display: flex;
+  flex-direction: column;
+  padding: 30px 30px;
+  background-image: url('../starWarsBackGround.jpg');
+  background-size: cover;
+  margin: 0px;
+  width: 100% !important;
+}
+
+h3, h4 {
+  font-family: 'Days One' !important;
+}
+
+
+.container1212 {
+  width: fit-content !important;
+  margin: 0%;
+  height: 100% !important;
+}
+
+.search-container {
+  display: flex !important;
+  flex-direction: column;
+  width: 700px !important;
+}
+
+.filter-form {
+  display: flex !important;
+  flex-direction: row;
+  width: 900px !important;
+  align-items: center;
+  justify-content: space-between;
+}
+
+ input {
+  background-color: transparent !important;
+  color: white !important;
+}
+
+li>span {
+  color: black !important;
+}
+
+.btn {
+  color: black !important;
+  background-color: white !important;
+}
+
+table {
+  width: 100% !important;
+}
+
+.table-container {
+  padding-left: 30px;
+  padding-right: 30px;
+  width: fit-content;
+  
+}
+
+
+
