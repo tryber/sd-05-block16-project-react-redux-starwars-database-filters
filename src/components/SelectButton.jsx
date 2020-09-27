@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 const SelectButton = (props) => {
-  const { onChange, selected, datatestid, options, onLoad } = props;
+  const { onChange, selected, datatestid, options } = props;
   return (
     <select onChange={onChange} selected={selected} data-testid={datatestid} >
       <option>Selecione</option>
       {options.map((option) => (
-        <option value={option}>{option}</option>
+        <option key={option} value={option}>{option}</option>
     ))}
     </select>
   );
