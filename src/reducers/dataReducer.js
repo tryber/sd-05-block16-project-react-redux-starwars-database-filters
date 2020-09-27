@@ -20,7 +20,7 @@ const INICIAL_STATE = {
   filterByName: { name: '' },
   filterByNumericValues: [],
   order: {
-    column: 'name'
+    column: 'name',
   },
   column: 'population',
   comparison: 'maior que',

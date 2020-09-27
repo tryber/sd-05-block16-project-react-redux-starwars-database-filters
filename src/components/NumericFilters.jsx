@@ -13,7 +13,7 @@ const NumericFilters = ({ selectedColumn, column, comparison, onLoad,
     a constante abaixo foi feita baseada num codigo do stack Overflow. Eis o link:
     https://stackoverflow.com/questions/34901593/how-to-filter-an-array-from-all-elements-of-another-array
     */
-    const availableOptions = colunas.filter((coluna) => optionsToRemove.indexOf(coluna) < 0);
+  const availableOptions = colunas.filter((coluna) => optionsToRemove.indexOf(coluna) < 0);
   return (
     <div>
       <SelectButton
@@ -55,6 +55,7 @@ NumericFilters.propTypes = {
   onClick: PropTypes.func.isRequired,
   column: PropTypes.string.isRequired,
   comparison: PropTypes.string.isRequired,
+  optionsToRemove: PropTypes.instanceOf(Array).isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(NumericFilters);
