@@ -22,27 +22,28 @@ const colunasNumericas = [
   'orbital_period',
 ];
 
-const ordenaCol = (filtroPorPlaneta, reduxOrder) => {
-  if (!colunasNumericas.includes(reduxOrder.column)) {
+// Live com Hugão meu ídolo
+
+function ordenaCol(filtroPorPlaneta, reduxOrder) {
+  if (colunasNumericas.includes(reduxOrder.column)) {
     if (reduxOrder.sort === 'ASC') {
-      return filtroPorPlaneta.sort(
-        (a, b) =>
-        (a[reduxOrder.column.toLowerCase()] > b[reduxOrder.column.toLowerCase()] ? 1 : -1),
+      return filtroPorPlaneta.sort((a, b) =>
+        a[reduxOrder.column.toLowerCase()] - b[reduxOrder.column.toLowerCase()],
       );
     }
-    return filtroPorPlaneta.sort(
-      ((a, b) =>
-      (a[reduxOrder.column.toLowerCase()] < b[reduxOrder.column.toLowerCase()] ? 1 : -1)),
+    return filtroPorPlaneta.sort((b, a) =>
+      a[reduxOrder.column.toLowerCase()] - b[reduxOrder.column.toLowerCase()],
     );
   }
   if (reduxOrder.sort === 'ASC') {
-    return filtroPorPlaneta.sort(
-      (a, b) => a[reduxOrder.column.toLowerCase()] - b[reduxOrder.column.toLowerCase()],
+    return filtroPorPlaneta.sort((a, b) =>
+      (a[reduxOrder.column.toLowerCase()] > b[reduxOrder.column.toLowerCase()] ? 1 : -1),
     );
-  } return filtroPorPlaneta.sort(
-      (b, a) => a[reduxOrder.column.toLowerCase()] - b[reduxOrder.column.toLowerCase()],
-    );
-};
+  }
+  return filtroPorPlaneta.sort((a, b) =>
+    (a[reduxOrder.column.toLowerCase()] < b[reduxOrder.column.toLowerCase()] ? 1 : -1),
+  );
+}
 
 class Table extends Component {
   componentDidMount() {
