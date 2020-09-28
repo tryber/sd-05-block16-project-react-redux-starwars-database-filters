@@ -14,6 +14,3 @@ function emptyReducer(state = initialState, action) {
 }
 
 export default emptyReducer;
-
-/* { type: 'ADICIONA',  value: 1 }
-{ type: 'SUBTRAI',  value: 1} */

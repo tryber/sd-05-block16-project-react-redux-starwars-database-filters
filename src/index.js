@@ -1,4 +1,4 @@
-// Plantão do hamaji - quinta 5-9
+// Plantão do hamaji - quinta 5-9r
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
