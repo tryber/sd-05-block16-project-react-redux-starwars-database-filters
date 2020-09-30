@@ -1,26 +1,18 @@
-import api from '../services/api';
+import endpoint from '../service/api';
 
-export const aquisicao = () => ({
-  type: AQUISICAO,
-});
+export const AQUISICAO = 'AQUISICAO';
 
-export const certo = (resultado) => ({
-  type: CERTO,
-  resultado,
-});
+const aquisicao = () => ({ type: AQUISICAO });
 
-export const falha = (erro) => ({
-  type: FALHA,
-  erro,
-});
+export const CERTO = 'CERTO';
 
-  export function api() {
-    return (dispatch) => {
-      dispatch(aquisicao());
-      return fetch('https://swapi-trybe.herokuapp.com/api/planets')
-        .then((response) => response.json())
-          .then((data) => dispatch(certo(data.resultado)),
-          (erro) => dispatch(falha(erro)),
-        );
-    };
-  }
+function certo(data) {
+  return { type: CERTO, planets: data.resultado };
+};
+
+export const funcaoApi = () => {
+  return (dispatch) => {
+    dispatch(aquisicao());
+    return endpoint().then((response) => dispatch(certo(response)));
+  };
+}

@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { Component } from 'react';
+import Header from './Header';
+import Body from './Body';
 
-class Table extends React.Components {
+class Table extends Component {
   render(){
     return (
-      <div>
-        <p>{this.props.nome}</p>
-      </div>
+      <table>
+        <Header />
+        <Body />
+      </table>
     );
   }
 }
