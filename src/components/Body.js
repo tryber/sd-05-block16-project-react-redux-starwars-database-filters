@@ -9,7 +9,6 @@ class Body extends Component {
   }
 
   render() {
-    console.log(funcaoApi());
     const { planets } = this.props;
     return planets.map((planeta) => (
       <tr>
