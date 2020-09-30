@@ -11,21 +11,21 @@ const columns = ['population', 'orbital_period', 'diameter', 'rotation_period', 
 
 const OrderFilter = ({ onChangeColumn, onChangeOrder,
   orderSelected, optionSelected, orderFilter }) => (
-  <div>
-    <SelectButton
-      datatestid="column-sort"
-      options={columns}
-      onChange={onChangeColumn}
-      optionSelected={optionSelected}
-    />
-    <RadioInput
-      datatestid="column-sort-input"
-      options={order}
-      onChange={onChangeOrder}
-      orderSelected={orderSelected}
-    />
-    <button onClick={orderFilter} data-testid="column-sort-button" >Filtrar</button>
-  </div>
+    <div>
+      <SelectButton
+        datatestid="column-sort"
+        options={columns}
+        onChange={onChangeColumn}
+        optionSelected={optionSelected}
+      />
+      <RadioInput
+        datatestid="column-sort-input"
+        options={order}
+        onChange={onChangeOrder}
+        orderSelected={orderSelected}
+      />
+      <button onClick={orderFilter} data-testid="column-sort-button" >Filtrar</button>
+    </div>
 );
 
 const mapStateToProps = (state) => ({

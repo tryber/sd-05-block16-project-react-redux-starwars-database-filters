@@ -91,26 +91,20 @@ const dataRefiner = (obj, stateOrder) => {
 
 const totalDeSorter = (obj, stateOrder) => {
   const { order, planetas, unknown } = dataRefiner(obj, stateOrder);
-  let sortedPlanets = [];
-  if (!colunas.includes(order.column) && order.sort === 'DESC') {
-    sortedPlanets = planetas.sort(dynamicSortDesc(order.column));
-    return [...sortedPlanets, ...unknown];
+  const { column, sort } = order;
+  let sortPlanet = [];
+  switch (sort) {
+    case 'ASC':
+      colunas.includes(column) ? planetas.sort((a, b) =>
+      (parseInt(b[order.column], 10) - parseInt(a[order.column], 10))) :
+      sortPlanet = planetas.sort(dynamicSortAsc(column));
+    case 'DESC':
+      colunas.includes(column) ? sortPlanet = planetas.sort((a, b) =>
+      (parseInt(b[order.column], 10) - parseInt(a[order.column], 10))) :
+      sortPlanet = planetas.sort(dynamicSortDesc(column));
+    default:
   }
-  if (colunas.includes(order.column) && order.sort === 'DESC') {
-    sortedPlanets = planetas.sort((a, b) =>
-      (parseInt(b[order.column], 10) - parseInt(a[order.column], 10)));
-    return [...sortedPlanets, ...unknown];
-  }
-  if (colunas.includes(order.column) && order.sort === 'ASC') {
-    sortedPlanets = planetas.sort((a, b) =>
-      (parseInt(a[order.column], 10) - parseInt(b[order.column], 10)));
-    return [...sortedPlanets, ...unknown];
-  }
-  if (!colunas.includes(order.column) && order.sort === 'ASC') {
-    sortedPlanets = planetas.sort(dynamicSortAsc(order.column));
-    return [...sortedPlanets, ...unknown];
-  }
-  return stateOrder;
+  return [...sortPlanet, ...unknown];
 };
 
 const dataReducer = (state = INICIAL_STATE, action) => {

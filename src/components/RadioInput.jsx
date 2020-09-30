@@ -17,7 +17,7 @@ const RadioInput = ({ options, onChange, orderSelected, datatestid }) => {
           id={tipo}
         /> {tipo}
       </label>
-    );
+    )
   )
   );
 };
