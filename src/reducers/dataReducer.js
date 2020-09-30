@@ -74,7 +74,7 @@ function dynamicSortAsc(coluna) {
     sortOrder = -1;
     property = property.substr(1);
   }
-  return function (a,b) {
+  return function (a, b) {
     if (sortOrder === -1) {
       return b[property].localeCompare(a[property]);
     }
@@ -90,7 +90,7 @@ const dataRefiner = (obj, stateOrder) => {
 };
 
 const totalDeSorter = (obj, stateOrder) => {
-  const { order, planetas, unknown } = dataRefiner(obj, stateOrder)
+  const { order, planetas, unknown } = dataRefiner(obj, stateOrder);
   let sortedPlanets = [];
   if (!colunas.includes(order.column) && order.sort === 'DESC') {
     sortedPlanets = planetas.sort(dynamicSortDesc(order.column));
@@ -98,7 +98,7 @@ const totalDeSorter = (obj, stateOrder) => {
   }
   if (colunas.includes(order.column) && order.sort === 'DESC') {
     sortedPlanets = planetas.sort((a, b) =>
-      (parseInt(b[order.column], 10) -parseInt(a[order.column], 10)));
+      (parseInt(b[order.column], 10) - parseInt(a[order.column], 10)));
     return [...sortedPlanets, ...unknown];
   }
   if (colunas.includes(order.column) && order.sort === 'ASC') {
@@ -110,6 +110,7 @@ const totalDeSorter = (obj, stateOrder) => {
     sortedPlanets = planetas.sort(dynamicSortAsc(order.column));
     return [...sortedPlanets, ...unknown];
   }
+  return stateOrder;
 };
 
 const dataReducer = (state = INICIAL_STATE, action) => {

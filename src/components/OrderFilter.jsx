@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 import SelectButton from './SelectButton';
 import { columnAddedOrder, orderAdded, filterOrder } from '../actions/columnSelectOrder';
 import RadioInput from './RadioInput';
@@ -9,7 +9,8 @@ const order = ['ASC', 'DESC'];
 const columns = ['population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water',
   'name', 'climate', 'gravity', 'terrain', 'created', 'edited', 'films', 'url'];
 
-const OrderFilter = ({ onChangeColumn, onChangeOrder, orderSelected, optionSelected, orderFilter }) => (
+const OrderFilter = ({ onChangeColumn, onChangeOrder,
+  orderSelected, optionSelected, orderFilter }) => (
   <div>
     <SelectButton
       datatestid="column-sort"
