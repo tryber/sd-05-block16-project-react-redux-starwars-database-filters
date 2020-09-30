@@ -95,13 +95,15 @@ const totalDeSorter = (obj, stateOrder) => {
   let sortPlanet = [];
   switch (sort) {
     case 'ASC':
-      colunas.includes(column) ? planetas.sort((a, b) =>
-      (parseInt(b[order.column], 10) - parseInt(a[order.column], 10))) :
-      sortPlanet = planetas.sort(dynamicSortAsc(column));
+      sortPlanet = colunas.includes(column) ? planetas.sort((a, b) =>
+        (parseInt(b[order.column], 10) - parseInt(a[order.column], 10))) :
+        sortPlanet = planetas.sort(dynamicSortAsc(column));
+      break;
     case 'DESC':
-      colunas.includes(column) ? sortPlanet = planetas.sort((a, b) =>
-      (parseInt(b[order.column], 10) - parseInt(a[order.column], 10))) :
-      sortPlanet = planetas.sort(dynamicSortDesc(column));
+      sortPlanet = colunas.includes(column) ? sortPlanet = planetas.sort((a, b) =>
+        (parseInt(b[order.column], 10) - parseInt(a[order.column], 10))) :
+        planetas.sort(dynamicSortDesc(column));
+      break;
     default:
   }
   return [...sortPlanet, ...unknown];
