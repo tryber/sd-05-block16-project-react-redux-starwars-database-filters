@@ -1,18 +1,21 @@
 import endpoint from '../service/api';
 
 export const AQUISICAO = 'AQUISICAO';
-
-const aquisicao = () => ({ type: AQUISICAO });
-
 export const CERTO = 'CERTO';
 
-function certo(data) {
-  return { type: CERTO, planets: data.resultado };
-};
+export const aquisicao = () => ({
+  type: AQUISICAO,
+  aquisicao: true,
+});
 
-export const funcaoApi = () => {
+export const certo = ({ results }) => ({
+  type: CERTO,
+  planets: results,
+});
+
+export default function funcaoApi() {
   return (dispatch) => {
     dispatch(aquisicao());
     return endpoint().then((response) => dispatch(certo(response)));
+    };
   };
-}

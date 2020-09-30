@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { funcaoApi } from '../actions/index';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import funcaoApi from '../actions/index';
 
 class Body extends Component {
   componentDidMount() {
@@ -8,37 +9,41 @@ class Body extends Component {
   }
 
   render() {
+    console.log(funcaoApi());
     const { planets } = this.props;
-    return (
-      <tbody>
-        {planets.map((escolhido) => (
-          <tr>
-            <td>{escolhido.name}</td>
-            <td>{escolhido.rotation_period}</td>
-            <td>{escolhido.orbital_period}</td>
-            <td>{escolhido.diameter}</td>
-            <td>{escolhido.climate}</td>
-            <td>{escolhido.gravity}</td>
-            <td>{escolhido.terrain}</td>
-            <td>{escolhido.surface_water}</td>
-            <td>{escolhido.population}</td>
-            <td>{escolhido.films}</td>
-            <td>{escolhido.created}</td>
-            <td>{escolhido.edited}</td>
-            <td>{escolhido.url}</td>
-          </tr>
-        ))}
-      </tbody>
-    );
+    return planets.map((planeta) => (
+      <tr>
+        <td>{planeta.name}</td>
+        <td>{planeta.rotation_period}</td>
+        <td>{planeta.orbital_period}</td>
+        <td>{planeta.diameter}</td>
+        <td>{planeta.climate}</td>
+        <td>{planeta.gravity}</td>
+        <td>{planeta.terrain}</td>
+        <td>{planeta.surface_water}</td>
+        <td>{planeta.population}</td>
+        <td>{planeta.films}</td>
+        <td>{planeta.created}</td>
+        <td>{planeta.edited}</td>
+        <td>{planeta.url}</td>
+      </tr>
+    ));
   }
 }
 
+// muda o estado do componente
 const mapStateToProps = (state) => ({
-    planets: state.planReducer.planets,
+  planets: state.planReducer.planets,
 });
 
-const mapDispatchToProps = (dispatch) =>({
-    funcaoApi: () => dispatch(funcaoApi()),
+// altera o reducer
+const mapDispatchToProps = (dispatch) => ({
+  funcaoApi: () => dispatch(funcaoApi()),
 });
+
+Body.propTypes = {
+  funcaoApi: PropTypes.func.isRequired,
+  planets: PropTypes.arrayOf.isRequired,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Body);
