@@ -6,6 +6,7 @@ import { fetcherThunk } from '../actions/dataAction';
 import InputFilter from '../components/InputFilter';
 import NumericFilters from '../components/NumericFilters';
 import FiltersDisplay from '../components/FiltersDisplays';
+import OrderFilter from '../components/OrderFilter';
 
 const removeUnknown = (arrOriginal, column) => {
   // Função encontrada no stack Overflow e refatorada com o conteúdo que estamos usando no
@@ -70,11 +71,11 @@ class Inicial extends React.Component {
         </div>
       );
     }
-
     return (
       <div>
         <InputFilter />
         <NumericFilters filters={filtrar} />
+        <OrderFilter />
         {filtrar.map((filtro) => (
           <FiltersDisplay key={`${filtro.column}${filtro.value}`} filters={filtro} />
         ))

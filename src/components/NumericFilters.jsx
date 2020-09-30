@@ -20,13 +20,13 @@ const NumericFilters = ({ selectedColumn, column, comparison,
         datatestid="column-filter"
         options={availableOptions}
         onChange={selectedColumn}
-        selected={column}
+        optionSelected={column}
       />
       <SelectButton
         datatestid="comparison-filter"
         options={compare}
         onChange={selectedComparison}
-        selected={comparison}
+        optionSelected={comparison}
       />
       <input type="number" onChange={numberAddedAction} data-testid="value-filter" />
       <button data-testid="button-filter" onClick={onClick} >Filtrar</button>

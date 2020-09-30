@@ -5,13 +5,14 @@ import {
   NEW_FILTER,
   FILTRAR,
 } from '../actions/dataAction';
-
 import { REMOVE_FILTER } from '../actions/filterRemover';
+import colunas from '../services/colunas';
 import {
   SELECTED_COLUMN,
   SELECTED_COMPARISON,
   SELECTED_NUMBER,
 } from '../actions/selectActions';
+import { SELECTED_COLUMN_ORDER, SELECTED_COMPARISON_ORDER, FILTER_ORDER } from '../actions/columnSelectOrder';
 
 const INICIAL_STATE = {
   isFetching: true,
@@ -20,7 +21,8 @@ const INICIAL_STATE = {
   filterByName: { name: '' },
   filterByNumericValues: [],
   order: {
-    column: 'name',
+    column: 'Name',
+    sort: 'ASC'
   },
   column: 'population',
   comparison: 'maior que',
@@ -43,10 +45,70 @@ const filterRemover = (filters, filtroARemover) => (
   filters.filter((filter) => (filter !== filtroARemover))
 );
 
+/*
+função dynamicSort encontrada em um blog. Eis o link:
+https://ourcodeworld.com/articles/read/764/how-to-sort-alphabetically-an-array-of-objects-by-key-in-javascript
+*/
+
+function dynamicSortDesc(coluna) {
+  let sortOrder = 1;
+  let property = coluna;
+
+  if (property[0] === '-') {
+    sortOrder = -1;
+    property = property.substr(1);
+  }
+  return function (a,b) {
+    if (sortOrder === -1) {
+      return a[property].localeCompare(b[property]);
+    }
+  return b[property].localeCompare(a[property]);
+}
+}
+
+function dynamicSortAsc(coluna) {
+  let sortOrder = 1;
+  let property = coluna;
+
+  if (property[0] === '-') {
+    sortOrder = -1;
+    property = property.substr(1);
+  }
+  return function (a,b) {
+    if (sortOrder === -1) {
+      return b[property].localeCompare(a[property]);
+    }
+  return a[property].localeCompare(b[property]);
+}
+}
+
+const totalDeSorter = (obj, stateOrder) => {
+  const order = { column: stateOrder.column.toLowerCase(), sort: stateOrder.sort }
+  const unknown = obj.filter((planeta) => planeta[order.column] === 'unknown');
+  const planetas = obj.filter((planeta) => planeta[order.column] !== 'unknown');
+  let sortedPlanets = [];
+  if (!colunas.includes(order.column) && order.sort === 'DESC') {//string descendente
+    sortedPlanets = planetas.sort(dynamicSortDesc(order.column));
+    return [...sortedPlanets, ...unknown];
+  }
+  if (colunas.includes(order.column) && order.sort === 'DESC') {//number descendente
+    sortedPlanets = planetas.sort((a, b) => parseInt(b[order.column], 10) - parseInt(a[order.column], 10));
+    return [...sortedPlanets, ...unknown]
+  }
+  if (colunas.includes(order.column) && order.sort === 'ASC') {//string ascendente
+    sortedPlanets = planetas.sort((a, b) => parseInt(a[order.column], 10) - parseInt(b[order.column], 10));
+    return [...sortedPlanets, ...unknown]
+  }
+  if (!colunas.includes(order.column) && order.sort === 'ASC') {//number descendente
+    sortedPlanets = planetas.sort(dynamicSortAsc(order.column));
+    return [...sortedPlanets, ...unknown]
+  }
+}
+
 const dataReducer = (state = INICIAL_STATE, action) => {
   switch (action.type) {
     case SUCESSO:
-      return { ...state, planetas: action.data, isFetching: false };
+      return { ...state, planetas: totalDeSorter(action.data, state.order), isFetching: false };
     case CARREGANDO:
       return { ...state };
     case FALHA:
@@ -61,6 +123,12 @@ const dataReducer = (state = INICIAL_STATE, action) => {
       return { ...state, comparison: action.value };
     case SELECTED_NUMBER:
       return { ...state, value: action.value };
+    case SELECTED_COLUMN_ORDER:
+      return { ...state, order: { sort: state.order.sort, column: action.value }};
+    case SELECTED_COMPARISON_ORDER:
+      return { ...state, order: { sort: action.value, column: state.order.column } };
+    case FILTER_ORDER:
+      return { ...state, planetas: totalDeSorter(state.planetas, state.order) }
     case REMOVE_FILTER:
       return {
         ...state,
