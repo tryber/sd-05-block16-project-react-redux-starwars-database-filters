@@ -17,5 +17,5 @@ export default function funcaoApi() {
   return (dispatch) => {
     dispatch(aquisicao());
     return endpoint().then((response) => dispatch(certo(response)));
-    };
   };
+}
