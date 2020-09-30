@@ -22,7 +22,7 @@ const INICIAL_STATE = {
   filterByNumericValues: [],
   order: {
     column: 'Name',
-    sort: 'ASC'
+    sort: 'ASC',
   },
   column: 'population',
   comparison: 'maior que',
@@ -58,12 +58,12 @@ function dynamicSortDesc(coluna) {
     sortOrder = -1;
     property = property.substr(1);
   }
-  return function (a,b) {
+  return function (a, b) {
     if (sortOrder === -1) {
       return a[property].localeCompare(b[property]);
     }
-  return b[property].localeCompare(a[property]);
-}
+    return b[property].localeCompare(a[property]);
+  };
 }
 
 function dynamicSortAsc(coluna) {
@@ -78,32 +78,39 @@ function dynamicSortAsc(coluna) {
     if (sortOrder === -1) {
       return b[property].localeCompare(a[property]);
     }
-  return a[property].localeCompare(b[property]);
-}
+    return a[property].localeCompare(b[property]);
+  };
 }
 
-const totalDeSorter = (obj, stateOrder) => {
-  const order = { column: stateOrder.column.toLowerCase(), sort: stateOrder.sort }
+const dataRefiner = (obj, stateOrder) => {
+  const order = { column: stateOrder.column.toLowerCase(), sort: stateOrder.sort };
   const unknown = obj.filter((planeta) => planeta[order.column] === 'unknown');
   const planetas = obj.filter((planeta) => planeta[order.column] !== 'unknown');
+  return { unknown, order, planetas };
+};
+
+const totalDeSorter = (obj, stateOrder) => {
+  const { order, planetas, unknown } = dataRefiner(obj, stateOrder)
   let sortedPlanets = [];
-  if (!colunas.includes(order.column) && order.sort === 'DESC') {//string descendente
+  if (!colunas.includes(order.column) && order.sort === 'DESC') {
     sortedPlanets = planetas.sort(dynamicSortDesc(order.column));
     return [...sortedPlanets, ...unknown];
   }
-  if (colunas.includes(order.column) && order.sort === 'DESC') {//number descendente
-    sortedPlanets = planetas.sort((a, b) => parseInt(b[order.column], 10) - parseInt(a[order.column], 10));
-    return [...sortedPlanets, ...unknown]
+  if (colunas.includes(order.column) && order.sort === 'DESC') {
+    sortedPlanets = planetas.sort((a, b) =>
+      (parseInt(b[order.column], 10) -parseInt(a[order.column], 10)));
+    return [...sortedPlanets, ...unknown];
   }
-  if (colunas.includes(order.column) && order.sort === 'ASC') {//string ascendente
-    sortedPlanets = planetas.sort((a, b) => parseInt(a[order.column], 10) - parseInt(b[order.column], 10));
-    return [...sortedPlanets, ...unknown]
+  if (colunas.includes(order.column) && order.sort === 'ASC') {
+    sortedPlanets = planetas.sort((a, b) =>
+      (parseInt(a[order.column], 10) - parseInt(b[order.column], 10)));
+    return [...sortedPlanets, ...unknown];
   }
-  if (!colunas.includes(order.column) && order.sort === 'ASC') {//number descendente
+  if (!colunas.includes(order.column) && order.sort === 'ASC') {
     sortedPlanets = planetas.sort(dynamicSortAsc(order.column));
-    return [...sortedPlanets, ...unknown]
+    return [...sortedPlanets, ...unknown];
   }
-}
+};
 
 const dataReducer = (state = INICIAL_STATE, action) => {
   switch (action.type) {
@@ -124,15 +131,14 @@ const dataReducer = (state = INICIAL_STATE, action) => {
     case SELECTED_NUMBER:
       return { ...state, value: action.value };
     case SELECTED_COLUMN_ORDER:
-      return { ...state, order: { sort: state.order.sort, column: action.value }};
+      return { ...state, order: { sort: state.order.sort, column: action.value } };
     case SELECTED_COMPARISON_ORDER:
       return { ...state, order: { sort: action.value, column: state.order.column } };
     case FILTER_ORDER:
-      return { ...state, planetas: totalDeSorter(state.planetas, state.order) }
+      return { ...state, planetas: totalDeSorter(state.planetas, state.order) };
     case REMOVE_FILTER:
       return {
-        ...state,
-        filterByNumericValues: filterRemover(state.filterByNumericValues, action.remove),
+        ...state, filterByNumericValues: filterRemover(state.filterByNumericValues, action.remove),
       };
     default:
       return state;

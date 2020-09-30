@@ -17,5 +17,5 @@ export function orderAdded(value) {
 export function filterOrder() {
   return ({
     type: FILTER_ORDER,
-  })
+  });
 }
