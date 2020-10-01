@@ -19,3 +19,15 @@ export default function funcaoApi() {
     return endpoint().then((response) => dispatch(certo(response)));
   };
 }
+
+export const filterByName = (texto) => ({
+  type: TEXTO,
+  texto,
+});
+
+export const filterByNumber = (column, comparison, value) => ({
+  type: NUMERO,
+  column,
+  comparison,
+  value,
+});
