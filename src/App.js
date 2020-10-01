@@ -3,12 +3,15 @@
 // store é o estado gravado, informação salva
 // no redux nao consegue alterar diretamente o estado
 import React from 'react';
+import FilterName from './components/FilterName';
 import Table from './components/Table';
+import FilterName from './components/FilterName';
 
 function App() {
   return (
     <div>
       <Table />
+      <FilterName />
     </div>
   );
 }

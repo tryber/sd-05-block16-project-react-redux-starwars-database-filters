@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { AQUISICAO, CERTO } from '../actions/index';
+import { AQUISICAO, CERTO, TEXTO, NUMERO } from '../actions/index';
 
 const initialState = {
   isLoading: false,
@@ -24,8 +24,40 @@ const planReducer = (state = initialState, action) => {
   }
 };
 
+const filtro = {
+  filterByName: {
+    name: '',
+  },
+  filterByNumericValues: [],
+  order: {
+    column: 'Name',
+    sort: 'ASC',
+  },
+};
+
+function filters(state = filtro, action) {
+  switch (action.type) {
+    case TEXTO:
+      return {
+        ...state,
+        filterByName: { name: action.texto },
+      };
+    case NUMERO:
+      return {
+        ...state,
+        filterByNumericValues: [
+          ...state.filterByNumericValues,
+          { column: action.column, comparison: action.comparison, value: action.value },
+        ],
+      };
+    default:
+      return state;
+  }
+}
+
 const emptyReducer = combineReducers({
   planReducer,
+  filters,
 });
 
 export default emptyReducer;
