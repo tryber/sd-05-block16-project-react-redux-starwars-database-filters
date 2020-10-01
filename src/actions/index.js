@@ -4,6 +4,8 @@ export const AQUISICAO = 'AQUISICAO';
 export const CERTO = 'CERTO';
 export const TEXTO = 'TEXTO';
 export const NUMERO = 'NUMERO';
+export const DELETE = 'DELETE';
+export const ORGANIZAR = 'ORGANIZAR';
 
 export const aquisicao = () => ({
   type: AQUISICAO,
@@ -32,4 +34,15 @@ export const filterByNumber = (column, comparison, value) => ({
   column,
   comparison,
   value,
+});
+
+export const deleteFilter = (apagar) => ({
+    type: DELETE,
+    apagar,
+});
+
+export const ordenarFilter = ({ column, sort }) => ({
+    type: ORGANIZAR,
+    column,
+    sort,
 });

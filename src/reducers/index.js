@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { AQUISICAO, CERTO, TEXTO, NUMERO } from '../actions/index';
+import { AQUISICAO, CERTO, TEXTO, NUMERO, DELETE, ORGANIZAR } from '../actions/index';
 
 const initialState = {
   isLoading: false,
@@ -49,6 +49,16 @@ function filters(state = filtro, action) {
           ...state.filterByNumericValues,
           { column: action.column, comparison: action.comparison, value: action.value },
         ],
+      };
+    case DELETE:
+      return {
+        ...state,
+        filterByNumericValues: [...action.apagar],
+      };
+    case ORGANIZAR:
+      return {
+        ...state,
+        order: { column: action.column, sort: action.sort },
       };
     default:
       return state;
