@@ -2,6 +2,8 @@ import endpoint from '../service/api';
 
 export const AQUISICAO = 'AQUISICAO';
 export const CERTO = 'CERTO';
+export const TEXTO = 'TEXTO';
+export const NUMERO = 'NUMERO';
 
 export const aquisicao = () => ({
   type: AQUISICAO,
