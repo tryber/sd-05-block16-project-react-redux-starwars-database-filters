@@ -4,7 +4,6 @@ export const AQUISICAO = 'AQUISICAO';
 export const CERTO = 'CERTO';
 export const TEXTO = 'TEXTO';
 export const NUMERO = 'NUMERO';
-export const DELETE = 'DELETE';
 export const ORGANIZAR = 'ORGANIZAR';
 
 export const aquisicao = () => ({
@@ -24,9 +23,9 @@ export default function funcaoApi() {
   };
 }
 
-export const filterByName = (texto) => ({
+export const filterByName = (inputText) => ({
   type: TEXTO,
-  texto,
+  inputText,
 });
 
 export const filterByNumber = (column, comparison, value) => ({
@@ -36,13 +35,7 @@ export const filterByNumber = (column, comparison, value) => ({
   value,
 });
 
-export const deleteFilter = (apagar) => ({
-    type: DELETE,
-    apagar,
-});
-
-export const ordenarFilter = ({ column, sort }) => ({
+export const ordenarFilter = ({ column }) => ({
     type: ORGANIZAR,
     column,
-    sort,
 });

@@ -5,11 +5,11 @@ import filterByName from '../actions/index';
 
 class FilterName extends Component {
   render() {
-    const { isLoading, texto } = this.props;
+    const { isLoading, name } = this.props;
     return (
       <div>
         {!isLoading && (
-          <input data-testid="name-filter" type="text" onChange={(i) => texto(i.target.value)} />
+          <input data-testid="name-filter" type="text" onChange={(i) => name(i.target.value)} />
         )}
       </div>
     );
@@ -21,12 +21,12 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  texto: (texto) => dispatch(filterByName(texto)),
+  name: (texto) => dispatch(filterByName(texto)),
 });
 
 FilterName.propTypes = {
   isLoading: propTypes.bool.isRequired,
-  texto: propTypes.func.isRequired,
+  name: propTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(FilterName);
