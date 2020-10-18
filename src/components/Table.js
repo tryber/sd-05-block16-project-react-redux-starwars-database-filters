@@ -47,7 +47,7 @@ Table.propTypes = {
   endpoint: PropTypes.func.isRequired,
   filterName: PropTypes.func.isRequired,
   isLoading: PropTypes.bool.isRequired,
-  arrayPlanets: PropTypes.arrayOf(
+  allPlanets: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string,
       diameter: PropTypes.string,
@@ -62,7 +62,7 @@ Table.propTypes = {
       url: PropTypes.string,
       created: PropTypes.string,
       edited: PropTypes.string,
-    }).isRequired
+    }).isRequired,
   ).isRequired,
 };
 

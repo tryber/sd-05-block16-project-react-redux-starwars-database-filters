@@ -12,12 +12,12 @@ import {
   ORDER_FILTER,
 } from '../actions/index';
 
-const initialState_api = {
+const initialStateApi = {
   isLoading: false,
   data: [],
 };
 
-const initialState_filters = {
+const initialStateFilters = {
   filterByName: {
     name: '',
   },
@@ -28,18 +28,18 @@ const initialState_filters = {
   },
 };
 
-const initialState_select = {
+const initialStateSelect = {
   column: '',
   comparison: '',
   value: '',
 };
 
-const initialState_sort = {
+const initialStateSort = {
   column: '',
   sort: '',
 };
 
-export const apiReducer = (state = initialState_api, action) => {
+export const apiReducer = (state = initialStateApi, action) => {
   switch (action.type) {
     case AQUISICAO:
       return {
@@ -57,7 +57,7 @@ export const apiReducer = (state = initialState_api, action) => {
   }
 };
 
-export const filters = (state = initialState_filters, action) => {
+export const filters = (state = initialStateFilters, action) => {
   switch (action.type) {
     case FILTER_BY_NAME:
       return {
@@ -88,7 +88,7 @@ export const filters = (state = initialState_filters, action) => {
   }
 };
 
-export const selectReducer = (state = initialState_select, action) => {
+export const selectReducer = (state = initialStateSelect, action) => {
   switch (action.type) {
     case COLUMN:
       return {
@@ -110,7 +110,7 @@ export const selectReducer = (state = initialState_select, action) => {
   }
 };
 
-export const sortReducer = (state = initialState_sort, action) => {
+export const sortReducer = (state = initialStateSort, action) => {
   switch (action.type) {
     case ORDER_COLUMN:
       return {

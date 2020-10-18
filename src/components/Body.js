@@ -92,14 +92,14 @@ Body.propTypes = {
       url: PropTypes.string,
       created: PropTypes.string,
       edited: PropTypes.string,
-    }).isRequired
+    }).isRequired,
   ).isRequired,
   numericFilters: PropTypes.arrayOf(
     PropTypes.shape({
       column: PropTypes.string,
       comparison: PropTypes.string,
       value: PropTypes.string,
-    }).isRequired
+    }).isRequired,
   ).isRequired,
   column: PropTypes.string.isRequired,
   sort: PropTypes.string.isRequired,
