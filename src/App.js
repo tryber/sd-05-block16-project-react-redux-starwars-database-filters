@@ -2,10 +2,10 @@
 // reducers são interpretadores de actions - sempre switch
 // store é o estado gravado, informação salva
 // no redux nao consegue alterar diretamente o estado
+// Referencias: projetos T5: Sinei, Giuliano, Renata
+// Referencias: repositorio T4, T3
+// plantão direcionado Hamaji
 import React from 'react';
-// import FilterName from './components/FilterName';
-// import FilterNumber from './components/FilterNumber';
-// import Order from './components/Order';
 import Table from './components/Table';
 
 function App() {
