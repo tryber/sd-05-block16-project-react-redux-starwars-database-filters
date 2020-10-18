@@ -1,24 +1,17 @@
+// actions sao objetos
+// reducers são interpretadores de actions - sempre switch
+// store é o estado gravado, informação salva
+// no redux nao consegue alterar diretamente o estado
+// Referencias: projetos T5: Sinei, Giuliano, Renata
+// Referencias: repositorio T4, T3
+// plantão direcionado Hamaji
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Table from './components/Table';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Table />
     </div>
   );
 }

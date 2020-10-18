@@ -1,5 +1,11 @@
-function emptyReducer() {
-  return {};
-}
+import { combineReducers } from 'redux';
+import { apiReducer, filters, selectReducer, sortReducer } from './filterReducer';
 
-export default emptyReducer;
+const rootReducer = combineReducers({
+  apiReducer,
+  filters,
+  selectReducer,
+  sortReducer,
+});
+
+export default rootReducer;
