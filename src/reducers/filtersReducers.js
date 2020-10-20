@@ -31,7 +31,7 @@ function filters(state = INITIAL_STATE, action) {
       return {
         ...state,
         filterByNumericValues: state.filterByNumericValues.filter(
-          (filtro) => filtro.column !== action.column
+          (filtro) => filtro.column !== action.column,
         ),
       };
     case ACTIONS.ORDENA_COLUNA:
