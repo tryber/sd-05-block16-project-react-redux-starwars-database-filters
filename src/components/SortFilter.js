@@ -1,7 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { ordenaColunaAction } from '../action';
-import PropTypes from 'prop-types';
 
 class SortFilter extends React.Component {
   constructor(props) {
@@ -20,27 +20,21 @@ class SortFilter extends React.Component {
           onChange={(event) => this.setState({ column: event.target.value })}
         >
           {Object.keys(header[0]).map((cabecalho) =>
-            cabecalho === 'residents' ? null : <option key={cabecalho}>{cabecalho}</option>
+            (cabecalho === 'residents' ? null : <option key={cabecalho}>{cabecalho}</option>),
           )}
         </select>
         <label htmlFor="ASC">ASC</label>
         <input
-          type="radio"
-          id="ASC"
-          data-testid="column-sort-input"
-          name="sort"
-          value="ASC"
-          defaultChecked
+          type="radio" id="ASC"
+          data-testid="column-sort-input" name="sort"
+          value="ASC" defaultChecked
           onClick={(event) => this.setState({ sort: event.target.value })}
         />
         <label htmlFor="DESC">DESC</label>
         <input
-          type="radio"
-          id="DESC"
-          data-testid="column-sort-input"
-          name="sort"
-          value="DESC"
-          onClick={(event) => this.setState({ sort: event.target.value })}
+          type="radio" id="DESC"
+          data-testid="column-sort-input" name="sort"
+          value="DESC" onClick={(event) => this.setState({ sort: event.target.value })}
         />
         <button data-testid="column-sort-button" onClick={() => this.props.orderColumn(this.state)}>
           ORDENAR
@@ -62,4 +56,5 @@ export default connect(mapStateToProps, mapDispatchToProps)(SortFilter);
 
 SortFilter.propTypes = {
   header: PropTypes.arrayOf(PropTypes.instanceOf(Object)).isRequired,
-}
+  orderColumn: PropTypes.func.isRequired,
+};
