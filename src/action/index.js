@@ -5,6 +5,7 @@ const SUCESSO_API = 'SUCESSO_API';
 const FILTRAR_NOMES = 'FILTRAR_NOMES';
 const FILTRAR_VALORES = 'FILTRAR_VALORES';
 const DELETA_FILTROS = 'DELETA_FILTROS';
+const ORDENA_COLUNA = 'ORDENA_COLUNA'
 
 const ACTIONS = {
   CARREGANDO_API,
@@ -12,9 +13,15 @@ const ACTIONS = {
   FILTRAR_NOMES,
   FILTRAR_VALORES,
   DELETA_FILTROS,
+  ORDENA_COLUNA,
 };
 
 export default ACTIONS;
+
+export const ordenaColunaAction = (ordem) => ({
+  type: ORDENA_COLUNA,
+  ordem,
+})
 
 export const deletFilterAction = (column) => ({
   type: DELETA_FILTROS,

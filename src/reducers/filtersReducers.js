@@ -5,6 +5,10 @@ const INITIAL_STATE = {
     name: '',
   },
   filterByNumericValues: [],
+  order: {
+    column: 'Name',
+    sort: 'ASC',
+  },
 };
 
 function filters(state = INITIAL_STATE, action) {
@@ -27,8 +31,13 @@ function filters(state = INITIAL_STATE, action) {
       return {
         ...state,
         filterByNumericValues: state.filterByNumericValues.filter(
-          (filtro) => filtro.column !== action.column,
+          (filtro) => filtro.column !== action.column
         ),
+      };
+    case ACTIONS.ORDENA_COLUNA:
+      return {
+        ...state,
+        order: action.ordem,
       };
     default:
       return state;

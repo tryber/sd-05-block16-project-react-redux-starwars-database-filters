@@ -22,14 +22,22 @@ function bodyRender(planeta) {
   );
 }
 
+const colunasNumericas = [
+  'population',
+  'orbital_period',
+  'diameter',
+  'rotation_period',
+  'surface_water',
+];
+
 class TBody extends Component {
   constructor(props) {
     super(props);
     this.filtroNumerico = this.filtroNumerico.bind(this);
   }
 
-  filtroNumerico() {
-    const { planetas, filtros } = this.props;
+  filtroNumerico(planetas) {
+    const { filtros } = this.props;
     let planetasFiltrados = planetas;
     filtros.forEach((filtro) => {
       const { column, comparison, value } = filtro;
@@ -43,18 +51,39 @@ class TBody extends Component {
         planetasFiltrados = planetasFiltrados.filter((planeta) => planeta[column] === value);
       }
     });
-    return planetasFiltrados.map((planeta) => bodyRender(planeta));
+    return planetasFiltrados;
+  }
+
+  ordenaPlaneta(planetasAlterados) {
+    const { ordem } = this.props;
+    let ordenado = [];
+    if (colunasNumericas.includes(ordem.column)) {
+      ordenado = planetasAlterados.sort(
+        (a, b) => Number(a[ordem.column]) - Number(b[ordem.column])
+      );
+    } else {
+      ordenado = planetasAlterados.sort((a, b) =>
+        a[ordem.column.toLowerCase()] > b[ordem.column.toLowerCase()] ? 1 : -1
+      );
+    }
+    if (ordem.sort === 'DESC') {
+      return ordenado.reverse();
+    }
+    return ordenado;
   }
 
   render() {
     const { planetas, names, filtros } = this.props;
+    let planetasAlterados = planetas;
     if (filtros.length > 0) {
-      return <tbody>{this.filtroNumerico()}</tbody>;
+      planetasAlterados = this.filtroNumerico(planetas);
     }
+
+    planetasAlterados = this.ordenaPlaneta(planetasAlterados);
 
     return (
       <tbody>
-        {planetas
+        {planetasAlterados
           .filter((planeta) => planeta.name.includes(names))
           .map((planeta) => bodyRender(planeta))}
       </tbody>
@@ -66,6 +95,7 @@ const mapStateToProps = (state) => ({
   planetas: state.apiReducer.data.results,
   names: state.filters.filterByName.name,
   filtros: state.filters.filterByNumericValues,
+  ordem: state.filters.order,
 });
 
 export default connect(mapStateToProps)(TBody);
@@ -74,4 +104,5 @@ TBody.propTypes = {
   planetas: PropTypes.instanceOf(Array).isRequired,
   names: PropTypes.string.isRequired,
   filtros: PropTypes.arrayOf(PropTypes.instanceOf(Object)).isRequired,
+  ordem: PropTypes.instanceOf(Object).isRequired,
 };

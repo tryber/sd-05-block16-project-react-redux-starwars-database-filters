@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { filtraNomesAction, filtraValoresAction, deletFilterAction } from '../action';
+import SortFilter from './SortFilter';
 
 const colunas = [
   'selected',
@@ -89,6 +90,9 @@ class SearchBar extends Component {
               <button onClick={() => deletaFiltros(value.column)}>X</button>
             </div>
           ))}
+        </div>
+        <div>
+          <SortFilter />
         </div>
       </div>
     );
