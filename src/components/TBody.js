@@ -59,11 +59,11 @@ class TBody extends Component {
     let ordenado = [];
     if (colunasNumericas.includes(ordem.column)) {
       ordenado = planetasAlterados.sort(
-        (a, b) => Number(a[ordem.column]) - Number(b[ordem.column])
+        (a, b) => Number(a[ordem.column]) - Number(b[ordem.column]),
       );
     } else {
       ordenado = planetasAlterados.sort((a, b) =>
-        a[ordem.column.toLowerCase()] > b[ordem.column.toLowerCase()] ? 1 : -1
+      (a[ordem.column.toLowerCase()] > b[ordem.column.toLowerCase()] ? 1 : -1),
       );
     }
     if (ordem.sort === 'DESC') {
