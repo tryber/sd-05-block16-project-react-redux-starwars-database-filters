@@ -1,7 +1,10 @@
 import { combineReducers } from 'redux';
-import tablesReducer from './tablesReducer';
+import emptyReducer from './receiveReducer';
+import filters from './filters';
 
-const MyReducer = combineReducers({ tablesReducer });
+const rootReducer = combineReducers({
+  emptyReducer,
+  filters,
+});
 
-
-export default MyReducer;
+export default rootReducer;
