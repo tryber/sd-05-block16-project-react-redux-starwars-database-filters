@@ -5,7 +5,7 @@ const INIT_STATE = {
   filterByNumericValues: [],
   order: { column: 'Name', sort: 'ASC' },
 };
-//estado inicil para não bugar os estados 
+// estado inicil para não bugar os estados
 
 const Rfiltros = (state = INIT_STATE, action) => {
   switch (action.type) {
